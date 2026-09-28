@@ -1,0 +1,37 @@
+import type { MetadataRoute } from "next";
+import { courseDetails } from "@/lib/courses";
+import { blogPosts } from "@/lib/data";
+import { resourceTopics } from "@/lib/resourceTopics";
+import { site } from "@/lib/site";
+import { difficulties, quizLevels } from "@/lib/quizBank";
+import { lessonSeeds } from "@/lib/curriculum";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticPaths = [
+    "",
+    "/batches",
+    "/level-test",
+    "/free-japanese-demo-class",
+    "/resources",
+    "/blog",
+    "/about-us",
+    "/contact",
+    "/teachers",
+    "/success-stories",
+    "/work-in-japan",
+    "/study-in-japan",
+  ];
+  const paths = [
+    ...staticPaths,
+    ...courseDetails.map((c) => `/${c.slug}`),
+    ...resourceTopics.map((t) => `/resources/${t.slug}`),
+    ...blogPosts.map((p) => `/blog/${p.slug}`),
+    "/jlpt-quiz",
+    "/jlpt-exam-info",
+    "/learn",
+    ...quizLevels.map((l) => `/learn/${l.toLowerCase()}`),
+    ...lessonSeeds.filter((l) => l.isFree).map((l) => `/learn/${l.level.toLowerCase()}/${l.id}`),
+    ...quizLevels.flatMap((l) => difficulties.map((d) => `/jlpt-quiz/${l.toLowerCase()}/${d.id}`)),
+  ];
+  return paths.map((p) => ({ url: `${site.url}${p}`, lastModified: new Date() }));
+}

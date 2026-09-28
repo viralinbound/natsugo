@@ -1,0 +1,37 @@
+import type { Metadata } from "next";
+import { images } from "@/lib/site";
+import { PageHero } from "@/components/ui/PageHero";
+import { QuizHub } from "@/components/quiz/QuizHub";
+import { Button } from "@/components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "Free JLPT Quiz — N5 to N1, Easy to Hard",
+  description: "150 free JLPT practice questions: N5, N4, N3, N2 and N1, each with easy, medium and hard sets of 10. Instant answers with explanations.",
+  alternates: { canonical: "/jlpt-quiz" },
+};
+
+export default function JlptQuizPage() {
+  return (
+    <>
+      <PageHero
+        title="JLPT quiz: N5 to N1"
+        eyebrow="練習クイズ · Free practice"
+        intro="Pick your level and a difficulty. Every set has 10 questions across vocabulary, grammar, kanji, reading and listening — with an explanation for each answer."
+        image={images.writing}
+        crumbs={[{ label: "Resources", href: "/resources" }, { label: "JLPT Quiz", href: "/jlpt-quiz" }]}
+      />
+      <section className="py-10 sm:py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <QuizHub />
+          <div className="mt-12 rounded-lg bg-sun-100 p-6 sm:flex sm:items-center sm:justify-between gap-6">
+            <div>
+              <h2 className="text-lg font-bold text-indigo-950">Not sure which level to pick?</h2>
+              <p className="text-charcoal-700">Take the 5-minute level test first.</p>
+            </div>
+            <div className="mt-4 sm:mt-0 shrink-0"><Button href="/level-test">Take Level Test</Button></div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

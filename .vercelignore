@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.data
+.next
+node_modules
+traces
+telemetry.json
+*.tsbuildinfo
+.claude
