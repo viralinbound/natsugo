@@ -87,7 +87,7 @@ export default async function LessonPage({ params }: P) {
                   {asset?.notes ? <PrintButton /> : null}
                 </div>
               </div>
-              <div className="mt-4 rounded-lg border border-charcoal-100 bg-surface p-5 sm:p-8">
+              <div className="mt-4 card-modern p-5 sm:p-8">
                 {asset?.notes ? <Notes text={asset.notes} /> : <p className="text-charcoal-500">Notes for this lesson will be added by your teacher.</p>}
               </div>
               {!enrolled ? (
@@ -110,7 +110,7 @@ export default async function LessonPage({ params }: P) {
             </nav>
           </div>
 
-          <aside className="lg:sticky lg:top-24 rounded-lg border border-charcoal-100 bg-surface print:hidden">
+          <aside className="lg:sticky lg:top-24 card-modern print:hidden">
             <p className="border-b border-charcoal-100 px-4 py-3 font-display font-bold text-indigo-950">{level} lessons</p>
             <p className="border-b border-charcoal-100 px-4 py-2 text-xs text-charcoal-500">Notes and audio lectures are open for every lesson. <Lock size={11} className="inline -mt-0.5" /> = teacher video for enrolled students.</p>
             <ol className="max-h-[60vh] overflow-y-auto divide-y divide-charcoal-100">

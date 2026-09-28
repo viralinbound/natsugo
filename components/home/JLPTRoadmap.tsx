@@ -18,7 +18,7 @@ export function JLPTRoadmap() {
           {jlptLevels.map((item) => (
             <div
               key={item.level}
-              className="rounded-lg border border-charcoal-100 bg-surface p-5 flex flex-col"
+              className="card-modern p-5 flex flex-col"
             >
               <span className="inline-flex w-fit rounded-full bg-sun-100 text-sun-500 text-xs font-bold px-3 py-1">
                 JLPT {item.level}

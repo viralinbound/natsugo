@@ -32,6 +32,10 @@
   --color-sun-400: #0c88ff;
   --color-sun-500: #0a74da;
 
+  /* Restrained hanko-seal red — a small Japanese cultural accent, used sparingly */
+  --color-hanko: #c23b3b;
+  --color-hanko-100: #fbe9e7;
+
   --font-sans: var(--font-fira), "Segoe UI", sans-serif;
   --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
   --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
@@ -61,6 +65,8 @@
   --color-sun-300: var(--color-sun-300);
   --color-sun-400: var(--color-sun-400);
   --color-sun-500: var(--color-sun-500);
+  --color-hanko: var(--color-hanko);
+  --color-hanko-100: var(--color-hanko-100);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
   --font-jp: var(--font-jp);
@@ -217,6 +223,18 @@ html[data-furigana="off"] rt {
 .brand-pattern-light::before {
   opacity: 0.09;
   filter: grayscale(1) brightness(3);
+}
+
+/* Plain card: flat surface, thin rule, a hairline offset shadow — no glow, no lift */
+.card-modern {
+  background: var(--color-surface);
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-charcoal-100);
+  box-shadow: 0 1px 2px rgba(40, 40, 40, 0.05);
+  transition: border-color 0.15s ease;
+}
+.card-modern:hover {
+  border-color: var(--color-charcoal-200, rgba(40, 40, 40, 0.2));
 }
 
 @media print {

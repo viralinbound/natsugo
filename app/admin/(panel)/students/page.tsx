@@ -46,7 +46,7 @@ export default async function AdminStudents() {
         <div className="mt-4"><ActionForm action={saveStudent} submitLabel="Add student"><Fields /></ActionForm></div>
       </details>
       {(data as Student[] | null)?.map((s) => (
-        <details key={s.email} className="rounded-lg border border-charcoal-100 bg-surface p-5">
+        <details key={s.email} className="card-modern p-5">
           <summary className="cursor-pointer flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="font-bold text-indigo-950">{s.name}</span>
             <span className="text-sm text-charcoal-500 break-all">{s.email}</span>

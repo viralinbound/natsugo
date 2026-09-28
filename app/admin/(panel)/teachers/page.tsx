@@ -41,7 +41,7 @@ export default async function AdminTeachers() {
         <div className="mt-4"><ActionForm action={saveTeacher} submitLabel="Add teacher"><TeacherFields /></ActionForm></div>
       </details>
       {(data as Row[] | null)?.map((t) => (
-        <details key={t.id} className="rounded-lg border border-charcoal-100 bg-surface p-5">
+        <details key={t.id} className="card-modern p-5">
           <summary className="cursor-pointer flex items-center gap-3">
             {t.photo_url ? <img src={t.photo_url} alt="" className="h-10 w-10 rounded-full object-cover" /> : <span className="h-10 w-10 rounded-full bg-bg-alt" />}
             <span className="font-bold text-indigo-950">{t.name}</span>

@@ -93,7 +93,7 @@ export default async function AdminLive() {
         <div className="mt-4"><ActionForm action={saveLiveSession} submitLabel="Schedule class"><Fields batches={batches ?? []} teachers={teachers ?? []} blob={blob} /></ActionForm></div>
       </details>
       {(sessions as Session[] | null)?.map((s) => (
-        <details key={s.id} className="rounded-lg border border-charcoal-100 bg-surface p-5">
+        <details key={s.id} className="card-modern p-5">
           <summary className="cursor-pointer flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="font-bold text-indigo-950">{s.title}</span>
             <span className="text-sm text-charcoal-500">{fmt(s.starts_at)} · {s.level} · {s.platform}</span>

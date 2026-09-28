@@ -15,7 +15,7 @@ export async function TeachersSection() {
           {teachers.map((teacher) => (
             <div
               key={teacher.id}
-              className="rounded-lg border border-charcoal-100 bg-surface p-6"
+              className="card-modern p-6"
             >
               {teacher.photo ? (
                 <Image src={teacher.photo} alt={teacher.name} width={64} height={64} className="h-16 w-16 rounded-full object-cover" />

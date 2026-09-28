@@ -36,12 +36,12 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur border-b border-charcoal-100">
+    <header className="sticky top-0 z-50 bg-surface border-b border-charcoal-100">
       <nav
         aria-label="Main navigation"
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="flex h-16 xl:h-20 items-center justify-between gap-4">
+        <div className="flex min-h-16 xl:min-h-20 py-2 items-center justify-between gap-4">
           <Logo />
 
           <ul className="hidden xl:flex items-center gap-0.5">
@@ -72,7 +72,7 @@ export function Navbar() {
                 </button>
                 {openGroup === group.label ? (
                   <div className="absolute left-0 top-full pt-2 w-64">
-                    <div className="rounded-lg border border-charcoal-100 bg-surface shadow-xl shadow-indigo-950/5 p-2">
+                    <div className="card-modern p-2">
                       {group.items.map((item) => (
                         <Link
                           key={item.label}
@@ -120,7 +120,7 @@ export function Navbar() {
       </nav>
 
       {mobileOpen ? (
-        <div className="xl:hidden border-t border-charcoal-100 bg-surface max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain">
+        <div className="xl:hidden border-t border-charcoal-100 bg-surface max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
           <div className="px-4 py-4 flex flex-col gap-1">
             {navGroups.map((group) => (
               <div key={group.label} className="border-b border-charcoal-100 last:border-0">

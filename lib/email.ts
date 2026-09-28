@@ -10,8 +10,8 @@ function layout(title: string, body: string) {
   return `<!doctype html><html><body style="margin:0;background:${brand.bg};font-family:Arial,Helvetica,sans-serif;color:${brand.grey}">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${brand.bg};padding:24px 12px"><tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#fff;border-radius:10px;overflow:hidden">
-<tr><td style="padding:20px 28px;border-bottom:3px solid ${brand.blue}">
-<img src="${site.url}/brand/natsugo-wordmark.png" width="150" height="28" alt="Natsugo" style="display:block;height:28px;width:auto">
+<tr><td align="center" style="padding:22px 28px 18px;border-bottom:3px solid ${brand.blue}">
+<img src="${site.url}/brand/natsugo-stacked.png" width="60" height="56" alt="Natsugo" style="display:inline-block;height:56px;width:auto">
 </td></tr>
 <tr><td style="padding:28px">
 <h1 style="margin:0 0 16px;font-size:22px;color:${brand.grey}">${esc(title)}</h1>

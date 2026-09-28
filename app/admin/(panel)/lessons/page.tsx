@@ -32,7 +32,7 @@ export default async function AdminLessons({ searchParams }: { searchParams: Pro
           const a = l.lesson_assets;
           const status = [a?.video_url ? "video" : null, a?.notes ? "notes" : null, a?.material_url ? "handout" : null].filter(Boolean).join(" · ");
           return (
-            <details key={l.id} className="rounded-lg border border-charcoal-100 bg-surface p-4">
+            <details key={l.id} className="card-modern p-4">
               <summary className="cursor-pointer flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span className="text-xs font-bold text-sun-500">U{l.unit}.{l.sort + 1}</span>
                 <span className="font-semibold text-indigo-950 font-jp">{l.title}</span>

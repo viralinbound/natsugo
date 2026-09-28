@@ -42,7 +42,7 @@ export default async function ExamInfoPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 rounded-lg border border-charcoal-100 bg-surface overflow-hidden">
+          <div className="lg:col-span-2 card-modern overflow-hidden">
             <div className="flex items-center gap-2 border-b border-charcoal-100 bg-indigo-950 px-5 py-3 text-white">
               <CalendarDays size={18} className="text-sun-300" />
               <h2 className="font-display font-bold">Upcoming sessions</h2>
@@ -70,11 +70,11 @@ export default async function ExamInfoPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-5">
+            <div className="card-modern p-5">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-500"><IndianRupee size={14} /> Exam fee</p>
               <p className="mt-1 font-semibold text-charcoal-900">{info.fee}</p>
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-5">
+            <div className="card-modern p-5">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-500"><MapPin size={14} /> Test centres in India</p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {info.centres.map((c) => <span key={c} className="rounded bg-bg-alt px-2 py-1 text-sm font-semibold text-charcoal-800">{c}</span>)}
@@ -115,7 +115,7 @@ export default async function ExamInfoPage() {
           </p>
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {quizLevels.map((lvl) => (
-              <div key={lvl} className="rounded-lg border border-charcoal-100 bg-surface p-5">
+              <div key={lvl} className="card-modern p-5">
                 <p className="font-display text-2xl font-extrabold text-sun-400">{lvl}</p>
                 <p className="mt-1 text-sm text-charcoal-500 font-jp">{levelInfo[lvl].jp}</p>
                 <div className="mt-4 flex flex-col gap-2">

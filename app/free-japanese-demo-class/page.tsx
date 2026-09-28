@@ -39,7 +39,7 @@ export default async function DemoPage({ searchParams }: { searchParams: Promise
               Want to check your level first? <Link href="/level-test" className="font-semibold text-indigo-700 underline">Take the free level test</Link>.
             </p>
           </div>
-          <div className="rounded-lg border border-charcoal-100 bg-surface p-6 sm:p-8">
+          <div className="card-modern p-6 sm:p-8">
             {batch ? <p className="mb-4 rounded bg-sun-100 px-3 py-2 text-sm">Demo for: <strong>{batch.courseTitle}</strong> (starts {batch.startDate})</p> : null}
             <LeadForm type="demo" submitLabel="Book my free demo" defaultInterest={interest} batchId={batch?.id} />
           </div>

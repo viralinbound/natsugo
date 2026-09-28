@@ -57,7 +57,7 @@ export default function LearnPage() {
               const info = levelInfo[lvl];
               const count = lessonSeeds.filter((l) => l.level === lvl).length;
               return (
-                <Link key={lvl} href={`/learn/${lvl.toLowerCase()}`} className="group grid sm:grid-cols-[120px_1fr_auto] items-center gap-4 sm:gap-6 rounded-lg border border-charcoal-100 bg-surface p-5 sm:p-6 hover:border-sun-400 transition-colors">
+                <Link key={lvl} href={`/learn/${lvl.toLowerCase()}`} className="group grid sm:grid-cols-[120px_1fr_auto] items-center gap-4 sm:gap-6 card-modern p-5 sm:p-6 hover:border-sun-400 transition-colors">
                   <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0">
                     <span className="font-display text-4xl font-extrabold text-sun-400">{lvl}</span>
                     <span className="font-jp text-sm text-charcoal-500">{info.jp} · Step {i + 1}</span>

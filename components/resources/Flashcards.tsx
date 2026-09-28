@@ -139,7 +139,7 @@ export function Flashcards({ cards }: { cards: Card[] }) {
         <p className="mt-3 text-xs text-charcoal-500">{queue.length} card{queue.length === 1 ? "" : "s"} due in this deck. Cards you know come back later; cards you miss come back soon.</p>
       </div>
 
-      <aside className="rounded-lg border border-charcoal-100 bg-surface p-5 space-y-5">
+      <aside className="card-modern p-5 space-y-5">
         <div className="flex items-center gap-3">
           <Flame className={p.streak ? "text-red-500" : "text-charcoal-300"} size={32} />
           <div>

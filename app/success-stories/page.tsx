@@ -19,7 +19,7 @@ export default function SuccessStoriesPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-indigo-950">Are you one of our students?</h2>
           <p className="mt-1 text-charcoal-700">Share your experience. Reviews are checked by our team before they appear.</p>
-          <div className="mt-6 rounded-lg border border-charcoal-100 bg-surface p-6"><ReviewForm /></div>
+          <div className="mt-6 card-modern p-6"><ReviewForm /></div>
         </div>
       </section>
     </>

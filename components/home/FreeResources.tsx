@@ -16,7 +16,7 @@ export function FreeResources() {
             <Link
               key={r.id}
               href={r.href}
-              className="group rounded-lg border border-charcoal-100 bg-surface p-5 hover:border-indigo-800/30 hover:shadow-md transition-all"
+              className="group card-modern p-5 hover:border-indigo-800/30 hover:shadow-md transition-all"
             >
               <h3 className="font-bold text-indigo-950">{r.title}</h3>
               <p className="mt-1.5 text-sm text-charcoal-500">{r.description}</p>

@@ -63,7 +63,7 @@ export default async function AdminBatches() {
       </details>
 
       {(batches as BatchRow[] | null)?.map((b) => (
-        <details key={b.id} className="rounded-lg border border-charcoal-100 bg-surface p-5">
+        <details key={b.id} className="card-modern p-5">
           <summary className="cursor-pointer flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="font-bold text-indigo-950">{b.course_title}</span>
             <span className="text-sm text-charcoal-500">{b.start_date} · {b.schedule}</span>

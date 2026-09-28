@@ -19,7 +19,7 @@ export function BlogSection() {
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="rounded-lg border border-charcoal-100 bg-surface p-6 hover:shadow-lg hover:shadow-indigo-950/5 transition-shadow flex flex-col"
+              className="card-modern p-6 hover:shadow-lg hover:shadow-indigo-950/5 transition-shadow flex flex-col"
             >
               <Badge tone="indigo">{post.category}</Badge>
               <h3 className="mt-4 font-bold text-indigo-950 text-balance">

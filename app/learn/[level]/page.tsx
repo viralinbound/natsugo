@@ -110,7 +110,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
             <p className="mt-1 text-charcoal-700">Every lesson has full study notes and an audio lecture — open to everyone, no sign-in needed. Enrol to unlock the teacher-recorded video, downloadable handout and live classes.</p>
             <div className="mt-6 space-y-4">
               {units.map((u) => (
-                <details key={u.n} open={u.n === 1} className="group rounded-lg border border-charcoal-100 bg-surface overflow-hidden">
+                <details key={u.n} open={u.n === 1} className="group card-modern overflow-hidden">
                   <summary className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 min-h-[56px]">
                     <span>
                       <span className="text-xs font-bold uppercase tracking-wider text-sun-500">Unit {u.n}</span>
@@ -149,7 +149,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
 
           {/* Sidebar */}
           <aside className="space-y-6">
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+            <div className="card-modern p-6">
               <h2 className="font-bold text-indigo-950">After {level} you can</h2>
               <ul className="mt-3 space-y-2">
                 {info.canDo.map((c) => (
@@ -157,7 +157,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                 ))}
               </ul>
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+            <div className="card-modern p-6">
               <h2 className="font-bold text-indigo-950">JLPT {level} exam format</h2>
               <table className="mt-3 w-full text-sm">
                 <tbody className="divide-y divide-charcoal-100">
@@ -221,7 +221,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
             <h2 className="text-2xl font-bold text-indigo-950"><Video size={22} className="inline -mt-1 text-sun-400" /> Class recordings</h2>
             <p className="mt-1 text-charcoal-700">Missed a class? Every live class is recorded for enrolled students.</p>
             {recordings.length ? (
-              <ul className="mt-5 divide-y divide-charcoal-100 rounded-lg border border-charcoal-100 bg-surface">
+              <ul className="mt-5 divide-y divide-charcoal-100 card-modern">
                 {recordings.map((s) => {
                   const link = portal?.live.get(s.id);
                   return (
@@ -249,7 +249,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
             <ul className="mt-5 grid sm:grid-cols-2 gap-3">
               {info.materials.map((m) => (
                 <li key={m.title}>
-                  <Link href={m.href} className="flex h-full gap-3 rounded-lg border border-charcoal-100 bg-surface p-4 hover:border-sun-400">
+                  <Link href={m.href} className="flex h-full gap-3 card-modern p-4 hover:border-sun-400">
                     {m.kind === "free" ? <FileText size={20} className="shrink-0 text-sun-400" /> : enrolled ? <Download size={20} className="shrink-0 text-success" /> : <Lock size={18} className="shrink-0 text-charcoal-300" />}
                     <span>
                       <span className="block font-semibold text-charcoal-900">{m.title}</span>

@@ -73,7 +73,7 @@ export function AutoLecture({ title, notes }: { title: string; notes: string }) 
 
   if (!ready)
     return (
-      <div className="rounded-lg border border-charcoal-100 bg-surface p-6 text-sm text-charcoal-500">
+      <div className="card-modern p-6 text-sm text-charcoal-500">
         Audio lecture needs a browser with speech support. Read the study notes below instead.
       </div>
     );

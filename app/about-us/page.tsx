@@ -57,11 +57,11 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-indigo-950">Certificates — what you receive</h2>
           <div className="mt-6 grid sm:grid-cols-2 gap-5">
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+            <div className="card-modern p-6">
               <h3 className="font-bold text-indigo-950">Institute course certificate</h3>
               <p className="mt-2 text-sm text-charcoal-700">Issued by Natsugo when you complete a course. It shows the course and hours completed.</p>
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+            <div className="card-modern p-6">
               <h3 className="font-bold text-indigo-950">Official JLPT certificate</h3>
               <p className="mt-2 text-sm text-charcoal-700">Issued only by the JLPT organisers after you sit and pass the official exam. We prepare you for it; we don&apos;t issue it.</p>
             </div>

@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <h2 className="text-xl font-bold text-indigo-950">Keep reading</h2>
           <div className="mt-5 grid sm:grid-cols-3 gap-4">
             {more.map((m) => (
-              <Link key={m.slug} href={`/blog/${m.slug}`} className="rounded-lg border border-charcoal-100 bg-surface p-5 hover:border-indigo-800">
+              <Link key={m.slug} href={`/blog/${m.slug}`} className="card-modern p-5 hover:border-indigo-800">
                 <p className="text-xs font-bold uppercase tracking-wider text-sun-500">{m.category}</p>
                 <p className="mt-1 font-bold text-indigo-950">{m.title}</p>
               </Link>

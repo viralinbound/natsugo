@@ -107,7 +107,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
               <Image src={`${c.image}?w=900&q=70&auto=format&fit=crop`} alt={`${c.navLabel} class`} fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+            <div className="card-modern p-6">
               <h2 className="font-bold text-indigo-950">Skills covered</h2>
               <dl className="mt-4 divide-y divide-charcoal-100">
                 {c.skills.map((s) => (

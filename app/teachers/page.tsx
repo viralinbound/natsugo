@@ -24,7 +24,7 @@ export default async function TeachersPage() {
             {teachers.map((t) => {
               const count = batches.filter((b) => b.teacherId === t.id).length;
               return (
-                <article key={t.id} id={t.id} className="rounded-lg border border-charcoal-100 bg-surface overflow-hidden scroll-mt-28">
+                <article key={t.id} id={t.id} className="card-modern overflow-hidden scroll-mt-28">
                   {t.photo ? (
                     <div className="relative aspect-[4/3]">
                       <Image src={t.photo} alt={t.name} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover" />

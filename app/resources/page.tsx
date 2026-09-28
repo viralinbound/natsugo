@@ -18,7 +18,7 @@ export default function ResourcesPage() {
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {resourceTopics.map((t) => (
-            <Link key={t.slug} href={`/resources/${t.slug}`} className="group overflow-hidden rounded-lg border border-charcoal-100 bg-surface">
+            <Link key={t.slug} href={`/resources/${t.slug}`} className="group overflow-hidden card-modern">
               <div className="relative aspect-[16/9] overflow-hidden">
                 <Image src={`${t.image}?w=700&q=65&auto=format&fit=crop`} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 <span className="absolute bottom-3 left-3 rounded bg-indigo-950/85 px-2.5 py-1 font-jp text-lg font-bold text-white">{t.jp}</span>

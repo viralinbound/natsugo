@@ -74,7 +74,7 @@ export function ActivityTicker() {
     <div
       role="status"
       aria-live="polite"
-      className={`fixed left-4 bottom-20 lg:bottom-6 z-40 max-w-[calc(100vw-2rem)] sm:max-w-sm flex items-start gap-3 rounded-lg border border-charcoal-100 bg-surface px-4 py-3 shadow-xl transition-all duration-500 ${
+      className={`fixed left-4 bottom-20 lg:bottom-6 z-40 max-w-[calc(100vw-2rem)] sm:max-w-sm flex items-start gap-3 card-modern px-4 py-3 shadow-xl transition-all duration-500 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0 pointer-events-none"
       }`}
     >

@@ -31,7 +31,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {stats.map((s) => (
-          <div key={s.label} className="rounded-lg border border-charcoal-100 bg-surface p-4">
+          <div key={s.label} className="card-modern p-4">
             <p className="text-2xl font-extrabold text-indigo-950">{s.value}</p>
             <p className="text-xs text-charcoal-500">{s.label}</p>
           </div>
@@ -46,7 +46,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
         ))}
       </div>
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-charcoal-100 bg-surface">
+      <div className="mt-4 overflow-x-auto card-modern">
         <table className="w-full min-w-[860px] text-left text-sm">
           <thead className="bg-bg-alt text-xs uppercase tracking-wide text-charcoal-500">
             <tr>

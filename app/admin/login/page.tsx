@@ -15,7 +15,7 @@ export default async function AdminLogin() {
       <h1 className="mt-5 text-2xl font-extrabold text-indigo-950">Admin sign in</h1>
       <p className="mt-2 text-sm text-charcoal-500">Only emails listed in the <code>admins</code> table can sign in.</p>
       {isSupabaseConfigured ? (
-        <div className="mt-6 rounded-lg border border-charcoal-100 bg-surface p-6">
+        <div className="mt-6 card-modern p-6">
           <LoginForm />
         </div>
       ) : (

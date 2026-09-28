@@ -66,7 +66,7 @@ export default async function StudentDashboard() {
           {/* Continue learning */}
           <div className="lg:col-span-2 space-y-6">
             {lessonsByLevel.map(({ level, lessons }) => (
-              <div key={level} className="rounded-lg border border-charcoal-100 bg-surface">
+              <div key={level} className="card-modern">
                 <div className="flex items-center justify-between gap-3 border-b border-charcoal-100 px-5 py-4">
                   <h2 className="font-display font-bold text-indigo-950"><BookOpen size={18} className="inline -mt-0.5 text-sun-400" /> JLPT {level} lessons</h2>
                   <Link href={`/learn/${level.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline py-2">Level page</Link>
@@ -90,7 +90,7 @@ export default async function StudentDashboard() {
           </div>
 
           <aside className="space-y-6">
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-5">
+            <div className="card-modern p-5">
               <h2 className="font-display font-bold text-indigo-950"><Radio size={17} className="inline -mt-0.5 text-sun-400" /> Schedule</h2>
               {myUpcoming.length ? (
                 <ul className="mt-3 divide-y divide-charcoal-100">
@@ -103,7 +103,7 @@ export default async function StudentDashboard() {
                 </ul>
               ) : <p className="mt-2 text-sm text-charcoal-500">Nothing scheduled yet.</p>}
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-5">
+            <div className="card-modern p-5">
               <h2 className="font-display font-bold text-indigo-950"><Video size={17} className="inline -mt-0.5 text-sun-400" /> Recordings</h2>
               {recordings.length ? (
                 <ul className="mt-3 divide-y divide-charcoal-100">
@@ -119,7 +119,7 @@ export default async function StudentDashboard() {
                 </ul>
               ) : <p className="mt-2 text-sm text-charcoal-500">Recordings appear after each class.</p>}
             </div>
-            <div className="rounded-lg border border-charcoal-100 bg-surface p-5">
+            <div className="card-modern p-5">
               <h2 className="font-display font-bold text-indigo-950"><Download size={17} className="inline -mt-0.5 text-sun-400" /> Handouts</h2>
               {materials.length ? (
                 <ul className="mt-3 space-y-2">

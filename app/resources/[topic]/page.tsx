@@ -39,7 +39,7 @@ function Content({ slug }: { slug: string }) {
       return (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {kanjiN5.map((k) => (
-            <div key={k.k} className="rounded-lg border border-charcoal-100 bg-surface p-4 text-center">
+            <div key={k.k} className="card-modern p-4 text-center">
               <p className="font-jp text-5xl text-indigo-950">{k.k}</p>
               <p className="mt-2 font-semibold text-charcoal-800">{k.m}</p>
               <div className="mt-1 flex items-center justify-center gap-1">
@@ -54,7 +54,7 @@ function Content({ slug }: { slug: string }) {
       return (
         <div className="space-y-4">
           {grammarPoints.map((g) => (
-            <div key={g.pattern} className="rounded-lg border border-charcoal-100 bg-surface p-5 sm:flex sm:items-center sm:gap-6">
+            <div key={g.pattern} className="card-modern p-5 sm:flex sm:items-center sm:gap-6">
               <div className="sm:w-56 shrink-0">
                 <p className="font-jp text-xl font-bold text-indigo-950">{g.pattern}</p>
                 <p className="text-sm text-sun-500 font-semibold">{g.meaning}</p>
@@ -74,7 +74,7 @@ function Content({ slug }: { slug: string }) {
       return (
         <div className="grid md:grid-cols-2 gap-6">
           {vocabulary.map((v) => (
-            <div key={v.topic} className="rounded-lg border border-charcoal-100 bg-surface overflow-hidden">
+            <div key={v.topic} className="card-modern overflow-hidden">
               <h2 className="bg-indigo-950 px-5 py-3 font-bold text-white">{v.topic}</h2>
               <ul className="divide-y divide-charcoal-100">
                 {v.words.map((w) => (
@@ -93,7 +93,7 @@ function Content({ slug }: { slug: string }) {
         <>
         <ul className="sm:hidden space-y-3">
           {phrases.map((p) => (
-            <li key={p.jp} className="flex items-start justify-between gap-3 rounded-lg border border-charcoal-100 bg-surface p-4">
+            <li key={p.jp} className="flex items-start justify-between gap-3 card-modern p-4">
               <div className="min-w-0">
                 <p className="font-jp text-lg text-indigo-950 break-words">{p.jp}</p>
                 <p className="text-sm text-charcoal-500">{p.romaji}</p>
@@ -103,7 +103,7 @@ function Content({ slug }: { slug: string }) {
             </li>
           ))}
         </ul>
-        <div className="hidden sm:block overflow-x-auto rounded-lg border border-charcoal-100 bg-surface">
+        <div className="hidden sm:block overflow-x-auto card-modern">
           <table className="w-full text-left">
             <thead className="bg-bg-alt text-xs uppercase tracking-wider text-charcoal-500">
               <tr><th className="px-5 py-3">Japanese</th><th className="px-5 py-3">Romaji</th><th className="px-5 py-3">Meaning</th><th className="px-5 py-3"><span className="sr-only">Listen</span></th></tr>

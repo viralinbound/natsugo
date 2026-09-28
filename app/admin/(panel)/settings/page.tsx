@@ -18,7 +18,7 @@ export default async function AdminSettings() {
 
   return (
     <div className="grid lg:grid-cols-2 gap-6">
-      <section className="rounded-lg border border-charcoal-100 bg-surface p-5">
+      <section className="card-modern p-5">
         <h2 className="font-bold text-indigo-950">Announcement bar</h2>
         <p className="mt-1 text-sm text-charcoal-500">Shown at the top of every page.</p>
         <div className="mt-4">
@@ -31,7 +31,7 @@ export default async function AdminSettings() {
         </div>
       </section>
 
-      <section className="rounded-lg border border-charcoal-100 bg-surface p-5 text-sm">
+      <section className="card-modern p-5 text-sm">
         <h2 className="font-bold text-indigo-950">Connections</h2>
         <dl className="mt-3 space-y-2">
           <div className="flex justify-between"><dt>Database</dt><dd className="font-semibold text-success">Supabase connected</dd></div>
@@ -40,7 +40,7 @@ export default async function AdminSettings() {
         </dl>
       </section>
 
-      <section className="lg:col-span-2 rounded-lg border border-charcoal-100 bg-surface p-5">
+      <section className="lg:col-span-2 card-modern p-5">
         <h2 className="font-bold text-indigo-950">JLPT exam info</h2>
         <p className="mt-1 text-sm text-charcoal-500">
           Shown on the public <a href="/jlpt-exam-info" target="_blank" className="underline">/jlpt-exam-info</a> page. Update this whenever JEES/the Japan Foundation announces new dates.

@@ -48,7 +48,7 @@ export default async function EnrolPage({ searchParams }: { searchParams: Promis
                 {course ? <Link href={`/${course.slug}`} className="mt-3 inline-block py-2 text-sm font-semibold text-indigo-700 underline">View course details</Link> : null}
               </div>
             ) : (
-              <div className="rounded-lg border border-charcoal-100 bg-surface p-6">
+              <div className="card-modern p-6">
                 <h2 className="font-bold text-indigo-950">No batch selected</h2>
                 <p className="mt-2 text-sm text-charcoal-700">Pick a batch first, or fill the form and we&apos;ll suggest one.</p>
                 <Link href="/batches" className="mt-4 inline-block font-semibold text-indigo-700 underline">Browse batches</Link>
@@ -61,7 +61,7 @@ export default async function EnrolPage({ searchParams }: { searchParams: Promis
               <p>3. You receive the class link / classroom details and study materials.</p>
             </div>
           </div>
-          <div className="rounded-lg border border-charcoal-100 bg-surface p-6 sm:p-8">
+          <div className="card-modern p-6 sm:p-8">
             <h2 className="text-xl font-bold text-indigo-950">Your details</h2>
             <div className="mt-5">
               <LeadForm type={isWaitlist ? "waitlist" : "enrol"} submitLabel={isWaitlist ? "Join waitlist" : "Request enrolment"} batchId={batch?.id} defaultInterest={batch && batch.level !== "All Levels" ? `JLPT ${batch.level}` : ""} />

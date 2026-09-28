@@ -78,7 +78,7 @@ export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; in
 
   return (
     <div className="grid lg:grid-cols-[260px_1fr] gap-8">
-      <aside className="hidden lg:block lg:sticky lg:top-28 self-start rounded-lg border border-charcoal-100 bg-surface p-5">
+      <aside className="hidden lg:block lg:sticky lg:top-28 self-start card-modern p-5">
         {filterPanel}
       </aside>
 
@@ -119,7 +119,7 @@ export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; in
           </div>
         </div>
 
-        {open ? <div className="lg:hidden mt-4 rounded-lg border border-charcoal-100 bg-surface p-5">{filterPanel}</div> : null}
+        {open ? <div className="lg:hidden mt-4 card-modern p-5">{filterPanel}</div> : null}
 
         <p className="mt-5 text-sm text-charcoal-500" aria-live="polite">
           Showing {list.length} of {batches.length} batches
