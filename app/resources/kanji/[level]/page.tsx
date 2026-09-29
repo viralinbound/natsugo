@@ -73,22 +73,19 @@ export default async function KanjiLevelPage({ params }: { params: Promise<{ lev
             <p className="text-sm text-charcoal-500">{kanji.length} kanji &middot; ordered by frequency</p>
           </div>
 
-          <KanjiGrid
-            kanji={kanji}
-            hints={new Map(kanji.map((k) => [k, meaningLookup.has(k) ? `${meaningLookup.get(k)!.m} (${meaningLookup.get(k)!.r})` : "Tap to hear this kanji"]))}
-          />
+          <p className="mb-5 text-sm font-semibold text-indigo-800">Tap any character to hear it and see its meaning.</p>
+
+          <KanjiGrid kanji={kanji} known={meaningLookup} />
 
           <p className="mt-8 text-sm text-charcoal-500 max-w-2xl">
-            This list follows the commonly used JLPT {level} kanji grouping. Meanings and readings for
-            every kanji are covered lesson-by-lesson in the {level} course and classroom material —{" "}
+            This list follows the commonly used JLPT {level} kanji grouping. Readings and meanings come
+            from a live dictionary lookup, so occasionally an uncommon reading may differ from what&apos;s
+            taught in class — the {level} course and classroom material cover every kanji properly, in
+            context —{" "}
             <Link href={`/jlpt-${levelParam(level)}`} className="font-semibold text-indigo-800 hover:underline">
               see the {level} course
             </Link>
-            . For a fully worked N5 list with meanings and readings, see the{" "}
-            <Link href="/resources/kanji" className="font-semibold text-indigo-800 hover:underline">
-              N5 kanji reference
-            </Link>
-            . Tap any kanji above to hear it — most browsers support Japanese text-to-speech, using
+            . Audio uses your device&apos;s built-in Japanese voice, using
             <SpeakButton text="日本語" className="inline-flex mx-1 align-middle" /> as a quick test.
           </p>
 
