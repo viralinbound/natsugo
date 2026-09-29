@@ -18,7 +18,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-indigo-950 text-white">
+    <section className="brand-pattern brand-pattern-light relative isolate overflow-hidden bg-indigo-950 text-white">
       <Image
         src={`${image}?w=1800&q=70&auto=format&fit=crop`}
         alt=""
