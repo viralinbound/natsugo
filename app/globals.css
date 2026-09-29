@@ -257,6 +257,51 @@ html[data-furigana="off"] rt {
   filter: blur(2px);
 }
 
+/* ── Background motion ── */
+@keyframes kanji-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-3deg); }
+}
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@keyframes outline-shimmer {
+  0%, 100% { -webkit-text-stroke-color: rgba(255, 255, 255, 0.16); transform: translateY(0); }
+  50% { -webkit-text-stroke-color: rgba(255, 255, 255, 0.34); transform: translateY(-10px); }
+}
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -20px) scale(1.1); }
+  66% { transform: translate(-30px, 25px) scale(0.95); }
+}
+.jp-watermark { animation: kanji-float 9s ease-in-out infinite; }
+.rising-sun { animation: sun-pulse 7s ease-in-out infinite; }
+.jp-outline { animation: outline-shimmer 8s ease-in-out infinite; }
+.section-blob {
+  width: 22rem;
+  height: 22rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(12, 136, 255, 0.14) 0%, rgba(194, 59, 59, 0.07) 45%, transparent 70%);
+  filter: blur(30px);
+  animation: blob-drift 16s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Scroll reveal — only hides content once the script has marked the page */
+html.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-reveal .reveal { opacity: 1; transform: none; }
+}
+
 /* Modern card: soft shadow that deepens and lifts on hover */
 .card-modern {
   background: var(--color-surface);

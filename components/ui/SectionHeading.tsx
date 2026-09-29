@@ -15,7 +15,8 @@ export function SectionHeading({
   const jp = jpFor(eyebrow);
   const centered = align === "center";
   return (
-    <div className={`relative max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>
+    <div className={`relative isolate max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>
+      <span aria-hidden className={`section-blob pointer-events-none absolute -top-24 ${centered ? "left-1/2 -translate-x-1/2" : "-left-24"}`} />
       {jp ? (
         <span
           aria-hidden

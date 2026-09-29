@@ -4,6 +4,7 @@ import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -101,6 +102,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <ScrollReveal />
         <WhatsAppButton />
         <MobileStickyBar />
         <ActivityTicker />
