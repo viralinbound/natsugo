@@ -182,10 +182,10 @@ export const fmtDate = (iso: string) =>
 
 const seed: BatchSeed[] = [
   { id: "b1", courseSlug: "jlpt-n5", startISO: "2026-10-12", courseTitle: "JLPT N5 Foundation", level: "N5", mode: "Online", days: "Weekday", time: "Evening", goal: "JLPT", schedule: "Mon • Wed • Fri, 7:00 – 8:30 PM", durationHours: 60, teacherId: "t1" },
-  { id: "b2", courseSlug: "jlpt-n5", startISO: "2026-10-17", courseTitle: "JLPT N5 Weekend", level: "N5", mode: "Offline", days: "Weekend", time: "Morning", goal: "JLPT", schedule: "Sat • Sun, 10:00 AM – 12:00 PM", durationHours: 60, teacherId: "t1" },
+  { id: "b2", courseSlug: "jlpt-n5", startISO: "2026-10-17", courseTitle: "JLPT N5 Weekend", level: "N5", mode: "Online", days: "Weekend", time: "Morning", goal: "JLPT", schedule: "Sat • Sun, 10:00 AM – 12:00 PM", durationHours: 60, teacherId: "t1" },
   { id: "b3", courseSlug: "jlpt-n4", startISO: "2026-10-18", courseTitle: "JLPT N4 Course", level: "N4", mode: "Online", days: "Weekend", time: "Morning", goal: "JLPT", schedule: "Sat • Sun, 10:00 AM – 12:00 PM", durationHours: 70, teacherId: "t2" },
   { id: "b4", courseSlug: "speak-japanese", startISO: "2026-10-20", courseTitle: "Japanese Speaking Lab", level: "All Levels", mode: "Online", days: "Weekday", time: "Evening", goal: "Speaking", schedule: "Tue • Thu, 8:00 – 9:00 PM", durationHours: 40, teacherId: "t3" },
-  { id: "b5", courseSlug: "jlpt-n3", startISO: "2026-10-25", courseTitle: "JLPT N3 Course", level: "N3", mode: "Offline", days: "Weekend", time: "Afternoon", goal: "JLPT", schedule: "Sat • Sun, 2:00 – 4:00 PM", durationHours: 90, teacherId: "t2" },
+  { id: "b5", courseSlug: "jlpt-n3", startISO: "2026-10-25", courseTitle: "JLPT N3 Course", level: "N3", mode: "Online", days: "Weekend", time: "Afternoon", goal: "JLPT", schedule: "Sat • Sun, 2:00 – 4:00 PM", durationHours: 90, teacherId: "t2" },
   { id: "b6", courseSlug: "japanese-for-beginners", startISO: "2026-11-02", courseTitle: "Japanese for Beginners", level: "N5", mode: "Online", days: "Weekday", time: "Morning", goal: "General Japanese", schedule: "Mon • Wed • Fri, 7:00 – 8:00 AM", durationHours: 60, teacherId: "t1" },
   { id: "b7", courseSlug: "jlpt-n4", startISO: "2026-11-04", courseTitle: "JLPT N4 Evening", level: "N4", mode: "Online", days: "Weekday", time: "Evening", goal: "JLPT", schedule: "Mon • Wed • Fri, 8:00 – 9:30 PM", durationHours: 70, teacherId: "t2" },
   { id: "b8", courseSlug: "business-japanese", startISO: "2026-11-08", courseTitle: "Business Japanese", level: "N3", mode: "Online", days: "Weekend", time: "Evening", goal: "Speaking", schedule: "Sat • Sun, 6:00 – 7:30 PM", durationHours: 50, teacherId: "t3" },
@@ -257,7 +257,7 @@ export const resources: ResourceItem[] = [
 
 export const faqs: FAQItem[] = [
   { question: "Is the course suitable for beginners?", answer: "Yes. Our N5 Foundation course is designed for complete beginners with no prior Japanese knowledge." },
-  { question: "Can I learn Japanese online?", answer: "Yes, our courses run as live online classes, with select batches also available offline." },
+  { question: "Can I learn Japanese online?", answer: "Yes — every Natsugo course is taught as live online classes, so you can join from anywhere." },
   { question: "Which JLPT level should I start with?", answer: "Take our free level test, or start at N5 if you're completely new to Japanese." },
   { question: "Do you provide speaking practice?", answer: "Yes, speaking practice is part of our courses, and we also run a dedicated Speaking Lab." },
   { question: "What are the class timings?", answer: "We offer morning, afternoon, and evening batches on weekdays and weekends. See the Batches page for current schedules." },

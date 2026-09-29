@@ -1,7 +1,7 @@
 import Image from "next/image";
+import { placeholderPhoto } from "@/lib/site";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { UserRound } from "lucide-react";
 import { getBatches, getTeachers } from "@/lib/repo";
 import { images } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Our Japanese Teachers",
-  description: "Meet the Japanese teachers behind our live online and Bengaluru classes — levels taught and areas of specialisation.",
+  description: "Meet the Japanese teachers behind our live online classes — levels taught and areas of specialisation.",
   alternates: { canonical: "/teachers" },
 };
 
@@ -25,16 +25,9 @@ export default async function TeachersPage() {
               const count = batches.filter((b) => b.teacherId === t.id).length;
               return (
                 <article key={t.id} id={t.id} className="card-modern overflow-hidden scroll-mt-28">
-                  {t.photo ? (
-                    <div className="relative aspect-[4/3]">
-                      <Image src={t.photo} alt={t.name} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover" />
-                    </div>
-                  ) : (
-                    <div className="aspect-[4/3] bg-bg-alt flex flex-col items-center justify-center text-charcoal-500">
-                      <UserRound size={56} />
-                      <p className="mt-2 text-xs">Photo coming soon</p>
-                    </div>
-                  )}
+                  <div className="relative aspect-[4/3]">
+                    <Image src={t.photo ?? placeholderPhoto(t.id, 800)} alt={t.name} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover" />
+                  </div>
                   <div className="p-6">
                     <h2 className="text-lg font-bold text-indigo-950">{t.name}</h2>
                     <p className="text-sm text-charcoal-500">{t.role}</p>

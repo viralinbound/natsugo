@@ -3,7 +3,7 @@ import { getTeachers } from "@/lib/repo";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { UserRound } from "lucide-react";
+import { placeholderPhoto } from "@/lib/site";
 
 export async function TeachersSection() {
   const teachers = await getTeachers();
@@ -17,13 +17,7 @@ export async function TeachersSection() {
               key={teacher.id}
               className="card-modern p-6"
             >
-              {teacher.photo ? (
-                <Image src={teacher.photo} alt={teacher.name} width={64} height={64} className="h-16 w-16 rounded-full object-cover" />
-              ) : (
-                <div className="h-16 w-16 rounded-full bg-indigo-800/8 text-indigo-800 flex items-center justify-center">
-                  <UserRound size={28} />
-                </div>
-              )}
+              <Image src={teacher.photo ?? placeholderPhoto(teacher.id, 160)} alt={teacher.name} width={64} height={64} className="h-16 w-16 rounded-full object-cover ring-2 ring-sun-100" />
               <h3 className="mt-4 font-bold text-indigo-950">{teacher.name}</h3>
               <p className="text-sm text-charcoal-500">{teacher.role}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">

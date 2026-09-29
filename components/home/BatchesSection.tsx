@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/Button";
 
 const filters: FilterConfig[] = [
   { key: "level", label: "Level", options: ["All", "N5", "N4", "N3", "N2", "N1"] },
-  { key: "mode", label: "Mode", options: ["All", "Online", "Offline"] },
   { key: "days", label: "Days", options: ["All", "Weekday", "Weekend"] },
   {
     key: "time",

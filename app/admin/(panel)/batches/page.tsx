@@ -6,7 +6,7 @@ import type { BatchRow } from "@/lib/repo";
 
 const opts = {
   level: ["N5", "N4", "N3", "N2", "N1", "All Levels"],
-  mode: ["Online", "Offline"],
+  mode: ["Online"],
   days: ["Weekday", "Weekend"],
   time_of_day: ["Morning", "Afternoon", "Evening"],
   goal: ["JLPT", "Speaking", "General Japanese"],

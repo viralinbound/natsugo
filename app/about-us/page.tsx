@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "About Us — Japanese Learning Platform in Bengaluru",
+  title: "About Us — Online Japanese Learning Platform",
   description: "Natsugo is a Japanese language institute and learning platform for Indian students and professionals — live classes, JLPT preparation and speaking practice.",
   alternates: { canonical: "/about-us" },
 };

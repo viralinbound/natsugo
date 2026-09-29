@@ -20,7 +20,7 @@ export function TokyoClock() {
     <p className="text-sm text-white/70">
       <span className="font-jp text-sun-300">東京</span> {times.tokyo}
       <span className="mx-2 text-white/30">·</span>
-      Bengaluru {times.india}
+      India {times.india}
       <span className="ml-2 text-white/40">(Japan is 3½ hrs ahead)</span>
     </p>
   );

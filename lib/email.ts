@@ -18,7 +18,7 @@ function layout(title: string, body: string) {
 ${body}
 </td></tr>
 <tr><td style="padding:18px 28px;background:${brand.grey};color:#bbb;font-size:12px">
-${esc(site.name)} · Japanese Learning Platform · ${esc(site.city)} &amp; online<br>
+${esc(site.name)} · Live Online Japanese Classes<br>
 <a href="${site.url}" style="color:#8cc6ff">${site.url.replace("https://", "")}</a> · ${esc(site.phoneDisplay)}
 </td></tr></table></td></tr></table></body></html>`;
 }

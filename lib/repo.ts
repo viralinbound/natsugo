@@ -77,7 +77,7 @@ export async function getBatches(): Promise<Batch[]> {
     const today = new Date().toISOString().slice(0, 10);
     const { data, error } = await sb.from("batches").select("*").gte("start_date", today).order("start_date");
     if (error) throw error;
-    return (data as BatchRow[]).map(rowToBatch);
+    return (data as BatchRow[]).map(rowToBatch).filter((b) => b.mode !== "Offline");
   }, sampleBatches);
 }
 

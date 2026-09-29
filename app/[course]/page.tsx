@@ -182,7 +182,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
           url: `${site.url}/${c.slug}`,
           provider: { "@type": "Organization", name: site.name, url: site.url },
           inLanguage: "ja",
-          hasCourseInstance: [{ "@type": "CourseInstance", courseMode: ["Online", "Onsite"], location: "Bengaluru, India" }],
+          hasCourseInstance: [{ "@type": "CourseInstance", courseMode: "Online" }],
         }}
       />
       <JsonLd

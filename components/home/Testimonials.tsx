@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { getTestimonials } from "@/lib/repo";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { UserRound, BadgeCheck } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
+import { placeholderPhoto } from "@/lib/site";
 
 export async function Testimonials() {
   const testimonials = await getTestimonials();
@@ -16,13 +17,7 @@ export async function Testimonials() {
               className={`rounded-lg border bg-surface p-6 ${t.isPlaceholder ? "border-dashed border-charcoal-300" : "border-charcoal-100"}`}
             >
               <div className="flex items-center gap-3">
-                {t.photo ? (
-                  <Image src={t.photo} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
-                ) : (
-                  <div className="h-12 w-12 rounded-full bg-bg-alt text-charcoal-500 flex items-center justify-center">
-                    <UserRound size={22} />
-                  </div>
-                )}
+                <Image src={t.photo ?? placeholderPhoto(t.id, 120)} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover ring-2 ring-sun-100" />
                 <div>
                   <p className="font-semibold text-charcoal-800 text-sm">
                     {t.name}

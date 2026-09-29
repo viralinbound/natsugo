@@ -10,7 +10,7 @@ import { LeadForm } from "@/components/forms/LeadForm";
 
 export const metadata: Metadata = {
   title: "Book a Free Japanese Demo Class",
-  description: "Try a free live Japanese demo class online or in Bengaluru. Meet a teacher, check your level and find the right batch.",
+  description: "Try a free live Japanese demo class online. Meet a teacher, check your level and find the right batch.",
   alternates: { canonical: "/free-japanese-demo-class" },
 };
 

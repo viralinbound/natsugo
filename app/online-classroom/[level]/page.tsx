@@ -254,7 +254,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Join a {level} batch</h2>
-            <span className="inline-flex items-center gap-1.5 text-sm text-charcoal-700"><Clock size={15} /> Live teacher-led classes, online or in Bengaluru</span>
+            <span className="inline-flex items-center gap-1.5 text-sm text-charcoal-700"><Clock size={15} /> Live teacher-led classes, 100% online</span>
           </div>
           <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {levelBatches.length ? levelBatches.map((b) => <BatchCard key={b.id} batch={b} />) : (

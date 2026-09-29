@@ -35,7 +35,7 @@ export default async function EnrolPage({ searchParams }: { searchParams: Promis
                     ["Starts", batch.startDate],
                     ["Schedule", batch.schedule],
                     ["Duration", `${batch.durationHours} hours`],
-                    ["Format", batch.mode === "Online" ? "Live online" : "Bengaluru classroom"],
+                    ["Format", "Live online"],
                     ["Seats left", String(batch.seatsLeft)],
                     ["Fee", batch.priceLabel],
                   ].map(([k, v]) => (

@@ -9,7 +9,7 @@ export function BatchCard({ batch }: { batch: Batch }) {
     <article className="flex h-full flex-col card-modern overflow-hidden">
       <div className="flex items-center justify-between gap-2 bg-indigo-950 px-5 py-2.5 text-xs font-bold text-white">
         <span>{batch.level === "All Levels" ? "ALL LEVELS" : `JLPT ${batch.level}`}</span>
-        <span className="text-sun-300">{batch.mode === "Online" ? "LIVE ONLINE" : "BENGALURU CLASSROOM"}</span>
+        <span className="text-sun-300">LIVE ONLINE</span>
       </div>
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-lg font-bold text-indigo-950">

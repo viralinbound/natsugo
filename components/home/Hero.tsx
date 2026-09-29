@@ -36,7 +36,7 @@ export function Hero() {
             <span className="text-gradient-anim">Follow your path.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base sm:text-lg text-white/85 animate-fade-up [animation-delay:100ms]">
-            Live Japanese classes online across India and in Bengaluru — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
+            Live online Japanese classes you can join from anywhere in India — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-up [animation-delay:200ms]">
             <Button href="/level-test" size="lg">Take Free Level Test</Button>
@@ -46,7 +46,7 @@ export function Hero() {
       </section>
       <div className="gradient-strip text-white">
         <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3.5 text-center text-sm sm:text-base font-bold">
-          Live online across India · Classroom batches in Bengaluru · Weekday evening &amp; weekend timings ·{" "}
+          100% live online · Join from anywhere in India · Weekday evening &amp; weekend timings ·{" "}
           <Link href="/free-japanese-demo-class" className="underline underline-offset-4">Try a free demo</Link>
         </p>
       </div>

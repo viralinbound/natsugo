@@ -38,8 +38,8 @@ function ProgressMock() {
 
 const rows = [
   {
-    title: "Live classes, online or in Bengaluru",
-    body: "Every batch is taught live by a teacher — no pre-recorded videos. Join from anywhere in India, or attend in our Bengaluru classroom. Weekday evening and weekend options suit students and working professionals.",
+    title: "Live classes, 100% online",
+    body: "Every batch is taught live by a teacher on Zoom or Google Meet — no pre-recorded videos. Join from anywhere in India. Weekday evening and weekend options suit students and working professionals.",
     link: { href: "/batches", label: "See batch timings" },
     media: <Image src={`${images.online}?w=1100&q=70&auto=format&fit=crop`} alt="Student in a live online Japanese class" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />,
   },

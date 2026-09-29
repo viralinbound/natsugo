@@ -1,6 +1,6 @@
 const facts = [
   { big: "N5→N1", label: "Complete JLPT path" },
-  { big: "2", label: "Ways to learn: live online or Bengaluru classroom" },
+  { big: "100%", label: "Live online classes — join from anywhere" },
   { big: "Free", label: "Level test and demo class" },
 ];
 

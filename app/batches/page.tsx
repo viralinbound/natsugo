@@ -6,8 +6,8 @@ import { BatchCatalogue } from "@/components/batches/BatchCatalogue";
 
 export const metadata: Metadata = {
   title: "Japanese Batches | Upcoming Courses & Schedules",
-  description: "Explore upcoming Japanese batches at Natsugo. Choose online or Bengaluru classes by level, schedule and goal, with new batches starting every month.",
-  keywords: ["Japanese Batches", "Japanese Classes Online", "Upcoming Japanese Batches", "Japanese Course Batches", "Japanese Classes in Bengaluru", "Japanese Batch Schedule", "JLPT Japanese Batches"],
+  description: "Explore upcoming Japanese batches at Natsugo. Choose live online classes by level, schedule and goal, with new batches starting every month.",
+  keywords: ["Japanese Batches", "Japanese Classes Online", "Upcoming Japanese Batches", "Japanese Course Batches", "Live Online Japanese Classes", "Japanese Batch Schedule", "JLPT Japanese Batches"],
   alternates: { canonical: "/batches" },
 };
 

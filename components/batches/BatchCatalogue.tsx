@@ -8,14 +8,13 @@ import { EmptyState } from "@/components/ui/EmptyState";
 
 const groups = {
   level: ["N5", "N4", "N3", "N2", "N1", "All Levels"],
-  mode: ["Online", "Offline"],
   days: ["Weekday", "Weekend"],
   time: ["Morning", "Afternoon", "Evening"],
   goal: ["JLPT", "Speaking", "General Japanese"],
 } as const;
 
 type Key = keyof typeof groups;
-const labels: Record<Key, string> = { level: "Level", mode: "Mode", days: "Days", time: "Time", goal: "Goal" };
+const labels: Record<Key, string> = { level: "Level", days: "Days", time: "Time", goal: "Goal" };
 
 export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; initialLevel?: string }) {
   const [query, setQuery] = useState("");
@@ -23,7 +22,6 @@ export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; in
   const [open, setOpen] = useState(false);
   const [sel, setSel] = useState<Record<Key, string[]>>({
     level: initialLevel ? [initialLevel] : [],
-    mode: [],
     days: [],
     time: [],
     goal: [],
@@ -69,7 +67,7 @@ export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; in
         </fieldset>
       ))}
       {activeCount ? (
-        <button type="button" onClick={() => setSel({ level: [], mode: [], days: [], time: [], goal: [] })} className="text-sm font-semibold text-sun-500 underline underline-offset-4">
+        <button type="button" onClick={() => setSel({ level: [], days: [], time: [], goal: [] })} className="text-sm font-semibold text-sun-500 underline underline-offset-4">
           Clear all filters
         </button>
       ) : null}
