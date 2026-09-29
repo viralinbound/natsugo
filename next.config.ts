@@ -3,6 +3,23 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Teacher photo uploads go through a Server Action (4 MB image limit + multipart overhead).
   experimental: { serverActions: { bodySizeLimit: "5mb" } },
+  // Keyword-variant URLs from the SEO sitemap that map to an existing page, so both
+  // resolve instead of duplicating content under a second URL.
+  async redirects() {
+    return [
+      { source: "/japanese-course-for-beginners", destination: "/japanese-for-beginners", permanent: true },
+      { source: "/japanese-language-classes", destination: "/japanese-language-course", permanent: true },
+      { source: "/japanese-speaking-course", destination: "/speaking-japanese", permanent: true },
+      { source: "/jlpt-n5-course", destination: "/jlpt-n5", permanent: true },
+      { source: "/jlpt-n4-course", destination: "/jlpt-n4", permanent: true },
+      { source: "/jlpt-n3-course", destination: "/jlpt-n3", permanent: true },
+      { source: "/jlpt-n2-course", destination: "/jlpt-n2", permanent: true },
+      { source: "/jlpt-n1-course", destination: "/jlpt-n1", permanent: true },
+      { source: "/resources/japanese-vocabulary", destination: "/resources/vocabulary", permanent: true },
+      { source: "/resources/japanese-grammar", destination: "/resources/grammar", permanent: true },
+      { source: "/resources/japanese-phrases", destination: "/resources/phrases", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },

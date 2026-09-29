@@ -17,9 +17,9 @@ export const navGroups: NavGroup[] = [
       { label: "Japanese Courses", href: "/japanese-language-course" },
       { label: "Japanese for Beginners", href: "/japanese-for-beginners" },
       { label: "Japanese Speaking", href: "/speaking-japanese" },
-      { label: "Japanese Grammar", href: "/resources/grammar" },
-      { label: "Japanese Vocabulary", href: "/resources/vocabulary" },
-      { label: "Reading & Writing", href: "/resources/kanji" },
+      { label: "Japanese Grammar", href: "/japanese-grammar-course" },
+      { label: "Japanese Vocabulary", href: "/japanese-vocabulary-course" },
+      { label: "Reading & Writing", href: "/japanese-reading-writing-course" },
     ],
   },
   {

@@ -268,6 +268,138 @@ export const courseDetails: CourseDetail[] = [
     ],
     related: ["jlpt-n5", "jlpt-n4", "jlpt-n3"],
   },
+  {
+    slug: "japanese-grammar-course",
+    navLabel: "Japanese Grammar",
+    eyebrow: "Grammar Focus",
+    title: "Japanese Grammar Course",
+    metaTitle: "Japanese Grammar Course — Sentence Patterns N5 to N2",
+    metaDescription:
+      "A focused course on Japanese grammar — particles, verb forms and sentence patterns from N5 to N2, with practice sentences in every class.",
+    image: images.books,
+    intro:
+      "Grammar is where most self-learners get stuck. This course goes pattern by pattern — particles, verb conjugation, tenses and sentence structure — with practice sentences in every class, not just rules on a page.",
+    whoFor: [
+      "Learners who can read kana but find sentence structure confusing",
+      "Students preparing for JLPT grammar sections (N5–N2)",
+      "Anyone who has studied apps or books but wants grammar explained properly",
+    ],
+    outcomes: [
+      "Use particles (は, が, を, に, で, と) correctly and confidently",
+      "Conjugate verbs and adjectives across tenses and forms",
+      "Build compound and conditional sentences",
+      "Recognise and use common JLPT grammar patterns",
+    ],
+    curriculum: [
+      { title: "Foundations", points: ["Particles and sentence order", "です/ます and plain forms", "Adjective conjugation"] },
+      { title: "Verb forms", points: ["て-form and its uses", "Potential, volitional, passive", "Conditionals (と, ば, たら, なら)"] },
+      { title: "Sentence building", points: ["Connecting clauses", "Reported speech", "Common N3–N2 grammar patterns"] },
+    ],
+    skills: [
+      { label: "Particles", detail: "Used correctly in context" },
+      { label: "Verb forms", detail: "All major conjugations" },
+      { label: "Sentence structure", detail: "From simple to compound" },
+      { label: "JLPT grammar", detail: "N5–N2 pattern coverage" },
+    ],
+    duration: "Indicative 50 hours",
+    format: "Live online · Offline in Bengaluru",
+    schedule: "2 classes a week",
+    materials: ["Grammar pattern sheets", "Practice sentence sets", "Reference charts"],
+    practice: ["Sentence-building drills each class", "Weekly grammar quizzes", "Error-correction exercises"],
+    faqs: [
+      { question: "Is this only grammar, with no speaking or vocabulary?", answer: "The focus is grammar, but every class includes speaking practice using the pattern just taught — grammar you can't use in a sentence isn't very useful." },
+      ...commonFaqs,
+    ],
+    related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-japanese-course"],
+  },
+  {
+    slug: "japanese-vocabulary-course",
+    navLabel: "Japanese Vocabulary",
+    eyebrow: "Vocabulary Builder",
+    title: "Japanese Vocabulary Course",
+    metaTitle: "Japanese Vocabulary Course — Words by Topic, N5 to N2",
+    metaDescription:
+      "Build Japanese vocabulary systematically by topic — daily life, work, travel and JLPT word lists — with spaced-repetition review built in.",
+    image: images.classroom,
+    intro:
+      "Vocabulary is the biggest predictor of how quickly you progress. This course builds your word bank systematically, by topic and by JLPT level, with spaced-repetition review so words actually stick.",
+    whoFor: [
+      "Learners who know grammar but run out of words in conversation",
+      "Students building vocabulary ahead of a specific JLPT level",
+      "Anyone who wants a structured alternative to random app-based study",
+    ],
+    outcomes: [
+      "A working vocabulary of 1,500–2,000+ words by topic",
+      "Faster recall using spaced-repetition technique",
+      "Vocabulary matched to your target JLPT level",
+      "Ability to guess meaning from kanji components",
+    ],
+    curriculum: [
+      { title: "Everyday topics", points: ["Home, food and daily routine", "People, family and feelings", "Numbers, time and money"] },
+      { title: "Expanding range", points: ["Work and study vocabulary", "Travel and directions", "Kanji-based word building"] },
+      { title: "JLPT word lists", points: ["N5–N3 core vocabulary", "Spaced-repetition review sessions", "Self-testing strategy"] },
+    ],
+    skills: [
+      { label: "Word bank", detail: "1,500–2,000+ words by topic" },
+      { label: "Recall", detail: "Spaced-repetition practice" },
+      { label: "Kanji reading", detail: "Word-building from components" },
+      { label: "JLPT vocabulary", detail: "Level-matched word lists" },
+    ],
+    duration: "Indicative 40 hours",
+    format: "Live online · Offline in Bengaluru",
+    schedule: "2 classes a week",
+    materials: ["Topic-wise word lists", "Flashcard sets", "Kanji component charts"],
+    practice: ["In-class recall games", "Flashcard review between classes", "Weekly vocabulary quizzes"],
+    faqs: [
+      { question: "Do you use flashcards or an app?", answer: "Yes — you'll get topic-wise flashcard sets to review between classes, alongside our free flashcards tool." },
+      ...commonFaqs,
+    ],
+    related: ["japanese-grammar-course", "japanese-for-beginners", "jlpt-japanese-course"],
+  },
+  {
+    slug: "japanese-reading-writing-course",
+    navLabel: "Reading & Writing",
+    eyebrow: "Reading & Writing",
+    title: "Japanese Reading & Writing Course",
+    metaTitle: "Japanese Reading & Writing Course — Hiragana, Katakana & Kanji",
+    metaDescription:
+      "Learn to read and write Japanese properly — hiragana, katakana and JLPT-level kanji with stroke order, dictation practice and reading passages.",
+    image: images.writing,
+    intro:
+      "A dedicated course for the written language — correct stroke order for hiragana, katakana and kanji, plus graded reading passages so you can actually read real Japanese, not just recognise individual characters.",
+    whoFor: [
+      "Complete beginners who want to start with correct stroke order",
+      "Learners who can speak some Japanese but can't read or write it well",
+      "Students preparing for the reading sections of JLPT N5–N3",
+    ],
+    outcomes: [
+      "Write all hiragana and katakana correctly from memory",
+      "Read and write 300+ JLPT-level kanji with stroke order",
+      "Read graded passages at your level with confidence",
+      "Take dictation of spoken Japanese",
+    ],
+    curriculum: [
+      { title: "Kana", points: ["Hiragana with stroke order", "Katakana and loanwords", "Reading speed drills"] },
+      { title: "Kanji foundations", points: ["Radicals and components", "N5–N4 kanji with stroke order", "Reading vs. writing recall"] },
+      { title: "Reading practice", points: ["Graded short passages", "N3-level kanji introduction", "Dictation exercises"] },
+    ],
+    skills: [
+      { label: "Kana", detail: "Written from memory, correct stroke order" },
+      { label: "Kanji", detail: "300+ kanji, N5–N3 level" },
+      { label: "Reading", detail: "Graded passages by level" },
+      { label: "Dictation", detail: "Writing from spoken Japanese" },
+    ],
+    duration: "Indicative 45 hours",
+    format: "Live online · Offline in Bengaluru",
+    schedule: "2 classes a week",
+    materials: ["Stroke-order worksheets", "Kanji flashcard sets", "Graded reading passages"],
+    practice: ["Writing drills every class", "Weekly dictation exercises", "Reading comprehension checks"],
+    faqs: [
+      { question: "I already know hiragana and katakana — can I join for kanji only?", answer: "Yes, speak to admissions about joining from the kanji module if you've already covered the kana." },
+      ...commonFaqs,
+    ],
+    related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-n5"],
+  },
 ];
 
 const jlptMeta: Record<
