@@ -28,7 +28,7 @@ export function Hero() {
             <br />
             Know your level.
             <br />
-            <span className="text-sun-400">Follow your path.</span>
+            <span className="bg-gradient-to-r from-sun-400 via-sky-300 to-sun-300 bg-clip-text text-transparent">Follow your path.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base sm:text-lg text-white/85 animate-fade-up [animation-delay:100ms]">
             Live Japanese classes online across India and in Bengaluru — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
