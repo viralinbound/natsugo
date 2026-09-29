@@ -10,7 +10,7 @@ const results = [
 
 export function LevelTest() {
   return (
-    <section className="brand-pattern overflow-hidden bg-sun-100 py-16 sm:py-24">
+    <section className="overflow-hidden bg-sun-100 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p className="font-jp text-lg font-bold text-sun-500">レベルチェック</p>

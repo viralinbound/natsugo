@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function FreeResources() {
   return (
-    <section className="brand-pattern bg-bg py-16 sm:py-20">
+    <section className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Free Resources"

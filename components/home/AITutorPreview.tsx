@@ -12,7 +12,7 @@ const actions = [
 
 export function AITutorPreview() {
   return (
-    <section className="brand-pattern bg-bg py-16 sm:py-20">
+    <section className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="rounded-xl border border-charcoal-100 bg-surface p-6 sm:p-8 shadow-xl shadow-indigo-950/5 order-2 lg:order-1">

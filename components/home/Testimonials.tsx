@@ -6,7 +6,7 @@ import { UserRound, BadgeCheck } from "lucide-react";
 export async function Testimonials() {
   const testimonials = await getTestimonials();
   return (
-    <section className="brand-pattern bg-bg-alt py-16 sm:py-20">
+    <section className="bg-bg-alt py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Success Stories" title="What Students Say" />
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 
 export function JLPTRoadmap() {
   return (
-    <section className="brand-pattern bg-bg py-16 sm:py-20">
+    <section className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <SectionHeading eyebrow="JLPT" title="Your JLPT Journey" />

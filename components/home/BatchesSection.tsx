@@ -45,7 +45,7 @@ export function BatchesSection({ batches }: { batches: Batch[] }) {
   }, [active, batches]);
 
   return (
-    <section className="brand-pattern bg-bg-alt py-16 sm:py-20">
+    <section className="bg-bg-alt py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <SectionHeading
