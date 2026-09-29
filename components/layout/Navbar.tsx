@@ -36,7 +36,7 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-surface border-b border-charcoal-100">
+    <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-charcoal-100/70 shadow-[0_4px_20px_-12px_rgba(12,136,255,0.35)]">
       <nav
         aria-label="Main navigation"
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"

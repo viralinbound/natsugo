@@ -1,40 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  /* Natsugo brand palette — clean modern blue/grey (see Colors.pdf) */
-  --color-bg: #f9fafb; /* crisp near-white */
-  --color-bg-alt: #eef3fb;
+  /* Natsugo palette — vibrant take on the logo blue: electric blue → cyan, deep navy, hanko red */
+  --color-bg: #f5f9ff;
+  --color-bg-alt: #eaf2ff;
   --color-surface: #ffffff;
 
-  /* Brand grey #282828 and its steps (dark text, dark sections) */
-  --color-indigo-950: #282828;
-  --color-indigo-900: #1f1f1f;
-  /* Brand blue #0C88FF and its shades (links, accents, progress) */
-  --color-indigo-800: #0a6fd1;
+  /* Deep navy for dark sections and headings */
+  --color-indigo-950: #0b1b3a;
+  --color-indigo-900: #081430;
+  /* Brand blue #0C88FF and its shades */
+  --color-indigo-800: #0870d8;
   --color-indigo-700: #0c88ff;
   --color-indigo-600: #3da0ff;
   --color-indigo-500: #62b3ff;
 
-  --color-red-600: #d93b3b; /* errors and "few seats left" only */
+  --color-red-600: #d93b3b;
   --color-red-500: #e5534b;
-  --color-sakura-100: #e8f3ff;
-  --color-sakura-200: #bfdfff;
-  --color-charcoal-900: #282828;
-  --color-charcoal-700: #444444;
-  --color-charcoal-500: #6b6b6b;
-  --color-charcoal-300: #a8a8a8;
-  --color-charcoal-100: #e2ded5;
-  --color-success: #1f8a5b;
+  --color-sakura-100: #ffe8ee;
+  --color-sakura-200: #ffc2d1;
+  --color-charcoal-900: #14213d;
+  --color-charcoal-700: #3a4660;
+  --color-charcoal-500: #62708a;
+  --color-charcoal-300: #a3aec2;
+  --color-charcoal-100: #dce6f5;
+  --color-success: #12a36b;
 
-  /* Primary action colour = brand blue */
-  --color-sun-100: #e8f3ff;
-  --color-sun-300: #8cc6ff;
+  /* Primary action = brand blue, with a cyan partner for gradients */
+  --color-sun-100: #e3f1ff;
+  --color-sun-300: #7cc4ff;
   --color-sun-400: #0c88ff;
-  --color-sun-500: #0a74da;
+  --color-sun-500: #0870d8;
+  --color-cyan-400: #22d3ee;
 
-  /* Restrained hanko-seal red — a small Japanese cultural accent, used sparingly */
-  --color-hanko: #c23b3b;
-  --color-hanko-100: #fbe9e7;
+  /* Hanko-seal red accent */
+  --color-hanko: #e0344b;
+  --color-hanko-100: #ffe6ea;
 
   --font-sans: var(--font-fira), "Segoe UI", sans-serif;
   --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
@@ -65,6 +66,7 @@
   --color-sun-300: var(--color-sun-300);
   --color-sun-400: var(--color-sun-400);
   --color-sun-500: var(--color-sun-500);
+  --color-cyan-400: var(--color-cyan-400);
   --color-hanko: var(--color-hanko);
   --color-hanko-100: var(--color-hanko-100);
   --font-sans: var(--font-sans);
@@ -177,7 +179,7 @@ h3,
   position: absolute;
   top: -24px;
   border-radius: 150% 0 150% 0;
-  background: linear-gradient(135deg, #cfe7ff, #8cc6ff);
+  background: linear-gradient(135deg, #ffd1dc, #ff9fb5);
   opacity: 0.85;
   animation-name: petal-fall;
   animation-timing-function: linear;
@@ -302,6 +304,69 @@ html.js-reveal .reveal.is-visible {
   html.js-reveal .reveal { opacity: 1; transform: none; }
 }
 
+/* ── Aurora: slowly flowing colour light for dark sections ── */
+@keyframes aurora-flow {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
+  50% { background-position: 60% 40%, 30% 70%, 90% 20%, 0 0; }
+}
+.aurora {
+  background-color: var(--color-indigo-950);
+  background-image:
+    radial-gradient(40% 55% at 50% 50%, rgba(12, 136, 255, 0.45), transparent 70%),
+    radial-gradient(35% 45% at 50% 50%, rgba(34, 211, 238, 0.28), transparent 70%),
+    radial-gradient(35% 45% at 50% 50%, rgba(224, 52, 75, 0.25), transparent 70%),
+    linear-gradient(160deg, #0b1b3a 0%, #0a2250 55%, #0b1b3a 100%);
+  background-size: 140% 140%, 130% 130%, 120% 120%, 100% 100%;
+  background-repeat: no-repeat;
+  animation: aurora-flow 20s ease-in-out infinite;
+}
+.aurora-overlay {
+  background-image:
+    radial-gradient(40% 55% at 50% 50%, rgba(12, 136, 255, 0.42), transparent 70%),
+    radial-gradient(35% 45% at 50% 50%, rgba(34, 211, 238, 0.25), transparent 70%),
+    radial-gradient(35% 45% at 50% 50%, rgba(224, 52, 75, 0.22), transparent 70%);
+  background-size: 140% 140%, 130% 130%, 120% 120%;
+  background-repeat: no-repeat;
+  animation: aurora-flow 20s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Moving gradient strip */
+@keyframes gradient-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.gradient-strip {
+  background-image: linear-gradient(90deg, #0c88ff, #22d3ee, #6366f1, #e0344b, #0c88ff);
+  background-size: 200% 100%;
+  animation: gradient-slide 12s linear infinite;
+}
+.text-gradient-anim {
+  background-image: linear-gradient(90deg, #0c88ff, #22d3ee, #7cc4ff, #0c88ff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-slide 6s linear infinite;
+}
+
+/* Shine sweep across primary buttons on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+}
+.btn-shine:hover::after { transform: translateX(120%); }
+
 /* Modern card: soft shadow that deepens and lifts on hover */
 .card-modern {
   background: var(--color-surface);
@@ -312,7 +377,7 @@ html.js-reveal .reveal.is-visible {
 }
 .card-modern:hover {
   border-color: var(--color-sun-300);
-  box-shadow: 0 12px 24px -8px rgba(12, 136, 255, 0.2);
+  box-shadow: 0 16px 32px -10px rgba(12, 136, 255, 0.28), 0 0 0 1px rgba(34, 211, 238, 0.25);
   transform: translateY(-3px);
 }
 

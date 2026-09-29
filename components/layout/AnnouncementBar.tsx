@@ -9,7 +9,7 @@ export function AnnouncementBar({ text, enabled = true }: { text: string; enable
   if (!visible || !enabled || !text) return null;
 
   return (
-    <div className="announcement bg-indigo-950 text-white text-sm">
+    <div className="announcement gradient-strip text-white text-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
         <p className="truncate">{text}</p>
         <div className="flex items-center gap-2 shrink-0">

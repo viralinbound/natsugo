@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 
 export function FinalCTA() {
   return (
-    <section className="relative isolate overflow-hidden bg-indigo-950 py-16 sm:py-20 text-white">
+    <section className="relative isolate overflow-hidden aurora py-16 sm:py-20 text-white">
       <div aria-hidden className="rising-sun absolute -z-10 left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 opacity-60" />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <p className="font-jp text-sun-300 text-lg mb-3">さあ、始めましょう。</p>

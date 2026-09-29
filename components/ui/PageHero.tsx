@@ -30,7 +30,8 @@ export function PageHero({
         sizes="100vw"
         className="object-cover -z-10 opacity-45"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/95 via-indigo-950/70 to-indigo-950/30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/95 via-indigo-950/72 to-indigo-900/35" />
+      <div aria-hidden className="aurora-overlay absolute inset-0 -z-10" />
       <div aria-hidden className="rising-sun absolute -z-10 -right-24 -top-24 h-80 w-80 sm:h-[26rem] sm:w-[26rem]" />
       <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-6 lg:right-16 top-1/2 -translate-y-1/2 hidden md:block text-7xl lg:text-8xl">
         {jp ?? "日本語"}

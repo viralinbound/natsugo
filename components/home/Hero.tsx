@@ -16,7 +16,8 @@ export function Hero() {
           sizes="100vw"
           className="object-cover -z-10"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/90 via-indigo-950/65 to-indigo-950/25" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/92 via-indigo-950/70 to-indigo-900/30" />
+        <div aria-hidden className="aurora-overlay absolute inset-0 -z-10" />
         <div aria-hidden className="rising-sun absolute -z-10 right-[8%] top-[12%] h-72 w-72 sm:h-96 sm:w-96" />
         <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-8 lg:right-20 top-1/2 -translate-y-1/2 hidden lg:block text-8xl xl:text-9xl">
           日本語
@@ -32,7 +33,7 @@ export function Hero() {
             <br />
             Know your level.
             <br />
-            <span className="bg-gradient-to-r from-sun-400 via-sky-300 to-sun-300 bg-clip-text text-transparent">Follow your path.</span>
+            <span className="text-gradient-anim">Follow your path.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base sm:text-lg text-white/85 animate-fade-up [animation-delay:100ms]">
             Live Japanese classes online across India and in Bengaluru — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
@@ -43,7 +44,7 @@ export function Hero() {
           </div>
         </div>
       </section>
-      <div className="bg-sun-400 text-white">
+      <div className="gradient-strip text-white">
         <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3.5 text-center text-sm sm:text-base font-bold">
           Live online across India · Classroom batches in Bengaluru · Weekday evening &amp; weekend timings ·{" "}
           <Link href="/free-japanese-demo-class" className="underline underline-offset-4">Try a free demo</Link>
