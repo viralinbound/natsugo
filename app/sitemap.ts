@@ -5,6 +5,7 @@ import { resourceTopics } from "@/lib/resourceTopics";
 import { site } from "@/lib/site";
 import { difficulties, quizLevels } from "@/lib/quizBank";
 import { lessonSeeds } from "@/lib/curriculum";
+import { kanjiLevelOrder } from "@/lib/kanjiLevels";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
@@ -25,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPaths,
     ...courseDetails.map((c) => `/${c.slug}`),
     ...resourceTopics.map((t) => `/resources/${t.slug}`),
+    ...kanjiLevelOrder.map((l) => `/resources/kanji/${l.toLowerCase()}`),
     ...blogPosts.map((p) => `/blog/${p.slug}`),
     "/jlpt-quiz",
     "/jlpt-exam-info",

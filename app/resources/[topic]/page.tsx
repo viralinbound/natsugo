@@ -10,6 +10,7 @@ import { QuizHub } from "@/components/quiz/QuizHub";
 import { Flashcards, type Card } from "@/components/resources/Flashcards";
 import { words } from "@/lib/words";
 import { Button } from "@/components/ui/Button";
+import { kanjiByLevel, kanjiLevelOrder } from "@/lib/kanjiLevels";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => resourceTopics.map((t) => ({ topic: t.slug }));
@@ -37,18 +38,35 @@ function Content({ slug }: { slug: string }) {
       return <KanaChart rows={katakana} />;
     case "kanji":
       return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {kanjiN5.map((k) => (
-            <div key={k.k} className="card-modern p-4 text-center">
-              <p className="font-jp text-5xl text-indigo-950">{k.k}</p>
-              <p className="mt-2 font-semibold text-charcoal-800">{k.m}</p>
-              <div className="mt-1 flex items-center justify-center gap-1">
-                <p className="font-jp text-sm text-charcoal-500">{k.r}</p>
-                <SpeakButton text={k.r.split("・")[0]} />
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {kanjiN5.map((k) => (
+              <div key={k.k} className="card-modern p-4 text-center">
+                <p className="font-jp text-5xl text-indigo-950">{k.k}</p>
+                <p className="mt-2 font-semibold text-charcoal-800">{k.m}</p>
+                <div className="mt-1 flex items-center justify-center gap-1">
+                  <p className="font-jp text-sm text-charcoal-500">{k.r}</p>
+                  <SpeakButton text={k.r.split("・")[0]} />
+                </div>
               </div>
+            ))}
+          </div>
+
+          <div className="mt-14 border-t border-charcoal-100 pt-10">
+            <h2 className="text-2xl font-extrabold text-indigo-950 tracking-tight">Browse kanji by JLPT level</h2>
+            <p className="mt-2 text-charcoal-700 max-w-2xl">
+              The full kanji list for every JLPT level, ordered by frequency of use — {kanjiLevelOrder.map((l) => kanjiByLevel[l].length).reduce((a, b) => a + b, 0)} kanji in total.
+            </p>
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {kanjiLevelOrder.map((l) => (
+                <Link key={l} href={`/resources/kanji/${l.toLowerCase()}`} className="card-modern p-5 text-center hover:border-sun-400 transition-colors">
+                  <p className="text-2xl font-extrabold text-indigo-950">{l}</p>
+                  <p className="mt-1 text-sm text-charcoal-500">{kanjiByLevel[l].length} kanji</p>
+                </Link>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </>
       );
     case "grammar":
       return (
