@@ -27,7 +27,7 @@ export function CoursesShowcase() {
             return (
               <Link key={p.slug} href={`/${c.slug}`} className="group flex flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                  <Image src={`${c.image}?w=700&q=65&auto=format&fit=crop`} alt="" fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <Image src={`${c.image}?w=700&q=65&auto=format&fit=crop`} alt={`${c.navLabel} course`} fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-indigo-950 group-hover:underline underline-offset-4">{c.navLabel}</h3>
                 <p className="mt-1.5 text-charcoal-700">{p.bestFor}</p>

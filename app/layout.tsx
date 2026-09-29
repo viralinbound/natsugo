@@ -35,22 +35,33 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const ogImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Natsugo — Learn Japanese Online in India" };
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Natsugo | Learn Japanese Online in India — JLPT, Speaking, Career",
+    default: "Natsugo | Learn Japanese Online in India",
     template: "%s | Natsugo",
   },
   description:
-    "Learn Japanese online with a structured path: free level test, live classes, JLPT preparation (N5–N1), speaking practice and progress tracking. Built for students and professionals in Bengaluru and across India.",
+    "Learn Japanese online with live classes, JLPT prep (N5–N1) and speaking practice. Free level test. For students and professionals in Bengaluru and across India.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Natsugo | Learn Japanese. Know Your Level. Follow Your Path.",
+    title: "Natsugo | Learn Japanese Online in India",
     description:
       "A complete Japanese learning journey — level test, live classes, JLPT prep, speaking practice and progress tracking.",
     url: site.url,
     siteName: "Natsugo",
     locale: "en_IN",
     type: "website",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Natsugo | Learn Japanese Online in India",
+    description:
+      "Live Japanese classes, JLPT prep (N5–N1) and speaking practice — for students and professionals across India.",
+    images: [ogImage.url],
   },
   robots: { index: true, follow: true },
 };
@@ -82,6 +93,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <MobileStickyBar />
         <ActivityTicker />
         <JsonLd data={{ "@context": "https://schema.org", "@type": "EducationalOrganization", name: site.name, url: site.url, areaServed: "IN", address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: "IN" } }} />
+        <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url }} />
       </body>
     </html>
   );
