@@ -58,7 +58,7 @@ export const navGroups: NavGroup[] = [
       { label: "Study in Japan", href: "/study-in-japan" },
       { label: "Business Japanese", href: "/business-japanese" },
       { label: "Japanese for Professionals", href: "/business-japanese" },
-      { label: "Japanese for Travel", href: "/japanese-for-beginners" },
+      { label: "Japanese for Beginners", href: "/japanese-for-beginners" },
     ],
   },
   {
