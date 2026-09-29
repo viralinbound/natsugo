@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 
 export function FinalCTA() {
   return (
-    <section className="brand-pattern brand-pattern-light overflow-hidden bg-indigo-950 py-16 sm:py-20 text-white">
+    <section className="overflow-hidden bg-indigo-950 py-16 sm:py-20 text-white">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-balance">
           Ready to Start Your Japanese Journey?

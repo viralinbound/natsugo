@@ -14,7 +14,7 @@ const jp: Record<string, string> = {
 
 export function GoalSelector() {
   return (
-    <section className="brand-pattern brand-pattern-light overflow-hidden bg-indigo-950 py-16 sm:py-24 text-white">
+    <section className="overflow-hidden bg-indigo-950 py-16 sm:py-24 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16">
         <div>
           <p className="text-sm font-bold uppercase tracking-wider text-sun-300">Learn by goal</p>
