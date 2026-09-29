@@ -28,7 +28,7 @@ export const goalCards: GoalCardData[] = [
     id: "career",
     title: "Career",
     description: "Develop Japanese skills for professional situations.",
-    href: "/business-japanese",
+    href: "/blog/japanese-language-career-opportunities",
     icon: "briefcase",
   },
   {
@@ -56,7 +56,7 @@ export const goalCards: GoalCardData[] = [
     id: "travel",
     title: "Travel",
     description: "Learn useful everyday Japanese for your trip.",
-    href: "/japanese-for-beginners",
+    href: "/resources/phrases",
     icon: "plane",
   },
 ];

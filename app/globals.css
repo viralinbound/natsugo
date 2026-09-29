@@ -207,6 +207,7 @@ html[data-furigana="off"] rt {
 .brand-pattern {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 .brand-pattern::before {
   content: "";
