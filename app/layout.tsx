@@ -40,16 +40,28 @@ const ogImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Natsugo 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Natsugo | Learn Japanese Online in India",
+    default: "Japanese Language Course Online | Learn Japanese Easily",
     template: "%s | Natsugo",
   },
   description:
-    "Learn Japanese online with live classes, JLPT prep (N5–N1) and speaking practice. Free level test. For students and professionals in Bengaluru and across India.",
+    "Learn Japanese online with easy, structured lessons for beginners. Build speaking, reading, writing and grammar skills with Natsugo.",
+  keywords: [
+    "Best Japanese Language Course Online",
+    "Easy Japanese Course Online",
+    "Japanese Online Course for Beginners",
+    "Learn Japanese Fast Online",
+    "Japanese Speaking Classes Online",
+    "Japanese Conversation Course Online",
+    "Japanese Course Online with Certificate",
+    "Affordable Japanese Course Online",
+    "Japanese Classes Online for Beginners",
+    "Learn Japanese from Home",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Natsugo | Learn Japanese Online in India",
+    title: "Japanese Language Course Online | Learn Japanese Easily",
     description:
-      "A complete Japanese learning journey — level test, live classes, JLPT prep, speaking practice and progress tracking.",
+      "Learn Japanese online with easy, structured lessons for beginners. Build speaking, reading, writing and grammar skills with Natsugo.",
     url: site.url,
     siteName: "Natsugo",
     locale: "en_IN",
@@ -58,9 +70,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Natsugo | Learn Japanese Online in India",
+    title: "Japanese Language Course Online | Learn Japanese Easily",
     description:
-      "Live Japanese classes, JLPT prep (N5–N1) and speaking practice — for students and professionals across India.",
+      "Learn Japanese online with easy, structured lessons for beginners. Build speaking, reading, writing and grammar skills with Natsugo.",
     images: [ogImage.url],
   },
   robots: { index: true, follow: true },

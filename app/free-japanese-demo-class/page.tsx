@@ -18,7 +18,7 @@ export default async function DemoPage({ searchParams }: { searchParams: Promise
   const sp = await searchParams;
   const batch = await getBatch(sp.batch);
   const course = getCourse(sp.course ?? batch?.courseSlug ?? "");
-  const interest = course?.level ? `JLPT ${course.level}` : course?.slug === "speaking-japanese" ? "Speaking Japanese" : course?.slug === "business-japanese" ? "Business Japanese" : "";
+  const interest = course?.level ? `JLPT ${course.level}` : course?.slug === "speak-japanese" ? "Speaking Japanese" : course?.slug === "business-japanese" ? "Business Japanese" : "";
 
   return (
     <>

@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
   return {
     title: c.metaTitle,
     description: c.metaDescription,
+    keywords: c.keywords,
     alternates: { canonical: `/${c.slug}` },
     openGraph: { title: c.metaTitle, description: c.metaDescription, images: [`${c.image}?w=1200&h=630&fit=crop`] },
   };
@@ -38,9 +39,9 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
   if (!c) notFound();
 
   const isJlpt = c.slug.startsWith("jlpt-");
-  const crumbs = isJlpt && c.slug !== "jlpt-japanese-course"
-    ? [{ label: "JLPT", href: "/jlpt-japanese-course" }, { label: c.navLabel, href: `/${c.slug}` }]
-    : [{ label: "Courses", href: "/japanese-language-course" }, { label: c.navLabel, href: `/${c.slug}` }];
+  const crumbs = isJlpt && c.slug !== "jlpt-japanese-preparation-course"
+    ? [{ label: "JLPT", href: "/jlpt-japanese-preparation-course" }, { label: c.navLabel, href: `/${c.slug}` }]
+    : [{ label: "Courses", href: "/learn-japanese-language-course" }, { label: c.navLabel, href: `/${c.slug}` }];
 
   const batches = await getBatches();
   const courseBatches = batches.filter((b) => b.courseSlug === c.slug || (c.level && b.level === c.level));
@@ -58,7 +59,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
           <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 text-sm flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="font-bold text-sun-300">Online classroom:</span>
             <span className="text-white/80">{c.level} video lessons, study notes, live classes and recordings.</span>
-            <Link href={`/learn/${c.level.toLowerCase()}`} className="font-bold underline underline-offset-4">Open {c.level} classroom →</Link>
+            <Link href={`/online-classroom/${c.level.toLowerCase()}`} className="font-bold underline underline-offset-4">Open {c.level} classroom →</Link>
           </p>
         </div>
       ) : null}

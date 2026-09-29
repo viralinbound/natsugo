@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/Button";
 
 const picks = [
   { slug: "japanese-for-beginners", bestFor: "Complete beginners starting from hiragana" },
-  { slug: "jlpt-japanese-course", bestFor: "Learners working towards a JLPT level, N5 to N1" },
-  { slug: "speaking-japanese", bestFor: "Anyone who reads Japanese but freezes when speaking" },
+  { slug: "jlpt-japanese-preparation-course", bestFor: "Learners working towards a JLPT level, N5 to N1" },
+  { slug: "speak-japanese", bestFor: "Anyone who reads Japanese but freezes when speaking" },
   { slug: "business-japanese", bestFor: "IT and working professionals with Japanese clients" },
 ];
 
@@ -19,7 +19,7 @@ export function CoursesShowcase() {
             <p className="text-sm font-bold uppercase tracking-wider text-sun-500">Courses</p>
             <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-indigo-950 tracking-tight">Explore our Japanese courses</h2>
           </div>
-          <Button href="/japanese-language-course" variant="outline">Browse all courses</Button>
+          <Button href="/learn-japanese-language-course" variant="outline">Browse all courses</Button>
         </div>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {picks.map((p) => {

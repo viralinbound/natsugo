@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   return {
     title: `${r.lesson.title} — JLPT ${r.level} Lesson`,
     description: r.lesson.summary,
-    alternates: { canonical: `/learn/${r.level.toLowerCase()}/${r.lesson.id}` },
+    alternates: { canonical: `/online-classroom/${r.level.toLowerCase()}/${r.lesson.id}` },
   };
 }
 
@@ -43,12 +43,12 @@ export default async function LessonPage({ params }: P) {
   const videoUnlocked = lesson.is_free || enrolled;
   const asset = enrolled ? portal!.assets.get(lesson.id) : (await getPublicAssets(lessons)).get(lesson.id);
   const hasRealVideo = videoUnlocked && Boolean(asset?.video_url);
-  const base = `/learn/${level.toLowerCase()}`;
+  const base = `/online-classroom/${level.toLowerCase()}`;
 
   return (
     <section className="py-6 sm:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Breadcrumb items={[{ label: "Online Classroom", href: "/learn" }, { label: `JLPT ${level}`, href: base }, { label: `Unit ${lesson.unit}`, href: `${base}/${lesson.id}` }]} />
+        <Breadcrumb items={[{ label: "Online Classroom", href: "/online-classroom" }, { label: `JLPT ${level}`, href: base }, { label: `Unit ${lesson.unit}`, href: `${base}/${lesson.id}` }]} />
 
         <div className="mt-5 grid lg:grid-cols-[1fr_320px] gap-8 items-start">
           <div className="min-w-0">

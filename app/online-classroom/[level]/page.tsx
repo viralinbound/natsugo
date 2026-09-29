@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
   return {
     title: `JLPT ${level} Online Classroom — Lessons, Live Classes & Recordings`,
     description: `${info.tagline}. Full JLPT ${level} syllabus with video lessons, study notes, live online classes, recordings, exam format and practice quizzes.`,
-    alternates: { canonical: `/learn/${level.toLowerCase()}` },
+    alternates: { canonical: `/online-classroom/${level.toLowerCase()}` },
   };
 }
 
@@ -63,13 +63,13 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         eyebrow={`Online classroom · ${info.jp}`}
         intro={info.overview}
         image={heroImg[level]}
-        crumbs={[{ label: "Online Classroom", href: "/learn" }, { label: `JLPT ${level}`, href: `/learn/${level.toLowerCase()}` }]}
+        crumbs={[{ label: "Online Classroom", href: "/online-classroom" }, { label: `JLPT ${level}`, href: `/online-classroom/${level.toLowerCase()}` }]}
       >
         {enrolled ? (
-          <Button href={`/learn/${level.toLowerCase()}/${firstLesson?.id}`} size="lg">Continue learning</Button>
+          <Button href={`/online-classroom/${level.toLowerCase()}/${firstLesson?.id}`} size="lg">Continue learning</Button>
         ) : (
           <>
-            {firstLesson ? <Button href={`/learn/${level.toLowerCase()}/${firstLesson.id}`} size="lg">Watch free lesson</Button> : null}
+            {firstLesson ? <Button href={`/online-classroom/${level.toLowerCase()}/${firstLesson.id}`} size="lg">Watch free lesson</Button> : null}
             <Button href={`/jlpt-${level.toLowerCase()}`} variant="outline-light" size="lg">Course & fees</Button>
           </>
         )}
@@ -123,7 +123,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                       const videoOpen = l.is_free || enrolled;
                       return (
                         <li key={l.id}>
-                          <Link href={`/learn/${level.toLowerCase()}/${l.id}`} className="flex items-start gap-3 px-5 py-3.5 hover:bg-bg">
+                          <Link href={`/online-classroom/${level.toLowerCase()}/${l.id}`} className="flex items-start gap-3 px-5 py-3.5 hover:bg-bg">
                             <PlayCircle size={20} className="mt-0.5 shrink-0 text-sun-400" />
                             <span className="flex-1 min-w-0">
                               <span className="block font-semibold text-charcoal-900 font-jp">{l.title}</span>

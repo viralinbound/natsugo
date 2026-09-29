@@ -3,8 +3,9 @@ import { images } from "@/lib/site";
 import { PathwayPage } from "@/components/pathways/PathwayPage";
 
 export const metadata: Metadata = {
-  title: "Work in Japan — Japanese Language Pathway for Indians",
-  description: "Understand how Japanese language skills fit into working in Japan: typical JLPT expectations, preparation steps and official resources.",
+  title: "Work in Japanese Language | Japanese for Japan Jobs",
+  description: "Learn Japanese for working in Japan with Natsugo. Improve speaking, workplace Japanese, JLPT skills and communication for your Japan career goals.",
+  keywords: ["Work in Japanese Language", "Japanese for Japan Jobs", "Learn Japanese for Work in Japan", "Japanese Language for Jobs in Japan", "Japanese Speaking for Work", "Workplace Japanese Course", "Japanese Language Course for Work"],
   alternates: { canonical: "/work-in-japan" },
 };
 

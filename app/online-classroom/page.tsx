@@ -8,9 +8,10 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Online Classroom — JLPT N5 to N1 Lessons, Live Classes & Recordings",
-  description: "Study Japanese online with Natsugo: video lessons, study notes and handouts, live teacher-led classes and class recordings for every JLPT level from N5 to N1.",
-  alternates: { canonical: "/learn" },
+  title: "Online Classroom | Learn Japanese Live Online",
+  description: "Join Natsugo's online classroom to learn Japanese with live lessons, interactive practice and expert guidance. Build your Japanese skills from anywhere.",
+  keywords: ["Online Classroom", "Japanese Online Classroom", "Online Japanese Classes", "Live Japanese Classes Online", "Japanese Learning Online", "Interactive Japanese Classes", "Japanese Language Classroom Online"],
+  alternates: { canonical: "/online-classroom" },
 };
 
 const features = [
@@ -28,9 +29,9 @@ export default function LearnPage() {
         eyebrow="Online classroom · オンライン教室"
         intro="Live classes with real teachers, recordings of every session, and a structured library of video lessons and study materials — from your first hiragana to JLPT N1."
         image={images.online}
-        crumbs={[{ label: "Online Classroom", href: "/learn" }]}
+        crumbs={[{ label: "Online Classroom", href: "/online-classroom" }]}
       >
-        <Button href="/learn/n5/n5-u1-l1" size="lg">Try a free lesson</Button>
+        <Button href="/online-classroom/n5/n5-u1-l1" size="lg">Try a free lesson</Button>
         <Button href="/student/login" variant="outline-light" size="lg">Student sign-in</Button>
       </PageHero>
 
@@ -57,7 +58,7 @@ export default function LearnPage() {
               const info = levelInfo[lvl];
               const count = lessonSeeds.filter((l) => l.level === lvl).length;
               return (
-                <Link key={lvl} href={`/learn/${lvl.toLowerCase()}`} className="group grid sm:grid-cols-[120px_1fr_auto] items-center gap-4 sm:gap-6 card-modern p-5 sm:p-6 hover:border-sun-400 transition-colors">
+                <Link key={lvl} href={`/online-classroom/${lvl.toLowerCase()}`} className="group grid sm:grid-cols-[120px_1fr_auto] items-center gap-4 sm:gap-6 card-modern p-5 sm:p-6 hover:border-sun-400 transition-colors">
                   <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0">
                     <span className="font-display text-4xl font-extrabold text-sun-400">{lvl}</span>
                     <span className="font-jp text-sm text-charcoal-500">{info.jp} · Step {i + 1}</span>

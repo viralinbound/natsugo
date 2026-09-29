@@ -30,9 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogPosts.map((p) => `/blog/${p.slug}`),
     "/jlpt-quiz",
     "/jlpt-exam-info",
-    "/learn",
-    ...quizLevels.map((l) => `/learn/${l.toLowerCase()}`),
-    ...lessonSeeds.filter((l) => l.isFree).map((l) => `/learn/${l.level.toLowerCase()}/${l.id}`),
+    "/online-classroom",
+    ...quizLevels.map((l) => `/online-classroom/${l.toLowerCase()}`),
+    ...lessonSeeds.filter((l) => l.isFree).map((l) => `/online-classroom/${l.level.toLowerCase()}/${l.id}`),
     ...quizLevels.flatMap((l) => difficulties.map((d) => `/jlpt-quiz/${l.toLowerCase()}/${d.id}`)),
   ];
   return paths.map((p) => ({ url: `${site.url}${p}`, lastModified: new Date() }));

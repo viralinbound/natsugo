@@ -46,7 +46,7 @@ const rows = [
   {
     title: "Speak from the first class",
     body: "The JLPT doesn't test speaking — but real life does. Every class includes conversation, roleplay and pronunciation practice, and our Speaking Lab adds focused sessions for interviews and the workplace.",
-    link: { href: "/speaking-japanese", label: "Explore the Speaking Lab" },
+    link: { href: "/speak-japanese", label: "Explore the Speaking Lab" },
     media: <Image src={`${images.onlinePair}?w=1100&q=70&auto=format&fit=crop`} alt="Two learners practising conversation" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />,
   },
   {

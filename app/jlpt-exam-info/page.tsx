@@ -9,8 +9,9 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "JLPT Exam Dates, Registration, Fees & Test Centres (India)",
-  description: "Everything about the JLPT in India in one place: upcoming exam dates, how to register, fees, test centres, and level-wise practice and sample questions for N5 to N1.",
+  title: "JLPT Exam Info | Dates, Fees & Centres in India",
+  description: "Get updated JLPT exam info for India, including 2026 dates, registration, fees, test centres and N5-N1 details. Check official information with Natsugo.",
+  keywords: ["JLPT Exam Info", "JLPT Exam Dates 2026", "JLPT Exam Fees India", "JLPT Exam Centres in India", "JLPT Registration India", "JLPT N5-N1 Exam", "JLPT Exam Information India"],
   alternates: { canonical: "/jlpt-exam-info" },
 };
 
@@ -120,7 +121,7 @@ export default async function ExamInfoPage() {
                 <p className="mt-1 text-sm text-charcoal-500 font-jp">{levelInfo[lvl].jp}</p>
                 <div className="mt-4 flex flex-col gap-2">
                   <Link href={`/jlpt-quiz/${lvl.toLowerCase()}/easy`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Practice quiz →</Link>
-                  <Link href={`/learn/${lvl.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Lessons & notes →</Link>
+                  <Link href={`/online-classroom/${lvl.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Lessons & notes →</Link>
                   <a href={info.officialLink} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-charcoal-600 underline underline-offset-4">Official sample format ↗</a>
                 </div>
               </div>

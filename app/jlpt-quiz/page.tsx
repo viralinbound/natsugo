@@ -5,8 +5,9 @@ import { QuizHub } from "@/components/quiz/QuizHub";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Free JLPT Quiz — N5 to N1, Easy to Hard",
-  description: "150 free JLPT practice questions: N5, N4, N3, N2 and N1, each with easy, medium and hard sets of 10. Instant answers with explanations.",
+  title: "JLPT Quiz | Free N5-N1 Japanese Practice",
+  description: "Practice JLPT N5-N1 with free quizzes on vocabulary, grammar, kanji, reading and listening. Choose your level, test your skills and see answer explanations.",
+  keywords: ["JLPT Quiz", "Free JLPT Quiz", "JLPT N5-N1 Quiz", "JLPT Practice Test Online", "Japanese JLPT Practice", "JLPT Quiz Online", "Free Japanese Quiz"],
   alternates: { canonical: "/jlpt-quiz" },
 };
 

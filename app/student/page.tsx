@@ -69,12 +69,12 @@ export default async function StudentDashboard() {
               <div key={level} className="card-modern">
                 <div className="flex items-center justify-between gap-3 border-b border-charcoal-100 px-5 py-4">
                   <h2 className="font-display font-bold text-indigo-950"><BookOpen size={18} className="inline -mt-0.5 text-sun-400" /> JLPT {level} lessons</h2>
-                  <Link href={`/learn/${level.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline py-2">Level page</Link>
+                  <Link href={`/online-classroom/${level.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline py-2">Level page</Link>
                 </div>
                 <ol className="grid sm:grid-cols-2 gap-px bg-charcoal-100">
                   {lessons.slice(0, 6).map((l) => (
                     <li key={l.id} className="bg-surface">
-                      <Link href={`/learn/${level.toLowerCase()}/${l.id}`} className="flex items-start gap-2.5 px-5 py-3.5 hover:bg-bg">
+                      <Link href={`/online-classroom/${level.toLowerCase()}/${l.id}`} className="flex items-start gap-2.5 px-5 py-3.5 hover:bg-bg">
                         <PlayCircle size={18} className="mt-0.5 shrink-0 text-sun-400" />
                         <span className="min-w-0">
                           <span className="block text-sm font-semibold text-charcoal-900 font-jp">{l.title}</span>

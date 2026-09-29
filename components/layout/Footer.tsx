@@ -9,8 +9,8 @@ const columns = [
     title: "Courses",
     links: [
       { label: "Japanese for Beginners", href: "/japanese-for-beginners" },
-      { label: "Japanese Language Course", href: "/japanese-language-course" },
-      { label: "Speaking Japanese", href: "/speaking-japanese" },
+      { label: "Japanese Language Course", href: "/learn-japanese-language-course" },
+      { label: "Speaking Japanese", href: "/speak-japanese" },
       { label: "Business Japanese", href: "/business-japanese" },
     ],
   },
@@ -54,7 +54,7 @@ const columns = [
   {
     title: "Support",
     links: [
-      { label: "Online Classroom", href: "/learn" },
+      { label: "Online Classroom", href: "/online-classroom" },
       { label: "Contact", href: "/contact" },
       { label: "Free Demo", href: "/free-japanese-demo-class" },
       { label: "Batches", href: "/batches" },

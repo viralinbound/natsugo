@@ -19,7 +19,12 @@ export async function generateMetadata({ params }: { params: Promise<{ topic: st
   const { topic } = await params;
   const t = resourceTopics.find((x) => x.slug === topic);
   if (!t) return {};
-  return { title: `${t.title} — Free Japanese Resource`, description: t.desc, alternates: { canonical: `/resources/${t.slug}` } };
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    keywords: [...t.keywords],
+    alternates: { canonical: `/resources/${t.slug}` },
+  };
 }
 
 const flashcards: Card[] = [

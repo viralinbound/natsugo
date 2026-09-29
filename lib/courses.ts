@@ -13,6 +13,7 @@ export interface CourseDetail {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  keywords?: string[];
   image: string;
   intro: string;
   level?: JLPTLevel;
@@ -48,13 +49,14 @@ const commonFaqs: FAQItem[] = [
 
 export const courseDetails: CourseDetail[] = [
   {
-    slug: "japanese-language-course",
+    slug: "learn-japanese-language-course",
     navLabel: "Japanese Language Course",
     eyebrow: "All Japanese Courses",
     title: "Japanese Language Course — Online & in Bengaluru",
-    metaTitle: "Japanese Language Course Online & in Bengaluru",
+    metaTitle: "Learn Japanese Language Course | Online & Bengaluru",
     metaDescription:
-      "Structured Japanese language courses from absolute beginner to JLPT N1. Live online classes across India and offline batches in Bengaluru. Take a free level test.",
+      "Learn Japanese from N5 to N1 with Natsugo through live online classes, speaking practice, study materials and structured lessons for every level.",
+    keywords: ["Learn Japanese Language Course", "Japanese Language Course Online", "Learn Japanese Online", "Japanese Course for Beginners", "Japanese Classes Online", "Japanese Course N5 to N1", "Japanese Language Classes in Bengaluru"],
     image: images.classroom,
     intro:
       "A complete Japanese programme that takes you from your first hiragana to confident, practical Japanese — with live teachers, speaking practice and regular progress checks at every level.",
@@ -88,16 +90,17 @@ export const courseDetails: CourseDetail[] = [
     materials: ["Level-wise textbook guidance", "Class notes and worksheets", "Vocabulary and kanji lists"],
     practice: ["Weekly quizzes", "Speaking tasks", "End-of-level mock test"],
     faqs: commonFaqs,
-    related: ["japanese-for-beginners", "jlpt-japanese-course", "speaking-japanese"],
+    related: ["japanese-for-beginners", "jlpt-japanese-preparation-course", "speak-japanese"],
   },
   {
     slug: "japanese-for-beginners",
     navLabel: "Japanese for Beginners",
     eyebrow: "Start from Zero",
     title: "Japanese for Beginners",
-    metaTitle: "Japanese Course for Beginners — Start from Zero",
+    metaTitle: "Japanese for Beginners | Easy Online Course",
     metaDescription:
-      "Never studied Japanese? Start with hiragana, katakana and everyday phrases in live beginner classes online or in Bengaluru. Free demo available.",
+      "Learn Japanese from zero with Natsugo. Join live online classes, learn hiragana, katakana, basic kanji, speaking and everyday Japanese with a free demo.",
+    keywords: ["Japanese for Beginners", "Japanese Course for Beginners", "Learn Japanese Online for Beginners", "Japanese Classes for Beginners", "Beginner Japanese Course Online", "Learn Japanese from Zero", "Basic Japanese Course Online"],
     image: images.writing,
     level: "N5",
     intro:
@@ -133,16 +136,17 @@ export const courseDetails: CourseDetail[] = [
       { question: "Do I need to know anything before joining?", answer: "No. The beginner course starts from the Japanese writing systems." },
       ...commonFaqs,
     ],
-    related: ["jlpt-n5", "speaking-japanese", "japanese-language-course"],
+    related: ["jlpt-n5", "speak-japanese", "learn-japanese-language-course"],
   },
   {
-    slug: "speaking-japanese",
+    slug: "speak-japanese",
     navLabel: "Japanese Speaking",
     eyebrow: "Speaking Lab",
     title: "Japanese Speaking Course",
-    metaTitle: "Japanese Speaking Course — Conversation Practice",
+    metaTitle: "Speak Japanese Language | Live Speaking Course",
     metaDescription:
-      "Build real Japanese conversation confidence with roleplay, pronunciation and interview practice. Small live speaking sessions online.",
+      "Speak Japanese with confidence through Natsugo's live online course. Practice real conversations, pronunciation, workplace Japanese and interviews.",
+    keywords: ["Speak Japanese Language", "Japanese Speaking Course Online", "Learn to Speak Japanese Online", "Japanese Speaking Classes", "Japanese Conversation Course", "Japanese Speaking Practice", "Live Japanese Speaking Classes"],
     image: images.onlinePair,
     intro:
       "Most learners can read more than they can say. The Speaking Lab closes that gap with focused, teacher-led conversation practice — daily situations, the workplace and interviews.",
@@ -184,9 +188,10 @@ export const courseDetails: CourseDetail[] = [
     navLabel: "Business Japanese",
     eyebrow: "For Professionals",
     title: "Business Japanese for Professionals",
-    metaTitle: "Business Japanese Course for IT & Working Professionals",
+    metaTitle: "Business Japanese | Professional Japanese Course",
     metaDescription:
-      "Japanese for workplace communication — keigo, emails, meetings and client calls. Designed for IT and working professionals in Bengaluru and across India.",
+      "Learn Business Japanese with Natsugo. Master keigo, business emails, meetings, calls and workplace etiquette through live online classes for professionals.",
+    keywords: ["Business Japanese", "Business Japanese Course", "Business Japanese Course Online", "Japanese for Professionals", "Japanese for Workplace", "Business Japanese Classes Online", "Japanese Keigo Course"],
     image: images.office,
     intro:
       "For professionals who work with Japanese teams or clients. Learn the language and etiquette of the Japanese workplace — from keigo to emails to meetings.",
@@ -221,16 +226,17 @@ export const courseDetails: CourseDetail[] = [
       { question: "Do you offer corporate training?", answer: "Yes — contact us with your team size and goals and we will propose a plan." },
       ...commonFaqs,
     ],
-    related: ["speaking-japanese", "jlpt-n3", "work-in-japan"],
+    related: ["speak-japanese", "jlpt-n3", "work-in-japan"],
   },
   {
-    slug: "jlpt-japanese-course",
+    slug: "jlpt-japanese-preparation-course",
     navLabel: "JLPT Preparation",
     eyebrow: "JLPT Preparation",
     title: "JLPT Preparation Course (N5 – N1)",
-    metaTitle: "JLPT Preparation Course N5 to N1 — Online & Bengaluru",
+    metaTitle: "JLPT N5-N1 Course Online | Complete Japanese Prep",
     metaDescription:
-      "Prepare for the Japanese-Language Proficiency Test with level-wise courses, mock tests and progress tracking. N5, N4, N3, N2 and N1 batches.",
+      "Prepare for JLPT N5 to N1 with Natsugo. Get live online classes, level-wise study plans, mock tests, grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N5-N1 Course Online", "JLPT N5 to N1 Course", "JLPT Preparation Course Online", "Japanese JLPT Course Online", "JLPT N5 N1 Japanese Course", "JLPT Exam Preparation Online", "Online JLPT Classes N5 to N1"],
     image: images.lecture,
     intro:
       "The JLPT is held in India typically twice a year, in July and December. Our preparation tracks combine grammar, vocabulary, kanji, reading and listening with timed mock tests.",
@@ -310,7 +316,7 @@ export const courseDetails: CourseDetail[] = [
       { question: "Is this only grammar, with no speaking or vocabulary?", answer: "The focus is grammar, but every class includes speaking practice using the pattern just taught — grammar you can't use in a sentence isn't very useful." },
       ...commonFaqs,
     ],
-    related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-japanese-course"],
+    related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-japanese-preparation-course"],
   },
   {
     slug: "japanese-vocabulary-course",
@@ -354,7 +360,7 @@ export const courseDetails: CourseDetail[] = [
       { question: "Do you use flashcards or an app?", answer: "Yes — you'll get topic-wise flashcard sets to review between classes, alongside our free flashcards tool." },
       ...commonFaqs,
     ],
-    related: ["japanese-grammar-course", "japanese-for-beginners", "jlpt-japanese-course"],
+    related: ["japanese-grammar-course", "japanese-for-beginners", "jlpt-japanese-preparation-course"],
   },
   {
     slug: "japanese-reading-writing-course",
@@ -404,13 +410,53 @@ export const courseDetails: CourseDetail[] = [
 
 const jlptMeta: Record<
   JLPTLevel,
-  { hours: string; vocab: string; kanji: string; desc: string; can: string[]; img: string }
+  { hours: string; vocab: string; kanji: string; desc: string; can: string[]; img: string; metaTitle: string; metaDescription: string; keywords: string[] }
 > = {
-  N5: { hours: "Indicative 60 hours", vocab: "~800 words", kanji: "~100 kanji", desc: "The first JLPT level — basic Japanese in hiragana, katakana and simple kanji.", can: ["Read simple sentences in kana and basic kanji", "Understand slow, short everyday conversations", "Introduce yourself and talk about daily routines"], img: images.writing },
-  N4: { hours: "Indicative 70 hours", vocab: "~1,500 words", kanji: "~300 kanji", desc: "Everyday Japanese — understand basic conversations and read passages on familiar topics.", can: ["Read passages on familiar daily topics", "Follow everyday conversations at a slightly slow pace", "Use verb forms like て-form, potential and volitional"], img: images.onlinePair },
-  N3: { hours: "Indicative 90 hours", vocab: "~3,750 words", kanji: "~650 kanji", desc: "The bridge between basic and advanced — Japanese used in everyday situations to some degree.", can: ["Understand newspaper headlines and notices", "Follow near-natural-speed conversations", "Express opinions with more complex grammar"], img: images.online },
-  N2: { hours: "Indicative 120 hours", vocab: "~6,000 words", kanji: "~1,000 kanji", desc: "Japanese used in everyday situations and in a variety of broader circumstances.", can: ["Read articles and commentary on general topics", "Follow news and conversations at natural speed", "Communicate in many workplace situations"], img: images.office },
-  N1: { hours: "Indicative 150+ hours", vocab: "~10,000 words", kanji: "~2,000 kanji", desc: "The highest JLPT level — understand Japanese in a wide variety of circumstances.", can: ["Read complex, abstract writing", "Understand lectures and news in depth", "Grasp nuance, implication and logical structure"], img: images.lecture },
+  N5: {
+    hours: "Indicative 60 hours", vocab: "~800 words", kanji: "~100 kanji",
+    desc: "The first JLPT level — basic Japanese in hiragana, katakana and simple kanji.",
+    can: ["Read simple sentences in kana and basic kanji", "Understand slow, short everyday conversations", "Introduce yourself and talk about daily routines"],
+    img: images.writing,
+    metaTitle: "JLPT N5 Course Online | Easy Japanese Exam Prep",
+    metaDescription: "Prepare for JLPT N5 with Natsugo. Learn Japanese online with live classes, mock tests, study materials, grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N5 Course Online", "JLPT N5 Classes Online", "JLPT N5 Preparation Online", "Japanese N5 Course Online", "JLPT N5 Japanese Course", "Japanese Language Course N5", "JLPT N5 Classes for Beginners", "Online Japanese N5 Classes"],
+  },
+  N4: {
+    hours: "Indicative 70 hours", vocab: "~1,500 words", kanji: "~300 kanji",
+    desc: "Everyday Japanese — understand basic conversations and read passages on familiar topics.",
+    can: ["Read passages on familiar daily topics", "Follow everyday conversations at a slightly slow pace", "Use verb forms like て-form, potential and volitional"],
+    img: images.onlinePair,
+    metaTitle: "JLPT N4 Course Online | Easy Japanese Exam Prep",
+    metaDescription: "Prepare for JLPT N4 with Natsugo. Learn Japanese online through live classes, mock tests, study materials, grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N4 Course Online", "JLPT N4 Classes Online", "JLPT N4 Preparation Online", "Japanese N4 Course Online", "JLPT N4 Classes for Beginners", "Online Japanese N4 Classes"],
+  },
+  N3: {
+    hours: "Indicative 90 hours", vocab: "~3,750 words", kanji: "~650 kanji",
+    desc: "The bridge between basic and advanced — Japanese used in everyday situations to some degree.",
+    can: ["Understand newspaper headlines and notices", "Follow near-natural-speed conversations", "Express opinions with more complex grammar"],
+    img: images.online,
+    metaTitle: "JLPT N3 Course Online | Practical Japanese Exam Prep",
+    metaDescription: "Prepare for JLPT N3 with Natsugo through live online classes, mock tests, study materials, grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N3 Course Online", "JLPT N3 Classes Online", "JLPT N3 Preparation Online", "Japanese N3 Course Online", "JLPT N3 Classes for Beginners", "Online Japanese N3 Classes", "JLPT N3 Exam Preparation"],
+  },
+  N2: {
+    hours: "Indicative 120 hours", vocab: "~6,000 words", kanji: "~1,000 kanji",
+    desc: "Japanese used in everyday situations and in a variety of broader circumstances.",
+    can: ["Read articles and commentary on general topics", "Follow news and conversations at natural speed", "Communicate in many workplace situations"],
+    img: images.office,
+    metaTitle: "JLPT N2 Course Online | Expert Japanese Exam Prep",
+    metaDescription: "Prepare for JLPT N2 with Natsugo through live online classes, mock tests, study materials, grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N2 Course Online", "JLPT N2 Classes Online", "JLPT N2 Preparation Online", "Japanese N2 Course Online", "JLPT N2 Exam Preparation", "Online Japanese N2 Classes", "JLPT N2 Japanese Course"],
+  },
+  N1: {
+    hours: "Indicative 150+ hours", vocab: "~10,000 words", kanji: "~2,000 kanji",
+    desc: "The highest JLPT level — understand Japanese in a wide variety of circumstances.",
+    can: ["Read complex, abstract writing", "Understand lectures and news in depth", "Grasp nuance, implication and logical structure"],
+    img: images.lecture,
+    metaTitle: "JLPT N1 Course Online | Advanced Japanese Exam Prep",
+    metaDescription: "Prepare for JLPT N1 with Natsugo through live online classes, mock tests, study materials, advanced grammar, kanji, reading and listening practice.",
+    keywords: ["JLPT N1 Course Online", "JLPT N1 Classes Online", "JLPT N1 Preparation Online", "Japanese N1 Course Online", "JLPT N1 Exam Preparation", "Online Japanese N1 Classes", "JLPT N1 Japanese Course"],
+  },
 };
 
 const order: JLPTLevel[] = ["N5", "N4", "N3", "N2", "N1"];
@@ -423,8 +469,9 @@ for (const lvl of order) {
     navLabel: `JLPT ${lvl}`,
     eyebrow: `JLPT ${lvl} Course`,
     title: `JLPT ${lvl} Course`,
-    metaTitle: `JLPT ${lvl} Course & Preparation — Online and Bengaluru`,
-    metaDescription: `JLPT ${lvl} preparation with live classes, ${m.vocab} vocabulary, ${m.kanji}, grammar, reading, listening and mock tests. Check upcoming ${lvl} batches.`,
+    metaTitle: m.metaTitle,
+    metaDescription: m.metaDescription,
+    keywords: m.keywords,
     image: m.img,
     level: lvl,
     intro: `${m.desc} This course covers every section of the ${lvl} exam and builds practical skills alongside test preparation.`,
@@ -457,7 +504,7 @@ for (const lvl of order) {
     related: [
       idx > 0 ? `jlpt-${order[idx - 1].toLowerCase()}` : "japanese-for-beginners",
       idx < 4 ? `jlpt-${order[idx + 1].toLowerCase()}` : "business-japanese",
-      "jlpt-japanese-course",
+      "jlpt-japanese-preparation-course",
     ],
   });
 }

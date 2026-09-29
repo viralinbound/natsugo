@@ -62,7 +62,7 @@ export default async function AdminLessons({ searchParams }: { searchParams: Pro
                   <div className="flex flex-wrap gap-5">
                     <label className="flex items-center gap-2 text-sm font-semibold"><input type="checkbox" name="is_free" defaultChecked={l.is_free} className="h-5 w-5 accent-indigo-900" /> Free preview</label>
                     <label className="flex items-center gap-2 text-sm font-semibold"><input type="checkbox" name="published" defaultChecked={l.published} className="h-5 w-5 accent-indigo-900" /> Published</label>
-                    <Link href={`/learn/${l.level.toLowerCase()}/${l.id}`} target="_blank" className="text-sm font-semibold text-indigo-800 underline">View lesson ↗</Link>
+                    <Link href={`/online-classroom/${l.level.toLowerCase()}/${l.id}`} target="_blank" className="text-sm font-semibold text-indigo-800 underline">View lesson ↗</Link>
                   </div>
                 </ActionForm>
               </div>

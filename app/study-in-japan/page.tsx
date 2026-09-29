@@ -3,8 +3,9 @@ import { images } from "@/lib/site";
 import { PathwayPage } from "@/components/pathways/PathwayPage";
 
 export const metadata: Metadata = {
-  title: "Study in Japan — Japanese Language Preparation",
-  description: "Preparing to study in Japan? Learn how Japanese language requirements typically work for language schools, universities and exchange programmes.",
+  title: "Study in Japanese Language | Learn Japanese for Japan",
+  description: "Study in Japanese with Natsugo and prepare for life in Japan. Learn the language levels, JLPT requirements and communication skills needed for study.",
+  keywords: ["Study in Japanese Language", "Learn Japanese for Study in Japan", "Japanese Language for International Students", "Study Japanese Online", "Japanese Course for Students", "JLPT for Study in Japan", "Japanese Language Requirements for Japan"],
   alternates: { canonical: "/study-in-japan" },
 };
 
