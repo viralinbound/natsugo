@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Download, Lock, PlayCircle, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, PlayCircle } from "lucide-react";
 import { quizLevels, type QuizLevel } from "@/lib/quizBank";
 import { getPublicAssets, getLessons } from "@/lib/portalRepo";
-import { getStudent } from "@/lib/student";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Button } from "@/components/ui/Button";
 import { VideoPlayer } from "@/components/learn/VideoPlayer";
@@ -38,11 +37,8 @@ export default async function LessonPage({ params }: P) {
   const r = await load(params);
   if (!r) notFound();
   const { level, lessons, lesson, prev, next } = r;
-  const portal = await getStudent();
-  const enrolled = Boolean(portal?.student.levels.includes(level));
-  const videoUnlocked = lesson.is_free || enrolled;
-  const asset = enrolled ? portal!.assets.get(lesson.id) : (await getPublicAssets(lessons)).get(lesson.id);
-  const hasRealVideo = videoUnlocked && Boolean(asset?.video_url);
+  const asset = (await getPublicAssets(lessons)).get(lesson.id);
+  const hasRealVideo = Boolean(asset?.video_url);
   const base = `/online-classroom/${level.toLowerCase()}`;
 
   return (
@@ -64,22 +60,13 @@ export default async function LessonPage({ params }: P) {
               ) : (
                 <div className="flex aspect-video items-center justify-center rounded-lg bg-bg-alt text-charcoal-500">Lecture coming soon</div>
               )}
-              {!videoUnlocked ? (
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-md bg-sun-100 px-4 py-3 text-sm">
-                  <p className="flex items-center gap-2 text-charcoal-800"><Video size={16} className="text-sun-500" /> The teacher-recorded video and downloadable handout for this lesson unlock once you enrol.</p>
-                  <div className="flex gap-2 shrink-0">
-                    <Button href={`/batches?level=${level}`} size="sm">See {level} batches</Button>
-                    <Button href="/student/login" variant="outline" size="sm">Student sign-in</Button>
-                  </div>
-                </div>
-              ) : null}
             </div>
 
             <div className="mt-8">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-xl font-bold text-indigo-950">Study notes</h2>
                 <div className="flex flex-wrap gap-2 print:hidden">
-                  {videoUnlocked && asset?.material_url ? (
+                  {asset?.material_url ? (
                     <a href={asset.material_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-md bg-indigo-900 px-4 min-h-[40px] text-sm font-bold text-white">
                       <Download size={15} /> {asset.material_label || "Download handout"}
                     </a>
@@ -90,12 +77,10 @@ export default async function LessonPage({ params }: P) {
               <div className="mt-4 card-modern p-5 sm:p-8">
                 {asset?.notes ? <Notes text={asset.notes} /> : <p className="text-charcoal-500">Notes for this lesson will be added by your teacher.</p>}
               </div>
-              {!enrolled ? (
-                <div className="mt-6 rounded-lg bg-sun-100 p-5 sm:flex sm:items-center sm:justify-between gap-4 print:hidden">
-                  <p className="text-charcoal-800"><strong>Want the teacher-recorded video, handouts and live classes?</strong> Enrol to unlock all {lessons.length} {level} lessons.</p>
-                  <div className="mt-3 sm:mt-0 shrink-0"><Button href={`/free-japanese-demo-class?course=jlpt-${level.toLowerCase()}`}>Book free demo</Button></div>
-                </div>
-              ) : null}
+              <div className="mt-6 rounded-lg bg-sun-100 p-5 sm:flex sm:items-center sm:justify-between gap-4 print:hidden">
+                <p className="text-charcoal-800"><strong>Every lesson is free.</strong> Want a teacher to guide you? Join a live {level} batch.</p>
+                <div className="mt-3 sm:mt-0 shrink-0"><Button href={`/batches?level=${level}`}>See {level} batches</Button></div>
+              </div>
             </div>
 
             <nav className="mt-8 flex justify-between gap-3 print:hidden" aria-label="Lesson navigation">
@@ -112,17 +97,16 @@ export default async function LessonPage({ params }: P) {
 
           <aside className="lg:sticky lg:top-24 card-modern print:hidden">
             <p className="border-b border-charcoal-100 px-4 py-3 font-display font-bold text-indigo-950">{level} lessons</p>
-            <p className="border-b border-charcoal-100 px-4 py-2 text-xs text-charcoal-500">Notes and audio lectures are open for every lesson. <Lock size={11} className="inline -mt-0.5" /> = teacher video for enrolled students.</p>
+            <p className="border-b border-charcoal-100 px-4 py-2 text-xs text-charcoal-500">All lessons are free — video, notes and handouts.</p>
             <ol className="max-h-[60vh] overflow-y-auto divide-y divide-charcoal-100">
               {lessons.map((l, i) => {
-                const open = l.is_free || enrolled;
                 const current = l.id === lesson.id;
                 return (
                   <li key={l.id}>
                     <Link href={`${base}/${l.id}`} aria-current={current ? "page" : undefined} className={`flex items-start gap-2.5 px-4 py-3 text-sm ${current ? "bg-sun-100" : "hover:bg-bg"}`}>
                       <span className="mt-0.5 w-5 shrink-0 text-xs font-bold text-charcoal-500">{i + 1}</span>
                       <span className="flex-1 min-w-0 font-jp text-charcoal-900">{l.title}</span>
-                      {open ? <PlayCircle size={15} className="mt-0.5 shrink-0 text-sun-400" /> : <Lock size={14} className="mt-0.5 shrink-0 text-charcoal-300" />}
+                      <PlayCircle size={15} className="mt-0.5 shrink-0 text-sun-400" />
                     </Link>
                   </li>
                 );

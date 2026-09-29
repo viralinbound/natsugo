@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BookOpen, CheckCircle2, Clock, Download, FileText, Lock, PlayCircle, Radio, Unlock, Video } from "lucide-react";
+import { BookOpen, CheckCircle2, Clock, FileText, PlayCircle, Radio, Video } from "lucide-react";
 import { quizLevels, difficulties, type QuizLevel } from "@/lib/quizBank";
 import { levelInfo } from "@/lib/curriculum";
-import { fmtIST, getLessons, getLiveSessions, groupByUnit } from "@/lib/portalRepo";
+import { fmtIST, getLessons, getLiveLinks, getLiveSessions, groupByUnit } from "@/lib/portalRepo";
 import { getBatches, getTeachers } from "@/lib/repo";
-import { getStudent } from "@/lib/student";
 import { images } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
@@ -40,15 +39,14 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
   // eslint-disable-next-line react-hooks/purity -- request-time split of upcoming vs past classes
   const nowIso = new Date(Date.now() - 3 * 3600_000).toISOString();
 
-  const [lessons, upcoming, past, batches, teachers, portal] = await Promise.all([
+  const [lessons, upcoming, past, batches, teachers] = await Promise.all([
     getLessons(level),
     getLiveSessions({ level, from: nowIso, limit: 8 }),
     getLiveSessions({ level, to: nowIso, limit: 12 }),
     getBatches(),
     getTeachers(),
-    getStudent(),
   ]);
-  const enrolled = Boolean(portal?.student.levels.includes(level));
+  const links = await getLiveLinks([...upcoming, ...past].map((s) => s.id));
   const units = groupByUnit(lessons);
   const totalMin = lessons.reduce((a, l) => a + l.duration_min, 0);
   const recordings = past.filter((s) => s.has_recording);
@@ -65,14 +63,8 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         image={heroImg[level]}
         crumbs={[{ label: "Online Classroom", href: "/online-classroom" }, { label: `JLPT ${level}`, href: `/online-classroom/${level.toLowerCase()}` }]}
       >
-        {enrolled ? (
-          <Button href={`/online-classroom/${level.toLowerCase()}/${firstLesson?.id}`} size="lg">Continue learning</Button>
-        ) : (
-          <>
-            {firstLesson ? <Button href={`/online-classroom/${level.toLowerCase()}/${firstLesson.id}`} size="lg">Watch free lesson</Button> : null}
-            <Button href={`/jlpt-${level.toLowerCase()}`} variant="outline-light" size="lg">Course & fees</Button>
-          </>
-        )}
+        {firstLesson ? <Button href={`/online-classroom/${level.toLowerCase()}/${firstLesson.id}`} size="lg">Start learning free</Button> : null}
+        <Button href={`/jlpt-${level.toLowerCase()}`} variant="outline-light" size="lg">About the {level} course</Button>
       </PageHero>
 
       {/* Key facts */}
@@ -93,21 +85,12 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         </dl>
       </section>
 
-      {portal ? (
-        <div className={`${enrolled ? "bg-success/10 text-success" : "bg-sun-100 text-indigo-950"} text-sm font-semibold`}>
-          <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2">
-            {enrolled ? <Unlock size={16} /> : <Lock size={16} />}
-            {enrolled ? `Signed in as ${portal.student.name} — all ${level} lessons, materials and live classes are unlocked.` : `You're signed in, but not enrolled in ${level}. Contact admissions to add this level.`}
-          </p>
-        </div>
-      ) : null}
-
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.5fr_1fr] gap-10">
           {/* Syllabus */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Syllabus</h2>
-            <p className="mt-1 text-charcoal-700">Every lesson has full study notes and an audio lecture — open to everyone, no sign-in needed. Enrol to unlock the teacher-recorded video, downloadable handout and live classes.</p>
+            <p className="mt-1 text-charcoal-700">Every lesson is free — video, study notes, audio lecture and handout. No sign-in needed.</p>
             <div className="mt-6 space-y-4">
               {units.map((u) => (
                 <details key={u.n} open={u.n === 1} className="group card-modern overflow-hidden">
@@ -120,7 +103,6 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                   </summary>
                   <ol className="divide-y divide-charcoal-100 border-t border-charcoal-100">
                     {u.lessons.map((l) => {
-                      const videoOpen = l.is_free || enrolled;
                       return (
                         <li key={l.id}>
                           <Link href={`/online-classroom/${level.toLowerCase()}/${l.id}`} className="flex items-start gap-3 px-5 py-3.5 hover:bg-bg">
@@ -130,11 +112,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                               <span className="block text-sm text-charcoal-500">{l.summary}</span>
                             </span>
                             <span className="shrink-0 text-right text-xs">
-                              {videoOpen ? (
-                                <span className="block rounded bg-success/10 px-1.5 py-0.5 font-bold text-success">{l.is_free ? "FREE" : "VIDEO"}</span>
-                              ) : (
-                                <span className="flex items-center justify-end gap-1 rounded bg-bg-alt px-1.5 py-0.5 font-bold text-charcoal-500"><Lock size={10} /> VIDEO</span>
-                              )}
+                              <span className="block rounded bg-success/10 px-1.5 py-0.5 font-bold text-success">FREE</span>
                               <span className="mt-1 block text-charcoal-500">{l.duration_min} min</span>
                             </span>
                           </Link>
@@ -177,19 +155,18 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
       </section>
 
       {/* Live classes */}
-      <section className="bg-indigo-950 py-12 sm:py-16 text-white brand-pattern brand-pattern-light overflow-hidden">
+      <section className="bg-indigo-950 py-12 sm:py-16 text-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="text-sm font-bold uppercase tracking-wider text-sun-300"><Radio size={14} className="inline -mt-0.5" /> Live online classes</p>
               <h2 className="mt-1 text-2xl sm:text-3xl font-bold">Upcoming {level} live classes</h2>
             </div>
-            {!portal ? <Link href="/student/login" className="text-sm font-semibold text-sun-300 underline underline-offset-4 py-2">Student sign-in</Link> : null}
           </div>
           {upcoming.length ? (
             <ul className="mt-6 grid md:grid-cols-2 gap-4">
               {upcoming.map((s) => {
-                const link = portal?.live.get(s.id);
+                const link = links.get(s.id);
                 return (
                   <li key={s.id} className="rounded-lg bg-white p-5 text-charcoal-900">
                     <div className="flex items-center justify-between gap-2">
@@ -200,7 +177,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                     <p className="text-sm text-charcoal-700">{fmtIST(s.starts_at)} IST{teacherName(s.teacher_id) ? ` · ${teacherName(s.teacher_id)}` : ""}</p>
                     {s.description ? <p className="mt-1 text-sm text-charcoal-500">{s.description}</p> : null}
                     <div className="mt-4">
-                      <LiveAction startsAt={s.starts_at} durationMin={s.duration_min} joinUrl={link?.join_url} recordingUrl={link?.recording_url} enrolled={Boolean(link) || enrolled} platform={s.platform} />
+                      <LiveAction startsAt={s.starts_at} durationMin={s.duration_min} joinUrl={link?.join_url} recordingUrl={link?.recording_url} platform={s.platform} />
                     </div>
                   </li>
                 );
@@ -219,11 +196,11 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
             <h2 className="text-2xl font-bold text-indigo-950"><Video size={22} className="inline -mt-1 text-sun-400" /> Class recordings</h2>
-            <p className="mt-1 text-charcoal-700">Missed a class? Every live class is recorded for enrolled students.</p>
+            <p className="mt-1 text-charcoal-700">Missed a class? Every live class is recorded and free to watch.</p>
             {recordings.length ? (
               <ul className="mt-5 divide-y divide-charcoal-100 card-modern">
                 {recordings.map((s) => {
-                  const link = portal?.live.get(s.id);
+                  const link = links.get(s.id);
                   return (
                     <li key={s.id} className="flex items-center justify-between gap-3 px-5 py-3.5">
                       <span className="min-w-0">
@@ -233,7 +210,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
                       {link?.recording_url ? (
                         <a href={link.recording_url} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-1 rounded-md bg-indigo-900 px-3 min-h-[40px] text-sm font-bold text-white"><PlayCircle size={15} /> Watch</a>
                       ) : (
-                        <span className="shrink-0 inline-flex items-center gap-1 text-sm text-charcoal-500"><Lock size={14} /> Students</span>
+                        <span className="shrink-0 text-sm text-charcoal-500">Coming soon</span>
                       )}
                     </li>
                   );
@@ -245,16 +222,16 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
           </div>
           <div>
             <h2 className="text-2xl font-bold text-indigo-950"><BookOpen size={22} className="inline -mt-1 text-sun-400" /> Study materials</h2>
-            <p className="mt-1 text-charcoal-700">Free tools for everyone, plus handouts for enrolled students.</p>
+            <p className="mt-1 text-charcoal-700">Free tools and handouts for everyone.</p>
             <ul className="mt-5 grid sm:grid-cols-2 gap-3">
               {info.materials.map((m) => (
                 <li key={m.title}>
                   <Link href={m.href} className="flex h-full gap-3 card-modern p-4 hover:border-sun-400">
-                    {m.kind === "free" ? <FileText size={20} className="shrink-0 text-sun-400" /> : enrolled ? <Download size={20} className="shrink-0 text-success" /> : <Lock size={18} className="shrink-0 text-charcoal-300" />}
+                    <FileText size={20} className="shrink-0 text-sun-400" />
                     <span>
                       <span className="block font-semibold text-charcoal-900">{m.title}</span>
                       <span className="block text-xs text-charcoal-500">{m.desc}</span>
-                      <span className={`mt-1 inline-block text-[11px] font-bold ${m.kind === "free" ? "text-success" : "text-charcoal-500"}`}>{m.kind === "free" ? "FREE" : enrolled ? "UNLOCKED" : "ENROLLED STUDENTS"}</span>
+                      <span className="mt-1 inline-block text-[11px] font-bold text-success">FREE</span>
                     </span>
                   </Link>
                 </li>

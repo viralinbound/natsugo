@@ -40,7 +40,7 @@ export default async function AdminStudents() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-charcoal-500">Students sign in at /student/login with their email and a 6-digit code. Confirming an enrolment in Leads adds them here automatically.</p>
+      <p className="text-sm text-charcoal-500">The online classroom is free and open to everyone — no student sign-in. Confirming an enrolment in Leads adds the student here for your records.</p>
       <details className="rounded-lg border-2 border-dashed border-indigo-900/30 bg-surface p-5" open={!data?.length}>
         <summary className="cursor-pointer font-bold text-indigo-950">+ Add a student</summary>
         <div className="mt-4"><ActionForm action={saveStudent} submitLabel="Add student"><Fields /></ActionForm></div>

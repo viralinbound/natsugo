@@ -31,8 +31,8 @@ export default function LearnPage() {
         image={images.online}
         crumbs={[{ label: "Online Classroom", href: "/online-classroom" }]}
       >
-        <Button href="/online-classroom/n5/n5-u1-l1" size="lg">Try a free lesson</Button>
-        <Button href="/student/login" variant="outline-light" size="lg">Student sign-in</Button>
+        <Button href="/online-classroom/n5/n5-u1-l1" size="lg">Start learning free</Button>
+        <Button href="/level-test" variant="outline-light" size="lg">Find your level</Button>
       </PageHero>
 
       <section className="border-b border-charcoal-100 bg-surface">

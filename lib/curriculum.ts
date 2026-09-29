@@ -30,8 +30,8 @@ export interface LevelInfo {
 const commonMaterials = (lvl: QuizLevel): LevelInfo["materials"] => [
   { title: `${lvl} quiz sets`, desc: "Easy, medium and hard — 10 questions each with explanations", href: `/jlpt-quiz/${lvl.toLowerCase()}/easy`, kind: "free" },
   { title: "Flashcards", desc: "Spaced-repetition practice with a daily streak", href: "/resources/flashcards", kind: "free" },
-  { title: "Lesson handouts (PDF)", desc: "Printable notes and worksheets for every lesson", href: "/student", kind: "enrolled" },
-  { title: "Class recordings", desc: "Watch any live class again, as many times as you like", href: "/student", kind: "enrolled" },
+  { title: "Lesson handouts (PDF)", desc: "Printable notes and worksheets for every lesson", href: `/online-classroom/${lvl.toLowerCase()}`, kind: "free" },
+  { title: "Class recordings", desc: "Watch any live class again, as many times as you like", href: `/online-classroom/${lvl.toLowerCase()}`, kind: "free" },
 ];
 
 export const levelInfo: Record<QuizLevel, LevelInfo> = {

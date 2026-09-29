@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { ExternalLink, Lock, PlayCircle, Radio } from "lucide-react";
+import { ExternalLink, PlayCircle, Radio } from "lucide-react";
 import { useClock, useHydrated } from "@/lib/useBrowserStore";
 
 const JOIN_EARLY_MIN = 15;
@@ -39,20 +38,18 @@ export function LiveBadge({ startsAt, durationMin }: { startsAt: string; duratio
   return <span className="rounded bg-bg-alt px-2 py-0.5 text-xs font-semibold text-charcoal-700">{until(new Date(startsAt).getTime() - now)}</span>;
 }
 
-// What an enrolled student can do right now: join (15 min before → end), or watch the recording afterwards.
+// What anyone can do right now: join (15 min before → end), or watch the recording afterwards.
 export function LiveAction({
   startsAt,
   durationMin,
   joinUrl,
   recordingUrl,
-  enrolled,
   platform,
 }: {
   startsAt: string;
   durationMin: number;
   joinUrl?: string | null;
   recordingUrl?: string | null;
-  enrolled: boolean;
   platform: string;
 }) {
   const now = useClock();
@@ -61,12 +58,6 @@ export function LiveAction({
   const s = liveState(startsAt, durationMin, now);
   const cls = "inline-flex items-center justify-center gap-1.5 rounded-md px-4 min-h-[40px] text-sm font-bold";
 
-  if (!enrolled)
-    return (
-      <Link href="/student/login" className={`${cls} border-2 border-charcoal-100 text-charcoal-700 hover:border-indigo-800`}>
-        <Lock size={14} /> Students only
-      </Link>
-    );
   if (s === "ended")
     return recordingUrl ? (
       <a href={recordingUrl} target="_blank" rel="noopener noreferrer" className={`${cls} bg-indigo-900 text-white hover:bg-indigo-800`}>

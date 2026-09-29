@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
       { source: "/learn", destination: "/online-classroom", permanent: true },
       { source: "/learn/:path*", destination: "/online-classroom/:path*", permanent: true },
       { source: "/business-japanese-for-professional", destination: "/business-japanese", permanent: true },
+      { source: "/student", destination: "/online-classroom", permanent: true },
+      { source: "/student/:path*", destination: "/online-classroom", permanent: true },
     ];
   },
   images: {

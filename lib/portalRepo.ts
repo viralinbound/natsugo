@@ -51,26 +51,32 @@ export async function getLessons(level: QuizLevel): Promise<Lesson[]> {
   return data as Lesson[];
 }
 
-// Notes are public for every published lesson. video_url/material_url are stripped here
-// unless the lesson is free — the enrolled-only copies come from lib/student.ts instead.
+// Every lesson's video, notes and handout are free for everyone.
 export async function getPublicAssets(lessons: Lesson[]): Promise<Map<string, FreeAsset>> {
   const lessonIds = lessons.map((l) => l.id);
-  const freeIds = new Set(lessons.filter((l) => l.is_free).map((l) => l.id));
   const sb = getPublicClient();
   if (!sb || !lessonIds.length) {
     const m = new Map<string, FreeAsset>();
     lessonSeeds.filter((l) => l.notes && lessonIds.includes(l.id)).forEach((l) =>
-      m.set(l.id, { lesson_id: l.id, video_url: freeIds.has(l.id) ? null : null, notes: l.notes!, material_url: null, material_label: null })
+      m.set(l.id, { lesson_id: l.id, video_url: null, notes: l.notes!, material_url: null, material_label: null })
     );
     return m;
   }
   const { data } = await sb.from("lesson_assets").select("*").in("lesson_id", lessonIds);
-  return new Map(
-    (data ?? []).map((a) => [
-      a.lesson_id,
-      freeIds.has(a.lesson_id) ? (a as FreeAsset) : { ...(a as FreeAsset), video_url: null, material_url: null, material_label: null },
-    ])
-  );
+  return new Map((data ?? []).map((a) => [a.lesson_id, a as FreeAsset]));
+}
+
+export interface LiveLink {
+  session_id: string;
+  join_url: string | null;
+  recording_url: string | null;
+}
+
+export async function getLiveLinks(sessionIds: string[]): Promise<Map<string, LiveLink>> {
+  const sb = getPublicClient();
+  if (!sb || !sessionIds.length) return new Map();
+  const { data } = await sb.from("live_session_links").select("session_id, join_url, recording_url").in("session_id", sessionIds);
+  return new Map((data ?? []).map((l) => [l.session_id, l as LiveLink]));
 }
 
 export async function getLiveSessions(opts: { level?: string; levels?: string[]; from?: string; to?: string; limit?: number }): Promise<LiveSession[]> {

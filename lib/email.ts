@@ -120,14 +120,6 @@ ${btn(`${site.url}/admin/reviews`, "Review and approve")}`;
   return send(notifyTo(), `New student review from ${r.name}`, layout("A student submitted a review", body));
 }
 
-export function sendLoginCode(to: string, name: string | null, code: string) {
-  const body = `
-<p style="font-size:15px;line-height:1.6;margin:0 0 16px">Hi${name ? ` ${esc(name.split(" ")[0])}` : ""}, use this code to sign in to your Natsugo classroom:</p>
-<p style="font-size:34px;font-weight:800;letter-spacing:10px;text-align:center;background:${brand.bg};padding:18px;border-radius:8px;margin:0 0 16px;color:${brand.grey}">${esc(code)}</p>
-<p style="font-size:13px;color:#6b6b6b;margin:0">The code expires in 10 minutes. If you didn't try to sign in, you can ignore this email.</p>`;
-  return send(to, `${code} is your Natsugo sign-in code`, layout("Your sign-in code", body));
-}
-
 export function sendClassroomWelcome(to: string, name: string, levels: string[]) {
   const body = `
 <p style="font-size:15px;line-height:1.6;margin:0 0 12px">Hi ${esc(name.split(" ")[0])}, ようこそ！ Your Natsugo online classroom is ready${levels.length ? ` for <strong>${levels.map((l) => `JLPT ${esc(l)}`).join(", ")}</strong>` : ""}.</p>
@@ -137,7 +129,7 @@ export function sendClassroomWelcome(to: string, name: string, levels: string[])
 <li><strong>Recordings</strong> of every class</li>
 <li>Video lessons, study notes and handouts</li>
 </ul>
-<p style="margin:0 0 16px">${btn(`${site.url}/student/login`, "Open my classroom")}</p>
-<p style="font-size:13px;color:#6b6b6b;margin:0">Sign in with this email address (${esc(to)}). We'll send you a 6-digit code — no password needed.</p>`;
+<p style="margin:0 0 16px">${btn(`${site.url}/online-classroom`, "Open the classroom")}</p>
+<p style="font-size:13px;color:#6b6b6b;margin:0">Everything is free and open — no sign-in needed.</p>`;
   return send(to, "Your Natsugo online classroom is ready", layout("Welcome to your classroom", body), notifyTo()[0]);
 }
