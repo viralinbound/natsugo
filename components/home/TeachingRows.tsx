@@ -59,7 +59,7 @@ const rows = [
 
 export function TeachingRows() {
   return (
-    <section className="bg-bg-alt py-16 sm:py-24">
+    <section className="brand-pattern bg-bg-alt py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
         {rows.map((r, i) => (
           <div key={r.title} className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
