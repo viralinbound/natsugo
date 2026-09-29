@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Breadcrumb, type Crumb } from "@/components/ui/Breadcrumb";
+import { SakuraPetals } from "@/components/japan/SakuraPetals";
 
 export function PageHero({
   title,
@@ -28,6 +29,7 @@ export function PageHero({
         className="object-cover -z-10 opacity-45"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/95 via-indigo-950/70 to-indigo-950/30" />
+      <SakuraPetals />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <Breadcrumb items={crumbs} light />
         {eyebrow ? (
