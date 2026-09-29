@@ -46,7 +46,6 @@ export const navGroups: NavGroup[] = [
       { label: "N3 lessons & live classes", href: "/learn/n3" },
       { label: "N2 lessons & live classes", href: "/learn/n2" },
       { label: "N1 lessons & live classes", href: "/learn/n1" },
-      { label: "Student sign-in", href: "/student/login" },
     ],
   },
   {
@@ -92,5 +91,3 @@ export const navGroups: NavGroup[] = [
 export const simpleLinks: NavLink[] = [
   { label: "Batches", href: "/batches" },
 ];
-
-export const studentLink: NavLink = { label: "Student login", href: "/student" };

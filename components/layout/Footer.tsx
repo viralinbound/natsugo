@@ -54,7 +54,6 @@ const columns = [
   {
     title: "Support",
     links: [
-      { label: "Student login", href: "/student" },
       { label: "Online Classroom", href: "/learn" },
       { label: "Contact", href: "/contact" },
       { label: "Free Demo", href: "/free-japanese-demo-class" },

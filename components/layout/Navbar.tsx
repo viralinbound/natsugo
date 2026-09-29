@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import { Button } from "@/components/ui/Button";
-import { navGroups, simpleLinks, studentLink } from "@/components/layout/navData";
+import { navGroups, simpleLinks } from "@/components/layout/navData";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -100,22 +100,26 @@ export function Navbar() {
           </ul>
 
           <div className="hidden xl:flex items-center gap-2">
-            <Button href={studentLink.href} variant="outline" size="sm">
-              {studentLink.label}
-            </Button>
             <Button href="/level-test" variant="primary" size="sm">
               Take Free Level Test
             </Button>
           </div>
 
-          <button
-            className="xl:hidden p-2 -mr-2 rounded-lg text-indigo-950 hover:bg-bg-alt"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-2 xl:hidden">
+            <div className="hidden sm:block">
+              <Button href="/level-test" variant="primary" size="sm">
+                Take Free Level Test
+              </Button>
+            </div>
+            <button
+              className="p-2 -mr-2 rounded-lg text-indigo-950 hover:bg-bg-alt"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -164,9 +168,6 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4">
-              <Button href={studentLink.href} variant="outline">
-                {studentLink.label}
-              </Button>
               <Button href="/level-test" variant="primary">
                 Take Free Level Test
               </Button>
