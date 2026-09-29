@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { Breadcrumb, type Crumb } from "@/components/ui/Breadcrumb";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
+import { jpFor } from "@/lib/jpLabels";
 
 export function PageHero({
   title,
@@ -18,8 +19,9 @@ export function PageHero({
   crumbs: Crumb[];
   children?: ReactNode;
 }) {
+  const jp = jpFor(eyebrow);
   return (
-    <section className="brand-pattern brand-pattern-light relative isolate overflow-hidden bg-indigo-950 text-white">
+    <section className="relative isolate overflow-hidden bg-indigo-950 text-white">
       <Image
         src={`${image}?w=1800&q=70&auto=format&fit=crop`}
         alt=""
@@ -29,11 +31,19 @@ export function PageHero({
         className="object-cover -z-10 opacity-45"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/95 via-indigo-950/70 to-indigo-950/30" />
+      <div aria-hidden className="rising-sun absolute -z-10 -right-24 -top-24 h-80 w-80 sm:h-[26rem] sm:w-[26rem]" />
+      <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-6 lg:right-16 top-1/2 -translate-y-1/2 hidden md:block text-7xl lg:text-8xl">
+        {jp ?? "日本語"}
+      </span>
       <SakuraPetals />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <Breadcrumb items={crumbs} light />
         {eyebrow ? (
-          <p className="mt-6 text-sm font-bold uppercase tracking-wider text-sun-300">{eyebrow}</p>
+          <p className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-sun-300">
+            <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-hanko" />
+            {eyebrow}
+            {jp ? <span className="font-jp normal-case tracking-normal text-white/70">· {jp}</span> : null}
+          </p>
         ) : null}
         <h1 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl text-balance">
           {title}

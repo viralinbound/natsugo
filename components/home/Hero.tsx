@@ -17,6 +17,10 @@ export function Hero() {
           className="object-cover -z-10"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/90 via-indigo-950/65 to-indigo-950/25" />
+        <div aria-hidden className="rising-sun absolute -z-10 right-[8%] top-[12%] h-72 w-72 sm:h-96 sm:w-96" />
+        <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-8 lg:right-20 top-1/2 -translate-y-1/2 hidden lg:block text-8xl xl:text-9xl">
+          日本語
+        </span>
         <SakuraPetals />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
           <div className="flex items-center gap-2 animate-fade-up">

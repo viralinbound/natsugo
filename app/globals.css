@@ -226,6 +226,37 @@ html[data-furigana="off"] rt {
   filter: grayscale(1) brightness(3);
 }
 
+/* Large faint kanji behind a section heading */
+.jp-watermark {
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: 6.5rem;
+  line-height: 1;
+  color: var(--color-sun-400);
+  opacity: 0.07;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+/* Outlined kanji for dark hero banners */
+.jp-outline {
+  font-family: var(--font-jp);
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.22);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Rising-sun glow: a soft hanko-red disc */
+.rising-sun {
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(194, 59, 59, 0.55) 0%, rgba(194, 59, 59, 0.18) 45%, transparent 70%);
+  filter: blur(2px);
+}
+
 /* Modern card: soft shadow that deepens and lifts on hover */
 .card-modern {
   background: var(--color-surface);
