@@ -813,3 +813,20 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
 @keyframes brush-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 .brush-draw { animation: brush-draw 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
 @media (prefers-reduced-motion: reduce) { .brush-draw { animation: none; } }
+
+/* JLPT roadmap: glowing dot that rides the filling line, with a short comet tail */
+.road-dot {
+  box-shadow: 0 0 0 4px rgba(224, 52, 75, 0.25), 0 0 16px 4px rgba(224, 52, 75, 0.55);
+  animation: road-pulse 1.6s ease-in-out infinite;
+}
+.road-comet {
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.5) 70%, rgba(255, 255, 255, 0.9));
+  filter: blur(6px);
+  opacity: 0.8;
+}
+@keyframes road-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(224, 52, 75, 0.25), 0 0 16px 4px rgba(224, 52, 75, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(224, 52, 75, 0.12), 0 0 26px 8px rgba(224, 52, 75, 0.7); }
+}
+@media (prefers-reduced-motion: reduce) { .road-dot { animation: none; } }
