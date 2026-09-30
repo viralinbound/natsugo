@@ -4,7 +4,7 @@ import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { KanaPlayground } from "@/components/home/KanaPlayground";
 import { HeroBlocks } from "@/components/home/HeroBlocks";
 import { Hanko } from "@/components/japan/Hanko";
-import { UkiyoeWaves } from "@/components/japan/UkiyoeWaves";
+import { HeritageSkyline } from "@/components/japan/HeritageSkyline";
 
 const goals = [
   { label: "Pass the JLPT", href: "/jlpt-japanese-preparation-course" },
@@ -18,11 +18,11 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <SakuraPetals />
-        <UkiyoeWaves className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-24 w-full sm:h-36" />
+        <HeritageSkyline className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-28 w-full sm:h-44" />
         <p aria-hidden data-parallax="0.1" className="tategaki pointer-events-none absolute left-3 top-24 hidden text-lg font-bold text-hanko/70 xl:block 2xl:left-10">
           一期一会 · 日本語の道
         </p>
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8 lg:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-32 sm:px-6 sm:pt-16 sm:pb-48 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8 lg:pt-20 lg:pb-44">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 animate-fade-up">
               <Hanko text="学" size={32} />
