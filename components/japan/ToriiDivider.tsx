@@ -1,7 +1,7 @@
 // Thin rule with a small torii gate in the middle, used to separate major home sections. Decorative.
 export function ToriiDivider() {
   return (
-    <div aria-hidden className="mx-auto flex max-w-5xl items-center gap-5 px-6 py-2">
+    <div aria-hidden className="mx-auto flex max-w-5xl items-center gap-5 px-6 py-0">
       <span className="h-px flex-1 bg-gradient-to-r from-transparent to-charcoal-300/60" />
       <svg viewBox="0 0 48 40" className="h-9 w-11 text-hanko" fill="currentColor">
         <path d="M2 8Q24 0 46 8L44 14Q24 8 4 14Z" />

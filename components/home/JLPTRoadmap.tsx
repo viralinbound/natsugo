@@ -16,7 +16,7 @@ export function JLPTRoadmap() {
   }));
 
   return (
-    <section className="bg-bg py-20 sm:py-28">
+    <section className="bg-bg py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading eyebrow="JLPT" title="Your JLPT Journey" description="Tap a level to see what it covers." />

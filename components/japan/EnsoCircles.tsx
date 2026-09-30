@@ -8,9 +8,9 @@ const rings = [
   { r: 270, color: "#5b6b8f", w: 3, dash: "1400 296", secs: 76 },
 ];
 
-export function EnsoCircles({ className = "" }: { className?: string }) {
+export function EnsoCircles({ className = "", ...rest }: { className?: string; "data-parallax"?: string }) {
   return (
-    <svg aria-hidden role="presentation" viewBox="0 0 600 600" className={className}>
+    <svg aria-hidden role="presentation" viewBox="0 0 600 600" className={className} {...rest}>
       {rings.map((c, i) => (
         <circle
           key={c.r}

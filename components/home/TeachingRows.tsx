@@ -59,8 +59,8 @@ const rows = [
 
 export function TeachingRows() {
   return (
-    <section className="bg-bg-alt py-20 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+    <section className="bg-bg-alt py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {rows.map((r, i) => (
           <div key={r.title} className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className={`relative aspect-[4/3] overflow-hidden rounded-lg ${i % 2 ? "lg:order-2" : ""}`}>{r.media}</div>

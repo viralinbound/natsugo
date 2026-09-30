@@ -28,9 +28,17 @@ export function FunEffects() {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const para = Array.from(document.querySelectorAll<HTMLElement>(".jp-watermark, [data-parallax]"));
     const progress = () => {
       const h = document.documentElement.scrollHeight - innerHeight;
       if (bar.current) bar.current.style.transform = `scaleX(${h > 0 ? Math.min(1, scrollY / h) : 0})`;
+      if (calm) return;
+      for (const el of para) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > innerHeight + 200) continue;
+        const speed = Number(el.dataset.parallax ?? 0.12);
+        el.style.setProperty("--py", `${Math.round((r.top + r.height / 2 - innerHeight / 2) * -speed)}px`);
+      }
     };
     progress();
     addEventListener("scroll", progress, { passive: true });

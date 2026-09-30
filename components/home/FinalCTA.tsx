@@ -4,7 +4,7 @@ import { SumiMountains } from "@/components/japan/SumiMountains";
 
 export function FinalCTA() {
   return (
-    <section className="relative isolate overflow-hidden aurora py-20 sm:py-28 text-white">
+    <section className="relative isolate overflow-hidden aurora py-14 sm:py-20 text-white">
       <SumiMountains className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full text-white sm:h-56" />
       <div aria-hidden className="rising-sun absolute -z-10 left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 opacity-60" />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

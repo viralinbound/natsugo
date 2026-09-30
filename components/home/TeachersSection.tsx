@@ -8,7 +8,7 @@ import { placeholderPhoto } from "@/lib/site";
 export async function TeachersSection() {
   const teachers = await getTeachers();
   return (
-    <section className="bg-bg-alt py-20 sm:py-28">
+    <section className="bg-bg-alt py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Our Teachers" title="Meet Your Japanese Teachers" />
         <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

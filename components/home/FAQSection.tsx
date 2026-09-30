@@ -4,7 +4,7 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 export function FAQSection() {
   return (
-    <section className="bg-bg py-20 sm:py-28">
+    <section className="bg-bg py-14 sm:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="FAQ"

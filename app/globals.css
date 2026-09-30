@@ -275,10 +275,11 @@ html[data-furigana="off"] rt {
 .jp-watermark {
   font-family: var(--font-jp);
   font-weight: 900;
-  font-size: 6.5rem;
+  font-size: 5rem;
   line-height: 1;
   color: var(--color-sun-400);
-  opacity: 0.07;
+  opacity: 0.04;
+  translate: 0 var(--py, 0px);
   white-space: nowrap;
   z-index: 0;
 }
@@ -320,7 +321,7 @@ html[data-furigana="off"] rt {
   33% { transform: translate(40px, -20px) scale(1.1); }
   66% { transform: translate(-30px, 25px) scale(0.95); }
 }
-.jp-watermark { animation: kanji-float 9s ease-in-out infinite; }
+.jp-watermark { animation: wm-drift var(--wd, 14s) ease-in-out var(--wdl, 0s) infinite alternate; }
 .rising-sun { animation: sun-pulse 7s ease-in-out infinite; }
 .jp-outline { animation: outline-shimmer 8s ease-in-out infinite; }
 .section-blob {
@@ -692,4 +693,24 @@ button.wood-block.is-active {
   --color-charcoal-500: #d3b98a;
   --color-sun-500: #ffb38a;
   --heading: #f6e3bc;
+}
+
+
+@keyframes wm-drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(var(--wx1, 10px), var(--wy1, -8px)) rotate(var(--wr1, -2deg)); }
+  66% { transform: translate(var(--wx2, -8px), var(--wy2, 6px)) rotate(var(--wr2, 2deg)); }
+  100% { transform: translate(var(--wx3, 6px), var(--wy3, -4px)) rotate(0deg); }
+}
+
+/* Vertical Japanese text (tategaki) */
+.tategaki {
+  writing-mode: vertical-rl;
+  font-family: var(--font-mincho), var(--font-jp), serif;
+  letter-spacing: 0.35em;
+}
+
+[data-parallax] {
+  transform: translateY(var(--py, 0px));
+  will-change: transform;
 }

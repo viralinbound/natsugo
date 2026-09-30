@@ -14,13 +14,24 @@ export function SectionHeading({
 }) {
   const jp = jpFor(eyebrow);
   const centered = align === "center";
+  let h = 7;
+  for (const c of `${eyebrow}${typeof title === "string" ? title : ""}`) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const r = (n: number, span: number) => ((h >> (n * 3)) % (span * 2 + 1)) - span;
+  const drift = {
+    "--wd": `${12 + (h % 9)}s`,
+    "--wdl": `-${h % 7}s`,
+    "--wx1": `${r(1, 18)}px`, "--wy1": `${r(2, 12)}px`, "--wr1": `${r(3, 3)}deg`,
+    "--wx2": `${r(4, 18)}px`, "--wy2": `${r(5, 12)}px`, "--wr2": `${r(6, 3)}deg`,
+    "--wx3": `${r(7, 14)}px`, "--wy3": `${r(8, 10)}px`,
+  } as React.CSSProperties;
   return (
     <div className={`relative isolate max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>
       <span aria-hidden className={`section-blob pointer-events-none absolute -top-24 ${centered ? "left-1/2 -translate-x-1/2" : "-left-24"}`} />
       {jp ? (
         <span
           aria-hidden
-          className={`jp-watermark pointer-events-none select-none absolute -top-10 ${centered ? "left-1/2 -translate-x-1/2" : "-left-2"}`}
+          style={drift}
+          className={`jp-watermark pointer-events-none select-none absolute -top-8 ${centered ? "left-1/2 -translate-x-1/2" : "-left-2"}`}
         >
           {jp}
         </span>

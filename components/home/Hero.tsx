@@ -21,8 +21,11 @@ export function Hero() {
       <section className="relative isolate overflow-hidden bg-bg">
         <SakuraPetals />
         <SumiMountains className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full text-indigo-950 sm:h-64" />
-        <EnsoCircles className="pointer-events-none absolute -z-10 top-1/2 -right-[38%] w-[min(120vw,760px)] -translate-y-1/2 sm:-right-[22%] lg:-right-[6%] opacity-25 sm:opacity-90" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8 lg:py-28">
+        <EnsoCircles data-parallax="-0.08" className="pointer-events-none absolute -z-10 top-1/2 -right-[38%] w-[min(120vw,760px)] -translate-y-1/2 sm:-right-[22%] lg:-right-[6%] opacity-25 sm:opacity-90" />
+        <p aria-hidden data-parallax="0.1" className="tategaki pointer-events-none absolute left-3 top-24 hidden text-lg font-bold text-hanko/70 xl:block 2xl:left-10">
+          一期一会 · 日本語の道
+        </p>
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8 lg:py-20">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 animate-fade-up">
               <Hanko text="学" size={32} />
