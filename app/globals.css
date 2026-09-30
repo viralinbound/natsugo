@@ -624,3 +624,19 @@ button.wood-block.is-active {
 @media (prefers-reduced-motion: reduce) {
   .enso-ring { animation: none; }
 }
+
+
+/* ── Japanese cultural layer: mincho type, hanko seals ── */
+.font-mincho {
+  font-family: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", var(--font-jp), serif;
+}
+.jp-watermark,
+.jp-outline {
+  font-family: var(--font-mincho), var(--font-jp), serif;
+}
+.hanko-seal {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #ea3a52, #c22740);
+  box-shadow: 0 2px 6px rgba(194, 39, 64, 0.35), inset 0 0 0 1px rgba(255, 243, 224, 0.25);
+  transform: rotate(-5deg);
+}

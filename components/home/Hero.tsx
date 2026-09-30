@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/Button";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { EnsoCircles } from "@/components/japan/EnsoCircles";
 import { KanaPlayground } from "@/components/home/KanaPlayground";
+import { Hanko } from "@/components/japan/Hanko";
+import { SumiMountains } from "@/components/japan/SumiMountains";
 
 const goals = [
   { label: "Pass the JLPT", href: "/jlpt-japanese-preparation-course" },
@@ -16,12 +18,13 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <SakuraPetals />
+        <SumiMountains className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full text-indigo-950 sm:h-64" />
         <EnsoCircles className="pointer-events-none absolute -z-10 top-1/2 -right-[38%] w-[min(120vw,760px)] -translate-y-1/2 sm:-right-[22%] lg:-right-[6%] opacity-25 sm:opacity-90" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 animate-fade-up">
-              <span className="h-px w-8 bg-sun-400" aria-hidden />
-              <p className="font-jp text-sun-500 text-lg sm:text-xl font-medium">日本語を、あなたのペースで。</p>
+              <Hanko text="学" size={32} />
+              <p className="font-mincho text-sun-500 text-lg sm:text-xl font-bold">日本語を、あなたのペースで。</p>
             </div>
             <h1 className="mt-5 text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.05] text-indigo-950 animate-fade-up">
               Learn Japanese.

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { TokyoClock } from "@/components/japan/TokyoClock";
+import { SumiMountains } from "@/components/japan/SumiMountains";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -64,8 +65,9 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="aurora text-white/80">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <footer className="aurora relative isolate overflow-hidden text-white/80">
+      <SumiMountains sun className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full text-white sm:h-72" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8">
           <div className="col-span-2 sm:col-span-3 lg:col-span-1 min-w-0">
             <Logo light />

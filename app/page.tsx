@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { Bento } from "@/components/home/Bento";
+import { ToriiDivider } from "@/components/japan/ToriiDivider";
 import { CoursesShowcase } from "@/components/home/CoursesShowcase";
 import { GoalSelector } from "@/components/home/GoalSelector";
 import { TeachingRows } from "@/components/home/TeachingRows";
@@ -26,9 +27,11 @@ export default async function Home() {
     <>
       <Hero />
       <Bento />
+      <ToriiDivider />
       <CoursesShowcase />
       <GoalSelector />
       <TeachingRows />
+      <ToriiDivider />
       <JLPTRoadmap />
       <BatchesSection batches={batches} />
       <JapanPathways />
@@ -37,6 +40,7 @@ export default async function Home() {
       <Testimonials />
       <FreeResources />
       <BlogSection />
+      <ToriiDivider />
       <FAQSection />
       <FinalCTA />
       <JsonLd

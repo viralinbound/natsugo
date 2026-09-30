@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fira_Sans, Montserrat, Noto_Sans_JP } from "next/font/google";
+import { Fira_Sans, Montserrat, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
@@ -30,6 +30,12 @@ const notoJP = Noto_Sans_JP({
   variable: "--font-noto-jp",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+const mincho = Shippori_Mincho({
+  variable: "--font-mincho",
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 export const viewport: Viewport = {
@@ -89,7 +95,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fira.variable} ${montserrat.variable} ${notoJP.variable} h-full antialiased`}
+      className={`${fira.variable} ${montserrat.variable} ${notoJP.variable} ${mincho.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

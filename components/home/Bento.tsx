@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { WordOfDay } from "@/components/home/WordOfDay";
+import { Hanko } from "@/components/japan/Hanko";
 
 const facts = [
   { big: "N5→N1", label: "Complete JLPT path" },
@@ -41,7 +42,8 @@ export function Bento() {
         </dl>
 
         <div className="bento-tile md:col-span-2 rounded-3xl bg-sun-100 p-7 sm:p-10">
-          <p className="font-jp text-lg font-bold text-sun-500">レベルチェック</p>
+          <Hanko text="無料" size={52} className="absolute right-6 top-6" />
+          <p className="font-mincho text-lg font-bold text-sun-500">レベルチェック</p>
           <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-indigo-950 tracking-tight text-balance">
             Not sure which Japanese level is right for you?
           </h2>

@@ -29,7 +29,7 @@ export function SectionHeading({
         <p className={`relative mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-sun-500 ${centered ? "justify-center" : ""}`}>
           <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-hanko" />
           {eyebrow}
-          {jp ? <span className="font-jp normal-case tracking-normal text-hanko">· {jp}</span> : null}
+          {jp ? <span className="font-mincho font-bold normal-case tracking-normal text-hanko">· {jp}</span> : null}
         </p>
       ) : null}
       <h2 className="relative text-2xl sm:text-3xl lg:text-5xl font-semibold text-indigo-950 tracking-tight text-balance">
