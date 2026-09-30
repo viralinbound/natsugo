@@ -20,7 +20,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
       </div>
       <div className="mt-6">
       <div className="grid grid-cols-5 gap-2.5 pb-2 sm:gap-5">
-        {rows.flat().map((c, i) =>
+        {rows.flatMap((r) => [...r.filter((c) => c.kana), ...r.filter((c) => !c.kana)]).map((c, i) =>
           c.kana ? (
             <button
               key={i}
