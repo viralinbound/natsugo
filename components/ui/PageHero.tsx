@@ -27,12 +27,10 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover -z-10 opacity-35"
+        className="object-cover -z-10"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950 via-indigo-950/85 to-indigo-950/40" />
-      <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-6 lg:right-16 top-1/2 -translate-y-1/2 hidden md:block text-7xl lg:text-8xl">
-        {jp ?? "日本語"}
-      </span>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-indigo-950/60 sm:hidden" />
+      <div aria-hidden className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-indigo-950/85 via-indigo-950/45 to-transparent sm:block" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         <Breadcrumb items={crumbs} light />
         {eyebrow ? (
