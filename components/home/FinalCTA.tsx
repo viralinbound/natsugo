@@ -2,11 +2,21 @@ import { whatsappLink } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
 import { Hanko } from "@/components/japan/Hanko";
 
-// Closing call to action styled as an ema, the wooden wish plaque hung at Japanese shrines.
+// Closing call to action: a noren (shop-entrance curtain) reading 日本語を学ぼう over an ema wish plaque.
+// Shares the footer's background so the two read as one closing section.
+const NOREN = ["日", "本", "語", "を", "学", "ぼ", "う"];
+
 export function FinalCTA() {
   return (
-    <section className="relative py-16 sm:py-24">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <section className="final-cta relative bg-bg-alt pb-10 sm:pb-14">
+      <div aria-hidden className="noren mx-auto flex max-w-5xl justify-center gap-1.5 px-4 sm:gap-2.5">
+        {NOREN.map((ch, i) => (
+          <span key={i} style={{ animationDelay: `${-i * 0.35}s` }} className="noren-panel grid h-20 flex-1 max-w-[88px] place-items-center rounded-b-lg bg-indigo-950 pt-3 font-mincho text-2xl font-bold text-[#fff3e0] shadow-lg sm:h-28 sm:text-4xl">
+            {ch}
+          </span>
+        ))}
+      </div>
+      <div className="mx-auto mt-10 max-w-4xl px-4 sm:mt-14 sm:px-6 lg:px-8">
         <div aria-hidden className="mx-auto flex w-40 justify-between">
           <span className="h-10 w-0.5 bg-hanko/70" />
           <span className="h-10 w-0.5 bg-hanko/70" />

@@ -65,7 +65,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden border-t border-charcoal-100 bg-bg-alt pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-charcoal-700 lg:pb-0">
+    <footer className="relative isolate overflow-hidden bg-bg-alt pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-charcoal-700 lg:pb-0">
       <UkiyoeWaves className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-16 w-full opacity-60 sm:h-24" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8">
