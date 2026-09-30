@@ -1,3 +1,4 @@
+import { WoodTile } from "@/components/resources/WoodTile";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -95,54 +96,29 @@ function Content({ slug }: { slug: string }) {
       );
     case "vocabulary":
       return (
-        <div className="paper-scroll grid md:grid-cols-2 gap-6">
+        <div className="grid gap-10 md:grid-cols-2">
           {vocabulary.map((v) => (
-            <div key={v.topic} className="overflow-hidden rounded-md border border-charcoal-100 bg-surface/60">
-              <h2 className="bg-[#4d2b10] px-5 py-3 font-bold text-[#fff3e0]">{v.topic}</h2>
-              <ul className="divide-y divide-charcoal-100">
-                {v.words.map((w) => (
-                  <li key={w.jp} className="flex items-center justify-between gap-3 px-5 py-2.5">
-                    <span className="font-jp text-lg text-indigo-950">{w.jp}</span>
-                    <span className="flex items-center gap-1 text-sm text-charcoal-700">{w.en}<SpeakButton text={w.jp} /></span>
-                  </li>
-                ))}
-              </ul>
+            <div key={v.topic}>
+              <h2 className="mb-3 text-lg font-bold text-indigo-950">{v.topic}</h2>
+              <div className="wood-tray">
+                <div className="grid grid-cols-2 gap-3.5">
+                  {v.words.map((w) => (
+                    <WoodTile key={w.jp} jp={w.jp} en={w.en} />
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
       );
     case "phrases":
       return (
-        <div className="paper-scroll">
-        <ul className="sm:hidden divide-y divide-charcoal-100">
-          {phrases.map((p) => (
-            <li key={p.jp} className="flex items-start justify-between gap-3 py-3">
-              <div className="min-w-0">
-                <p className="font-jp text-lg text-indigo-950 break-words">{p.jp}</p>
-                <p className="text-sm text-charcoal-500">{p.romaji}</p>
-                <p className="mt-1 text-sm text-charcoal-800">{p.en}</p>
-              </div>
-              <SpeakButton text={p.jp} />
-            </li>
-          ))}
-        </ul>
-        <div className="hidden sm:block overflow-x-auto">
-          <table className="w-full text-left">
-            <thead className="bg-bg-alt text-xs uppercase tracking-wider text-charcoal-500">
-              <tr><th className="px-5 py-3">Japanese</th><th className="px-5 py-3">Romaji</th><th className="px-5 py-3">Meaning</th><th className="px-5 py-3"><span className="sr-only">Listen</span></th></tr>
-            </thead>
-            <tbody className="divide-y divide-charcoal-100">
-              {phrases.map((p) => (
-                <tr key={p.jp}>
-                  <td className="px-5 py-3 font-jp text-lg text-indigo-950">{p.jp}</td>
-                  <td className="px-5 py-3 text-sm text-charcoal-500">{p.romaji}</td>
-                  <td className="px-5 py-3 text-sm text-charcoal-800">{p.en}</td>
-                  <td className="px-3 py-3"><SpeakButton text={p.jp} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <div className="wood-tray">
+          <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+            {phrases.map((p) => (
+              <WoodTile key={p.jp} jp={p.jp} sub={p.romaji} en={p.en} />
+            ))}
+          </div>
         </div>
       );
     case "flashcards":
