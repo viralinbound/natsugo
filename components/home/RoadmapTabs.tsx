@@ -59,7 +59,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
       <span aria-hidden key={`num-${cur.level}`} className="pop-in pointer-events-none absolute bottom-0 right-0 -z-10 select-none font-mincho text-[9rem] font-bold leading-none text-sun-400/15 sm:text-[13rem] lg:text-[15rem]">
         {NUMERALS[sel]}
       </span>
-      <div className="relative mx-auto max-w-3xl px-2">
+      <div className="relative mx-auto w-full max-w-3xl px-2">
         <div aria-hidden className="absolute inset-x-[10%] top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-charcoal-100">
           <div className="gradient-strip h-full rounded-full shadow-[0_0_12px_rgba(34,211,238,0.6)] transition-[width] duration-150" style={{ width: `${pct}%` }} />
           <span className="road-comet absolute top-1/2 h-8 w-16 -translate-y-1/2 transition-[left] duration-150" style={{ left: `calc(${pct}% - 4rem)` }} />
@@ -74,7 +74,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
                 aria-selected={i === sel}
                 aria-controls="roadmap-panel"
                 onClick={() => jump(i)}
-                className={`grid h-12 w-12 place-items-center rounded-full border-2 text-sm font-extrabold transition-all sm:h-14 sm:w-14 ${
+                className={`grid h-9 w-9 place-items-center rounded-full border-2 text-[11px] font-extrabold transition-all sm:h-14 sm:w-14 sm:text-sm ${
                   i === sel
                     ? "scale-110 border-transparent bg-gradient-to-br from-sun-400 to-cyan-400 text-white shadow-lg shadow-sun-400/40"
                     : i < sel
@@ -89,7 +89,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
         </div>
       </div>
 
-      <div id="roadmap-panel" role="tabpanel" key={cur.level} className="pop-in mx-auto mt-6 max-w-4xl rounded-3xl border border-charcoal-100 bg-surface p-5 shadow-xl shadow-indigo-950/5 sm:mt-8 sm:p-8">
+      <div id="roadmap-panel" role="tabpanel" key={cur.level} className="pop-in mx-auto mt-6 w-full max-w-4xl rounded-3xl border border-charcoal-100 bg-surface p-5 shadow-xl shadow-indigo-950/5 sm:mt-8 sm:p-8">
         <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-10">
           <div>
             <span className="inline-flex rounded-full bg-sun-100 px-3 py-1 text-xs font-bold text-sun-500">JLPT {cur.level}</span>
