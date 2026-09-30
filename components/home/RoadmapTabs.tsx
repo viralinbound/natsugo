@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Clock, Languages } from "lucide-react";
+import { ArrowRight, BookOpen, ChevronDown, Clock, Languages } from "lucide-react";
 
 export interface RoadmapLevel {
   level: string;
@@ -15,6 +15,8 @@ export interface RoadmapLevel {
 }
 
 // N5 to N1 as a clickable path; the chosen level's details show underneath.
+const NUMERALS = ["五", "四", "三", "二", "一"];
+
 export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
   const [sel, setSel] = useState(0);
   const [pct, setPct] = useState(0);
@@ -53,7 +55,10 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
 
   return (
     <div ref={wrap} className="relative mt-6" style={{ height: `calc(100vh + ${n * 55}vh)` }}>
-    <div className="sticky top-20 pt-4 lg:top-24">
+    <div className="sticky isolate top-16 flex min-h-[calc(100dvh-8.5rem)] flex-col justify-center pt-4 lg:top-24 lg:min-h-[calc(100dvh-7rem)]">
+      <span aria-hidden key={`num-${cur.level}`} className="pop-in pointer-events-none absolute bottom-0 right-0 -z-10 select-none font-mincho text-[9rem] font-bold leading-none text-sun-400/15 sm:text-[13rem] lg:text-[15rem]">
+        {NUMERALS[sel]}
+      </span>
       <div className="relative mx-auto max-w-3xl px-2">
         <div aria-hidden className="absolute inset-x-[10%] top-1/2 h-1 -translate-y-1/2 rounded-full bg-charcoal-100">
           <div className="gradient-strip h-full rounded-full transition-[width] duration-150" style={{ width: `${pct}%` }} />
@@ -83,12 +88,12 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
       </div>
 
       <div id="roadmap-panel" role="tabpanel" key={cur.level} className="pop-in mx-auto mt-6 max-w-4xl rounded-3xl border border-charcoal-100 bg-surface p-5 shadow-xl shadow-indigo-950/5 sm:mt-8 sm:p-8">
-        <div className="grid gap-6 md:grid-cols-[1.3fr_1fr] md:gap-10">
+        <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-10">
           <div>
             <span className="inline-flex rounded-full bg-sun-100 px-3 py-1 text-xs font-bold text-sun-500">JLPT {cur.level}</span>
             <h3 className="mt-3 text-xl font-bold text-indigo-950 sm:text-2xl">{cur.tagline}</h3>
             <p className="mt-2 text-sm text-charcoal-700 sm:text-base">{cur.focus}</p>
-            <div className="mt-4 hidden flex-wrap gap-2 sm:flex">
+            <div className="mt-4 flex flex-wrap gap-2">
               {cur.areas.map((a) => (
                 <span key={a} className="rounded-full border border-charcoal-100 px-3 py-1 text-sm text-charcoal-700">
                   {a}
@@ -97,7 +102,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <dl className="grid grid-cols-3 gap-2 text-sm md:grid-cols-1">
+            <dl className="grid grid-cols-3 gap-2 text-sm lg:grid-cols-1">
               {[
                 { icon: Languages, k: "Vocabulary", v: cur.vocab },
                 { icon: BookOpen, k: "Kanji", v: cur.kanji },
@@ -112,7 +117,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
                 </div>
               ))}
             </dl>
-            <div className="mt-1 flex flex-row gap-2 md:flex-col">
+            <div className="mt-1 flex flex-row gap-2 lg:flex-col">
               <Link
                 href={`/jlpt-${cur.level.toLowerCase()}`}
                 className="btn-shine inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-sun-400 to-cyan-400 px-4 font-bold text-white"
@@ -128,6 +133,13 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="mt-5 flex items-center justify-center gap-3 text-sm font-semibold text-charcoal-500">
+        <span>Level {sel + 1} of {n}</span>
+        <span aria-hidden className="h-1 w-1 rounded-full bg-charcoal-300" />
+        <span className="flex items-center gap-1.5 text-sun-500">
+          {sel < n - 1 ? <>Scroll for {levels[sel + 1].level} <ChevronDown size={16} className="animate-bounce" /></> : "You reached N1 · 完了"}
+        </span>
       </div>
     </div>
     </div>
