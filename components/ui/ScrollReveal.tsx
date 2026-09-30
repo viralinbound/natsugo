@@ -26,6 +26,18 @@ export function ScrollReveal() {
           items.push(el);
         });
       });
+      const tag = (el: HTMLElement, cls: string, delay: number) => {
+        if (el.classList.contains("reveal-item") || el.closest(".reveal-item")) return;
+        el.classList.add("reveal-item", cls);
+        el.style.transitionDelay = `${delay}ms`;
+        items.push(el);
+      };
+      section.querySelectorAll<HTMLElement>("h2, h3.text-2xl, h3.text-3xl").forEach((el) => tag(el, "from-left", 60));
+      section.querySelectorAll<HTMLElement>("h2 + p, h2 ~ p.text-lg, h2 ~ p.text-base").forEach((el) => tag(el, "from-fade", 200));
+      section.querySelectorAll<HTMLElement>("img").forEach((img, i) => {
+        const box = img.parentElement as HTMLElement | null;
+        if (box && box.getBoundingClientRect().width > 120) tag(box, "from-zoom", 150 + (i % 6) * 70);
+      });
       return items;
     };
 
@@ -33,7 +45,7 @@ export function ScrollReveal() {
       section.classList.add("is-visible");
       window.setTimeout(() => {
         items.forEach((el) => {
-          el.classList.remove("reveal-item");
+          el.classList.remove("reveal-item", "from-left", "from-fade", "from-zoom");
           el.style.transitionDelay = "";
         });
       }, 1800);

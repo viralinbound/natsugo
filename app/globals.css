@@ -723,3 +723,10 @@ button.wood-block.is-active {
 }
 .hero-float { animation: hero-float 5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .hero-float { animation: none; } }
+
+html.js-reveal .reveal-item.from-left { transform: translateX(-40px); }
+html.js-reveal .reveal-item.from-fade { transform: translateY(12px); }
+html.js-reveal .reveal-item.from-zoom { transform: scale(0.9); }
+html.js-reveal .reveal.is-visible .reveal-item.from-left,
+html.js-reveal .reveal.is-visible .reveal-item.from-fade,
+html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
