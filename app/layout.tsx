@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { FunEffects } from "@/components/ui/FunEffects";
+import { CommandPalette } from "@/components/ui/CommandPalette";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -89,7 +90,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${fira.variable} ${montserrat.variable} ${notoJP.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("np-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}` }} />
+      </head>
       <body className="washi min-h-full flex flex-col bg-bg text-charcoal-900">
         <a
           href="#main-content"
@@ -105,6 +110,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <ScrollReveal />
         <FunEffects />
+        <CommandPalette />
         <WhatsAppButton />
         <MobileStickyBar />
         <ActivityTicker />

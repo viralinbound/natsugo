@@ -1,5 +1,7 @@
 "use client";
 
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { PaletteButton } from "@/components/ui/CommandPalette";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -100,12 +102,15 @@ export function Navbar() {
           </ul>
 
           <div className="hidden xl:flex items-center gap-2">
+          <PaletteButton />
+          <ThemeToggle />
             <Button href="/level-test" variant="primary" size="sm">
               Take Free Level Test
             </Button>
           </div>
 
           <div className="flex items-center gap-2 xl:hidden">
+        <ThemeToggle />
             <div className="hidden sm:block">
               <Button href="/level-test" variant="primary" size="sm">
                 Take Free Level Test

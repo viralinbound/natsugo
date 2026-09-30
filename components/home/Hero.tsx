@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { JapanScene } from "@/components/japan/JapanScene";
+import { KanaPlayground } from "@/components/home/KanaPlayground";
 
 const chips = [
   { label: "N5", pos: "left-[4%] top-[12%]", delay: "0s" },
@@ -22,7 +23,7 @@ export function Hero() {
               <span className="h-px w-8 bg-sun-300" aria-hidden />
               <p className="font-jp text-sun-300 text-lg sm:text-xl font-medium">日本語を、あなたのペースで。</p>
             </div>
-            <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] animate-fade-up">
+            <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl lg:text-6xl 2xl:text-7xl font-extrabold tracking-tight leading-[1.05] animate-fade-up">
               Learn Japanese.
               <br />
               Know your level.
@@ -36,6 +37,7 @@ export function Hero() {
               <Button href="/level-test" size="lg">Take Free Level Test</Button>
               <Button href="/batches" variant="outline-light" size="lg">View Upcoming Batches</Button>
             </div>
+            <KanaPlayground />
           </div>
 
           <div className="relative mx-auto w-full max-w-md lg:max-w-none animate-fade-up [animation-delay:150ms]">

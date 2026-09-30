@@ -25,7 +25,7 @@ export function AITutorPreview() {
                 </div>
               </div>
               <div className="flex justify-end">
-                <div className="max-w-[85%] rounded-lg rounded-tr-sm bg-indigo-800 text-white px-4 py-3">
+                <div className="max-w-[85%] rounded-lg rounded-tr-sm bg-[#0a6fd1] text-white px-4 py-3">
                   <p className="font-jp">
                     今日は仕事が忙しかったです。
                   </p>

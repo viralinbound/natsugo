@@ -26,7 +26,7 @@ export default async function EnrolPage({ searchParams }: { searchParams: Promis
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.3fr] gap-10">
           <div>
             {batch ? (
-              <div className="rounded-lg border-2 border-indigo-950 bg-surface p-6">
+              <div className="rounded-lg border-2 border-sun-400 bg-surface p-6">
                 <p className="text-xs font-bold uppercase tracking-wider text-sun-500">Selected batch</p>
                 <ViewerCount room={`batch-${batch.id}`} className="mt-2 text-sun-500" />
                 <h2 className="mt-1 text-xl font-bold text-indigo-950">{batch.courseTitle}</h2>

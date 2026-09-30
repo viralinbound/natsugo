@@ -52,6 +52,12 @@ export function FunEffects() {
         tilted.style.removeProperty("--ry");
         tilted = null;
       }
+      const glow = (e.target as HTMLElement | null)?.closest?.<HTMLElement>(".card-modern, .bento-tile");
+      if (glow) {
+        const gr = glow.getBoundingClientRect();
+        glow.style.setProperty("--mx", `${e.clientX - gr.left}px`);
+        glow.style.setProperty("--my", `${e.clientY - gr.top}px`);
+      }
       if (card && card.offsetWidth < 520) {
         const r = card.getBoundingClientRect();
         card.style.setProperty("--ry", `${((e.clientX - r.left) / r.width - 0.5) * 8}deg`);

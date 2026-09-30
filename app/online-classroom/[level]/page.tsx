@@ -168,7 +168,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
               {upcoming.map((s) => {
                 const link = links.get(s.id);
                 return (
-                  <li key={s.id} className="rounded-lg bg-white p-5 text-charcoal-900">
+                  <li key={s.id} className="rounded-lg bg-surface p-5 text-charcoal-900">
                     <div className="flex items-center justify-between gap-2">
                       <LiveBadge startsAt={s.starts_at} durationMin={s.duration_min} />
                       <span className="text-xs text-charcoal-500">{s.platform} · {s.duration_min} min</span>

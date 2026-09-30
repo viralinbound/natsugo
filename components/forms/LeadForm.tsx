@@ -119,7 +119,7 @@ export function LeadForm({
           href={whatsappLink(`Hi, I just submitted a ${type} request on the website. My name is ${values.name}.`)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center justify-center rounded-md bg-[#25D366] px-5 min-h-[44px] font-bold text-white"
+          className="mt-5 inline-flex items-center justify-center rounded-md bg-[#15803d] px-5 min-h-[44px] font-bold text-white"
         >
           Message us on WhatsApp
         </a>

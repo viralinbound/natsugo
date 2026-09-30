@@ -47,7 +47,7 @@ export function PageHero({
             {jp ? <span className="font-jp normal-case tracking-normal text-white/70">· {jp}</span> : null}
           </p>
         ) : null}
-        <h1 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl text-balance">
+        <h1 className="mt-2 text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight max-w-3xl text-balance">
           {title}
         </h1>
         {intro ? <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl">{intro}</p> : null}

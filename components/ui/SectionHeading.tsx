@@ -32,7 +32,7 @@ export function SectionHeading({
           {jp ? <span className="font-jp normal-case tracking-normal text-hanko">· {jp}</span> : null}
         </p>
       ) : null}
-      <h2 className="relative text-2xl sm:text-3xl lg:text-4xl font-bold text-indigo-950 tracking-tight text-balance">
+      <h2 className="relative text-2xl sm:text-3xl lg:text-5xl font-bold text-indigo-950 tracking-tight text-balance">
         {title}
       </h2>
       <span

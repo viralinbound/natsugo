@@ -1,6 +1,49 @@
 @import "tailwindcss";
 
 :root {
+  /* Midnight Tokyo (default): deep navy surfaces, glowing blue and cyan, hanko red */
+  color-scheme: dark;
+  --heading: #f2f6ff;
+  --color-bg: #050b1c;
+  --color-bg-alt: #091430;
+  --color-surface: #0d1a3a;
+
+  --color-indigo-950: #0b1b3a;
+  --color-indigo-900: #081430;
+  --color-indigo-800: #3d9bff;
+  --color-indigo-700: #0c88ff;
+  --color-indigo-600: #3da0ff;
+  --color-indigo-500: #62b3ff;
+
+  --color-red-600: #ff5c62;
+  --color-red-500: #ff6b6b;
+  --color-sakura-100: #2a1530;
+  --color-sakura-200: #5a2a48;
+  --color-charcoal-900: #eaf1ff;
+  --color-charcoal-700: #c5d1ea;
+  --color-charcoal-500: #93a3c6;
+  --color-charcoal-300: #56678f;
+  --color-charcoal-100: #1f3160;
+  --color-success: #2fd18f;
+
+  --color-sun-100: #0f2b57;
+  --color-sun-300: #7cc4ff;
+  --color-sun-400: #1e90ff;
+  --color-sun-500: #5cb6ff;
+  --color-cyan-400: #22d3ee;
+
+  --color-hanko: #ff4d63;
+  --color-hanko-100: #3a1420;
+
+  --font-sans: var(--font-fira), "Segoe UI", sans-serif;
+  --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
+  --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --heading: #0b1b3a;
+  /* Natsugo palette, light mode */
   /* Natsugo palette — vibrant take on the logo blue: electric blue → cyan, deep navy, hanko red */
   --color-bg: #f5f9ff;
   --color-bg-alt: #eaf2ff;
@@ -147,13 +190,13 @@ h3,
 .prose-article h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-indigo-950);
+  color: var(--heading);
   margin: 2rem 0 0.75rem;
 }
 .prose-article h3 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-indigo-950);
+  color: var(--heading);
   margin: 1.5rem 0 0.5rem;
 }
 .prose-article p {
@@ -449,3 +492,34 @@ html.js-reveal .reveal.is-visible {
     background: #fff;
   }
 }
+
+
+/* ── Midnight Tokyo: dark-mode text, spotlight glow, pop-in ── */
+:root:not([data-theme="light"]) .text-indigo-950,
+:root:not([data-theme="light"]) .text-indigo-900 {
+  color: var(--heading);
+}
+.card-modern:not([class*="sticky"]),
+.bento-tile {
+  position: relative;
+}
+.card-modern::after,
+.bento-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(34, 211, 238, 0.15), transparent 60%);
+}
+.card-modern:hover::after,
+.bento-tile:hover::after {
+  opacity: 1;
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.92) translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.pop-in { animation: pop-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }

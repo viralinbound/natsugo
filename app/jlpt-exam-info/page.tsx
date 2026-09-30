@@ -81,7 +81,7 @@ export default async function ExamInfoPage() {
                 {info.centres.map((c) => <span key={c} className="rounded bg-bg-alt px-2 py-1 text-sm font-semibold text-charcoal-800">{c}</span>)}
               </div>
             </div>
-            <a href={whatsappLink("Hi, I have a question about JLPT registration.")} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-4 font-bold text-white">
+            <a href={whatsappLink("Hi, I have a question about JLPT registration.")} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-lg bg-[#15803d] px-5 py-4 font-bold text-white">
               <MessageCircle size={18} /> Ask admissions on WhatsApp
             </a>
           </div>

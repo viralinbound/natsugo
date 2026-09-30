@@ -28,7 +28,7 @@ export function FinalCTA() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-md font-bold transition-colors bg-[#25D366] text-white hover:brightness-95 text-base sm:text-lg px-7 py-3.5 min-h-[52px]"
+            className="inline-flex items-center justify-center gap-2 rounded-md font-bold transition-colors bg-[#15803d] text-white hover:brightness-95 text-base sm:text-lg px-7 py-3.5 min-h-[52px]"
           >
             Talk on WhatsApp
           </a>

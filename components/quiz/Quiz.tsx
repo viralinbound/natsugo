@@ -134,7 +134,7 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
               View {result.rec.level} course
             </Link>
           ) : null}
-          <Link href="/free-japanese-demo-class" className="inline-flex items-center justify-center rounded-md border-2 border-indigo-950 px-6 min-h-[48px] font-bold text-indigo-950 hover:bg-indigo-950 hover:text-white">
+          <Link href="/free-japanese-demo-class" className="inline-flex items-center justify-center rounded-md border-2 border-charcoal-300 px-6 min-h-[48px] font-bold text-indigo-950 hover:border-sun-400 hover:text-sun-500">
             Book a free demo
           </Link>
           {set?.next ? (
