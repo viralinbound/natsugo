@@ -801,9 +801,6 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
   box-shadow: 0 34px 60px -24px rgba(12, 136, 255, 0.55), 0 0 0 1px rgba(34, 211, 238, 0.45);
 }
 
-@keyframes sky-drift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(14px); } }
-.sky-drift { animation: sky-drift 14s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .sky-drift { animation: none; } }
 
 /* Noren curtain panels sway gently from the top edge */
 .noren-panel {
@@ -821,3 +818,7 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
 @keyframes noren-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(1.6deg); } }
 @media (prefers-reduced-motion: reduce) { .noren-panel { animation: none; } }
 :root[data-theme="dark"] .noren-panel { background-color: #1e3a6b; }
+
+@keyframes brush-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.brush-draw { animation: brush-draw 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+@media (prefers-reduced-motion: reduce) { .brush-draw { animation: none; } }
