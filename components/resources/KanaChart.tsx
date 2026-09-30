@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { KanaCell } from "@/lib/learning";
+import { Volume2 } from "lucide-react";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 
 export function KanaChart({ rows }: { rows: KanaCell[][] }) {
@@ -17,8 +18,8 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
           Show romaji
         </label>
       </div>
-      <div className="wood-tray mt-5 max-w-2xl">
-      <div className="grid grid-cols-5 gap-2.5 sm:gap-3.5">
+      <div className="mt-6">
+      <div className="grid grid-cols-5 gap-2.5 pb-2 sm:gap-5">
         {rows.flat().map((c, i) =>
           c.kana ? (
             <button
@@ -29,10 +30,11 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
                 speakJapanese(c.kana);
               }}
               aria-label={`${c.kana} (${c.romaji})`}
-              className={`wood-block aspect-square flex flex-col items-center justify-center ${active === c.kana ? "is-active" : ""}`}
+              className={`wood-block flex flex-col items-center justify-center gap-0.5 px-1 py-3 sm:gap-1 sm:px-3 sm:py-6 ${active === c.kana ? "is-active" : ""}`}
             >
-              <span className="font-jp text-2xl sm:text-4xl leading-none">{c.kana}</span>
+              <span className="font-jp text-3xl leading-none sm:text-5xl">{c.kana}</span>
               {showRomaji ? <span className={`mt-1 text-[11px] sm:text-sm ${active === c.kana ? "text-white/80" : "text-charcoal-700"}`}>{c.romaji}</span> : null}
+              <Volume2 size={14} aria-hidden className="hidden text-sun-500 sm:block" />
             </button>
           ) : (
             <span key={i} aria-hidden className="aspect-square" />

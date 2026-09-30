@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Volume2 } from "lucide-react";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 
 interface Detail {
@@ -36,19 +36,21 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
 
   return (
     <div>
-      <div className="wood-tray"><div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3 sm:gap-3.5">
+      <div className="grid grid-cols-3 gap-4 pb-2 sm:grid-cols-5 sm:gap-5 md:grid-cols-6 lg:grid-cols-8">
         {kanji.map((k, i) => (
           <button
             key={`${k}-${i}`}
             type="button"
             onClick={() => handleTap(k)}
             aria-pressed={active === k}
-            className={`wood-block aspect-square flex items-center justify-center ${active === k ? "is-active" : ""}`}
+            className={`wood-block flex flex-col items-center justify-center gap-1 px-2 py-4 sm:py-5 ${active === k ? "is-active" : ""}`}
           >
-            <span className="font-jp text-2xl sm:text-3xl">{k}</span>
+            <span className="font-jp text-3xl leading-none sm:text-4xl">{k}</span>
+            {known.has(k) ? <span className="text-xs font-semibold leading-tight text-charcoal-900">{known.get(k)!.m}</span> : null}
+            <Volume2 size={14} aria-hidden className="text-sun-500" />
           </button>
         ))}
-      </div></div>
+      </div>
 
       {active ? (
         <div className="mt-6 card-modern p-5 flex items-center gap-5 sticky bottom-20 sm:bottom-4 bg-surface">
