@@ -17,11 +17,11 @@ export function TokyoClock() {
 
   if (!times) return <p className="h-5" aria-hidden />;
   return (
-    <p className="text-sm text-white/70">
+    <p className="text-sm text-charcoal-700">
       <span className="font-jp text-sun-300">東京</span> {times.tokyo}
-      <span className="mx-2 text-white/30">·</span>
+      <span className="mx-2 text-charcoal-300">·</span>
       India {times.india}
-      <span className="ml-2 text-white/40">(Japan is 3½ hrs ahead)</span>
+      <span className="ml-2 text-charcoal-500">(Japan is 3½ hrs ahead)</span>
     </p>
   );
 }

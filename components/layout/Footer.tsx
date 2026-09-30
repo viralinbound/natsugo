@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { TokyoClock } from "@/components/japan/TokyoClock";
-import { SumiMountains } from "@/components/japan/SumiMountains";
+import { UkiyoeWaves } from "@/components/japan/UkiyoeWaves";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -65,13 +65,13 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="aurora relative isolate overflow-hidden pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white/80 lg:pb-0">
-      <SumiMountains sun className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full text-white sm:h-72" />
+    <footer className="relative isolate overflow-hidden border-t border-charcoal-100 bg-bg-alt pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-charcoal-700 lg:pb-0">
+      <UkiyoeWaves className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-16 w-full opacity-60 sm:h-24" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8">
           <div className="col-span-2 sm:col-span-3 lg:col-span-1 min-w-0">
-            <Logo light />
-            <p className="mt-4 text-sm text-white/60 max-w-xs">
+            <Logo />
+            <p className="mt-4 text-sm text-charcoal-500 max-w-xs">
               A structured Japanese learning platform for students and
               professionals across India.
             </p>
@@ -82,7 +82,7 @@ export function Footer() {
                     key={name}
                     href="#"
                     aria-label={`${name} link`}
-                    className="h-9 w-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    className="h-9 w-9 flex items-center justify-center rounded-full border border-charcoal-100 bg-surface text-charcoal-700 hover:border-sun-400 hover:text-sun-500 transition-colors"
                   >
                     <SocialIcon name={name} size={16} />
                   </a>
@@ -92,7 +92,7 @@ export function Footer() {
           </div>
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-semibold text-white mb-4">
+              <h3 className="text-sm font-bold text-indigo-950 mb-4">
                 {col.title}
               </h3>
               <ul className="space-y-1">
@@ -100,7 +100,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="inline-block py-1 text-sm hover:text-white transition-colors"
+                      className="inline-block py-1 text-sm hover:text-sun-500 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -111,22 +111,22 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center text-xs text-white/50">
+        <div className="mt-12 pt-6 border-t border-charcoal-100 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center text-xs text-charcoal-500">
           <div className="space-y-1">
             <TokyoClock />
-            <p>© {new Date().getFullYear()} Natsugo · <a href={`tel:+${site.whatsappNumber}`} className="hover:text-white/80">{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`} className="hover:text-white/80">{site.email}</a></p>
+            <p>© {new Date().getFullYear()} Natsugo · <a href={`tel:+${site.whatsappNumber}`} className="hover:text-sun-500">{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`} className="hover:text-sun-500">{site.email}</a></p>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link href="/privacy-policy" className="hover:text-white/80">
+            <Link href="/privacy-policy" className="hover:text-sun-500">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-white/80">
+            <Link href="/terms" className="hover:text-sun-500">
               Terms
             </Link>
-            <Link href="/refund-policy" className="hover:text-white/80">
+            <Link href="/refund-policy" className="hover:text-sun-500">
               Refund Policy
             </Link>
-            <Link href="/contact" className="hover:text-white/80">
+            <Link href="/contact" className="hover:text-sun-500">
               Contact
             </Link>
           </div>

@@ -4,7 +4,7 @@ import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { KanaPlayground } from "@/components/home/KanaPlayground";
 import { HeroBlocks } from "@/components/home/HeroBlocks";
 import { Hanko } from "@/components/japan/Hanko";
-import { SumiMountains } from "@/components/japan/SumiMountains";
+import { UkiyoeWaves } from "@/components/japan/UkiyoeWaves";
 
 const goals = [
   { label: "Pass the JLPT", href: "/jlpt-japanese-preparation-course" },
@@ -18,7 +18,7 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <SakuraPetals />
-        <SumiMountains className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full text-indigo-950 sm:h-64" />
+        <UkiyoeWaves className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-24 w-full sm:h-36" />
         <p aria-hidden data-parallax="0.1" className="tategaki pointer-events-none absolute left-3 top-24 hidden text-lg font-bold text-hanko/70 xl:block 2xl:left-10">
           一期一会 · 日本語の道
         </p>

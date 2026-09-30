@@ -754,3 +754,29 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
 }
 :root[data-theme="dark"] .kanji-layer span { color: #9fb8e8; opacity: 0.07; }
 .kanji-layer span:nth-child(3n) { color: var(--color-hanko); opacity: 0.055; }
+
+
+/* Ema (shrine wish plaque) card */
+.ema-card {
+  clip-path: polygon(50% 0, 100% 16%, 100% 100%, 0 100%, 0 16%);
+  border-radius: 0 0 2rem 2rem;
+  background:
+    repeating-linear-gradient(92deg, rgba(60, 34, 12, 0) 0 10px, rgba(60, 34, 12, 0.05) 10px 11px),
+    linear-gradient(170deg, #fbf1dd, #f1dfbd);
+  box-shadow: 0 30px 60px -30px rgba(90, 55, 20, 0.45);
+  --heading: #2b1d10;
+  --color-indigo-950: #2b1d10;
+  --color-charcoal-700: #4b3a27;
+}
+:root[data-theme="dark"] .ema-card {
+  background:
+    repeating-linear-gradient(92deg, rgba(0, 0, 0, 0) 0 10px, rgba(0, 0, 0, 0.18) 10px 11px),
+    linear-gradient(170deg, #6b4629, #4a2f19);
+  --heading: #f6e3bc;
+  --color-indigo-950: #f6e3bc;
+  --color-charcoal-700: #e5cfa3;
+}
+@keyframes wave-sway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-28px); } }
+.wave-sway { animation: wave-sway 9s ease-in-out infinite; }
+.wave-sway-b { animation-duration: 12s; animation-direction: reverse; }
+@media (prefers-reduced-motion: reduce) { .wave-sway { animation: none; } }
