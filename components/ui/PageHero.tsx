@@ -1,9 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Breadcrumb, type Crumb } from "@/components/ui/Breadcrumb";
-import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { jpFor } from "@/lib/jpLabels";
-import { WaveEdge } from "@/components/japan/WaveEdge";
 
 export function PageHero({
   title,
@@ -29,31 +27,28 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover -z-10 opacity-45"
+        className="object-cover -z-10 opacity-35"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/95 via-indigo-950/72 to-indigo-900/35" />
-      <div aria-hidden className="aurora-overlay absolute inset-0 -z-10" />
-      <div aria-hidden className="rising-sun absolute -z-10 -right-24 -top-24 h-80 w-80 sm:h-[26rem] sm:w-[26rem]" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950 via-indigo-950/85 to-indigo-950/40" />
       <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-6 lg:right-16 top-1/2 -translate-y-1/2 hidden md:block text-7xl lg:text-8xl">
         {jp ?? "日本語"}
       </span>
-      <SakuraPetals />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         <Breadcrumb items={crumbs} light />
         {eyebrow ? (
-          <p className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-sun-300">
-            <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-hanko" />
+          <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sun-300 backdrop-blur">
+            <span aria-hidden className="h-2 w-2 rounded-full bg-hanko" />
             {eyebrow}
-            {jp ? <span className="font-jp normal-case tracking-normal text-white/70">· {jp}</span> : null}
+            {jp ? <span className="font-mincho normal-case tracking-normal text-white/75">· {jp}</span> : null}
           </p>
         ) : null}
-        <h1 className="mt-2 text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight max-w-3xl text-balance">
+        <h1 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
           {title}
         </h1>
-        {intro ? <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl">{intro}</p> : null}
-        {children ? <div className="mt-7 flex flex-col sm:flex-row gap-3">{children}</div> : null}
+        {intro ? <p className="mt-4 max-w-2xl text-base text-white/75 sm:text-lg">{intro}</p> : null}
+        {children ? <div className="mt-7 flex flex-col gap-3 sm:flex-row">{children}</div> : null}
       </div>
-      <WaveEdge />
+      <div aria-hidden className="gradient-strip absolute inset-x-0 bottom-0 h-px" />
     </section>
   );
 }
