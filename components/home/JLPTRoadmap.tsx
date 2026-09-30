@@ -14,7 +14,20 @@ export function JLPTRoadmap() {
           </Button>
         </div>
 
-        <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div aria-hidden className="relative mt-8 hidden h-14 lg:block">
+          <div className="absolute inset-x-[10%] top-1/2 h-1 -translate-y-1/2 overflow-hidden rounded-full bg-charcoal-100">
+            <div className="gradient-strip h-full w-full" />
+          </div>
+          <div className="absolute inset-0 grid grid-cols-5">
+            {["N5", "N4", "N3", "N2", "N1"].map((l) => (
+              <div key={l} className="flex items-center justify-center">
+                <span className="relative z-10 grid h-11 w-11 place-items-center rounded-full border-2 border-sun-400 bg-surface text-xs font-extrabold text-sun-500 shadow-md">{l}</span>
+              </div>
+            ))}
+          </div>
+          <span className="road-walker absolute top-1/2 z-20 h-4 w-4 rounded-full bg-hanko shadow-[0_0_0_4px_rgba(224,52,75,0.25)]" />
+        </div>
+        <div className="swipe-row mt-8 lg:mt-3 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {jlptLevels.map((item) => (
             <div
               key={item.level}

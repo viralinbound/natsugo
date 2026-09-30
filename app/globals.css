@@ -367,6 +367,35 @@ html.js-reveal .reveal.is-visible {
 }
 .btn-shine:hover::after { transform: translateX(120%); }
 
+/* Hero illustration + floating level chips + roadmap walker */
+@keyframes cloud-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(26px); }
+}
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes walker {
+  0% { left: 10%; }
+  100% { left: 90%; }
+}
+.scene-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-pulse 7s ease-in-out infinite;
+}
+.scene-cloud { animation: cloud-drift 12s ease-in-out infinite; }
+.scene-cloud-b { animation-duration: 16s; animation-direction: reverse; }
+.chip-float { animation: chip-float 6s ease-in-out infinite; }
+.road-walker {
+  transform: translate(-50%, -50%);
+  animation: walker 9s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-sun, .scene-cloud, .chip-float, .road-walker { animation: none; }
+}
+
 /* Bento tiles lift on hover */
 .bento-tile {
   transition: transform 0.25s ease, box-shadow 0.25s ease;

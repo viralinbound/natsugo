@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Breadcrumb, type Crumb } from "@/components/ui/Breadcrumb";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
 import { jpFor } from "@/lib/jpLabels";
+import { WaveEdge } from "@/components/japan/WaveEdge";
 
 export function PageHero({
   title,
@@ -52,6 +53,7 @@ export function PageHero({
         {intro ? <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl">{intro}</p> : null}
         {children ? <div className="mt-7 flex flex-col sm:flex-row gap-3">{children}</div> : null}
       </div>
+      <WaveEdge />
     </section>
   );
 }

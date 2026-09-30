@@ -1,46 +1,55 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { images } from "@/lib/site";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
+import { JapanScene } from "@/components/japan/JapanScene";
+
+const chips = [
+  { label: "N5", pos: "left-[4%] top-[12%]", delay: "0s" },
+  { label: "N4", pos: "left-[26%] top-[2%]", delay: "-1.2s" },
+  { label: "N3", pos: "right-[6%] top-[42%]", delay: "-2.4s" },
+  { label: "N2", pos: "right-[26%] bottom-[8%]", delay: "-3.6s" },
+  { label: "N1", pos: "left-[6%] bottom-[10%]", delay: "-4.8s" },
+];
 
 export function Hero() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-indigo-950 text-white">
-        <Image
-          src={`${images.groupStudy}?w=2000&q=70&auto=format&fit=crop`}
-          alt="Students learning Japanese together"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover -z-10"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-950/92 via-indigo-950/70 to-indigo-900/30" />
-        <div aria-hidden className="aurora-overlay absolute inset-0 -z-10" />
-        <div aria-hidden className="rising-sun absolute -z-10 right-[8%] top-[12%] h-72 w-72 sm:h-96 sm:w-96" />
-        <span aria-hidden className="jp-outline pointer-events-none select-none absolute -z-[5] right-8 lg:right-20 top-1/2 -translate-y-1/2 hidden lg:block text-8xl xl:text-9xl">
-          日本語
-        </span>
+      <section className="aurora relative isolate overflow-hidden text-white">
         <SakuraPetals />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
-          <div className="flex items-center gap-2 animate-fade-up">
-            <span className="h-px w-8 bg-sun-300" aria-hidden />
-            <p className="font-jp text-sun-300 text-lg sm:text-xl font-medium">日本語を、あなたのペースで。</p>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-6 items-center">
+          <div>
+            <div className="flex items-center gap-2 animate-fade-up">
+              <span className="h-px w-8 bg-sun-300" aria-hidden />
+              <p className="font-jp text-sun-300 text-lg sm:text-xl font-medium">日本語を、あなたのペースで。</p>
+            </div>
+            <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] animate-fade-up">
+              Learn Japanese.
+              <br />
+              Know your level.
+              <br />
+              <span className="text-gradient-anim">Follow your path.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-base sm:text-lg text-white/85 animate-fade-up [animation-delay:100ms]">
+              Live online Japanese classes you can join from anywhere in India — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-up [animation-delay:200ms]">
+              <Button href="/level-test" size="lg">Take Free Level Test</Button>
+              <Button href="/batches" variant="outline-light" size="lg">View Upcoming Batches</Button>
+            </div>
           </div>
-          <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] animate-fade-up">
-            Learn Japanese.
-            <br />
-            Know your level.
-            <br />
-            <span className="text-gradient-anim">Follow your path.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base sm:text-lg text-white/85 animate-fade-up [animation-delay:100ms]">
-            Live online Japanese classes you can join from anywhere in India — with speaking practice, JLPT preparation from N5 to N1, and progress you can actually measure.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-fade-up [animation-delay:200ms]">
-            <Button href="/level-test" size="lg">Take Free Level Test</Button>
-            <Button href="/batches" variant="outline-light" size="lg">View Upcoming Batches</Button>
+
+          <div className="relative mx-auto w-full max-w-md lg:max-w-none animate-fade-up [animation-delay:150ms]">
+            <JapanScene className="w-full h-auto [mask-image:linear-gradient(to_bottom,black_84%,transparent)]" />
+            {chips.map((c) => (
+              <span
+                key={c.label}
+                aria-hidden
+                style={{ animationDelay: c.delay }}
+                className={`chip-float absolute ${c.pos} rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 text-sm font-extrabold backdrop-blur-md shadow-lg`}
+              >
+                {c.label}
+              </span>
+            ))}
           </div>
         </div>
       </section>

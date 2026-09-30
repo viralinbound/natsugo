@@ -15,10 +15,10 @@ export async function TeachersSection() {
           {teachers.map((teacher) => (
             <div
               key={teacher.id}
-              className="card-modern p-6"
+              className="card-modern overflow-hidden p-6"
             >
-              <Image src={teacher.photo ?? placeholderPhoto(teacher.id, 160)} alt={teacher.name} width={64} height={64} className="h-16 w-16 rounded-full object-cover ring-2 ring-sun-100" />
-              <h3 className="mt-4 font-bold text-indigo-950">{teacher.name}</h3>
+              <div className="relative -mx-6 -mt-6 aspect-[4/3]"><Image src={teacher.photo ?? placeholderPhoto(teacher.id, 700)} alt={teacher.name} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 82vw" className="object-cover" /></div>
+              <h3 className="mt-5 font-bold text-indigo-950">{teacher.name}</h3>
               <p className="text-sm text-charcoal-500">{teacher.role}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {teacher.levels.map((lvl) => (
