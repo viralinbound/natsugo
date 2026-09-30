@@ -18,11 +18,11 @@ export function SectionHeading({
   for (const c of `${eyebrow}${typeof title === "string" ? title : ""}`) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   const r = (n: number, span: number) => ((h >> (n * 3)) % (span * 2 + 1)) - span;
   const drift = {
-    "--wd": `${12 + (h % 9)}s`,
+    "--wd": `${7 + (h % 6)}s`,
     "--wdl": `-${h % 7}s`,
-    "--wx1": `${r(1, 18)}px`, "--wy1": `${r(2, 12)}px`, "--wr1": `${r(3, 3)}deg`,
-    "--wx2": `${r(4, 18)}px`, "--wy2": `${r(5, 12)}px`, "--wr2": `${r(6, 3)}deg`,
-    "--wx3": `${r(7, 14)}px`, "--wy3": `${r(8, 10)}px`,
+    "--wx1": `${r(1, 70)}px`, "--wy1": `${r(2, 30)}px`, "--wr1": `${r(3, 8)}deg`,
+    "--wx2": `${r(4, 70)}px`, "--wy2": `${r(5, 30)}px`, "--wr2": `${r(6, 8)}deg`,
+    "--wx3": `${r(7, 60)}px`, "--wy3": `${r(8, 25)}px`,
   } as React.CSSProperties;
   return (
     <div className={`relative isolate max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>

@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { SakuraPetals } from "@/components/japan/SakuraPetals";
-import { EnsoCircles } from "@/components/japan/EnsoCircles";
 import { KanaPlayground } from "@/components/home/KanaPlayground";
-import { HeroQuiz } from "@/components/home/HeroQuiz";
-import { levelTestQuestions } from "@/lib/learning";
+import { HeroBlocks } from "@/components/home/HeroBlocks";
 import { Hanko } from "@/components/japan/Hanko";
 import { SumiMountains } from "@/components/japan/SumiMountains";
 
@@ -21,7 +19,6 @@ export function Hero() {
       <section className="relative isolate overflow-hidden bg-bg">
         <SakuraPetals />
         <SumiMountains className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 w-full text-indigo-950 sm:h-64" />
-        <EnsoCircles data-parallax="-0.08" className="pointer-events-none absolute -z-10 top-1/2 -right-[38%] w-[min(120vw,760px)] -translate-y-1/2 sm:-right-[22%] lg:-right-[6%] opacity-25 sm:opacity-90" />
         <p aria-hidden data-parallax="0.1" className="tategaki pointer-events-none absolute left-3 top-24 hidden text-lg font-bold text-hanko/70 xl:block 2xl:left-10">
           一期一会 · 日本語の道
         </p>
@@ -64,7 +61,7 @@ export function Hero() {
             </div>
           </div>
           <div className="animate-fade-up [animation-delay:200ms]">
-            <HeroQuiz questions={levelTestQuestions.filter((q) => !q.audio).slice(0, 3)} />
+            <HeroBlocks />
           </div>
         </div>
       </section>

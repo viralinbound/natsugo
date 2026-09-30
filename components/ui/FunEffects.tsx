@@ -36,7 +36,7 @@ export function FunEffects() {
       for (const el of para) {
         const r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > innerHeight + 200) continue;
-        const speed = Number(el.dataset.parallax ?? 0.12);
+        const speed = Number(el.dataset.parallax ?? 0.25);
         el.style.setProperty("--py", `${Math.round((r.top + r.height / 2 - innerHeight / 2) * -speed)}px`);
       }
     };
