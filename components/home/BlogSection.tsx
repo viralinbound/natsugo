@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function BlogSection() {
   return (
-    <section className="bg-bg-alt py-16 sm:py-20">
+    <section className="bg-bg-alt py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <SectionHeading eyebrow="Blog" title="Learn About Japanese, JLPT & Careers" />

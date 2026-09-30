@@ -18,7 +18,7 @@ export default function BlogPage() {
   return (
     <>
       <PageHero title="The Natsugo blog" eyebrow="Blog" intro="Straightforward guides for Indian learners — no hype, just what helps." image={images.kyoto} crumbs={[{ label: "Blog", href: "/blog" }]} />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Link href={`/blog/${featured.slug}`} className="group grid md:grid-cols-2 overflow-hidden card-modern">
             <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[320px]">

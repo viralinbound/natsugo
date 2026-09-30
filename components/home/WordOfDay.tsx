@@ -53,7 +53,7 @@ export async function WordOfDay({ embedded = false, className = "" }: { embedded
 
   if (embedded) return card;
   return (
-    <section className="py-12 sm:py-16" aria-labelledby="wotd">
+    <section className="py-16 sm:py-24" aria-labelledby="wotd">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">{card}</div>
     </section>
   );

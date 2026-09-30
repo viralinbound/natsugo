@@ -49,7 +49,7 @@ export default function LearnPage() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Choose your level</h2>
           <p className="mt-1 text-charcoal-700">Not sure? <Link href="/level-test" className="font-semibold text-indigo-800 underline">Take the free level test</Link>.</p>

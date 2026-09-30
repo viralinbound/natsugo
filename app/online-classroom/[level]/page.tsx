@@ -85,7 +85,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         </dl>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.5fr_1fr] gap-10">
           {/* Syllabus */}
           <div>
@@ -155,7 +155,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
       </section>
 
       {/* Live classes */}
-      <section className="bg-indigo-950 py-12 sm:py-16 text-white overflow-hidden">
+      <section className="bg-indigo-950 py-16 sm:py-24 text-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -192,7 +192,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
       </section>
 
       {/* Recordings + materials */}
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
             <h2 className="text-2xl font-bold text-indigo-950"><Video size={22} className="inline -mt-1 text-sun-400" /> Class recordings</h2>
@@ -250,7 +250,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
       </section>
 
       {/* Batches */}
-      <section className="bg-bg-alt py-12 sm:py-16">
+      <section className="bg-bg-alt py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Join a {level} batch</h2>

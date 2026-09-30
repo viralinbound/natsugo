@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+:root[data-theme="dark"] {
   /* Midnight Tokyo (default): deep navy surfaces, glowing blue and cyan, hanko red */
   color-scheme: dark;
   --heading: #f2f6ff;
@@ -40,13 +40,13 @@
   --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
 }
 
-:root[data-theme="light"] {
+:root {
   color-scheme: light;
   --heading: #0b1b3a;
   /* Natsugo palette, light mode */
   /* Natsugo palette — vibrant take on the logo blue: electric blue → cyan, deep navy, hanko red */
-  --color-bg: #f5f9ff;
-  --color-bg-alt: #eaf2ff;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f3f6fb;
   --color-surface: #ffffff;
 
   /* Deep navy for dark sections and headings */
@@ -495,8 +495,8 @@ html.js-reveal .reveal.is-visible {
 
 
 /* ── Midnight Tokyo: dark-mode text, spotlight glow, pop-in ── */
-:root:not([data-theme="light"]) .text-indigo-950,
-:root:not([data-theme="light"]) .text-indigo-900 {
+:root[data-theme="dark"] .text-indigo-950,
+:root[data-theme="dark"] .text-indigo-900 {
   color: var(--heading);
 }
 .card-modern:not([class*="sticky"]),
@@ -613,4 +613,14 @@ button.wood-block.is-active {
 .wood-block {
   --color-charcoal-700: #33200f;
   --color-charcoal-500: #3f2d1a;
+}
+
+@keyframes enso-turn { to { transform: rotate(360deg); } }
+.enso-ring {
+  transform-box: view-box;
+  transform-origin: 300px 300px;
+  animation: enso-turn linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .enso-ring { animation: none; }
 }

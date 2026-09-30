@@ -93,7 +93,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("np-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("np-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}` }} />
       </head>
       <body className="washi min-h-full flex flex-col bg-bg text-charcoal-900">
         <a

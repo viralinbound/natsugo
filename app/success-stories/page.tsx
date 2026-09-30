@@ -15,7 +15,7 @@ export default function SuccessStoriesPage() {
     <>
       <PageHero title="Student success stories" eyebrow="Success Stories" intro="We only publish verified reviews from real students. Stories will appear here as our learners complete their levels." image={images.groupStudy} crumbs={[{ label: "Success Stories", href: "/success-stories" }]} />
       <Testimonials />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-indigo-950">Are you one of our students?</h2>
           <p className="mt-1 text-charcoal-700">Share your experience. Reviews are checked by our team before they appear.</p>

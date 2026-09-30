@@ -21,7 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero title="Contact us" eyebrow="Admissions" intro="Questions about levels, batches or fees? We usually reply within one working day." image={images.office} crumbs={[{ label: "Contact", href: "/contact" }]} />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.4fr] gap-10 items-start">
           <ul className="divide-y divide-charcoal-100 card-modern">
             {rows.map(({ icon: Icon, label, value, href }) => (

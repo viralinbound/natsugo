@@ -11,8 +11,8 @@ export function KanaPlayground() {
   const kana = toKatakana(name || "Natsugo");
 
   return (
-    <div className="mt-8 max-w-xl rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md animate-fade-up [animation-delay:300ms]">
-      <label htmlFor="kana-name" className="text-xs font-bold uppercase tracking-wider text-sun-300">
+    <div className="mt-8 max-w-xl rounded-2xl border border-charcoal-100 bg-surface/80 p-4 backdrop-blur-md animate-fade-up [animation-delay:300ms]">
+      <label htmlFor="kana-name" className="text-xs font-bold uppercase tracking-wider text-sun-500">
         Try it: your name in katakana
       </label>
       <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-3">
@@ -22,7 +22,7 @@ export function KanaPlayground() {
           onChange={(e) => setName(e.target.value.slice(0, 24))}
           placeholder="Type your name"
           autoComplete="off"
-          className="min-h-[46px] flex-1 rounded-lg border border-white/20 bg-black/20 px-3.5 text-white placeholder:text-white/40 focus:border-sun-300 focus:outline-none"
+          className="min-h-[46px] flex-1 rounded-lg border border-charcoal-100 bg-bg px-3.5 text-charcoal-900 placeholder:text-charcoal-500 focus:border-sun-400 focus:outline-none"
         />
         <div className="flex items-center gap-3">
           <p key={kana} aria-live="polite" className="pop-in min-w-[3ch] font-jp text-3xl font-bold text-gradient-anim">

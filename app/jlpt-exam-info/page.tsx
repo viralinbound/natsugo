@@ -41,7 +41,7 @@ export default async function ExamInfoPage() {
         <Button href="/level-test" size="lg">Take Free Level Test</Button>
       </PageHero>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 card-modern overflow-hidden">
             <div className="flex items-center gap-2 border-b border-charcoal-100 bg-indigo-950 px-5 py-3 text-white">
@@ -88,7 +88,7 @@ export default async function ExamInfoPage() {
         </div>
       </section>
 
-      <section className="bg-bg-alt py-12 sm:py-16">
+      <section className="bg-bg-alt py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><ClipboardList size={26} className="text-sun-400" /> How to register — step by step</h2>
           <ol className="mt-8 space-y-6">
@@ -108,7 +108,7 @@ export default async function ExamInfoPage() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><FileText size={26} className="text-sun-400" /> Sample & practice questions by level</h2>
           <p className="mt-2 max-w-2xl text-charcoal-700">

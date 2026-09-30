@@ -17,7 +17,7 @@ const results = [
 
 export function Bento() {
   return (
-    <section className="py-12 sm:py-16">
+    <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4">
         <div className="bento-tile aurora relative overflow-hidden rounded-3xl p-7 sm:p-10 text-white md:col-span-2 lg:row-span-2 flex flex-col justify-center">
           <span aria-hidden className="jp-outline pointer-events-none select-none absolute right-5 top-5 text-6xl sm:text-7xl">道</span>

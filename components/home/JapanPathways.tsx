@@ -13,7 +13,7 @@ const pathways = [
 
 export function JapanPathways() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-sm font-bold uppercase tracking-wider text-sun-500">Pathways</p>

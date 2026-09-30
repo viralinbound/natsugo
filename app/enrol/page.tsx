@@ -22,7 +22,7 @@ export default async function EnrolPage({ searchParams }: { searchParams: Promis
   return (
     <>
       <PageHero title={isWaitlist ? "Join the waitlist" : "Reserve your seat"} eyebrow={isWaitlist ? "Batch full" : "Enrolment"} intro={isWaitlist ? "This batch is full. Join the waitlist and we'll contact you first if a seat opens or when the next batch is scheduled." : undefined} image={images.groupStudy} crumbs={[{ label: "Batches", href: "/batches" }, { label: "Enrol", href: "/enrol" }]} />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.3fr] gap-10">
           <div>
             {batch ? (

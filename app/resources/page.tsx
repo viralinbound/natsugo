@@ -14,7 +14,7 @@ export default function ResourcesPage() {
   return (
     <>
       <PageHero title="Start learning Japanese for free" eyebrow="Free Resources" intro="Interactive charts with audio, beginner kanji, grammar and practice questions — use them alongside your classes or on their own." image={images.books} crumbs={[{ label: "Resources", href: "/resources" }]} />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {resourceTopics.map((t) => (
             <Link key={t.slug} href={`/resources/${t.slug}`} className="group overflow-hidden card-modern">

@@ -18,7 +18,7 @@ export default async function TeachersPage() {
   return (
     <>
       <PageHero title="Meet your Japanese teachers" eyebrow="Teachers" intro="Every batch is taught live. Teacher profiles will be published here with verified qualifications." image={images.lecture} crumbs={[{ label: "Teachers", href: "/teachers" }]} />
-      <section className="py-12 sm:py-16">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {teachers.map((t) => {
