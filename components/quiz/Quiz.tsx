@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Check, RotateCcw, Volume2, X } from "lucide-reac
 import type { Question, Skill } from "@/lib/learning";
 import { recommendLevel } from "@/lib/learning";
 import { speakJapanese } from "@/components/ui/SpeakButton";
+import { fireConfetti } from "@/lib/confetti";
 
 export interface QuizSet {
   level: string;
@@ -71,7 +72,7 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
   if (!started) {
     return (
       <div className="rounded-xl border border-charcoal-100 bg-surface p-6 sm:p-10">
-        <h2 className="text-2xl font-bold text-white">Before you start</h2>
+        <h2 className="text-2xl font-bold text-indigo-950">Before you start</h2>
         <ul className="mt-4 space-y-2 text-charcoal-700">
           <li>• {questions.length} questions across vocabulary, grammar, kanji, reading and listening</li>
           <li>• Takes about 5–7 minutes · No sign-up needed</li>
@@ -189,7 +190,10 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
                 type="button"
                 aria-pressed={isChosen}
                 disabled={reveal}
-                onClick={() => setAnswers((a) => a.map((v, j) => (j === index ? i : v)))}
+                onClick={(e) => {
+                  if (mode === "practice" && chosen === null && i === q.answer) fireConfetti({ x: e.clientX, y: e.clientY, count: 28, spread: 0.6 });
+                  setAnswers((a) => a.map((v, j) => (j === index ? i : v)));
+                }}
                 className={`flex items-center justify-between gap-3 text-left rounded-md border-2 px-4 min-h-[56px] font-jp font-medium transition-colors ${
                   isRight
                     ? "border-success bg-success/10 text-success"
@@ -237,7 +241,10 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
         ) : (
           <button
             type="button"
-            onClick={() => setFinished(true)}
+            onClick={() => {
+              setFinished(true);
+              fireConfetti({ count: 140 });
+            }}
             className="inline-flex items-center gap-1.5 rounded-md bg-sun-400 px-5 min-h-[44px] font-bold text-white hover:bg-sun-500"
           >
             See my result
