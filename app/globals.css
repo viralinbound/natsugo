@@ -273,6 +273,7 @@ html[data-furigana="off"] rt {
 
 /* Large faint kanji behind a section heading */
 .jp-watermark {
+  display: none;
   font-family: var(--font-jp);
   font-weight: 900;
   font-size: 5rem;
@@ -745,14 +746,11 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
   font-weight: 700;
   line-height: 1;
   color: var(--color-indigo-950);
-  opacity: 0.045;
+  opacity: 0.05;
   user-select: none;
-  animation: kanji-roam var(--kd, 20s) ease-in-out var(--kdl, 0s) infinite alternate;
+  white-space: nowrap;
+  transform: translate(-50%, -50%) rotate(var(--kr, 0deg));
+  transition: left 9s ease-in-out, top 9s ease-in-out, transform 9s ease-in-out, opacity 1.2s ease;
 }
-:root[data-theme="dark"] .kanji-layer span { color: #9fb8e8; opacity: 0.06; }
-.kanji-layer span:nth-child(3n) { color: var(--color-hanko); opacity: 0.05; }
-@keyframes kanji-roam {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(var(--kx, 40px), calc(var(--ky, 30px) * -1)) rotate(var(--kr, 8deg)); }
-  100% { transform: translate(calc(var(--kx, 40px) * -0.6), var(--ky, 30px)) rotate(calc(var(--kr, 8deg) * -1)); }
-}
+:root[data-theme="dark"] .kanji-layer span { color: #9fb8e8; opacity: 0.07; }
+.kanji-layer span:nth-child(3n) { color: var(--color-hanko); opacity: 0.055; }

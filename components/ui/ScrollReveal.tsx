@@ -26,31 +26,53 @@ export function ScrollReveal() {
     const top = all.filter((el) => !all.some((o) => o !== el && o.contains(el)));
     const targets = top.slice(1);
 
-    // Drifting kanji layer
+    // Drifting kanji layer: words wander across the whole section and change over time.
     const layers: HTMLElement[] = [];
+    const roamers: HTMLElement[] = [];
+    const pick = () => KANJI[Math.floor(Math.random() * KANJI.length)];
+    const place = (s: HTMLElement) => {
+      s.style.left = `${3 + Math.random() * 84}%`;
+      s.style.top = `${4 + Math.random() * 80}%`;
+      s.style.setProperty("--kr", `${Math.round((Math.random() - 0.5) * 30)}deg`);
+    };
     if (!calm) {
-      top.forEach((sec, si) => {
+      top.forEach((sec) => {
         if (sec.querySelector(":scope > .kanji-layer")) return;
         if (getComputedStyle(sec).position === "static") sec.style.position = "relative";
         sec.style.isolation = "isolate";
+        const own = sec.querySelector<HTMLElement>(".jp-watermark")?.textContent?.trim();
         const layer = document.createElement("div");
         layer.className = "kanji-layer";
         layer.setAttribute("aria-hidden", "true");
         const count = small ? 2 : 4;
         for (let i = 0; i < count; i++) {
           const s = document.createElement("span");
-          const seed = (si * 7 + i * 13 + pathname.length) % KANJI.length;
-          s.textContent = KANJI[seed];
-          const left = i % 2 === 0 ? 2 + ((seed * 7) % 22) : 76 + ((seed * 5) % 20);
-          const topPct = 8 + ((seed * 11 + i * 23) % 78);
-          const size = (small ? 3 : 4) + ((seed * 3) % 5);
-          s.style.cssText = `left:${left}%;top:${topPct}%;font-size:${size}rem;--kd:${16 + ((seed * 5) % 14)}s;--kdl:-${(seed * 3) % 11}s;--kx:${((seed % 2 ? 1 : -1) * (40 + ((seed * 9) % 60)))}px;--ky:${((i % 2 ? 1 : -1) * (30 + ((seed * 7) % 50)))}px;--kr:${((seed % 3) - 1) * 12}deg`;
+          s.textContent = i === 0 && own ? own : pick();
+          s.style.fontSize = `${(small ? 2.6 : 3.4) + Math.random() * (small ? 2 : 3.5)}rem`;
+          place(s);
           layer.appendChild(s);
+          roamers.push(s);
         }
         sec.prepend(layer);
         layers.push(layer);
       });
     }
+    const roam = window.setInterval(() => {
+      if (document.hidden || !roamers.length) return;
+      for (let n = 0; n < Math.max(1, Math.round(roamers.length / 3)); n++) {
+        const s = roamers[Math.floor(Math.random() * roamers.length)];
+        const r = s.getBoundingClientRect();
+        if (r.bottom < -300 || r.top > innerHeight + 300) continue;
+        place(s);
+        if (Math.random() < 0.6) {
+          s.style.opacity = "0";
+          window.setTimeout(() => {
+            s.textContent = pick();
+            s.style.opacity = "";
+          }, 1300);
+        }
+      }
+    }, 2600);
 
     const itemsOf = (section: HTMLElement) => {
       const items: Item[] = [];
@@ -132,6 +154,7 @@ export function ScrollReveal() {
     return () => {
       window.clearTimeout(fallback);
       timers.forEach((t) => window.clearTimeout(t));
+      window.clearInterval(roam);
       observer.disconnect();
       layers.forEach((l) => l.remove());
     };
