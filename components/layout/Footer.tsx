@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { TokyoClock } from "@/components/japan/TokyoClock";
-import { UkiyoeWaves } from "@/components/japan/UkiyoeWaves";
+import { Hanko } from "@/components/japan/Hanko";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -66,14 +66,13 @@ const columns = [
 export function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-bg-alt pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-charcoal-700 lg:pb-0">
-      <UkiyoeWaves className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-16 w-full opacity-60 sm:h-24" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1 min-w-0">
+      <div className="relative mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pt-16 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_2.9fr] lg:gap-16">
+          <div className="min-w-0">
             <Logo />
             <p className="mt-4 text-sm text-charcoal-500 max-w-xs">
               A structured Japanese learning platform for students and
-              professionals across India.
+              professionals across India. Live online classes, N5 to N1.
             </p>
             <div className="flex gap-3 mt-5">
               {(["instagram", "facebook", "linkedin", "youtube"] as const).map(
@@ -90,6 +89,7 @@ export function Footer() {
               )}
             </div>
           </div>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
           {columns.map((col) => (
             <div key={col.title}>
               <h3 className="text-sm font-bold text-indigo-950 mb-4">
@@ -109,12 +109,16 @@ export function Footer() {
               </ul>
             </div>
           ))}
+          </div>
         </div>
 
         <div className="mt-12 pt-6 border-t border-charcoal-100 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center text-xs text-charcoal-500">
-          <div className="space-y-1">
+          <div className="flex items-center gap-3">
+            <Hanko text="夏" size={34} />
+            <div className="space-y-1">
             <TokyoClock />
             <p>© {new Date().getFullYear()} Natsugo · <a href={`tel:+${site.whatsappNumber}`} className="hover:text-sun-500">{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`} className="hover:text-sun-500">{site.email}</a></p>
+            </div>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy-policy" className="hover:text-sun-500">
