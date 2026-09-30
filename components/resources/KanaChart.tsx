@@ -17,7 +17,8 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
           Show romaji
         </label>
       </div>
-      <div className="mt-5 grid grid-cols-5 gap-1.5 sm:gap-2.5 max-w-2xl">
+      <div className="wood-tray mt-5 max-w-2xl">
+      <div className="grid grid-cols-5 gap-2.5 sm:gap-3.5">
         {rows.flat().map((c, i) =>
           c.kana ? (
             <button
@@ -28,17 +29,16 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
                 speakJapanese(c.kana);
               }}
               aria-label={`${c.kana} (${c.romaji})`}
-              className={`aspect-square rounded-md border flex flex-col items-center justify-center transition-colors ${
-                active === c.kana ? "border-indigo-900 bg-indigo-900 text-white" : "border-charcoal-100 bg-surface hover:border-sun-400 hover:bg-sun-100"
-              }`}
+              className={`wood-block aspect-square flex flex-col items-center justify-center ${active === c.kana ? "is-active" : ""}`}
             >
               <span className="font-jp text-2xl sm:text-4xl leading-none">{c.kana}</span>
-              {showRomaji ? <span className={`mt-1 text-[11px] sm:text-sm ${active === c.kana ? "text-white/80" : "text-charcoal-500"}`}>{c.romaji}</span> : null}
+              {showRomaji ? <span className={`mt-1 text-[11px] sm:text-sm ${active === c.kana ? "text-white/80" : "text-charcoal-700"}`}>{c.romaji}</span> : null}
             </button>
           ) : (
             <span key={i} aria-hidden className="aspect-square" />
           )
         )}
+      </div>
       </div>
     </div>
   );

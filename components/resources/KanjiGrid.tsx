@@ -36,21 +36,19 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
 
   return (
     <div>
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 sm:gap-3">
+      <div className="wood-tray"><div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3 sm:gap-3.5">
         {kanji.map((k, i) => (
           <button
             key={`${k}-${i}`}
             type="button"
             onClick={() => handleTap(k)}
             aria-pressed={active === k}
-            className={`card-modern group aspect-square flex items-center justify-center hover:border-sun-400 transition-colors ${
-              active === k ? "border-sun-400 bg-sun-100" : ""
-            }`}
+            className={`wood-block aspect-square flex items-center justify-center ${active === k ? "is-active" : ""}`}
           >
-            <span className="font-jp text-2xl sm:text-3xl text-indigo-950 group-hover:text-sun-500">{k}</span>
+            <span className="font-jp text-2xl sm:text-3xl">{k}</span>
           </button>
         ))}
-      </div>
+      </div></div>
 
       {active ? (
         <div className="mt-6 card-modern p-5 flex items-center gap-5 sticky bottom-20 sm:bottom-4 bg-surface">

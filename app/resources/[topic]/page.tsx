@@ -44,11 +44,11 @@ function Content({ slug }: { slug: string }) {
     case "kanji":
       return (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
             {kanjiN5.map((k) => (
-              <div key={k.k} className="card-modern p-4 text-center">
-                <p className="font-jp text-5xl text-indigo-950">{k.k}</p>
-                <p className="mt-2 font-semibold text-charcoal-800">{k.m}</p>
+              <div key={k.k} className="wood-block p-4 text-center">
+                <p className="font-jp text-5xl">{k.k}</p>
+                <p className="mt-2 font-semibold text-charcoal-900">{k.m}</p>
                 <div className="mt-1 flex items-center justify-center gap-1">
                   <p className="font-jp text-sm text-charcoal-500">{k.r}</p>
                   <SpeakButton text={k.r.split("・")[0]} />
@@ -75,9 +75,9 @@ function Content({ slug }: { slug: string }) {
       );
     case "grammar":
       return (
-        <div className="space-y-4">
+        <div className="paper-scroll divide-y divide-charcoal-100">
           {grammarPoints.map((g) => (
-            <div key={g.pattern} className="card-modern p-5 sm:flex sm:items-center sm:gap-6">
+            <div key={g.pattern} className="py-4 first:pt-0 last:pb-0 sm:flex sm:items-center sm:gap-6">
               <div className="sm:w-56 shrink-0">
                 <p className="font-jp text-xl font-bold text-indigo-950">{g.pattern}</p>
                 <p className="text-sm text-sun-500 font-semibold">{g.meaning}</p>
@@ -95,10 +95,10 @@ function Content({ slug }: { slug: string }) {
       );
     case "vocabulary":
       return (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="paper-scroll grid md:grid-cols-2 gap-6">
           {vocabulary.map((v) => (
-            <div key={v.topic} className="card-modern overflow-hidden">
-              <h2 className="bg-indigo-950 px-5 py-3 font-bold text-white">{v.topic}</h2>
+            <div key={v.topic} className="overflow-hidden rounded-md border border-charcoal-100 bg-surface/60">
+              <h2 className="bg-[#4d2b10] px-5 py-3 font-bold text-[#fff3e0]">{v.topic}</h2>
               <ul className="divide-y divide-charcoal-100">
                 {v.words.map((w) => (
                   <li key={w.jp} className="flex items-center justify-between gap-3 px-5 py-2.5">
@@ -113,10 +113,10 @@ function Content({ slug }: { slug: string }) {
       );
     case "phrases":
       return (
-        <>
-        <ul className="sm:hidden space-y-3">
+        <div className="paper-scroll">
+        <ul className="sm:hidden divide-y divide-charcoal-100">
           {phrases.map((p) => (
-            <li key={p.jp} className="flex items-start justify-between gap-3 card-modern p-4">
+            <li key={p.jp} className="flex items-start justify-between gap-3 py-3">
               <div className="min-w-0">
                 <p className="font-jp text-lg text-indigo-950 break-words">{p.jp}</p>
                 <p className="text-sm text-charcoal-500">{p.romaji}</p>
@@ -126,7 +126,7 @@ function Content({ slug }: { slug: string }) {
             </li>
           ))}
         </ul>
-        <div className="hidden sm:block overflow-x-auto card-modern">
+        <div className="hidden sm:block overflow-x-auto">
           <table className="w-full text-left">
             <thead className="bg-bg-alt text-xs uppercase tracking-wider text-charcoal-500">
               <tr><th className="px-5 py-3">Japanese</th><th className="px-5 py-3">Romaji</th><th className="px-5 py-3">Meaning</th><th className="px-5 py-3"><span className="sr-only">Listen</span></th></tr>
@@ -143,7 +143,7 @@ function Content({ slug }: { slug: string }) {
             </tbody>
           </table>
         </div>
-        </>
+        </div>
       );
     case "flashcards":
       return <Flashcards cards={flashcards} />;
