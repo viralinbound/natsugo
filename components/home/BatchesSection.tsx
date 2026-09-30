@@ -66,7 +66,7 @@ export function BatchesSection({ batches }: { batches: Batch[] }) {
           />
         </div>
 
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="swipe-row mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {filtered.length ? (
             filtered.slice(0, 4).map((batch) => <BatchCard key={batch.id} batch={batch} />)
           ) : (

@@ -14,7 +14,7 @@ export function BlogSection() {
             View All Articles
           </Button>
         </div>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {blogPosts.slice(0, 6).map((post) => (
             <Link
               key={post.id}

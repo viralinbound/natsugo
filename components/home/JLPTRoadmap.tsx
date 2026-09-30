@@ -14,7 +14,7 @@ export function JLPTRoadmap() {
           </Button>
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {jlptLevels.map((item) => (
             <div
               key={item.level}

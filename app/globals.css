@@ -367,6 +367,32 @@ html.js-reveal .reveal.is-visible {
 }
 .btn-shine:hover::after { transform: translateX(120%); }
 
+/* Bento tiles lift on hover */
+.bento-tile {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bento-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -20px rgba(12, 136, 255, 0.35);
+}
+
+/* Phones: rows become swipeable carousels with the next card peeking in */
+@media (max-width: 639px) {
+  .swipe-row {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin-inline: -1rem;
+    padding: 0.25rem 1rem 0.75rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .swipe-row::-webkit-scrollbar { display: none; }
+  .swipe-row > * { flex: 0 0 82%; scroll-snap-align: center; }
+}
+
 /* Modern card: soft shadow that deepens and lifts on hover */
 .card-modern {
   background: var(--color-surface);

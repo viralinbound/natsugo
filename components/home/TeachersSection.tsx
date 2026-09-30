@@ -11,7 +11,7 @@ export async function TeachersSection() {
     <section className="bg-bg-alt py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Our Teachers" title="Meet Your Japanese Teachers" />
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {teachers.map((teacher) => (
             <div
               key={teacher.id}

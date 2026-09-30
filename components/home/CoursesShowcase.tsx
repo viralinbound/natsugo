@@ -21,7 +21,7 @@ export function CoursesShowcase() {
           </div>
           <Button href="/learn-japanese-language-course" variant="outline">Browse all courses</Button>
         </div>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="swipe-row mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {picks.map((p) => {
             const c = getCourse(p.slug)!;
             return (

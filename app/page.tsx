@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
-import { Intro } from "@/components/home/Intro";
-import { WordOfDay } from "@/components/home/WordOfDay";
+import { Bento } from "@/components/home/Bento";
 import { CoursesShowcase } from "@/components/home/CoursesShowcase";
 import { GoalSelector } from "@/components/home/GoalSelector";
-import { LevelTest } from "@/components/home/LevelTest";
 import { TeachingRows } from "@/components/home/TeachingRows";
 import { JLPTRoadmap } from "@/components/home/JLPTRoadmap";
 import { BatchesSection } from "@/components/home/BatchesSection";
@@ -27,11 +25,9 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Intro />
-      <WordOfDay />
+      <Bento />
       <CoursesShowcase />
       <GoalSelector />
-      <LevelTest />
       <TeachingRows />
       <JLPTRoadmap />
       <BatchesSection batches={batches} />
