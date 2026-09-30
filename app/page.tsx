@@ -12,6 +12,7 @@ import { FreeResources } from "@/components/home/FreeResources";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { site } from "@/lib/site";
 import { faqs } from "@/lib/data";
 import { getBatches } from "@/lib/repo";
 
@@ -35,6 +36,19 @@ export default async function Home() {
       <ToriiDivider />
       <FAQSection />
       <FinalCTA />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          mainEntityOfPage: { "@type": "WebPage", "@id": `${site.url}/` },
+          headline: "Learn Japanese. Know your level. Follow your path",
+          image: `${site.url}/brand/natsugo-stacked.png`,
+          author: { "@type": "Organization", name: "Natsugo", url: `${site.url}/` },
+          publisher: { "@type": "Organization", name: "Natsugo", logo: { "@type": "ImageObject", url: `${site.url}/brand/natsugo-mark.png` } },
+          datePublished: "2026-09-28",
+          dateModified: new Date().toISOString().slice(0, 10),
+        }}
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",
