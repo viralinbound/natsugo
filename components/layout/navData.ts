@@ -90,3 +90,12 @@ export const navGroups: NavGroup[] = [
 export const simpleLinks: NavLink[] = [
   { label: "Batches", href: "/batches" },
 ];
+
+// The short list shown in the desktop header. The full menu stays in the mobile drawer, footer and Ctrl+K search.
+export const primaryLinks: (NavLink & { match: string[] })[] = [
+  { label: "Courses", href: "/learn-japanese-language-course", match: ["/learn-japanese-language-course", "/japanese-", "/speak-japanese", "/business-japanese"] },
+  { label: "JLPT", href: "/jlpt-japanese-preparation-course", match: ["/jlpt"] },
+  { label: "Classroom", href: "/online-classroom", match: ["/online-classroom"] },
+  { label: "Resources", href: "/resources", match: ["/resources", "/blog"] },
+  { label: "Batches", href: "/batches", match: ["/batches"] },
+];

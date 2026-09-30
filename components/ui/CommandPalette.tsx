@@ -29,7 +29,7 @@ export function PaletteButton() {
       type="button"
       onClick={openPalette}
       aria-label="Search the site"
-      className="hidden xl:flex h-10 items-center gap-2 rounded-full border border-charcoal-100 px-3 text-sm text-charcoal-500 transition-colors hover:border-sun-400 hover:text-sun-500"
+      className="hidden lg:flex h-10 items-center gap-2 rounded-full border border-charcoal-100 px-3 text-sm text-charcoal-500 transition-colors hover:border-sun-400 hover:text-sun-500"
     >
       <Search size={16} />
       <span>Search</span>

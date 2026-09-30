@@ -8,11 +8,10 @@ import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import { Button } from "@/components/ui/Button";
-import { navGroups, simpleLinks } from "@/components/layout/navData";
+import { navGroups, primaryLinks, simpleLinks } from "@/components/layout/navData";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const pathname = usePathname();
   const [lastPath, setLastPath] = useState(pathname);
@@ -21,7 +20,6 @@ export function Navbar() {
   if (pathname !== lastPath) {
     setLastPath(pathname);
     setMobileOpen(false);
-    setOpenGroup(null);
   }
 
   // Stop the page behind the mobile menu from scrolling.
@@ -43,65 +41,28 @@ export function Navbar() {
         aria-label="Main navigation"
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="flex min-h-16 xl:min-h-20 py-2 items-center justify-between gap-4">
+        <div className="flex min-h-16 lg:min-h-20 py-2 items-center justify-between gap-4">
           <Logo />
 
-          <ul className="hidden xl:flex items-center gap-0.5">
-            {navGroups.map((group) => (
-              <li
-                key={group.label}
-                className="relative"
-                onPointerEnter={(e) => e.pointerType === "mouse" && setOpenGroup(group.label)}
-                onPointerLeave={(e) => e.pointerType === "mouse" && setOpenGroup(null)}
-                onKeyDown={(e) => e.key === "Escape" && setOpenGroup(null)}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenGroup(null);
-                }}
-              >
-                <button
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-semibold whitespace-nowrap text-charcoal-700 hover:text-indigo-800 rounded-lg transition-colors"
-                  aria-expanded={openGroup === group.label}
-                  onClick={(e) =>
-                    // detail === 0 means keyboard activation: toggle. Pointer clicks only open (hover may have opened it already).
-                    setOpenGroup(e.detail === 0 && openGroup === group.label ? null : group.label)
-                  }
-                >
-                  {group.label}
-                  <ChevronDown
-                    size={15}
-                    className={`transition-transform ${openGroup === group.label ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {openGroup === group.label ? (
-                  <div className="absolute left-0 top-full pt-2 w-64">
-                    <div className="card-modern p-2">
-                      {group.items.map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          className="block rounded-lg px-3 py-2.5 text-sm font-medium text-charcoal-700 hover:bg-bg-alt hover:text-indigo-800 transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-              </li>
-            ))}
-            {simpleLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="px-3 py-2 text-sm font-semibold text-charcoal-700 hover:text-indigo-800 rounded-lg transition-colors inline-block whitespace-nowrap"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="hidden lg:flex items-center gap-1">
+            {primaryLinks.map((link) => {
+              const active = link.match.some((m) => pathname.startsWith(m));
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative inline-block whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors ${active ? "text-sun-500" : "text-charcoal-700 hover:text-sun-500"}`}
+                  >
+                    {link.label}
+                    {active ? <span aria-hidden className="absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-sun-400 to-hanko" /> : null}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
-          <div className="hidden xl:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
           <PaletteButton />
           <ThemeToggle />
             <Button href="/level-test" variant="primary" size="sm">
@@ -109,7 +70,7 @@ export function Navbar() {
             </Button>
           </div>
 
-          <div className="flex items-center gap-2 xl:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
         <ThemeToggle />
             <div className="hidden sm:block">
               <Button href="/level-test" variant="primary" size="sm">
@@ -129,7 +90,7 @@ export function Navbar() {
       </nav>
 
       {mobileOpen ? (
-        <div className="xl:hidden border-t border-charcoal-100 bg-surface max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
+        <div className="lg:hidden border-t border-charcoal-100 bg-surface max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
           <div className="px-4 py-4 flex flex-col gap-1">
             {navGroups.map((group) => (
               <div key={group.label} className="border-b border-charcoal-100 last:border-0">
