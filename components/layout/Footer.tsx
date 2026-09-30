@@ -65,7 +65,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="aurora relative isolate overflow-hidden text-white/80">
+    <footer className="aurora relative isolate overflow-hidden pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white/80 lg:pb-0">
       <SumiMountains sun className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 w-full text-white sm:h-72" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8">

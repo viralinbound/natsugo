@@ -110,7 +110,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <AnnouncementBar text={announcement.text} enabled={announcement.enabled} />
         <Navbar />
-        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1">
           {children}
         </main>
         <Footer />

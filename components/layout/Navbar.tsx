@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { PaletteButton } from "@/components/ui/CommandPalette";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
@@ -134,58 +135,74 @@ export function Navbar() {
         </div>
       </nav>
 
-      {mobileOpen ? (
-        <div className="xl:hidden border-t border-charcoal-100 bg-surface max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
-          <div className="px-4 py-4 flex flex-col gap-1">
-            {navGroups.map((group) => (
-              <div key={group.label} className="border-b border-charcoal-100 last:border-0">
-                <button
-                  className="w-full flex items-center justify-between py-3 text-left font-semibold text-charcoal-900"
-                  aria-expanded={mobileGroup === group.label}
-                  onClick={() =>
-                    setMobileGroup(mobileGroup === group.label ? null : group.label)
-                  }
-                >
-                  {group.label}
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform ${mobileGroup === group.label ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {mobileGroup === group.label ? (
-                  <div className="pb-3 flex flex-col gap-0.5">
-                    {group.items.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="rounded-lg px-3 py-2.5 text-sm text-charcoal-700 hover:bg-bg-alt min-h-[44px] flex items-center"
+      {mobileOpen
+        ? createPortal(
+            <div className="fixed inset-0 z-[90] xl:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+              <button type="button" aria-label="Close menu" className="drawer-backdrop absolute inset-0 bg-black/55 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+              <div className="drawer-panel absolute right-0 top-0 flex h-dvh w-[min(88vw,380px)] flex-col bg-surface shadow-2xl shadow-black/40">
+                <div className="flex items-center justify-between border-b border-charcoal-100 px-5 py-4">
+                  <span className="font-mincho text-lg font-bold text-indigo-950">
+                    メニュー <span className="font-sans text-sm font-semibold text-charcoal-500">· Menu</span>
+                  </span>
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    onClick={() => setMobileOpen(false)}
+                    className="grid h-10 w-10 place-items-center rounded-full border border-charcoal-100 text-charcoal-700"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-2">
+                  {navGroups.map((group) => (
+                    <div key={group.label} className="border-b border-charcoal-100">
+                      <button
+                        className="flex w-full items-center justify-between py-3.5 text-left font-semibold text-charcoal-900"
+                        aria-expanded={mobileGroup === group.label}
+                        onClick={() => setMobileGroup(mobileGroup === group.label ? null : group.label)}
                       >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
+                        {group.label}
+                        <ChevronDown size={18} className={`transition-transform ${mobileGroup === group.label ? "rotate-180" : ""}`} />
+                      </button>
+                      {mobileGroup === group.label ? (
+                        <div className="flex flex-col gap-0.5 pb-3">
+                          {group.items.map((item) => (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm text-charcoal-700 hover:bg-bg-alt"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                  {simpleLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex min-h-[44px] items-center border-b border-charcoal-100 py-3.5 font-semibold text-charcoal-900"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="border-t border-charcoal-100 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+                  <Button href="/level-test" variant="primary" className="w-full">
+                    Take Free Level Test
+                  </Button>
+                </div>
               </div>
-            ))}
-            {simpleLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="py-3 font-semibold text-charcoal-900 border-b border-charcoal-100 last:border-0 min-h-[44px] flex items-center"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex flex-col gap-3 pt-4">
-              <Button href="/level-test" variant="primary">
-                Take Free Level Test
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }
