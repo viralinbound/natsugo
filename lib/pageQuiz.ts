@@ -9,12 +9,16 @@ export const levelSets = (level: QuizLevel): PageQuizSet[] =>
 export const topicSets = (topic: QuizTopic): PageQuizSet[] =>
   quizLevels.map((l) => ({ id: l, label: l, questions: topicQuiz(l, topic), save: { level: l, difficulty: topic } }));
 
-// Which quiz a course page shows.
-export const courseQuiz: Record<string, { topic?: QuizTopic; label: string }> = {
-  "japanese-grammar-course": { topic: "grammar", label: "grammar" },
-  "japanese-vocabulary-course": { topic: "vocabulary", label: "vocabulary" },
-  "japanese-reading-writing-course": { topic: "reading", label: "reading" },
-  "speak-japanese": { topic: "listening", label: "listening" },
+// Which quiz a course page shows, and the name used on its test button. `null` means no quiz.
+export const courseQuiz: Record<string, { topic?: QuizTopic; label: string } | null> = {
+  "japanese-grammar-course": { topic: "grammar", label: "Grammar" },
+  "japanese-vocabulary-course": { topic: "vocabulary", label: "Vocabulary" },
+  "japanese-reading-writing-course": { topic: "reading", label: "Reading" },
+  "speak-japanese": { topic: "listening", label: "Speaking" },
+  "japanese-for-beginners": { label: "Beginner" },
+  "jlpt-japanese-preparation-course": { label: "JLPT" },
+  "learn-japanese-language-course": { label: "Japanese" },
+  "business-japanese": null,
 };
 
 // One tab per level, mixing every topic (the medium set).

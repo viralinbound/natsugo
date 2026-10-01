@@ -49,17 +49,25 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
   const batches = await getBatches();
   const courseBatches = batches.filter((b) => b.courseSlug === c.slug || (c.level && b.level === c.level));
   const related = c.related.map(getCourse).filter(Boolean);
-  const byTopic = courseQuiz[c.slug];
-  const quiz = c.level
-    ? { title: `Try a JLPT ${c.level} quiz`, intro: `Pick a topic and answer 10 ${c.level}-level questions. Every answer comes with an explanation.`, sets: levelSets(c.level as QuizLevel) }
-    : byTopic?.topic
-      ? { title: `Test your ${byTopic.label}`, intro: `Pick your level and answer 10 ${byTopic.label} questions. Every answer comes with an explanation.`, sets: topicSets(byTopic.topic) }
-      : { title: "Test your Japanese", intro: "Pick a level and answer 10 questions across vocabulary, grammar, kanji, reading and listening.", sets: mixedSets() };
+  const pick = courseQuiz[c.slug];
+  const quizName = pick?.label ?? c.level ?? "Japanese";
+  const quiz =
+    pick === null
+      ? null
+      : pick?.topic
+        ? { title: `Test your ${pick.label.toLowerCase()}`, intro: `Pick your level and answer 10 ${pick.topic === "listening" ? "listen-and-respond" : pick.label.toLowerCase()} questions, each with an explanation.`, sets: topicSets(pick.topic) }
+        : c.level
+          ? { title: `Free ${c.level === "N5" && pick ? "beginner" : `JLPT ${c.level}`} test`, intro: `Pick a topic and answer 10 ${c.level}-level questions: vocabulary, grammar, kanji, reading or listening.`, sets: levelSets(c.level as QuizLevel) }
+          : { title: `Free ${quizName} test`, intro: "Pick a level and answer 10 questions across vocabulary, grammar, kanji, reading and listening.", sets: mixedSets() };
 
   return (
     <>
       <PageHero title={c.title} eyebrow={c.eyebrow} intro={c.intro} image={c.image} crumbs={crumbs}>
-        <Button href="#quiz" size="lg">{c.level ? `Take Free ${c.level} Test` : "Take Free Test"}</Button>
+        {quiz ? (
+          <Button href="#quiz" size="lg">{`Take Free ${quizName} Test`}</Button>
+        ) : (
+          <Button href="/free-japanese-demo-class" size="lg">Book a Free Demo</Button>
+        )}
         <Button href="#batches" variant="outline-light" size="lg">See Upcoming Batches</Button>
       </PageHero>
 
@@ -160,7 +168,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
         </div>
       </section>
 
-      <PageQuiz {...quiz} />
+      {quiz ? <PageQuiz {...quiz} /> : null}
 
       <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

@@ -22,7 +22,7 @@ export function PathwayPage({ c }: { c: PathwayContent }) {
   return (
     <>
       <PageHero title={c.title} eyebrow={c.eyebrow} intro={c.intro} image={c.image} crumbs={[{ label: c.eyebrow, href: `/${c.slug}` }]}>
-        <Button href="/level-test" size="lg">Check Your Level</Button>
+        <Button href="/free-japanese-demo-class" size="lg">Book a Free Demo</Button>
         <Button href="/contact" variant="outline-light" size="lg">Talk to an Advisor</Button>
       </PageHero>
 
