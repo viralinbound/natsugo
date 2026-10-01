@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Flame, RotateCcw, Star } from "lucide-react";
+import { Check, Flame, RotateCcw, Star } from "lucide-react";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 import { useClock, useHydrated, useLocalStorage, writeLocal } from "@/lib/useBrowserStore";
 
@@ -128,11 +128,27 @@ export function Flashcards({ cards }: { cards: Card[] }) {
 
         {card && flipped ? (
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <button type="button" onClick={() => grade(false)} className="min-h-[52px] rounded-md border-2 border-red-600 font-bold text-red-600 hover:bg-red-600/5">
-              <RotateCcw size={16} className="inline -mt-0.5 mr-1" /> Again
+            <button
+              type="button"
+              onClick={() => grade(false)}
+              className="group flex min-h-[60px] flex-col items-center justify-center rounded-xl border border-[#e6d3ae] bg-[#fbf4e6] px-3 py-2 text-[#7a4f17] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#d6b77d] hover:shadow-sm"
+            >
+              <span className="flex items-center gap-2 font-bold">
+                <RotateCcw size={16} className="transition-transform duration-300 group-hover:-rotate-90" aria-hidden />
+                <span className="font-jp">もう一度</span> · Not yet
+              </span>
+              <span className="text-xs font-medium text-[#9a7038]">I&apos;ll see it again soon</span>
             </button>
-            <button type="button" onClick={() => grade(true)} className="min-h-[52px] rounded-md bg-success font-bold text-white hover:brightness-110">
-              I knew it ✓
+            <button
+              type="button"
+              onClick={() => grade(true)}
+              className="flex min-h-[60px] flex-col items-center justify-center rounded-xl bg-indigo-900 px-3 py-2 text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-800 hover:shadow-md"
+            >
+              <span className="flex items-center gap-2 font-bold">
+                <Check size={17} strokeWidth={2.5} aria-hidden />
+                <span className="font-jp">覚えた</span> · I know it
+              </span>
+              <span className="text-xs font-medium text-white/70">Show it less often</span>
             </button>
           </div>
         ) : null}
