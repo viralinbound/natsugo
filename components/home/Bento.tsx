@@ -27,7 +27,7 @@ export function Bento() {
 
         <WordOfDay embedded className="md:col-span-2" />
 
-        <div className="bento-tile md:col-span-2 rounded-3xl bg-sun-100 p-7 sm:p-10">
+        <div className="bento-tile md:col-span-1 lg:col-span-2 rounded-3xl bg-sun-100 p-7 sm:p-10">
           <Hanko text="無料" size={52} className="absolute right-6 top-6" />
           <p className="font-mincho text-lg font-bold text-sun-500">レベルチェック</p>
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold text-indigo-950 tracking-tight text-balance">
@@ -42,7 +42,7 @@ export function Bento() {
           </div>
         </div>
 
-        <div className="bento-tile md:col-span-2 rounded-3xl border border-charcoal-100 bg-surface p-6 sm:p-8">
+        <div className="bento-tile md:col-span-1 lg:col-span-2 rounded-3xl border border-charcoal-100 bg-surface p-6 sm:p-8">
           <div className="flex items-center justify-between">
             <p className="font-bold text-indigo-950">Sample result</p>
             <span className="text-xs text-charcoal-500">Illustration</span>

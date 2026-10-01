@@ -20,18 +20,18 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <HeroBackdrop />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-20 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 md:grid-cols-[1.1fr_0.9fr] md:gap-8 lg:gap-12 lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
 
-            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-6xl animate-fade-up">
+            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-5xl lg:text-6xl animate-fade-up">
               Learn Japanese
               <br />
               <span className="text-gradient-anim">the structured way.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base text-charcoal-700 sm:text-lg animate-fade-up [animation-delay:100ms]">
+            <p className="mt-6 max-w-xl text-base font-medium text-charcoal-800 sm:text-lg animate-fade-up [animation-delay:100ms]">
               Live classes with real teachers, a clear path from N5 to N1, and practice you can measure. Join from anywhere in India.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row animate-fade-up [animation-delay:200ms]">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap animate-fade-up [animation-delay:200ms]">
               <Button href="/level-test" size="lg">
                 Take Free Level Test <ArrowRight size={18} />
               </Button>

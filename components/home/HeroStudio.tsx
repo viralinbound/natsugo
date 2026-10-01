@@ -38,7 +38,7 @@ export function HeroStudio() {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-md lg:max-w-[30rem]">
+    <div className="relative mx-auto w-full max-w-md md:max-w-none lg:max-w-[30rem]">
       <div className="rounded-3xl border border-white/60 bg-surface p-5 shadow-[0_24px_60px_-28px_rgb(11_27_58/0.35)] sm:p-6">
         <div role="tablist" aria-label="Try Japanese" className="grid grid-cols-2 gap-1 rounded-xl bg-bg-alt p-1">
           {([

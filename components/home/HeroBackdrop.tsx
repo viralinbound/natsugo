@@ -33,7 +33,7 @@ export function HeroBackdrop() {
           className={`object-cover transition-opacity duration-[1200ms] ${n === i ? "opacity-100 hero-kenburns" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-bg/80 via-bg/70 to-bg/85 lg:bg-gradient-to-r lg:from-bg/95 lg:via-bg/55 lg:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/85 via-bg/75 to-bg/90 md:bg-gradient-to-r md:from-bg md:via-bg/75 md:to-bg/5 lg:via-bg/60 lg:to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-bg to-transparent" />
       <div className="shoji shoji-left" />
       <div className="shoji shoji-right" />
