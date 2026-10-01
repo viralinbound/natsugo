@@ -14,7 +14,29 @@ export interface QuizSet {
   next?: { href: string; label: string };
 }
 
-export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "level-test" | "practice"; set?: QuizSet }) {
+// Random order of questions and of each question's options, made fresh for every attempt.
+function shuffled(list: Question[]): Question[] {
+  const mix = <T,>(a: T[]) => {
+    const b = [...a];
+    for (let i = b.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [b[i], b[j]] = [b[j], b[i]];
+    }
+    return b;
+  };
+  return mix(list).map((q) => {
+    const idx = mix(q.options.map((_, i) => i));
+    return { ...q, options: idx.map((i) => q.options[i]), answer: idx.indexOf(q.answer) };
+  });
+}
+
+export function Quiz({ questions: source, mode, set }: { questions: Question[]; mode: "level-test" | "practice"; set?: QuizSet }) {
+  // Server render keeps the given order; the browser reshuffles once mounted and on every retry.
+  const [questions, setQuestions] = useState(source);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuestions(shuffled(source));
+  }, [source]);
   const [started, setStarted] = useState(mode === "practice");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null));
@@ -64,7 +86,8 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
   }, [finished, set, result.score, questions.length]);
 
   const restart = () => {
-    setAnswers(questions.map(() => null));
+    setQuestions(shuffled(source));
+    setAnswers(source.map(() => null));
     setIndex(0);
     setFinished(false);
   };

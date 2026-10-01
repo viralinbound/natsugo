@@ -12,9 +12,9 @@ export const levelSets = (level: QuizLevel): PageQuizSet[] =>
 export const topicSets = (topic: QuizTopic): PageQuizSet[] =>
   quizLevels.map((l) => ({ id: l, label: l, desc: `10 ${l} ${topic} questions`, href: `/jlpt-quiz/${lc(l)}/${topic}` }));
 
-// One card per level for a difficulty set that mixes every topic.
-export const difficultySets = (difficulty: "easy" | "hard", desc: string): PageQuizSet[] =>
-  quizLevels.map((l) => ({ id: l, label: l, desc, href: `/jlpt-quiz/${lc(l)}/${difficulty}` }));
+// One card per level for that level's full test.
+export const fullSets = (desc: string): PageQuizSet[] =>
+  quizLevels.map((l) => ({ id: l, label: l, desc, href: `/jlpt-quiz/${lc(l)}/full` }));
 
 // Cards for one of the stand-alone tests (speaking, beginner, kana).
 export const freeTestSets = (test: string, only?: string[]): PageQuizSet[] => {
@@ -42,6 +42,6 @@ export const courseQuiz: Record<string, CourseQuiz> = {
   "japanese-reading-writing-course": own("reading", "Reading", "Free reading & writing test", "Kana, kanji, signs and short real-world texts."),
   "business-japanese": own("business", "Business Japanese", "Free business Japanese test", "Keigo, phone calls, emails and office vocabulary."),
   "work-in-japan": own("work", "Work in Japan", "Free work-in-Japan test", "Interviews, documents and everyday workplace Japanese."),
-  "jlpt-japanese-preparation-course": { name: "JLPT", title: "Free JLPT mock test", intro: "Exam-level questions across every section. Pick your level.", sets: () => difficultySets("hard", "Exam-level mixed questions") },
+  "jlpt-japanese-preparation-course": { name: "JLPT", title: "Free JLPT mock test", intro: "Exam-level questions across every section. Pick your level.", sets: () => fullSets("Full test: every section") },
   "study-in-japan": own("study", "Study in Japan", "Free study-in-Japan test", "Campus life, fees and talking to teachers and classmates."),
 };

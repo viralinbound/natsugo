@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Trophy } from "lucide-react";
-import { difficulties, quizLevels, quizTopics, type QuizLevel } from "@/lib/quizBank";
+import { levelQuizSets, quizLevels, quizTopics, type QuizLevel } from "@/lib/quizBank";
 import { useHydrated } from "@/lib/useBrowserStore";
 
 const levelInfo: Record<QuizLevel, { jp: string; desc: string }> = {
@@ -12,12 +12,6 @@ const levelInfo: Record<QuizLevel, { jp: string; desc: string }> = {
   N3: { jp: "中級", desc: "The bridge to real-world Japanese" },
   N2: { jp: "中上級", desc: "Workplace and news-level Japanese" },
   N1: { jp: "上級", desc: "Advanced grammar, formal and written Japanese" },
-};
-
-const tone: Record<string, string> = {
-  easy: "border-success/40 hover:border-success",
-  medium: "border-sun-400/60 hover:border-sun-500",
-  hard: "border-red-600/40 hover:border-red-600",
 };
 
 function best(level: string, difficulty: string) {
@@ -37,7 +31,7 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
     <div>
       <div role="tablist" aria-label="JLPT level" className="grid grid-cols-5 gap-1.5 sm:gap-2">
         {quizLevels.map((l) => {
-          const done = hydrated ? difficulties.filter((d) => (best(l, d.id) ?? -1) >= 7).length : 0;
+          const done = hydrated ? levelQuizSets.filter((d) => (best(l, d.id) ?? -1) >= 7).length : 0;
           return (
             <button
               key={l}
@@ -50,7 +44,7 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
             >
               <span className="block text-base sm:text-lg font-extrabold">{l}</span>
               <span className={`block font-jp text-[10px] sm:text-xs leading-tight ${level === l ? "text-sun-300" : "text-charcoal-500"}`}>
-                <span className="hidden sm:inline">{levelInfo[l].jp} · </span>{done}/3 ✓
+                <span className="hidden sm:inline">{levelInfo[l].jp} · </span>{done}/6 ✓
               </span>
             </button>
           );
@@ -61,32 +55,29 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
         <strong className="text-indigo-950">JLPT {level}:</strong> {levelInfo[level].desc}
       </p>
 
-      <div role="tabpanel" className="mt-5 grid sm:grid-cols-3 gap-4">
-        {difficulties.map((d) => {
-          const score = hydrated ? best(level, d.id) : null;
+      <div role="tabpanel" className="mt-5">
+        {(() => {
+          const score = hydrated ? best(level, "full") : null;
           return (
             <Link
-              key={d.id}
-              href={`/jlpt-quiz/${level.toLowerCase()}/${d.id}`}
-              className={`group flex flex-col rounded-lg border-2 bg-surface p-5 transition-colors ${tone[d.id]}`}
+              href={`/jlpt-quiz/${level.toLowerCase()}/full`}
+              className="group flex flex-col gap-3 rounded-xl border-2 border-indigo-700/30 bg-surface p-5 transition-colors hover:border-indigo-700 sm:flex-row sm:items-center sm:justify-between"
             >
-              <span className="font-jp text-2xl font-bold text-indigo-950">{d.jp}</span>
-              <span className="mt-0.5 text-lg font-bold text-indigo-950">{d.label}</span>
-              <span className="mt-1 text-sm text-charcoal-500">{d.desc}</span>
-              <span className="mt-4 flex items-center justify-between text-sm">
-                <span className="font-semibold text-charcoal-700">10 questions</span>
-                {score !== null ? (
-                  <span className={`inline-flex items-center gap-1 font-bold ${score >= 7 ? "text-success" : "text-charcoal-700"}`}>
-                    <Trophy size={14} /> Best {score}/10
-                  </span>
-                ) : (
-                  <span className="font-bold text-indigo-800 group-hover:underline">Start →</span>
-                )}
+              <span>
+                <span className="font-jp text-2xl font-bold text-indigo-950">総合</span>
+                <span className="ml-2 text-lg font-bold text-indigo-950">{level} full test</span>
+                <span className="mt-1 block text-sm text-charcoal-500">10 questions, two from each topic. A quick check of your whole level.</span>
               </span>
+              {score !== null ? (
+                <span className={`inline-flex items-center gap-1 font-bold ${score >= 7 ? "text-success" : "text-charcoal-700"}`}><Trophy size={14} /> Best {score}/10</span>
+              ) : (
+                <span className="font-bold text-indigo-800 group-hover:underline">Start →</span>
+              )}
             </Link>
           );
-        })}
+        })()}
       </div>
+
       <h2 id="topics" className="mt-10 scroll-mt-24 text-xl font-bold text-indigo-950">
         Practise by topic <span className="font-jp text-base text-charcoal-500">· 分野別</span>
       </h2>
@@ -117,7 +108,7 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
         })}
       </div>
 
-      <p className="mt-4 text-xs text-charcoal-500">Score 7/10 or more to tick a set off. Best scores are saved on this device.</p>
+      <p className="mt-4 text-xs text-charcoal-500">Every quiz has its own questions. Score 7/10 or more to tick a set off. Best scores are saved on this device.</p>
     </div>
   );
 }

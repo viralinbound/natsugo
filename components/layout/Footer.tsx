@@ -78,18 +78,24 @@ export function Footer() {
               <li className="flex items-center gap-2"><Phone size={15} className="text-[#7cc4ff]" /><a href={`tel:+${site.whatsappNumber}`} className="hover:text-white">{site.phoneDisplay}</a></li>
               <li className="flex items-center gap-2"><Mail size={15} className="text-[#7cc4ff]" /><a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a></li>
             </ul>
-            <div className="mt-5 flex gap-2.5">
-              {(["instagram", "facebook", "linkedin", "youtube"] as const).map((name) => (
-                <a
-                  key={name}
-                  href="#"
-                  aria-label={`${name} link`}
-                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#1e90ff]"
-                >
-                  <SocialIcon name={name} size={16} />
-                </a>
-              ))}
-            </div>
+            {Object.values(site.social).some(Boolean) ? (
+              <div className="mt-5 flex gap-2.5">
+                {(Object.entries(site.social) as [keyof typeof site.social, string][])
+                  .filter(([, url]) => url)
+                  .map(([name, url]) => (
+                    <a
+                      key={name}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Natsugo on ${name}`}
+                      className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#1e90ff]"
+                    >
+                      <SocialIcon name={name} size={16} />
+                    </a>
+                  ))}
+              </div>
+            ) : null}
           </div>
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             {columns.map((col) => (

@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
       { source: "/business-japanese-for-professional", destination: "/business-japanese", permanent: true },
       { source: "/student", destination: "/online-classroom", permanent: true },
       { source: "/student/:path*", destination: "/online-classroom", permanent: true },
+      { source: "/jlpt-quiz/:level/:set(easy|medium|hard)", destination: "/jlpt-quiz/:level/full", permanent: true },
     ];
   },
   images: {

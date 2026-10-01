@@ -111,7 +111,7 @@ export default async function ExamInfoPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><FileText size={26} className="text-sun-400" /> Sample & practice questions by level</h2>
           <p className="mt-2 max-w-2xl text-charcoal-700">
-            The JLPT organisers don&apos;t publish full past exam papers, but the official site has sample question formats. Practise with our free quiz sets (10 questions × 3 difficulties per level) and our study notes for each unit.
+            The JLPT organisers don&apos;t publish full past exam papers, but the official site has sample question formats. Practise with our free quiz sets (a full test and five topic quizzes per level) and our study notes for each unit.
           </p>
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {quizLevels.map((lvl) => (
@@ -119,7 +119,7 @@ export default async function ExamInfoPage() {
                 <p className="font-display text-2xl font-extrabold text-sun-400">{lvl}</p>
                 <p className="mt-1 text-sm text-charcoal-500 font-jp">{levelInfo[lvl].jp}</p>
                 <div className="mt-4 flex flex-col gap-2">
-                  <Link href={`/jlpt-quiz/${lvl.toLowerCase()}/easy`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Practice quiz →</Link>
+                  <Link href={`/jlpt-quiz/${lvl.toLowerCase()}/full`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Practice quiz →</Link>
                   <Link href={`/online-classroom/${lvl.toLowerCase()}`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Lessons & notes →</Link>
                   <a href={info.officialLink} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-charcoal-600 underline underline-offset-4">Official sample format ↗</a>
                 </div>

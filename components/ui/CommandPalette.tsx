@@ -5,11 +5,30 @@ import { useRouter } from "next/navigation";
 import { CornerDownLeft, Search } from "lucide-react";
 import { navGroups, simpleLinks } from "@/components/layout/navData";
 
+
 interface Item {
   label: string;
   href: string;
   group: string;
 }
+
+// Kept as plain strings so the search box doesn't pull the question banks into every page.
+const levels = ["N5", "N4", "N3", "N2", "N1"];
+const topics = ["vocabulary", "grammar", "kanji", "reading", "listening"];
+const tests: [string, string][] = [
+  ["/free-test/japanese/starter", "Japanese test (Japanese Courses)"],
+  ["/free-test/beginner/words", "Beginner test"],
+  ["/free-test/speaking/n5", "Speaking test"],
+  ["/free-test/grammar/basic", "Grammar course test"],
+  ["/free-test/vocabulary/basic", "Vocabulary course test"],
+  ["/free-test/reading/basic", "Reading & writing test"],
+  ["/free-test/business/keigo", "Business Japanese test"],
+  ["/free-test/work/workplace", "Work in Japan test"],
+  ["/free-test/study/campus", "Study in Japan test"],
+  ["/free-test/phrases/everyday", "Everyday phrases test"],
+  ["/free-test/kana/hiragana", "Hiragana test"],
+  ["/free-test/kana/katakana", "Katakana test"],
+];
 
 const extras: Item[] = [
   { label: "Take the free level test", href: "/level-test", group: "Quick" },
@@ -17,6 +36,12 @@ const extras: Item[] = [
   { label: "Contact admissions", href: "/contact", group: "Quick" },
   { label: "Success stories", href: "/success-stories", group: "Quick" },
   { label: "Blog", href: "/blog", group: "Quick" },
+  ...levels.flatMap((l) => [
+    { label: `JLPT ${l} full test`, href: `/jlpt-quiz/${l.toLowerCase()}/full`, group: "Tests" },
+    ...topics.map((t) => ({ label: `JLPT ${l} ${t} quiz`, href: `/jlpt-quiz/${l.toLowerCase()}/${t}`, group: "Tests" })),
+    { label: `JLPT ${l} kanji list`, href: `/resources/kanji/${l.toLowerCase()}`, group: "Resources" },
+  ]),
+  ...tests.map(([href, label]) => ({ label, href, group: "Tests" })),
 ];
 
 export function openPalette() {

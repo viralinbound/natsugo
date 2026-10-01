@@ -258,14 +258,14 @@ export function shuffleOptions(q: QuizQuestion): QuizQuestion {
   return { ...q, options: idx.map((i) => q.options[i]), answer: idx.indexOf(q.answer) };
 }
 
-// Ten questions on one topic at one level, easiest first.
-export function topicQuiz(level: QuizLevel, topic: QuizTopic, count = 10): QuizQuestion[] {
-  const skill = quizTopics.find((t) => t.id === topic)!.skill;
+// Every question for one level and skill, easiest first. Each question is used by exactly one quiz:
+// the first ten make the topic quiz, the next two go into the level's full test.
+function pool(level: QuizLevel, skill: Skill): QuizQuestion[] {
   const base = quizBank.filter((q) => q.level === level && q.skill === skill).sort((a, b) => order[a.difficulty] - order[b.difficulty]);
   const extra = topicExtras[level]
     .filter((r) => r[0] === skill)
     .map(([s, prompt, options, answer, explanation, audio], i): QuizQuestion => ({
-      id: `${level}-${topic}-x${i + 1}`.toLowerCase(),
+      id: `${level}-${skill}-x${i + 1}`.toLowerCase(),
       level,
       difficulty: "medium",
       skill: s,
@@ -275,7 +275,21 @@ export function topicQuiz(level: QuizLevel, topic: QuizTopic, count = 10): QuizQ
       answer,
       explanation,
     }));
-  return [...base, ...extra].slice(0, count).map(shuffleOptions);
+  return [...base, ...extra];
+}
+
+export const fullSet = { id: "full", label: "Full test", jp: "総合", desc: "Two questions from every topic" } as const;
+export const levelQuizSets = [fullSet, ...quizTopics];
+
+// Ten questions on one topic at one level.
+export function topicQuiz(level: QuizLevel, topic: QuizTopic): QuizQuestion[] {
+  const skill = quizTopics.find((t) => t.id === topic)!.skill;
+  return pool(level, skill).slice(0, 10).map(shuffleOptions);
+}
+
+// The level's full test: questions that are not in any topic quiz, two per topic.
+export function fullQuiz(level: QuizLevel): QuizQuestion[] {
+  return quizTopics.flatMap((t) => pool(level, t.skill).slice(10, 12)).map(shuffleOptions);
 }
 
 // Kana reading quiz built from the chart: five kana → romaji, five romaji → kana.

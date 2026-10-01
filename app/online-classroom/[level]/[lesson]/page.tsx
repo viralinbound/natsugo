@@ -90,7 +90,7 @@ export default async function LessonPage({ params }: P) {
               {next ? (
                 <Link href={`${base}/${next.id}`} className="inline-flex items-center gap-1.5 rounded-md bg-sun-400 px-4 min-h-[44px] text-sm font-bold text-white hover:bg-sun-500">Next lesson <ArrowRight size={15} /></Link>
               ) : (
-                <Link href={`/jlpt-quiz/${level.toLowerCase()}/medium`} className="inline-flex items-center gap-1.5 rounded-md bg-sun-400 px-4 min-h-[44px] text-sm font-bold text-white">Take the {level} quiz <ArrowRight size={15} /></Link>
+                <Link href={`/jlpt-quiz/${level.toLowerCase()}/full`} className="inline-flex items-center gap-1.5 rounded-md bg-sun-400 px-4 min-h-[44px] text-sm font-bold text-white">Take the {level} quiz <ArrowRight size={15} /></Link>
               )}
             </nav>
           </div>

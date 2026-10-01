@@ -25,6 +25,8 @@ export const site = {
   email: "khuwaish.g@viralinbound.com",
   city: "Bengaluru",
   hours: "Mon–Sat, 10:00 AM – 7:00 PM IST",
+  // Add each profile URL when the account exists; icons only show for filled entries.
+  social: { instagram: "", facebook: "", linkedin: "", youtube: "" } as Record<"instagram" | "facebook" | "linkedin" | "youtube", string>,
 };
 
 export const whatsappLink = (text = "Hi, I'd like to know about Japanese classes.") =>

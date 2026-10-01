@@ -60,7 +60,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
             title: `Free JLPT ${c.level} test`,
             intro: `Take the full ${c.level} test, or practise one topic at a time.`,
             sets: [
-              { id: "full", label: `Full ${c.level} test`, desc: "Mixed questions from every topic", href: `/jlpt-quiz/${c.level!.toLowerCase()}/medium` },
+              { id: "full", label: `Full ${c.level} test`, desc: "Mixed questions from every topic", href: `/jlpt-quiz/${c.level!.toLowerCase()}/full` },
               ...levelSets(c.level as QuizLevel),
             ],
           }

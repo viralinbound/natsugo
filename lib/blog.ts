@@ -126,7 +126,7 @@ const drafts: Record<string, Draft> = {
       { q: "How many hours do I need for N5?", a: "Most learners need around 150 hours of study, which is about one hour a day for five months." },
       { q: "Is N5 useful on its own?", a: "N5 shows you have a solid foundation. It is a great first goal and the base for N4 and N3, which carry more weight with employers." },
     ],
-    next: { test: { label: "Take the free N5 test", href: "/jlpt-quiz/n5/medium" }, course: { label: "JLPT N5 course", href: "/jlpt-n5" }, line: "Ten exam-style N5 questions with an explanation for every answer." },
+    next: { test: { label: "Take the free N5 test", href: "/jlpt-quiz/n5/full" }, course: { label: "JLPT N5 course", href: "/jlpt-n5" }, line: "Ten exam-style N5 questions with an explanation for every answer." },
   },
   "japanese-grammar-for-beginners": {
     image: images.books,

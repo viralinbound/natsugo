@@ -3,7 +3,7 @@ import { courseDetails } from "@/lib/courses";
 import { blogPosts } from "@/lib/data";
 import { resourceTopics } from "@/lib/resourceTopics";
 import { site } from "@/lib/site";
-import { difficulties, quizLevels } from "@/lib/quizBank";
+import { levelQuizSets, quizLevels } from "@/lib/quizBank";
 import { lessonSeeds } from "@/lib/curriculum";
 import { kanjiLevelOrder } from "@/lib/kanjiLevels";
 
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/online-classroom",
     ...quizLevels.map((l) => `/online-classroom/${l.toLowerCase()}`),
     ...lessonSeeds.filter((l) => l.isFree).map((l) => `/online-classroom/${l.level.toLowerCase()}/${l.id}`),
-    ...quizLevels.flatMap((l) => difficulties.map((d) => `/jlpt-quiz/${l.toLowerCase()}/${d.id}`)),
+    ...quizLevels.flatMap((l) => levelQuizSets.map((d) => `/jlpt-quiz/${l.toLowerCase()}/${d.id}`)),
   ];
   return paths.map((p) => ({ url: `${site.url}${p}`, lastModified: new Date() }));
 }

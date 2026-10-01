@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookOpen, CheckCircle2, Clock, FileText, PlayCircle, Radio, Video } from "lucide-react";
-import { quizLevels, difficulties, type QuizLevel } from "@/lib/quizBank";
+import { quizLevels, levelQuizSets, type QuizLevel } from "@/lib/quizBank";
 import { levelInfo } from "@/lib/curriculum";
 import { fmtIST, getLessons, getLiveLinks, getLiveSessions, groupByUnit } from "@/lib/portalRepo";
 import { getBatches, getTeachers } from "@/lib/repo";
@@ -241,7 +241,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
             </ul>
             <h3 className="mt-8 font-bold text-indigo-950">Practice quizzes</h3>
             <div className="mt-3 flex flex-wrap gap-2">
-              {difficulties.map((d) => (
+              {levelQuizSets.map((d) => (
                 <Link key={d.id} href={`/jlpt-quiz/${level.toLowerCase()}/${d.id}`} className="rounded-md border border-charcoal-100 bg-surface px-4 min-h-[44px] inline-flex items-center text-sm font-semibold text-indigo-800 hover:border-sun-400">
                   {level} {d.label} · 10 Qs
                 </Link>
