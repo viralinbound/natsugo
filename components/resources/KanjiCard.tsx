@@ -26,10 +26,10 @@ export function KanjiCard({ k, m, r }: { k: string; m: string; r: string }) {
         }}
         aria-pressed={selected}
         aria-label={`${k}: ${m}. ${practice ? "Practise writing" : "Listen"}`}
-        className={`wood-block group w-full p-4 text-center ${selected ? "is-active" : ""}`}
+        className={`wood-block group flex h-44 w-full flex-col items-center justify-center p-3 text-center sm:h-48 sm:p-4 ${selected ? "is-active" : ""}`}
       >
         <span className="block font-jp text-5xl">{k}</span>
-        <span className={`mt-2 block font-semibold ${selected ? "text-white" : "text-charcoal-900"}`}>{m}</span>
+        <span title={m} className={`mt-2 line-clamp-2 min-h-[2.5em] text-sm font-semibold leading-tight sm:text-base ${selected ? "text-white" : "text-charcoal-900"}`}>{m}</span>
         <span className={`mt-1 flex items-center justify-center gap-1.5 font-jp text-sm ${selected ? "text-white/80" : "text-charcoal-500"}`}>
           {r} <Icon size={15} className={`transition-transform group-hover:scale-125 ${selected ? "text-white" : "text-indigo-700"}`} aria-hidden />
         </span>

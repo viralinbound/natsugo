@@ -51,10 +51,10 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
             type="button"
             onClick={() => handleTap(k)}
             aria-pressed={active === k}
-            className={`wood-block flex w-full flex-col items-center justify-center gap-1 px-2 py-4 sm:py-5 ${active === k ? "is-active" : ""}`}
+            className={`wood-block flex aspect-square w-full flex-col items-center justify-center gap-1 overflow-hidden px-2 py-2 ${active === k ? "is-active" : ""}`}
           >
             <span className="font-jp text-3xl leading-none sm:text-4xl">{k}</span>
-            {known.has(k) ? <span className={`text-xs font-semibold leading-tight ${active === k ? "text-white" : "text-charcoal-900"}`}>{known.get(k)!.m}</span> : null}
+            {known.has(k) ? <span title={known.get(k)!.m} className={`line-clamp-2 text-center text-[11px] font-semibold leading-tight sm:text-xs ${active === k ? "text-white" : "text-charcoal-900"}`}>{known.get(k)!.m}</span> : null}
             {practice ? <PenLine size={14} aria-hidden className={active === k ? "text-white" : "text-sun-500"} /> : <Volume2 size={14} aria-hidden className={active === k ? "text-white" : "text-sun-500"} />}
           </button>
           </div>
