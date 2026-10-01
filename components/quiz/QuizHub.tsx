@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Trophy } from "lucide-react";
-import { difficulties, quizLevels, type QuizLevel } from "@/lib/quizBank";
+import { difficulties, quizLevels, quizTopics, type QuizLevel } from "@/lib/quizBank";
 import { useHydrated } from "@/lib/useBrowserStore";
 
 const levelInfo: Record<QuizLevel, { jp: string; desc: string }> = {
@@ -87,6 +87,36 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
           );
         })}
       </div>
+      <h2 id="topics" className="mt-10 scroll-mt-24 text-xl font-bold text-indigo-950">
+        Practise by topic <span className="font-jp text-base text-charcoal-500">· 分野別</span>
+      </h2>
+      <p className="mt-1 text-sm text-charcoal-700">10 {level}-level questions on one topic, easiest first.</p>
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-5">
+        {quizTopics.map((t) => {
+          const score = hydrated ? best(level, t.id) : null;
+          return (
+            <Link
+              key={t.id}
+              href={`/jlpt-quiz/${level.toLowerCase()}/${t.id}`}
+              className="group flex flex-col rounded-lg border-2 border-charcoal-100 bg-surface p-4 transition-colors hover:border-indigo-700/50"
+            >
+              <span className="font-jp text-2xl font-bold text-indigo-950">{t.jp}</span>
+              <span className="mt-0.5 font-bold text-indigo-950">{t.label}</span>
+              <span className="mt-1 text-xs text-charcoal-500">{t.desc}</span>
+              <span className="mt-3 text-sm font-bold">
+                {score !== null ? (
+                  <span className={`inline-flex items-center gap-1 ${score >= 7 ? "text-success" : "text-charcoal-700"}`}>
+                    <Trophy size={14} /> {score}/10
+                  </span>
+                ) : (
+                  <span className="text-indigo-800 group-hover:underline">Start →</span>
+                )}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
       <p className="mt-4 text-xs text-charcoal-500">Score 7/10 or more to tick a set off. Best scores are saved on this device.</p>
     </div>
   );

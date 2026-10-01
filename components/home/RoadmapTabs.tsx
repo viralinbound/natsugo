@@ -127,7 +127,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
                 {cur.level} course <ArrowRight size={16} />
               </Link>
               <Link
-                href={`/jlpt-quiz/${cur.level.toLowerCase()}/easy`}
+                href={`/jlpt-quiz?level=${cur.level.toLowerCase()}#topics`}
                 className="inline-flex min-h-[46px] flex-1 items-center justify-center rounded-md border-2 border-charcoal-300 px-4 font-bold text-indigo-950 hover:border-sun-400 hover:text-sun-500"
               >
                 Free quiz

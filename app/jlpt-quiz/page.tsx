@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { images } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
 import { QuizHub } from "@/components/quiz/QuizHub";
+import { quizLevels, type QuizLevel } from "@/lib/quizBank";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -11,19 +12,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/jlpt-quiz" },
 };
 
-export default function JlptQuizPage() {
+export default async function JlptQuizPage({ searchParams }: { searchParams: Promise<{ level?: string }> }) {
+  const asked = (await searchParams).level?.toUpperCase() as QuizLevel | undefined;
+  const initial = asked && quizLevels.includes(asked) ? asked : "N5";
   return (
     <>
       <PageHero
         title="JLPT quiz: N5 to N1"
         eyebrow="練習クイズ · Free practice"
-        intro="Pick your level and a difficulty. Every set has 10 questions across vocabulary, grammar, kanji, reading and listening — with an explanation for each answer."
+        intro="Pick your level, then a difficulty or a single topic: vocabulary, grammar, kanji, reading or listening. Every set has 10 questions at that level — with an explanation for each answer."
         image={images.writing}
         crumbs={[{ label: "Resources", href: "/resources" }, { label: "JLPT Quiz", href: "/jlpt-quiz" }]}
       />
       <section className="py-10 sm:py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <QuizHub />
+          <QuizHub key={initial} initial={initial} />
           <div className="mt-12 rounded-lg bg-sun-100 p-6 sm:flex sm:items-center sm:justify-between gap-6">
             <div>
               <h2 className="text-lg font-bold text-indigo-950">Not sure which level to pick?</h2>

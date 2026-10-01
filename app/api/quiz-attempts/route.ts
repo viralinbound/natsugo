@@ -1,7 +1,7 @@
 import { getPublicClient } from "@/lib/supabase/admin";
 
 const levels = new Set(["N5", "N4", "N3", "N2", "N1"]);
-const difficulties = new Set(["easy", "medium", "hard"]);
+const difficulties = new Set(["easy", "medium", "hard", "vocabulary", "grammar", "kanji", "reading", "listening"]);
 
 export async function POST(request: Request) {
   const b = await request.json().catch(() => null);

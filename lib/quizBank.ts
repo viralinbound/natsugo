@@ -1,4 +1,5 @@
 import type { Skill } from "@/lib/learning";
+import { topicExtras } from "@/lib/quizTopicExtras";
 
 export type QuizLevel = "N5" | "N4" | "N3" | "N2" | "N1";
 export type Difficulty = "easy" | "medium" | "hard";
@@ -232,3 +233,42 @@ export const quizBank: QuizQuestion[] = quizLevels.flatMap((level) =>
     }))
   )
 );
+
+export type QuizTopic = "vocabulary" | "grammar" | "kanji" | "reading" | "listening";
+export const quizTopics: { id: QuizTopic; skill: Skill; label: string; jp: string; desc: string }[] = [
+  { id: "vocabulary", skill: "Vocabulary", label: "Vocabulary", jp: "語彙", desc: "Word meanings for this level" },
+  { id: "grammar", skill: "Grammar", label: "Grammar", jp: "文法", desc: "Particles, forms and patterns" },
+  { id: "kanji", skill: "Kanji", label: "Kanji", jp: "漢字", desc: "Readings and meanings" },
+  { id: "reading", skill: "Reading", label: "Reading", jp: "読解", desc: "Short texts and notices" },
+  { id: "listening", skill: "Listening", label: "Listening", jp: "聴解", desc: "Hear it, then choose" },
+];
+
+const order: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 };
+
+// Small deterministic hash so option order is shuffled the same way on every render.
+const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+
+function shuffleOptions(q: QuizQuestion): QuizQuestion {
+  const idx = q.options.map((_, i) => i).sort((a, b) => hash(`${q.id}${a}`) - hash(`${q.id}${b}`));
+  return { ...q, options: idx.map((i) => q.options[i]), answer: idx.indexOf(q.answer) };
+}
+
+// Ten questions on one topic at one level, easiest first.
+export function topicQuiz(level: QuizLevel, topic: QuizTopic, count = 10): QuizQuestion[] {
+  const skill = quizTopics.find((t) => t.id === topic)!.skill;
+  const base = quizBank.filter((q) => q.level === level && q.skill === skill).sort((a, b) => order[a.difficulty] - order[b.difficulty]);
+  const extra = topicExtras[level]
+    .filter((r) => r[0] === skill)
+    .map(([s, prompt, options, answer, explanation, audio], i): QuizQuestion => ({
+      id: `${level}-${topic}-x${i + 1}`.toLowerCase(),
+      level,
+      difficulty: "medium",
+      skill: s,
+      prompt,
+      audio,
+      options,
+      answer,
+      explanation,
+    }));
+  return [...base, ...extra].slice(0, count).map(shuffleOptions);
+}
