@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fira_Sans, Fraunces, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
 import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
@@ -14,30 +14,18 @@ import { site } from "@/lib/site";
 import { getAnnouncement } from "@/lib/repo";
 import { ActivityTicker } from "@/components/live/ActivityTicker";
 
-const fira = Fira_Sans({
-  variable: "--font-fira",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-// Headings use Fraunces, an editorial serif that sits well next to the Japanese mincho type.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const notoJP = Noto_Sans_JP({
-  variable: "--font-noto-jp",
+// Type from Japanese foundries so Latin and Japanese text share one voice:
+// Zen Old Mincho for headings (old print serif), Zen Kaku Gothic New for body and UI.
+const zenGothic = Zen_Kaku_Gothic_New({
+  variable: "--font-zen-gothic",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
 
-const mincho = Shippori_Mincho({
-  variable: "--font-mincho",
+const zenMincho = Zen_Old_Mincho({
+  variable: "--font-zen-mincho",
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "600", "700", "900"],
 });
 
 export const viewport: Viewport = {
@@ -97,7 +85,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fira.variable} ${fraunces.variable} ${notoJP.variable} ${mincho.variable} h-full antialiased`}
+      className={`${zenGothic.variable} ${zenMincho.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

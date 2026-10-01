@@ -35,9 +35,9 @@
   --color-hanko: #ff4d63;
   --color-hanko-100: #3a1420;
 
-  --font-sans: var(--font-fira), "Segoe UI", sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
+  --font-sans: var(--font-zen-gothic), "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-display: var(--font-zen-mincho), "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --font-jp: var(--font-zen-gothic), "Hiragino Sans", "Yu Gothic", sans-serif;
 }
 
 :root {
@@ -80,9 +80,9 @@
   --color-hanko: #e0344b;
   --color-hanko-100: #ffe6ea;
 
-  --font-sans: var(--font-fira), "Segoe UI", sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
+  --font-sans: var(--font-zen-gothic), "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-display: var(--font-zen-mincho), "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --font-jp: var(--font-zen-gothic), "Hiragino Sans", "Yu Gothic", sans-serif;
 }
 
 @theme inline {
@@ -148,11 +148,11 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
-  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-weight: 700;
 }
-h1 { letter-spacing: -0.03em; line-height: 1.05; }
+h1 { letter-spacing: -0.015em; line-height: 1.12; }
+body { letter-spacing: 0.01em; line-height: 1.7; }
 p { text-wrap: pretty; }
 
 ::selection {
@@ -386,8 +386,6 @@ html.js-reveal .reveal.is-visible .reveal-item {
 }
 .text-gradient-anim {
   color: var(--color-indigo-700);
-  font-style: italic;
-  font-weight: 500;
 }
 
 /* Shine sweep across primary buttons on hover */
@@ -619,11 +617,11 @@ button.wood-block.is-active {
 
 /* ── Japanese cultural layer: mincho type, hanko seals ── */
 .font-mincho {
-  font-family: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", var(--font-jp), serif;
+  font-family: var(--font-zen-mincho), "Hiragino Mincho ProN", "Yu Mincho", var(--font-jp), serif;
 }
 .jp-watermark,
 .jp-outline {
-  font-family: var(--font-mincho), var(--font-jp), serif;
+  font-family: var(--font-zen-mincho), var(--font-jp), serif;
 }
 .hanko-seal {
   border-radius: 5px;
@@ -687,7 +685,7 @@ button.wood-block.is-active {
 /* Vertical Japanese text (tategaki) */
 .tategaki {
   writing-mode: vertical-rl;
-  font-family: var(--font-mincho), var(--font-jp), serif;
+  font-family: var(--font-zen-mincho), var(--font-jp), serif;
   letter-spacing: 0.35em;
 }
 
@@ -720,7 +718,7 @@ html.js-reveal .reveal.is-visible .reveal-item.from-zoom { transform: none; }
 }
 .kanji-layer span {
   position: absolute;
-  font-family: var(--font-mincho), var(--font-jp), serif;
+  font-family: var(--font-zen-mincho), var(--font-jp), serif;
   font-weight: 700;
   line-height: 1;
   color: var(--color-indigo-950);
