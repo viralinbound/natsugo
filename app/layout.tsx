@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
+import { Kaisei_Tokumin, Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
@@ -15,17 +15,17 @@ import { getAnnouncement } from "@/lib/repo";
 import { ActivityTicker } from "@/components/live/ActivityTicker";
 
 // Type from Japanese foundries so Latin and Japanese text share one voice:
-// Zen Old Mincho for headings (old print serif), Zen Kaku Gothic New for body and UI.
-const zenGothic = Zen_Kaku_Gothic_New({
+// Kaisei Tokumin for headings (a brush-influenced mincho), Zen Maru Gothic for body and UI (soft, rounded).
+const zenGothic = Zen_Maru_Gothic({
   variable: "--font-zen-gothic",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
 
-const zenMincho = Zen_Old_Mincho({
+const zenMincho = Kaisei_Tokumin({
   variable: "--font-zen-mincho",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "900"],
+  weight: ["400", "500", "700", "800"],
 });
 
 export const viewport: Viewport = {

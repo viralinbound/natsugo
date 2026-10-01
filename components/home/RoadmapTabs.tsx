@@ -62,8 +62,15 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
       <div className="relative mx-auto w-full max-w-3xl px-2">
         <div aria-hidden className="absolute inset-x-[10%] top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-charcoal-100">
           <div className="gradient-strip h-full rounded-full shadow-[0_0_12px_rgba(34,211,238,0.6)] transition-[width] duration-150" style={{ width: `${pct}%` }} />
-          <span className="road-comet absolute top-1/2 h-8 w-16 -translate-y-1/2 transition-[left] duration-150" style={{ left: `calc(${pct}% - 4rem)` }} />
-          <span className="road-dot absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-hanko transition-[left] duration-150" style={{ left: `${pct}%` }} />
+          {/* A sakura crest (kamon) rides the line and turns as you scroll. */}
+          <span aria-hidden className="road-sakura absolute top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-surface ring-2 ring-indigo-700 transition-[left] duration-150" style={{ left: `${pct}%` }}>
+            <svg viewBox="-12 -12 24 24" className="h-6 w-6" style={{ transform: `rotate(${pct * 3.6}deg)` }}>
+              {[0, 72, 144, 216, 288].map((a) => (
+                <path key={a} transform={`rotate(${a})`} d="M0 -1.5 C -4.6 -4 -5 -9 -2.2 -10.6 L 0 -9 L 2.2 -10.6 C 5 -9 4.6 -4 0 -1.5 Z" className="fill-indigo-700" />
+              ))}
+              <circle r="1.9" className="fill-surface" />
+            </svg>
+          </span>
         </div>
         <div role="tablist" aria-label="JLPT levels" className="relative z-10 grid grid-cols-5">
           {levels.map((l, i) => (
