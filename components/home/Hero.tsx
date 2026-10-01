@@ -20,7 +20,7 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <HeroBackdrop />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 md:grid-cols-[1.1fr_0.9fr] md:gap-8 lg:gap-12 lg:px-8 lg:pt-20 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 md:grid-cols-[1.25fr_0.75fr] md:gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12 lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
 
             <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-5xl lg:text-6xl animate-fade-up">
@@ -61,7 +61,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="animate-fade-up [animation-delay:200ms]">
+          <div className="animate-fade-up [animation-delay:200ms] md:self-end md:translate-y-6">
             <HeroStudio />
           </div>
         </div>

@@ -14,20 +14,20 @@ const results = [
 export function Bento() {
   return (
     <section className="py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4">
-        <div className="bento-tile aurora relative overflow-hidden rounded-3xl p-7 sm:p-10 text-white md:col-span-2 lg:row-span-2 flex flex-col justify-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-12">
+        <div className="bento-tile aurora relative overflow-hidden rounded-3xl p-7 sm:p-9 text-white md:col-span-2 lg:col-span-5 flex flex-col justify-center">
           <span aria-hidden className="jp-outline pointer-events-none select-none absolute right-5 top-5 text-6xl sm:text-7xl">道</span>
           <h2 className="relative text-3xl sm:text-4xl font-semibold tracking-tight text-balance">
             Japanese classes built around <span className="text-gradient-anim">where you want to go</span>
           </h2>
-          <p className="relative mt-6 text-lg text-white/80 leading-relaxed">
+          <p className="relative mt-4 text-base text-white/80 leading-relaxed sm:text-lg">
             Whether you&apos;re preparing for the JLPT, joining a Japanese client project, planning to study in Japan or just love the language, we start by finding your level, then give you a clear path, live teachers and regular practice to get there.
           </p>
         </div>
 
-        <WordOfDay embedded className="md:col-span-2" />
+        <WordOfDay embedded className="md:col-span-2 lg:col-span-7" />
 
-        <div className="bento-tile md:col-span-1 lg:col-span-2 rounded-3xl bg-sun-100 p-7 sm:p-10">
+        <div className="bento-tile flex flex-col justify-center md:col-span-1 lg:col-span-7 rounded-3xl bg-sun-100 p-7 sm:p-9">
           <Hanko text="無料" size={52} className="absolute right-6 top-6" />
           <p className="font-mincho text-lg font-bold text-sun-500">レベルチェック</p>
           <h2 className="mt-2 text-2xl sm:text-3xl font-semibold text-indigo-950 tracking-tight text-balance">
@@ -42,7 +42,7 @@ export function Bento() {
           </div>
         </div>
 
-        <div className="bento-tile md:col-span-1 lg:col-span-2 rounded-3xl border border-charcoal-100 bg-surface p-6 sm:p-8">
+        <div className="bento-tile md:col-span-1 lg:col-span-5 rounded-3xl border border-charcoal-100 bg-surface p-6 sm:p-7">
           <div className="flex items-center justify-between">
             <p className="font-bold text-indigo-950">Sample result</p>
             <span className="text-xs text-charcoal-500">Illustration</span>

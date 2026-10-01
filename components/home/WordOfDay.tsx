@@ -10,7 +10,7 @@ export async function WordOfDay({ embedded = false, className = "" }: { embedded
   const card = (
     <div className={`relative overflow-hidden ${embedded ? "bento-tile rounded-3xl" : "rounded-xl"} border border-charcoal-100 bg-surface washi ${className}`}>
       <span aria-hidden className="pointer-events-none absolute -right-6 -top-10 font-jp text-[11rem] leading-none text-sun-100 select-none">言</span>
-      <div className={`relative grid ${embedded ? "" : "md:grid-cols-[auto_1fr]"} gap-6 md:gap-10 p-6 sm:p-10 items-center h-full`}>
+      <div className={`relative grid ${embedded ? "sm:grid-cols-[auto_1fr] p-6 sm:p-8" : "md:grid-cols-[auto_1fr] p-6 sm:p-10"} gap-6 md:gap-10 items-center h-full`}>
         <div className="text-center md:text-left">
           <p id="wotd" className="text-xs font-bold uppercase tracking-wider text-sun-500">
             Word of the day · <span className="font-jp">今日の言葉</span>

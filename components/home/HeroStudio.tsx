@@ -38,8 +38,8 @@ export function HeroStudio() {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-md md:max-w-none lg:max-w-[30rem]">
-      <div className="rounded-3xl border border-white/60 bg-surface p-5 shadow-[0_24px_60px_-28px_rgb(11_27_58/0.35)] sm:p-6">
+    <div className="relative mx-auto w-full max-w-sm md:ml-auto md:max-w-none lg:max-w-[22rem]">
+      <div className="rounded-3xl border border-white/60 bg-surface p-4 shadow-[0_24px_60px_-28px_rgb(11_27_58/0.35)] sm:p-5">
         <div role="tablist" aria-label="Try Japanese" className="grid grid-cols-2 gap-1 rounded-xl bg-bg-alt p-1">
           {([
             ["name", "名前", "Your name"],
@@ -50,7 +50,7 @@ export function HeroStudio() {
               role="tab"
               aria-selected={tab === id}
               onClick={() => setTab(id)}
-              className={`flex min-h-[44px] items-center justify-center gap-2 rounded-lg text-sm font-bold transition-colors ${tab === id ? "bg-surface text-indigo-950 shadow" : "text-charcoal-500 hover:text-indigo-950"}`}
+              className={`flex min-h-[38px] items-center justify-center gap-1.5 rounded-lg text-[13px] font-bold transition-colors ${tab === id ? "bg-surface text-indigo-950 shadow" : "text-charcoal-500 hover:text-indigo-950"}`}
             >
               <span className="font-jp">{jp}</span> {label}
             </button>
@@ -58,7 +58,7 @@ export function HeroStudio() {
         </div>
 
         {tab === "name" ? (
-          <div role="tabpanel" className="pop-in mt-5">
+          <div role="tabpanel" className="pop-in mt-4">
             <label htmlFor="hero-name" className="text-sm font-bold text-indigo-950">See your name in Japanese</label>
             <input
               id="hero-name"
@@ -66,22 +66,22 @@ export function HeroStudio() {
               onChange={(e) => setName(e.target.value.slice(0, 24))}
               placeholder="Type your name, e.g. Priya"
               autoComplete="off"
-              className="mt-2 w-full rounded-xl border-2 border-charcoal-100 bg-surface px-4 py-3 text-base text-indigo-950 outline-none transition-colors focus:border-indigo-700"
+              className="mt-2 w-full rounded-xl border-2 border-charcoal-100 bg-surface px-3.5 py-2.5 text-base text-indigo-950 outline-none transition-colors focus:border-indigo-700"
             />
-            <div className="mt-4 flex min-h-[120px] flex-col items-center justify-center rounded-2xl bg-bg-alt px-4 py-5 text-center">
+            <div className="mt-3 flex min-h-[92px] flex-col items-center justify-center rounded-2xl bg-bg-alt px-3 py-3 text-center">
               {kana ? (
                 <>
-                  <button type="button" key={kana} onClick={() => speakJapanese(kana)} aria-label={`Hear ${kana}`} className="pop-in break-all font-jp text-5xl font-bold leading-tight text-indigo-950 transition-transform hover:scale-105 sm:text-6xl">{kana}</button>
+                  <button type="button" key={kana} onClick={() => speakJapanese(kana)} aria-label={`Hear ${kana}`} className="pop-in break-all font-jp text-4xl font-bold leading-tight text-indigo-950 transition-transform hover:scale-105">{kana}</button>
                   <p className="mt-2 text-xs text-charcoal-500">Written in katakana, the script Japan uses for foreign names</p>
                 </>
               ) : (
                 <>
-                  <button type="button" onClick={() => speakJapanese("なまえ")} aria-label="Hear namae" className="font-jp text-5xl font-bold text-charcoal-300">ナマエ</button>
+                  <button type="button" onClick={() => speakJapanese("なまえ")} aria-label="Hear namae" className="font-jp text-4xl font-bold text-charcoal-300">ナマエ</button>
                   <p className="mt-2 text-xs text-charcoal-500">“namae” means name</p>
                 </>
               )}
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-2">
+            <div className="mt-3 grid grid-cols-3 gap-2">
               <button type="button" disabled={!kana} onClick={() => speakJapanese(kana)} className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg border border-charcoal-100 text-sm font-bold text-indigo-950 transition-colors hover:border-indigo-700 disabled:opacity-40">
                 <Volume2 size={16} /> Hear
               </button>
@@ -100,9 +100,9 @@ export function HeroStudio() {
             </div>
           </div>
         ) : (
-          <div role="tabpanel" className="mt-5">
+          <div role="tabpanel" className="mt-4">
             <div className="flex items-center gap-4 rounded-2xl bg-bg-alt p-4">
-              <button type="button" onClick={() => speakJapanese(k.r)} aria-label={`Hear ${k.k}`} className="relative h-32 w-32 shrink-0 rounded-xl border-2 border-dashed border-hanko/30 bg-surface text-indigo-950 sm:h-36 sm:w-36">
+              <button type="button" onClick={() => speakJapanese(k.r)} aria-label={`Hear ${k.k}`} className="relative h-28 w-28 shrink-0 rounded-xl border-2 border-dashed border-hanko/30 bg-surface text-indigo-950 ">
                 <span aria-hidden className="absolute inset-x-0 top-1/2 border-t border-dashed border-hanko/20" />
                 <span aria-hidden className="absolute inset-y-0 left-1/2 border-l border-dashed border-hanko/20" />
                 <StrokeOrder ch={k.k} speed={speed} replay={replay} className="relative h-full w-full p-2" />
@@ -147,8 +147,8 @@ export function HeroStudio() {
           </div>
         )}
 
-        <Link href="/resources/kanji" className="mt-5 flex min-h-[44px] items-center justify-between rounded-xl bg-indigo-900 px-4 text-sm font-bold text-white transition-colors hover:bg-indigo-700">
-          Start learning kana and kanji free <ArrowRight size={16} />
+        <Link href="/resources/kanji" className="mt-4 flex min-h-[42px] items-center justify-between rounded-xl bg-indigo-900 px-4 text-sm font-bold text-white transition-colors hover:bg-indigo-700">
+          Learn kana and kanji free <ArrowRight size={16} />
         </Link>
       </div>
     </div>
