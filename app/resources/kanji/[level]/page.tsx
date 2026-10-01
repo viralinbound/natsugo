@@ -108,8 +108,7 @@ export default async function KanjiLevelPage({ params }: { params: Promise<{ lev
       <PageQuiz
         title={`JLPT ${level} kanji quiz`}
         intro={`10 ${level} kanji questions on readings and meanings. Switch level any time.`}
-        sets={topicSets("kanji")}
-        initial={level}
+        sets={topicSets("kanji").sort((a, b) => (a.id === level ? -1 : b.id === level ? 1 : 0))}
       />
     </>
   );

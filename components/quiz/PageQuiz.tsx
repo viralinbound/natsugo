@@ -1,50 +1,36 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
-import { Quiz } from "@/components/quiz/Quiz";
-import type { QuizQuestion } from "@/lib/quizBank";
+import { ArrowRight } from "lucide-react";
 
 export interface PageQuizSet {
   id: string;
   label: string;
-  questions: QuizQuestion[];
-  // When set, scores are saved under the same key as the matching /jlpt-quiz page.
-  save?: { level: string; difficulty: string };
+  href: string;
+  desc?: string;
 }
 
-// A quiz section placed at the end of a learning page, with a tab per level or topic.
-export function PageQuiz({ title, intro, sets, initial }: { title: string; intro: string; sets: PageQuizSet[]; initial?: string }) {
-  const [id, setId] = useState(initial && sets.some((s) => s.id === initial) ? initial : sets[0].id);
-  const cur = sets.find((s) => s.id === id)!;
-
+// End-of-page test launcher: one card per test, each opening the test on its own page.
+export function PageQuiz({ title, intro, sets }: { title: string; intro: string; sets: PageQuizSet[] }) {
   return (
     <section id="quiz" className="scroll-mt-24 bg-bg-alt py-12 sm:py-16">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <p className="font-jp text-sm font-bold text-hanko">練習クイズ · Quick quiz</p>
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+        <p className="font-jp text-sm font-bold text-hanko">練習クイズ · Free test</p>
         <h2 className="mt-1 text-2xl font-bold text-indigo-950 sm:text-3xl">{title}</h2>
         <p className="mt-2 text-charcoal-700">{intro}</p>
-        {sets.length > 1 ? (
-          <div role="tablist" aria-label="Quiz set" className="mt-5 flex flex-wrap gap-1.5">
-            {sets.map((s) => (
-              <button
-                key={s.id}
-                role="tab"
-                aria-selected={s.id === id}
-                onClick={() => setId(s.id)}
-                className={`min-h-[40px] rounded-md px-4 text-sm font-bold transition-colors ${s.id === id ? "bg-indigo-900 text-white" : "border border-charcoal-100 bg-surface text-charcoal-700 hover:border-indigo-700/50"}`}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        ) : null}
-        <div className="mt-5">
-          <Quiz key={cur.id} questions={cur.questions} mode="practice" set={cur.save} />
+        <div className={`mt-6 grid gap-3 ${sets.length > 3 ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" : "sm:grid-cols-3"}`}>
+          {sets.map((s) => (
+            <Link
+              key={s.id}
+              href={s.href}
+              className="group flex flex-col rounded-xl border-2 border-charcoal-100 bg-surface p-4 transition-colors hover:border-indigo-700"
+            >
+              <span className="text-lg font-extrabold text-indigo-950">{s.label}</span>
+              {s.desc ? <span className="mt-1 text-xs text-charcoal-500">{s.desc}</span> : null}
+              <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-indigo-800">
+                Start test <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
         </div>
-        <p className="mt-4 text-sm text-charcoal-500">
-          Want more? <Link href="/jlpt-quiz" className="font-semibold text-indigo-800 underline underline-offset-4">See every JLPT quiz</Link>.
-        </p>
       </div>
     </section>
   );

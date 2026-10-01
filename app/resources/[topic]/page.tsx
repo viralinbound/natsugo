@@ -10,8 +10,7 @@ import { KanaChart } from "@/components/resources/KanaChart";
 import { SpeakButton } from "@/components/ui/SpeakButton";
 import { QuizHub } from "@/components/quiz/QuizHub";
 import { PageQuiz, type PageQuizSet } from "@/components/quiz/PageQuiz";
-import { topicSets } from "@/lib/pageQuiz";
-import { kanaQuiz, quizLevels, topicQuiz } from "@/lib/quizBank";
+import { freeTestSets, topicSets } from "@/lib/pageQuiz";
 import { Flashcards, type Card } from "@/components/resources/Flashcards";
 import { words } from "@/lib/words";
 import { Button } from "@/components/ui/Button";
@@ -130,15 +129,13 @@ function Content({ slug }: { slug: string }) {
 
 function quizFor(slug: string, name: string): { title: string; intro: string; sets: PageQuizSet[] } | null {
   if (slug === "hiragana" || slug === "katakana") {
-    const chart = slug === "hiragana" ? hiragana : katakana;
-    return { title: `Test your ${name}`, intro: `10 quick questions: read the ${name.toLowerCase()}, then find it from its sound.`, sets: [{ id: slug, label: name, questions: kanaQuiz(slug, chart) }] };
+    return { title: `Free ${name.toLowerCase()} test`, intro: `Read the ${name.toLowerCase()}, then find it from its sound.`, sets: freeTestSets("kana", [slug]) };
   }
   if (slug === "kanji" || slug === "grammar" || slug === "vocabulary") {
-    return { title: `Test your ${name.toLowerCase()}`, intro: `Pick your level and answer 10 ${name.toLowerCase()} questions, each with an explanation.`, sets: topicSets(slug) };
+    return { title: `Free ${name.toLowerCase()} test`, intro: `Pick your level: 10 ${name.toLowerCase()} questions, each with an explanation.`, sets: topicSets(slug) };
   }
   if (slug === "phrases") {
-    const sets = quizLevels.slice(0, 2).map((l) => ({ id: l, label: `${l} listening`, questions: topicQuiz(l, "listening"), save: { level: l, difficulty: "listening" } }));
-    return { title: "Hear it, then choose", intro: "Listen to everyday Japanese and choose what it means.", sets };
+    return { title: "Free phrases test", intro: "Choose what you would say in everyday situations.", sets: freeTestSets("speaking", ["n5", "n4"]) };
   }
   return null;
 }

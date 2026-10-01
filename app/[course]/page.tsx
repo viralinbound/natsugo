@@ -13,7 +13,7 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { PageQuiz } from "@/components/quiz/PageQuiz";
-import { courseQuiz, levelSets, mixedSets, topicSets } from "@/lib/pageQuiz";
+import { courseQuiz, levelSets } from "@/lib/pageQuiz";
 import type { QuizLevel } from "@/lib/quizBank";
 import { ViewerCount } from "@/components/live/ViewerCount";
 
@@ -49,22 +49,28 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
   const batches = await getBatches();
   const courseBatches = batches.filter((b) => b.courseSlug === c.slug || (c.level && b.level === c.level));
   const related = c.related.map(getCourse).filter(Boolean);
-  const pick = courseQuiz[c.slug];
-  const quizName = pick?.label ?? c.level ?? "Japanese";
+  // JLPT level pages get that level's topics; other courses use their own test from courseQuiz.
+  const pick = c.level && !(c.slug in courseQuiz) ? undefined : courseQuiz[c.slug];
   const quiz =
     pick === null
       ? null
-      : pick?.topic
-        ? { title: `Test your ${pick.label.toLowerCase()}`, intro: `Pick your level and answer 10 ${pick.topic === "listening" ? "listen-and-respond" : pick.label.toLowerCase()} questions, each with an explanation.`, sets: topicSets(pick.topic) }
-        : c.level
-          ? { title: `Free ${c.level === "N5" && pick ? "beginner" : `JLPT ${c.level}`} test`, intro: `Pick a topic and answer 10 ${c.level}-level questions: vocabulary, grammar, kanji, reading or listening.`, sets: levelSets(c.level as QuizLevel) }
-          : { title: `Free ${quizName} test`, intro: "Pick a level and answer 10 questions across vocabulary, grammar, kanji, reading and listening.", sets: mixedSets() };
+      : pick
+        ? { name: pick.name, title: pick.title, intro: pick.intro, sets: pick.sets() }
+        : {
+            name: c.level!,
+            title: `Free JLPT ${c.level} test`,
+            intro: `Take the full ${c.level} test, or practise one topic at a time.`,
+            sets: [
+              { id: "full", label: `Full ${c.level} test`, desc: "Mixed questions from every topic", href: `/jlpt-quiz/${c.level!.toLowerCase()}/medium` },
+              ...levelSets(c.level as QuizLevel),
+            ],
+          };
 
   return (
     <>
       <PageHero title={c.title} eyebrow={c.eyebrow} intro={c.intro} image={c.image} crumbs={crumbs}>
         {quiz ? (
-          <Button href="#quiz" size="lg">{`Take Free ${quizName} Test`}</Button>
+          <Button href={quiz.sets[0].href} size="lg">{`Take Free ${quiz.name} Test`}</Button>
         ) : (
           <Button href="/free-japanese-demo-class" size="lg">Book a Free Demo</Button>
         )}

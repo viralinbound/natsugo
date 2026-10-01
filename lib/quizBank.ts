@@ -253,7 +253,7 @@ const hash = (s: string) => {
   return (h ^ (h >>> 13)) >>> 0;
 };
 
-function shuffleOptions(q: QuizQuestion): QuizQuestion {
+export function shuffleOptions(q: QuizQuestion): QuizQuestion {
   const idx = q.options.map((_, i) => i).sort((a, b) => hash(`${q.id}${a}`) - hash(`${q.id}${b}`));
   return { ...q, options: idx.map((i) => q.options[i]), answer: idx.indexOf(q.answer) };
 }

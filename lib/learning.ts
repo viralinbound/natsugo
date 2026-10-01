@@ -91,7 +91,7 @@ export const phrases = [
   { jp: "トイレは どこですか", romaji: "toire wa doko desu ka", en: "Where is the toilet?" },
 ];
 
-export type Skill = "Vocabulary" | "Grammar" | "Reading" | "Listening" | "Kanji";
+export type Skill = "Vocabulary" | "Grammar" | "Reading" | "Listening" | "Kanji" | "Speaking";
 
 export interface Question {
   id: string;
