@@ -1,61 +1,36 @@
+import Link from "next/link";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/site";
-import { Button } from "@/components/ui/Button";
-import { Hanko } from "@/components/japan/Hanko";
 
-const NOREN = ["日", "本", "語", "を", "学", "ぼ", "う"];
-
-// Closing call to action: a wide wooden card with the message and actions on the left
-// and a hanging noren curtain reading 日本語を学ぼう on the right.
+// Closing call to action: a navy brand banner that sits directly above the footer.
 export function FinalCTA() {
   return (
-    <section className="final-cta relative bg-bg-alt pt-14 sm:pt-20">
+    <section className="final-cta relative bg-bg py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="ema-card relative grid overflow-hidden rounded-3xl lg:grid-cols-[1.35fr_1fr]">
-          <div className="p-7 sm:p-10 lg:p-14">
-            <p className="font-mincho text-lg font-bold text-hanko">さあ、始めましょう。</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance text-indigo-950 sm:text-4xl lg:text-5xl">
-              Ready to Start Your Japanese Journey?
-            </h2>
-            <p className="mt-4 max-w-xl text-base text-charcoal-700 sm:text-lg">
-              Take the first step — find your level, explore a batch, or talk to our admissions team.
-            </p>
-            <div className="mt-8 grid gap-3 sm:max-w-lg sm:grid-cols-2">
-              <Button href="/level-test" size="lg">
-                Take Free Level Test
-              </Button>
-              <Button href="/free-japanese-demo-class" variant="secondary" size="lg">
-                Book Free Demo
-              </Button>
-              <Button href="/batches" variant="outline" size="lg">
+        <div className="relative isolate overflow-hidden rounded-3xl bg-[#0b1b3a] px-6 py-10 text-white sm:px-10 sm:py-14 lg:px-14">
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(50%_80%_at_100%_0%,rgb(12_136_255/0.45),transparent_70%),radial-gradient(40%_70%_at_0%_100%,rgb(34_211_238/0.25),transparent_70%)]" />
+          <span aria-hidden className="pointer-events-none absolute -bottom-10 right-4 -z-10 font-jp text-[8rem] font-bold leading-none text-white/[0.06] sm:text-[12rem]">始めよう</span>
+          <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <p className="font-jp text-base font-bold text-[#7cc4ff]">さあ、始めましょう。</p>
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-balance text-white sm:text-4xl">
+                Ready to start your Japanese journey?
+              </h2>
+              <p className="mt-3 max-w-xl text-white/75 sm:text-lg">
+                Find your level in five minutes, then join a live batch that fits your schedule.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link href="/level-test" className="btn-shine inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#1e90ff] to-[#22d3ee] px-6 font-bold text-white">
+                Take Free Level Test <ArrowRight size={18} />
+              </Link>
+              <Link href="/batches" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-md border-2 border-white/30 px-6 font-bold text-white transition-colors hover:border-white">
                 View Upcoming Batches
-              </Button>
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-[#15803d] px-7 py-3.5 text-base font-bold text-white transition-colors hover:brightness-95 sm:text-lg"
-              >
-                Talk on WhatsApp
+              </Link>
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center gap-2 text-sm font-bold text-white/80 hover:text-white">
+                <MessageCircle size={16} /> Or talk to us on WhatsApp
               </a>
             </div>
-          </div>
-
-          <div aria-hidden className="relative hidden items-start justify-center bg-indigo-950/[0.04] px-8 pb-10 lg:flex">
-            <span className="absolute inset-x-8 top-0 h-3 rounded-b-full bg-gradient-to-b from-[#8a5528] to-[#4d2b10]" />
-            <div className="mt-3 flex gap-2">
-              {NOREN.map((ch, i) => (
-                <span
-                  key={i}
-                  style={{ animationDelay: `${-i * 0.35}s` }}
-                  className="noren-panel flex h-56 w-12 justify-center rounded-b-lg bg-indigo-950 pt-5 font-mincho text-3xl font-bold text-[#fff3e0] shadow-lg xl:h-64 xl:w-14"
-                >
-                  {ch}
-                </span>
-              ))}
-            </div>
-            <span className="absolute bottom-8 right-8">
-              <Hanko text="願" size={48} />
-            </span>
           </div>
         </div>
       </div>

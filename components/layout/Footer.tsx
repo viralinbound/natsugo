@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/layout/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { TokyoClock } from "@/components/japan/TokyoClock";
-import { Hanko } from "@/components/japan/Hanko";
+import { Mail, Phone } from "lucide-react";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -65,74 +65,60 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden bg-bg-alt pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-charcoal-700 lg:pb-0">
-      <div className="relative mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pt-16 lg:px-8">
+    <footer className="relative isolate overflow-hidden bg-[#0b1b3a] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white/70 lg:pb-0">
+      <span aria-hidden className="gradient-strip absolute inset-x-0 top-0 h-1" />
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 sm:pt-16 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_2.9fr] lg:gap-16">
           <div className="min-w-0">
-            <Logo />
-            <p className="mt-4 text-sm text-charcoal-500 max-w-xs">
-              A structured Japanese learning platform for students and
-              professionals across India. Live online classes, N5 to N1.
+            <Logo light />
+            <p className="mt-4 max-w-xs text-sm">
+              Structured Japanese for students and professionals across India. Live online classes, N5 to N1.
             </p>
-            <div className="flex gap-3 mt-5">
-              {(["instagram", "facebook", "linkedin", "youtube"] as const).map(
-                (name) => (
-                  <a
-                    key={name}
-                    href="#"
-                    aria-label={`${name} link`}
-                    className="h-9 w-9 flex items-center justify-center rounded-full border border-charcoal-100 bg-surface text-charcoal-700 hover:border-sun-400 hover:text-sun-500 transition-colors"
-                  >
-                    <SocialIcon name={name} size={16} />
-                  </a>
-                )
-              )}
+            <ul className="mt-5 space-y-2 text-sm">
+              <li className="flex items-center gap-2"><Phone size={15} className="text-[#7cc4ff]" /><a href={`tel:+${site.whatsappNumber}`} className="hover:text-white">{site.phoneDisplay}</a></li>
+              <li className="flex items-center gap-2"><Mail size={15} className="text-[#7cc4ff]" /><a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a></li>
+            </ul>
+            <div className="mt-5 flex gap-2.5">
+              {(["instagram", "facebook", "linkedin", "youtube"] as const).map((name) => (
+                <a
+                  key={name}
+                  href="#"
+                  aria-label={`${name} link`}
+                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-[#1e90ff]"
+                >
+                  <SocialIcon name={name} size={16} />
+                </a>
+              ))}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h3 className="text-sm font-bold text-indigo-950 mb-4">
-                {col.title}
-              </h3>
-              <ul className="space-y-1">
-                {col.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="inline-block py-1 text-sm hover:text-sun-500 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            {columns.map((col) => (
+              <div key={col.title}>
+                <h3 className="mb-4 text-sm font-bold text-white">{col.title}</h3>
+                <ul className="space-y-1">
+                  {col.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="inline-block py-1 text-sm transition-colors hover:text-white">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-charcoal-100 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center text-xs text-charcoal-500">
-          <div className="flex items-center gap-3">
-            <Hanko text="夏" size={34} />
-            <div className="space-y-1">
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
+          <div className="space-y-1 [&_p]:text-white/60 [&_span]:text-white/40">
             <TokyoClock />
-            <p>© {new Date().getFullYear()} Natsugo · <a href={`tel:+${site.whatsappNumber}`} className="hover:text-sun-500">{site.phoneDisplay}</a> · <a href={`mailto:${site.email}`} className="hover:text-sun-500">{site.email}</a></p>
-            </div>
+            <p>© {new Date().getFullYear()} Natsugo · 日本語を、あなたのペースで。</p>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link href="/privacy-policy" className="hover:text-sun-500">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-sun-500">
-              Terms
-            </Link>
-            <Link href="/refund-policy" className="hover:text-sun-500">
-              Refund Policy
-            </Link>
-            <Link href="/contact" className="hover:text-sun-500">
-              Contact
-            </Link>
+            <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white">Terms</Link>
+            <Link href="/refund-policy" className="hover:text-white">Refund Policy</Link>
+            <Link href="/contact" className="hover:text-white">Contact</Link>
           </div>
         </div>
       </div>
