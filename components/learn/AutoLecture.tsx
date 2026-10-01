@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Gauge, GraduationCap, Pause, Play, RotateCcw, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import { notesToSlides } from "@/lib/slides";
+import { tune } from "@/lib/voices";
 
 const RATES = [0.85, 1, 1.25];
 
@@ -28,10 +29,7 @@ export function AutoLecture({ title, notes }: { title: string; notes: string }) 
 
   function speak(text: string, lang: "en" | "ja", onEnd: () => void) {
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = lang === "ja" ? "ja-JP" : "en-IN";
-    u.rate = rate;
-    const voice = window.speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang === "ja" ? "ja" : "en"));
-    if (voice) u.voice = voice;
+    tune(u, lang, rate);
     u.onend = () => !stopRef.current && onEnd();
     u.onerror = () => !stopRef.current && onEnd();
     window.speechSynthesis.speak(u);

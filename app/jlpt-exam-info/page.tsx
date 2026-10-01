@@ -38,7 +38,6 @@ export default async function ExamInfoPage() {
         crumbs={[{ label: "JLPT Exam Info", href: "/jlpt-exam-info" }]}
       >
         <Button href={info.officialLink} variant="outline-light" size="lg">Official JLPT website ↗</Button>
-        <Button href="/level-test" size="lg">Take Free Level Test</Button>
       </PageHero>
 
       <section className="py-16 sm:py-24">

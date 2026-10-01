@@ -1,4 +1,5 @@
 import { WoodTile } from "@/components/resources/WoodTile";
+import { KanjiCard } from "@/components/resources/KanjiCard";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -48,32 +49,26 @@ function Content({ slug }: { slug: string }) {
     case "kanji":
       return (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
-            {kanjiN5.map((k) => (
-              <div key={k.k} className="wood-block p-4 text-center">
-                <p className="font-jp text-5xl">{k.k}</p>
-                <p className="mt-2 font-semibold text-charcoal-900">{k.m}</p>
-                <div className="mt-1 flex items-center justify-center gap-1">
-                  <p className="font-jp text-sm text-charcoal-500">{k.r}</p>
-                  <SpeakButton text={k.r.split("・")[0]} />
-                </div>
-              </div>
+          <h2 className="text-2xl font-extrabold text-indigo-950 tracking-tight">Choose your JLPT level</h2>
+          <p className="mt-2 text-charcoal-700 max-w-2xl">
+            The full kanji list for every level, ordered by frequency of use — {kanjiLevelOrder.map((l) => kanjiByLevel[l].length).reduce((a, b) => a + b, 0)} kanji in total.
+          </p>
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {kanjiLevelOrder.map((l) => (
+              <Link key={l} href={`/resources/kanji/${l.toLowerCase()}`} className="card-modern p-5 text-center hover:border-sun-400 transition-colors">
+                <p className="font-jp text-3xl text-indigo-950">{kanjiByLevel[l].slice(0, 3).join("")}</p>
+                <p className="mt-2 text-xl font-extrabold text-indigo-950">{l}</p>
+                <p className="text-sm text-charcoal-500">{kanjiByLevel[l].length} kanji →</p>
+              </Link>
             ))}
           </div>
 
-          <div className="mt-14 border-t border-charcoal-100 pt-10">
-            <h2 className="text-2xl font-extrabold text-indigo-950 tracking-tight">Browse kanji by JLPT level</h2>
-            <p className="mt-2 text-charcoal-700 max-w-2xl">
-              The full kanji list for every JLPT level, ordered by frequency of use — {kanjiLevelOrder.map((l) => kanjiByLevel[l].length).reduce((a, b) => a + b, 0)} kanji in total.
-            </p>
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
-              {kanjiLevelOrder.map((l) => (
-                <Link key={l} href={`/resources/kanji/${l.toLowerCase()}`} className="card-modern p-5 text-center hover:border-sun-400 transition-colors">
-                  <p className="text-2xl font-extrabold text-indigo-950">{l}</p>
-                  <p className="mt-1 text-sm text-charcoal-500">{kanjiByLevel[l].length} kanji</p>
-                </Link>
-              ))}
-            </div>
+          <h2 className="mt-14 text-2xl font-extrabold text-indigo-950 tracking-tight">Start here: 30 N5 kanji</h2>
+          <p className="mt-2 text-charcoal-700">Tap a card to hear it.</p>
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
+            {kanjiN5.map((k) => (
+              <KanjiCard key={k.k} {...k} />
+            ))}
           </div>
         </>
       );

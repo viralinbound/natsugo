@@ -20,6 +20,9 @@ export const navGroups: NavGroup[] = [
       { label: "Japanese Grammar", href: "/japanese-grammar-course" },
       { label: "Japanese Vocabulary", href: "/japanese-vocabulary-course" },
       { label: "Reading & Writing", href: "/japanese-reading-writing-course" },
+      { label: "Business Japanese", href: "/business-japanese" },
+      { label: "Work in Japan", href: "/work-in-japan" },
+      { label: "Study in Japan", href: "/study-in-japan" },
     ],
   },
   {
@@ -46,18 +49,6 @@ export const navGroups: NavGroup[] = [
       { label: "N3 lessons & live classes", href: "/online-classroom/n3" },
       { label: "N2 lessons & live classes", href: "/online-classroom/n2" },
       { label: "N1 lessons & live classes", href: "/online-classroom/n1" },
-    ],
-  },
-  {
-    label: "Learn by Goal",
-    href: "/learn-japanese-language-course",
-    items: [
-      { label: "Learn Japanese", href: "/learn-japanese-language-course" },
-      { label: "Speak Japanese", href: "/speak-japanese" },
-      { label: "Work in Japan", href: "/work-in-japan" },
-      { label: "Study in Japan", href: "/study-in-japan" },
-      { label: "Business Japanese", href: "/business-japanese" },
-      { label: "Japanese for Beginners", href: "/japanese-for-beginners" },
     ],
   },
   {

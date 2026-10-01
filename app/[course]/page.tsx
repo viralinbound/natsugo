@@ -13,7 +13,7 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { PageQuiz } from "@/components/quiz/PageQuiz";
-import { courseQuiz, levelSets, topicSets } from "@/lib/pageQuiz";
+import { courseQuiz, levelSets, mixedSets, topicSets } from "@/lib/pageQuiz";
 import type { QuizLevel } from "@/lib/quizBank";
 import { ViewerCount } from "@/components/live/ViewerCount";
 
@@ -54,12 +54,12 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
     ? { title: `Try a JLPT ${c.level} quiz`, intro: `Pick a topic and answer 10 ${c.level}-level questions. Every answer comes with an explanation.`, sets: levelSets(c.level as QuizLevel) }
     : byTopic?.topic
       ? { title: `Test your ${byTopic.label}`, intro: `Pick your level and answer 10 ${byTopic.label} questions. Every answer comes with an explanation.`, sets: topicSets(byTopic.topic) }
-      : null;
+      : { title: "Test your Japanese", intro: "Pick a level and answer 10 questions across vocabulary, grammar, kanji, reading and listening.", sets: mixedSets() };
 
   return (
     <>
       <PageHero title={c.title} eyebrow={c.eyebrow} intro={c.intro} image={c.image} crumbs={crumbs}>
-        <Button href="/level-test" size="lg">Take Free Level Test</Button>
+        <Button href="#quiz" size="lg">{c.level ? `Take Free ${c.level} Test` : "Take Free Test"}</Button>
         <Button href="#batches" variant="outline-light" size="lg">See Upcoming Batches</Button>
       </PageHero>
 
@@ -160,7 +160,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
         </div>
       </section>
 
-      {quiz ? <PageQuiz {...quiz} /> : null}
+      <PageQuiz {...quiz} />
 
       <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

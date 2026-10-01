@@ -1,15 +1,13 @@
 "use client";
 
 import { Volume2 } from "lucide-react";
+import { tune } from "@/lib/voices";
 
 export function speakJapanese(text: string) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return false;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "ja-JP";
-  u.rate = 0.85;
-  const voice = window.speechSynthesis.getVoices().find((v) => v.lang.startsWith("ja"));
-  if (voice) u.voice = voice;
+  tune(u, "ja");
   window.speechSynthesis.speak(u);
   return true;
 }

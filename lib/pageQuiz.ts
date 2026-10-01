@@ -1,4 +1,4 @@
-import { quizLevels, quizTopics, topicQuiz, type QuizLevel, type QuizTopic } from "@/lib/quizBank";
+import { quizBank, quizLevels, quizTopics, topicQuiz, type QuizLevel, type QuizTopic } from "@/lib/quizBank";
 import type { PageQuizSet } from "@/components/quiz/PageQuiz";
 
 // One tab per topic, all at the given level.
@@ -16,3 +16,7 @@ export const courseQuiz: Record<string, { topic?: QuizTopic; label: string }> = 
   "japanese-reading-writing-course": { topic: "reading", label: "reading" },
   "speak-japanese": { topic: "listening", label: "listening" },
 };
+
+// One tab per level, mixing every topic (the medium set).
+export const mixedSets = (): PageQuizSet[] =>
+  quizLevels.map((l) => ({ id: l, label: l, questions: quizBank.filter((q) => q.level === l && q.difficulty === "medium"), save: { level: l, difficulty: "medium" } }));
