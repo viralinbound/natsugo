@@ -1,12 +1,13 @@
 "use client";
 
-// Picks the softest-sounding voice the device has. Neural / "Natural" / Google voices sound far less
-// robotic than the old desktop defaults (Microsoft David, eSpeak), so they are tried first.
-const prefer: Record<"en" | "ja", RegExp[]> = {
-  en: [/natural|neural|online/i, /neerja|aria|jenny|sonia|libby|ava|emma/i, /google (uk english female|us english)/i, /samantha|karen|moira|tessa|serena|veena/i, /heera|hazel|susan|catherine|linda/i, /female/i],
-  ja: [/natural|neural|online/i, /nanami|aoi|mayu/i, /google 日本語/i, /kyoko|o-ren|otoya/i],
+// Picks the gentlest voice the device has, for every sound on the site (lessons, quizzes, kana, kanji).
+// Soft female voices come first, natural/neural voices next; harsh desktop and male voices are skipped.
+const female: Record<"en" | "ja", RegExp> = {
+  en: /neerja|heera|veena|aria|jenny|sonia|libby|ava|emma|michelle|natasha|clara|samantha|karen|moira|tessa|serena|hazel|susan|catherine|linda|female/i,
+  ja: /nanami|aoi|mayu|shiori|haruka|ayumi|kyoko|o-ren|google 日本語/i,
 };
-const avoid = /david|mark|zira|espeak|novelty|whisper|bad news|bells|boing|bubbles|cellos|jester|organ|trinoids|zarvox|albert|fred|junior|ralph/i;
+const harsh =
+  /david|mark|zira|guy|ravi|prabhat|george|ryan|eric|roger|steffan|william|christopher|brian|andrew|thomas|keita|ichiro|daichi|naoki|otoya|male|espeak|novelty|whisper|bad news|bells|boing|bubbles|cellos|jester|organ|trinoids|zarvox|albert|fred|junior|ralph/i;
 
 let cache: SpeechSynthesisVoice[] = [];
 if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -15,17 +16,24 @@ if (typeof window !== "undefined" && "speechSynthesis" in window) {
   window.speechSynthesis.addEventListener?.("voiceschanged", load);
 }
 
-export function pickVoice(lang: "en" | "ja"): SpeechSynthesisVoice | undefined {
-  const all = cache.length ? cache : window.speechSynthesis.getVoices();
-  const pool = all.filter((v) => v.lang.toLowerCase().startsWith(lang) && !avoid.test(v.name));
-  for (const re of prefer[lang]) {
-    const hit = pool.filter((v) => re.test(v.name));
-    if (hit.length) return lang === "en" ? hit.find((v) => /en-(in|gb)/i.test(v.lang)) ?? hit[0] : hit[0];
-  }
-  return pool.find((v) => !v.localService) ?? pool[0] ?? all.find((v) => v.lang.toLowerCase().startsWith(lang));
+function score(v: SpeechSynthesisVoice, lang: "en" | "ja") {
+  let s = 0;
+  if (female[lang].test(v.name)) s += 4;
+  if (/natural|neural|online|google/i.test(v.name)) s += 2;
+  if (lang === "en" && /en-(in|gb)/i.test(v.lang)) s += 1;
+  if (/female/i.test(v.name) && /\bmale\b/i.test(v.name)) s -= 4;
+  return s;
 }
 
-// Shared settings so every narrated line sounds the same across the site.
+export function pickVoice(lang: "en" | "ja"): SpeechSynthesisVoice | undefined {
+  const all = cache.length ? cache : window.speechSynthesis.getVoices();
+  const same = all.filter((v) => v.lang.toLowerCase().startsWith(lang));
+  const gentle = same.filter((v) => female[lang].test(v.name) || !harsh.test(v.name));
+  const pool = gentle.length ? gentle : same;
+  return [...pool].sort((a, b) => score(b, lang) - score(a, lang))[0];
+}
+
+// Shared settings: a calm pace, a slightly lighter pitch and a softer volume, the same everywhere.
 export function tune(u: SpeechSynthesisUtterance, lang: "en" | "ja", rate = 1) {
   u.lang = lang === "ja" ? "ja-JP" : "en-IN";
   const v = pickVoice(lang);
@@ -33,7 +41,7 @@ export function tune(u: SpeechSynthesisUtterance, lang: "en" | "ja", rate = 1) {
     u.voice = v;
     u.lang = v.lang;
   }
-  u.rate = rate * (lang === "ja" ? 0.85 : 0.92);
-  u.pitch = 1;
-  u.volume = 0.9;
+  u.rate = rate * (lang === "ja" ? 0.8 : 0.88);
+  u.pitch = 1.08;
+  u.volume = 0.8;
 }

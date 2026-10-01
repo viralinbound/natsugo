@@ -36,7 +36,7 @@ export function ScrollReveal() {
       s.style.setProperty("--kr", `${Math.round((Math.random() - 0.5) * 30)}deg`);
     };
     if (!calm) {
-      top.forEach((sec) => {
+      top.slice(1).forEach((sec) => {
         if (sec.querySelector(":scope > .kanji-layer")) return;
         if (getComputedStyle(sec).position === "static") sec.style.position = "relative";
         sec.style.isolation = "isolate";

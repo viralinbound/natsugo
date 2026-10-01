@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, PenLine, Volume2 } from "lucide-react";
+import { Loader2, PenLine } from "lucide-react";
 import { KanjiPractice } from "@/components/japan/KanjiPractice";
 import { PracticeToggle, usePracticeMode } from "@/components/japan/PracticeToggle";
-import { speakJapanese } from "@/components/ui/SpeakButton";
+import { HearButton } from "@/components/ui/HearButton";
 
 interface Detail {
   reading: string | null;
@@ -21,7 +21,6 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
   async function handleTap(k: string) {
     setActive(k);
     if (practice) setOpen(true);
-    else speakJapanese(k);
     if (details[k] || known.has(k)) return;
     setDetails((d) => ({ ...d, [k]: { reading: null, meaning: null, loading: true } }));
     try {
@@ -46,17 +45,19 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
       </div>
       <div className="grid grid-cols-3 gap-4 pb-2 sm:grid-cols-5 sm:gap-5 md:grid-cols-6 lg:grid-cols-8">
         {kanji.map((k, i) => (
+          <div key={`${k}-${i}`} className="relative">
+          <HearButton text={k} className="h-7 w-7" />
           <button
-            key={`${k}-${i}`}
             type="button"
             onClick={() => handleTap(k)}
             aria-pressed={active === k}
-            className={`wood-block flex flex-col items-center justify-center gap-1 px-2 py-4 sm:py-5 ${active === k ? "is-active" : ""}`}
+            className={`wood-block flex w-full flex-col items-center justify-center gap-1 px-2 py-4 sm:py-5 ${active === k ? "is-active" : ""}`}
           >
             <span className="font-jp text-3xl leading-none sm:text-4xl">{k}</span>
             {known.has(k) ? <span className="text-xs font-semibold leading-tight text-charcoal-900">{known.get(k)!.m}</span> : null}
-            {practice ? <PenLine size={14} aria-hidden className="text-sun-500" /> : <Volume2 size={14} aria-hidden className="text-sun-500" />}
+            {practice ? <PenLine size={14} aria-hidden className="text-sun-500" /> : null}
           </button>
+          </div>
         ))}
       </div>
 

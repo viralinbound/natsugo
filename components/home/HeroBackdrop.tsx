@@ -11,7 +11,7 @@ const scenes = [
   { src: images.tokyoNight, alt: "Tokyo at night" },
 ];
 
-// Hero background: Japan photos that cross-fade, revealed by paper shoji doors sliding open on load.
+// Hero background: Japan photos that slowly zoom and cross-fade.
 export function HeroBackdrop() {
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -35,8 +35,6 @@ export function HeroBackdrop() {
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-bg/85 via-bg/75 to-bg/90 md:bg-gradient-to-r md:from-bg md:via-bg/75 md:to-bg/5 lg:via-bg/60 lg:to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-bg to-transparent" />
-      <div className="shoji shoji-left" />
-      <div className="shoji shoji-right" />
     </div>
   );
 }

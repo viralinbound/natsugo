@@ -20,18 +20,17 @@ export function Hero() {
     <>
       <section className="relative isolate overflow-hidden bg-bg">
         <HeroBackdrop />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 md:grid-cols-[1.25fr_0.75fr] md:gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-12 lg:px-8 lg:pt-20 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 md:grid-cols-[minmax(0,1fr)_19rem] md:gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16 lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
 
-            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-5xl lg:text-6xl animate-fade-up">
-              Learn Japanese
-              <br />
-              <span className="text-gradient-anim">the structured way.</span>
+            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-5xl lg:text-6xl">
+              <span className="gate-line"><span>Learn Japanese</span></span>
+              <span className="gate-line [--d:180ms]"><span className="text-gradient-anim">the structured way.</span></span>
             </h1>
-            <p className="mt-6 max-w-xl text-base font-medium text-charcoal-800 sm:text-lg animate-fade-up [animation-delay:100ms]">
+            <p className="mt-6 max-w-xl text-base font-medium text-charcoal-800 sm:text-lg gate-in [--d:360ms]">
               Live classes with real teachers, a clear path from N5 to N1, and practice you can measure. Join from anywhere in India.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap animate-fade-up [animation-delay:200ms]">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap gate-in [--d:480ms]">
               <Button href="/level-test" size="lg">
                 Take Free Level Test <ArrowRight size={18} />
               </Button>
@@ -39,7 +38,7 @@ export function Hero() {
                 Book a Free Demo
               </Button>
             </div>
-            <ul className="mt-7 flex flex-col gap-2 text-sm font-semibold text-charcoal-700 sm:flex-row sm:flex-wrap sm:gap-x-6 animate-fade-up [animation-delay:250ms]">
+            <ul className="mt-7 flex flex-col gap-2 text-sm font-semibold text-charcoal-700 sm:flex-row sm:flex-wrap sm:gap-x-6 gate-in [--d:560ms]">
               {proof.map((p) => (
                 <li key={p} className="flex items-center gap-2">
                   <span className="grid h-5 w-5 place-items-center rounded-full bg-success/15 text-success"><Check size={13} strokeWidth={3} /></span>
@@ -47,7 +46,7 @@ export function Hero() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center gap-2 animate-fade-up [animation-delay:300ms]">
+            <div className="mt-8 flex flex-wrap items-center gap-2 gate-in [--d:640ms]">
               <span className="mr-1 text-sm font-semibold text-charcoal-500">I want to</span>
               {goals.map((g) => (
                 <Link
@@ -61,7 +60,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="animate-fade-up [animation-delay:200ms] md:self-end md:translate-y-6">
+          <div className="gate-in [--d:480ms] md:self-end md:translate-y-6">
             <HeroStudio />
           </div>
         </div>

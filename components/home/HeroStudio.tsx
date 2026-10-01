@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, Check, Copy, PenLine, RotateCcw, Share2, Volume2 } from "lucide-react";
+import { Check, Copy, PenLine, RotateCcw, Share2, Volume2 } from "lucide-react";
 import { StrokeOrder } from "@/components/japan/StrokeOrder";
 import { KanjiPractice } from "@/components/japan/KanjiPractice";
 import { speakJapanese } from "@/components/ui/SpeakButton";
@@ -147,9 +146,6 @@ export function HeroStudio() {
           </div>
         )}
 
-        <Link href="/resources/kanji" className="mt-4 flex min-h-[42px] items-center justify-between rounded-xl bg-indigo-900 px-4 text-sm font-bold text-white transition-colors hover:bg-indigo-700">
-          Learn kana and kanji free <ArrowRight size={16} />
-        </Link>
       </div>
     </div>
   );

@@ -215,7 +215,7 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
                 onPointerUp={up}
                 onPointerCancel={up}
                 aria-label="Drawing board"
-                className="relative h-full w-full cursor-crosshair touch-none text-[#0b1b3a]"
+                className="pencil-cursor relative h-full w-full touch-none text-[#0b1b3a]"
               />
               {!lines.length ? <span className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs text-charcoal-500">Draw here with your finger, mouse or pen</span> : null}
             </div>

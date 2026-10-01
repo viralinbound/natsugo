@@ -64,7 +64,7 @@ function Content({ slug }: { slug: string }) {
 
           <h2 className="mt-14 text-2xl font-semibold text-indigo-950 tracking-tight">Start here: 30 N5 kanji</h2>
           <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-charcoal-700">Tap a card to hear it. Switch on writing practice to draw it instead.</p>
+            <p className="text-charcoal-700">Press the speaker on a card to hear it. Switch on writing practice, then tap a card to draw it.</p>
             <PracticeToggle />
           </div>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
