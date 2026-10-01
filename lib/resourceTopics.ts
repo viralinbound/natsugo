@@ -50,13 +50,6 @@ export const resourceTopics = [
     metaDescription: "Learn Japanese with free daily flashcards for Hiragana, Katakana, N5 Kanji and vocabulary. Practice with spaced repetition and build your skills with Natsugo.",
     keywords: ["Japanese Flashcards", "Japanese Flashcards Online", "Free Japanese Flashcards", "Japanese Vocabulary Flashcards", "Japanese Kanji Flashcards", "Hiragana Flashcards", "Katakana Flashcards", "N5 Japanese Flashcards"],
   },
-  {
-    slug: "jlpt-practice", title: "Free JLPT Quiz: N5 to N1", short: "JLPT Quiz", jp: "練習",
-    desc: "150 questions — N5 to N1, each with easy, medium and hard sets of 10.", image: images.online,
-    metaTitle: "JLPT Quiz | Free N5-N1 Japanese Practice",
-    metaDescription: "Practice JLPT N5-N1 with free quizzes on vocabulary, grammar, kanji, reading and listening. Choose your level, test your skills and see answer explanations.",
-    keywords: ["JLPT Quiz", "Free JLPT Quiz", "JLPT N5-N1 Quiz", "JLPT Practice Test Online", "Japanese JLPT Practice", "JLPT Quiz Online", "Free Japanese Quiz"],
-  },
 ] as const;
 
 export type ResourceSlug = (typeof resourceTopics)[number]["slug"];

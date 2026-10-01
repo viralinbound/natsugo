@@ -2,11 +2,6 @@ import { Button } from "@/components/ui/Button";
 import { WordOfDay } from "@/components/home/WordOfDay";
 import { Hanko } from "@/components/japan/Hanko";
 
-const facts = [
-  { big: "N5→N1", label: "Complete JLPT path" },
-  { big: "100%", label: "Live online classes — join from anywhere" },
-  { big: "Free", label: "Level test and demo class" },
-];
 
 const results = [
   { label: "Vocabulary", value: 72 },
@@ -31,15 +26,6 @@ export function Bento() {
         </div>
 
         <WordOfDay embedded className="md:col-span-2" />
-
-        <dl className="bento-tile md:col-span-2 grid grid-cols-3 divide-x divide-charcoal-100 rounded-3xl border border-charcoal-100 bg-gradient-to-br from-sun-100 to-surface">
-          {facts.map((f) => (
-            <div key={f.big} className="flex flex-col justify-center p-4 sm:p-6">
-              <dt className="text-2xl sm:text-3xl font-extrabold text-gradient-anim">{f.big}</dt>
-              <dd className="mt-2 text-xs sm:text-sm font-medium text-charcoal-700">{f.label}</dd>
-            </div>
-          ))}
-        </dl>
 
         <div className="bento-tile md:col-span-2 rounded-3xl bg-sun-100 p-7 sm:p-10">
           <Hanko text="無料" size={52} className="absolute right-6 top-6" />

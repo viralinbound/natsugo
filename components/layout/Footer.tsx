@@ -124,7 +124,6 @@ export function Footer() {
             <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms</Link>
             <Link href="/refund-policy" className="hover:text-white">Refund Policy</Link>
-            <Link href="/contact" className="hover:text-white">Contact</Link>
           </div>
         </div>
       </div>

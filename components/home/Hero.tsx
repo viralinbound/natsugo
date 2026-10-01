@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Radio, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroStudio } from "@/components/home/HeroStudio";
 import { HeroBackdrop } from "@/components/home/HeroBackdrop";
@@ -22,10 +22,8 @@ export function Hero() {
         <HeroBackdrop />
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-indigo-700/20 bg-sun-100 px-3.5 py-1.5 text-xs font-bold text-indigo-800 sm:text-sm animate-fade-up">
-              <Radio size={14} className="text-hanko" /> New batches open · 100% live online
-            </p>
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-indigo-950 sm:text-6xl animate-fade-up">
+
+            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-indigo-950 sm:text-6xl animate-fade-up">
               Learn Japanese
               <br />
               <span className="text-gradient-anim">the structured way.</span>
@@ -68,13 +66,6 @@ export function Hero() {
           </div>
         </div>
       </section>
-      <div className="gradient-strip text-white">
-        <p className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-3.5 text-center text-sm font-bold sm:px-6 sm:text-base lg:px-8">
-          <Sparkles size={16} className="hidden shrink-0 sm:block" />
-          Weekday evening &amp; weekend timings ·{" "}
-          <Link href="/free-japanese-demo-class" className="underline underline-offset-4">Try a free demo</Link>
-        </p>
-      </div>
     </>
   );
 }

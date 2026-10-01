@@ -8,7 +8,6 @@ import { grammarPoints, hiragana, kanjiN5, katakana, phrases, vocabulary } from 
 import { PageHero } from "@/components/ui/PageHero";
 import { KanaChart } from "@/components/resources/KanaChart";
 import { SpeakButton } from "@/components/ui/SpeakButton";
-import { QuizHub } from "@/components/quiz/QuizHub";
 import { PageQuiz, type PageQuizSet } from "@/components/quiz/PageQuiz";
 import { freeTestSets, topicSets } from "@/lib/pageQuiz";
 import { Flashcards, type Card } from "@/components/resources/Flashcards";
@@ -120,8 +119,6 @@ function Content({ slug }: { slug: string }) {
       );
     case "flashcards":
       return <Flashcards cards={flashcards} />;
-    case "jlpt-practice":
-      return <QuizHub />;
     default:
       return null;
   }

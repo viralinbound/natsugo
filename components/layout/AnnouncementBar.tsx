@@ -13,17 +13,8 @@ export function AnnouncementBar({ text, enabled = true }: { text: string; enable
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-3">
         <p className="truncate">{text}</p>
         <div className="flex items-center gap-2 shrink-0">
-          <Link
-            href="/batches"
-            className="hidden sm:inline-block underline underline-offset-2 hover:text-sakura-200"
-          >
+          <Link href="/batches" className="rounded-full bg-white/10 px-3 py-1 font-semibold transition-colors hover:bg-white/20">
             View Batches
-          </Link>
-          <Link
-            href="/level-test"
-            className="rounded-full bg-white/10 hover:bg-white/20 px-3 py-1 font-semibold transition-colors"
-          >
-            Take Level Test
           </Link>
           <button
             aria-label="Dismiss announcement"

@@ -251,7 +251,7 @@ export const resources: ResourceItem[] = [
   { id: "r4", title: "Grammar", description: "Core Japanese grammar explained simply.", href: "/resources/grammar" },
   { id: "r5", title: "Vocabulary", description: "Everyday vocabulary organized by topic.", href: "/resources/vocabulary" },
   { id: "r6", title: "Phrases", description: "Common Japanese phrases for daily use.", href: "/resources/phrases" },
-  { id: "r7", title: "JLPT Practice", description: "Practice questions across JLPT levels.", href: "/resources/jlpt-practice" },
+  { id: "r7", title: "JLPT Quiz", description: "A full test and topic quizzes for every level.", href: "/jlpt-quiz" },
   { id: "r8", title: "Blog", description: "Articles on learning Japanese effectively.", href: "/blog" },
 ];
 
