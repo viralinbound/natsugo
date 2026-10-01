@@ -1,3 +1,5 @@
+import { PageQuiz } from "@/components/quiz/PageQuiz";
+import { topicSets } from "@/lib/pageQuiz";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -103,6 +105,12 @@ export default async function KanjiLevelPage({ params }: { params: Promise<{ lev
           </div>
         </div>
       </section>
+      <PageQuiz
+        title={`JLPT ${level} kanji quiz`}
+        intro={`10 ${level} kanji questions on readings and meanings. Switch level any time.`}
+        sets={topicSets("kanji")}
+        initial={level}
+      />
     </>
   );
 }

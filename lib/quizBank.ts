@@ -246,7 +246,12 @@ export const quizTopics: { id: QuizTopic; skill: Skill; label: string; jp: strin
 const order: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 };
 
 // Small deterministic hash so option order is shuffled the same way on every render.
-const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+const hash = (s: string) => {
+  let h = 2166136261;
+  for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  h = Math.imul(h ^ (h >>> 15), 2246822507);
+  return (h ^ (h >>> 13)) >>> 0;
+};
 
 function shuffleOptions(q: QuizQuestion): QuizQuestion {
   const idx = q.options.map((_, i) => i).sort((a, b) => hash(`${q.id}${a}`) - hash(`${q.id}${b}`));
@@ -271,4 +276,24 @@ export function topicQuiz(level: QuizLevel, topic: QuizTopic, count = 10): QuizQ
       explanation,
     }));
   return [...base, ...extra].slice(0, count).map(shuffleOptions);
+}
+
+// Kana reading quiz built from the chart: five kana → romaji, five romaji → kana.
+export function kanaQuiz(kind: "hiragana" | "katakana", chart: { kana: string; romaji: string }[][]): QuizQuestion[] {
+  const cells = chart.flat().filter((c) => c.kana);
+  const ranked = [...cells].sort((a, b) => hash(`${kind}${a.kana}`) - hash(`${kind}${b.kana}`));
+  return ranked.slice(0, 10).map((c, i) => {
+    const wrong = cells.filter((o) => o.romaji !== c.romaji).sort((a, b) => hash(`${c.kana}${a.kana}`) - hash(`${c.kana}${b.kana}`)).slice(0, 3);
+    const toRomaji = i < 5;
+    return shuffleOptions({
+      id: `${kind}-${i + 1}`,
+      level: "N5",
+      difficulty: "easy",
+      skill: "Reading",
+      prompt: toRomaji ? `How is 「${c.kana}」 read?` : `Which ${kind} is “${c.romaji}”?`,
+      options: [c, ...wrong].map((o) => (toRomaji ? o.romaji : o.kana)),
+      answer: 0,
+      explanation: `${c.kana} = ${c.romaji}.`,
+    });
+  });
 }

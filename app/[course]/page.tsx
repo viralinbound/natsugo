@@ -12,6 +12,9 @@ import { BatchCard } from "@/components/ui/BatchCard";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { PageQuiz } from "@/components/quiz/PageQuiz";
+import { courseQuiz, levelSets, topicSets } from "@/lib/pageQuiz";
+import type { QuizLevel } from "@/lib/quizBank";
 import { ViewerCount } from "@/components/live/ViewerCount";
 
 export const dynamicParams = false;
@@ -46,6 +49,12 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
   const batches = await getBatches();
   const courseBatches = batches.filter((b) => b.courseSlug === c.slug || (c.level && b.level === c.level));
   const related = c.related.map(getCourse).filter(Boolean);
+  const byTopic = courseQuiz[c.slug];
+  const quiz = c.level
+    ? { title: `Try a JLPT ${c.level} quiz`, intro: `Pick a topic and answer 10 ${c.level}-level questions. Every answer comes with an explanation.`, sets: levelSets(c.level as QuizLevel) }
+    : byTopic?.topic
+      ? { title: `Test your ${byTopic.label}`, intro: `Pick your level and answer 10 ${byTopic.label} questions. Every answer comes with an explanation.`, sets: topicSets(byTopic.topic) }
+      : null;
 
   return (
     <>
@@ -150,6 +159,8 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
           </div>
         </div>
       </section>
+
+      {quiz ? <PageQuiz {...quiz} /> : null}
 
       <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

@@ -93,7 +93,7 @@ export function Quiz({ questions, mode, set }: { questions: Question[]; mode: "l
     return (
       <div className="rounded-xl border border-charcoal-100 bg-surface p-6 sm:p-10" role="status">
         <p className="text-sm font-bold uppercase tracking-wider text-sun-500">Your result</p>
-        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-white">
+        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-indigo-950">
           {result.score} / {questions.length} correct
         </h2>
         {set ? (

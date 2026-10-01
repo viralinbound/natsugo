@@ -1,3 +1,5 @@
+import { PageQuiz } from "@/components/quiz/PageQuiz";
+import { levelSets } from "@/lib/pageQuiz";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -263,6 +265,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
           </div>
         </div>
       </section>
+      <PageQuiz title={`Practise ${level} by topic`} intro={`Pick a topic and answer 10 ${level}-level questions, each with an explanation.`} sets={levelSets(level as QuizLevel)} />
     </>
   );
 }
