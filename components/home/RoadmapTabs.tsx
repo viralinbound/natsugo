@@ -74,9 +74,9 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
                 aria-selected={i === sel}
                 aria-controls="roadmap-panel"
                 onClick={() => jump(i)}
-                className={`grid h-9 w-9 place-items-center rounded-full border-2 text-[11px] font-extrabold transition-all sm:h-14 sm:w-14 sm:text-sm ${
+                className={`grid h-9 w-9 place-items-center rounded-full border-2 text-[11px] font-semibold transition-all sm:h-14 sm:w-14 sm:text-sm ${
                   i === sel
-                    ? "scale-110 border-transparent bg-gradient-to-br from-sun-400 to-cyan-400 text-white shadow-lg shadow-sun-400/40"
+                    ? "scale-110 border-transparent bg-indigo-700 text-white shadow-sm"
                     : i < sel
                       ? "border-sun-400 bg-sun-100 text-sun-500"
                       : "border-charcoal-100 bg-surface text-charcoal-500 hover:border-sun-400"
@@ -122,7 +122,7 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
             <div className="mt-1 flex flex-row gap-2 lg:flex-col">
               <Link
                 href={`/jlpt-${cur.level.toLowerCase()}`}
-                className="btn-shine inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-sun-400 to-cyan-400 px-4 font-bold text-white"
+                className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-md bg-indigo-700 hover:bg-[#0a6fd1] px-4 font-bold text-white"
               >
                 {cur.level} course <ArrowRight size={16} />
               </Link>

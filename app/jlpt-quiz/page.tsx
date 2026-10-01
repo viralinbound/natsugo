@@ -20,7 +20,7 @@ export default async function JlptQuizPage({ searchParams }: { searchParams: Pro
       <PageHero
         title="JLPT quiz: N5 to N1"
         eyebrow="練習クイズ · Free practice"
-        intro="Pick your level, then take the full test or a single topic: vocabulary, grammar, kanji, reading or listening. Every quiz has its own 10 questions — with an explanation for each answer."
+        intro="Pick your level, then take the full test or a single topic: vocabulary, grammar, kanji, reading or listening. Every quiz has its own 10 questions, with an explanation for each answer."
         image={images.writing}
         crumbs={[{ label: "Resources", href: "/resources" }, { label: "JLPT Quiz", href: "/jlpt-quiz" }]}
       />

@@ -23,7 +23,7 @@ export function VideoPlayer({ url, title }: { url: string | null | undefined; ti
         <div className="brand-pattern brand-pattern-light absolute inset-0 flex flex-col items-center justify-center text-center text-white p-6">
           <PlayCircle size={48} className="text-sun-300" />
           <p className="mt-3 font-display text-lg font-bold">Video lecture coming soon</p>
-          <p className="mt-1 text-sm text-white/70">Study the notes below — the recorded lecture will appear here.</p>
+          <p className="mt-1 text-sm text-white/70">Study the notes below, the recorded lecture will appear here.</p>
         </div>
       )}
     </div>

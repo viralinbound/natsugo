@@ -4,15 +4,22 @@ import { useState } from "react";
 import type { KanaCell } from "@/lib/learning";
 import { Volume2 } from "lucide-react";
 import { KanjiPractice } from "@/components/japan/KanjiPractice";
+import { PracticeToggle, usePracticeMode } from "@/components/japan/PracticeToggle";
+import { speakJapanese } from "@/components/ui/SpeakButton";
 
 export function KanaChart({ rows }: { rows: KanaCell[][] }) {
   const [showRomaji, setShowRomaji] = useState(true);
   const [active, setActive] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const [practice] = usePracticeMode();
 
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-charcoal-700">Tap any character to hear it, watch its stroke order and practise writing it.</p>
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="text-sm text-charcoal-700">Tap any character to hear it.</p>
+          <PracticeToggle />
+        </div>
         <label className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal-800 cursor-pointer">
           <input type="checkbox" checked={showRomaji} onChange={(e) => setShowRomaji(e.target.checked)} className="h-5 w-5 accent-indigo-900" />
           Show romaji
@@ -25,7 +32,11 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
             <button
               key={i}
               type="button"
-              onClick={() => setActive(c.kana)}
+              onClick={() => {
+                setActive(c.kana);
+                if (practice) setOpen(true);
+                else speakJapanese(c.kana);
+              }}
               aria-label={`${c.kana} (${c.romaji})`}
               className={`wood-block flex flex-col items-center justify-center gap-0.5 px-1 py-3 sm:gap-1 sm:px-3 sm:py-6 ${active === c.kana ? "is-active" : ""}`}
             >
@@ -39,7 +50,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
         )}
       </div>
       </div>
-      {active ? <KanjiPractice item={{ ch: active, meaning: rows.flat().find((c) => c.kana === active)?.romaji }} onClose={() => setActive(null)} /> : null}
+      {open && active ? <KanjiPractice item={{ ch: active, meaning: rows.flat().find((c) => c.kana === active)?.romaji }} onClose={() => setOpen(false)} /> : null}
     </div>
   );
 }

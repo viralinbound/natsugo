@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, PenLine } from "lucide-react";
+import { Loader2, PenLine, Volume2 } from "lucide-react";
 import { KanjiPractice } from "@/components/japan/KanjiPractice";
+import { PracticeToggle, usePracticeMode } from "@/components/japan/PracticeToggle";
+import { speakJapanese } from "@/components/ui/SpeakButton";
 
 interface Detail {
   reading: string | null;
@@ -14,10 +16,12 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
   const [active, setActive] = useState<string | null>(null);
   const [details, setDetails] = useState<Record<string, Detail>>({});
   const [open, setOpen] = useState(false);
+  const [practice] = usePracticeMode();
 
   async function handleTap(k: string) {
     setActive(k);
-    setOpen(true);
+    if (practice) setOpen(true);
+    else speakJapanese(k);
     if (details[k] || known.has(k)) return;
     setDetails((d) => ({ ...d, [k]: { reading: null, meaning: null, loading: true } }));
     try {
@@ -37,6 +41,9 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
 
   return (
     <div>
+      <div className="mb-5 flex justify-end">
+        <PracticeToggle />
+      </div>
       <div className="grid grid-cols-3 gap-4 pb-2 sm:grid-cols-5 sm:gap-5 md:grid-cols-6 lg:grid-cols-8">
         {kanji.map((k, i) => (
           <button
@@ -48,7 +55,7 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
           >
             <span className="font-jp text-3xl leading-none sm:text-4xl">{k}</span>
             {known.has(k) ? <span className="text-xs font-semibold leading-tight text-charcoal-900">{known.get(k)!.m}</span> : null}
-            <PenLine size={14} aria-hidden className="text-sun-500" />
+            {practice ? <PenLine size={14} aria-hidden className="text-sun-500" /> : <Volume2 size={14} aria-hidden className="text-sun-500" />}
           </button>
         ))}
       </div>

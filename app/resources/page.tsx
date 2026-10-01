@@ -5,7 +5,7 @@ import { images } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
-  title: "Free Japanese Learning Resources — Hiragana, Kanji, Grammar",
+  title: "Free Japanese Learning Resources, Hiragana, Kanji, Grammar",
   description: "Free Japanese resources: interactive hiragana and katakana charts with audio, N5 kanji, grammar patterns, vocabulary, phrases and JLPT practice.",
   alternates: { canonical: "/resources" },
 };
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function ResourcesPage() {
   return (
     <>
-      <PageHero title="Start learning Japanese for free" eyebrow="Free Resources" intro="Interactive charts with audio, beginner kanji, grammar and practice questions — use them alongside your classes or on their own." image={images.books} crumbs={[{ label: "Resources", href: "/resources" }]} />
+      <PageHero title="Start learning Japanese for free" eyebrow="Free Resources" intro="Interactive charts with audio, beginner kanji, grammar and practice questions, use them alongside your classes or on their own." image={images.books} crumbs={[{ label: "Resources", href: "/resources" }]} />
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {resourceTopics.map((t) => (

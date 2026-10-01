@@ -10,7 +10,7 @@ export function FreeResources() {
         <SectionHeading
           eyebrow="Free Resources"
           title="Start Learning Japanese for Free"
-          description="Charts, kanji, quizzes and guides — free for everyone."
+          description="Charts, kanji, quizzes and guides, free for everyone."
         />
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
           {resources.map((r) => (

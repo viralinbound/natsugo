@@ -36,7 +36,7 @@
   --color-hanko-100: #3a1420;
 
   --font-sans: var(--font-fira), "Segoe UI", sans-serif;
-  --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
   --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
 }
 
@@ -81,7 +81,7 @@
   --color-hanko-100: #ffe6ea;
 
   --font-sans: var(--font-fira), "Segoe UI", sans-serif;
-  --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
   --font-jp: var(--font-noto-jp), "Segoe UI", sans-serif;
 }
 
@@ -148,8 +148,12 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
+h1 { letter-spacing: -0.03em; line-height: 1.05; }
+p { text-wrap: pretty; }
 
 ::selection {
   background: var(--color-sun-400);
@@ -366,25 +370,10 @@ html.js-reveal .reveal.is-visible .reveal-item {
   50% { background-position: 60% 40%, 30% 70%, 90% 20%, 0 0; }
 }
 .aurora {
-  background-color: var(--color-indigo-950);
-  background-image:
-    radial-gradient(40% 55% at 50% 50%, rgba(12, 136, 255, 0.45), transparent 70%),
-    radial-gradient(35% 45% at 50% 50%, rgba(34, 211, 238, 0.28), transparent 70%),
-    radial-gradient(35% 45% at 50% 50%, rgba(224, 52, 75, 0.25), transparent 70%),
-    linear-gradient(160deg, #0b1b3a 0%, #0a2250 55%, #0b1b3a 100%);
-  background-size: 140% 140%, 130% 130%, 120% 120%, 100% 100%;
-  background-repeat: no-repeat;
-  animation: aurora-flow 20s ease-in-out infinite;
+  background-color: #0b1b3a;
 }
 .aurora-overlay {
-  background-image:
-    radial-gradient(40% 55% at 50% 50%, rgba(12, 136, 255, 0.42), transparent 70%),
-    radial-gradient(35% 45% at 50% 50%, rgba(34, 211, 238, 0.25), transparent 70%),
-    radial-gradient(35% 45% at 50% 50%, rgba(224, 52, 75, 0.22), transparent 70%);
-  background-size: 140% 140%, 130% 130%, 120% 120%;
-  background-repeat: no-repeat;
-  animation: aurora-flow 20s ease-in-out infinite;
-  mix-blend-mode: screen;
+  display: none;
 }
 
 /* Moving gradient strip */
@@ -393,17 +382,12 @@ html.js-reveal .reveal.is-visible .reveal-item {
   100% { background-position: 200% 50%; }
 }
 .gradient-strip {
-  background-image: linear-gradient(90deg, #0c88ff, #22d3ee, #6366f1, #e0344b, #0c88ff);
-  background-size: 200% 100%;
-  animation: gradient-slide 12s linear infinite;
+  background-color: var(--color-indigo-700);
 }
 .text-gradient-anim {
-  background-image: linear-gradient(90deg, #0c88ff, #22d3ee, #7cc4ff, #0c88ff);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-slide 6s linear infinite;
+  color: var(--color-indigo-700);
+  font-style: italic;
+  font-weight: 500;
 }
 
 /* Shine sweep across primary buttons on hover */
@@ -413,13 +397,7 @@ html.js-reveal .reveal.is-visible .reveal-item {
   isolation: isolate;
 }
 .btn-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.7s ease;
+  content: none;
 }
 .btn-shine:hover::after { transform: translateX(120%); }
 

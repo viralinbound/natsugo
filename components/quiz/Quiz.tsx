@@ -99,7 +99,7 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
         <ul className="mt-4 space-y-2 text-charcoal-700">
           <li>• {questions.length} questions across vocabulary, grammar, kanji, reading and listening</li>
           <li>• Takes about 5–7 minutes · No sign-up needed</li>
-          <li>• Listening questions play audio — turn your sound on</li>
+          <li>• Listening questions play audio, turn your sound on</li>
           <li>• Skip anything you don&apos;t know; guessing makes the result less accurate</li>
         </ul>
         <button
@@ -116,7 +116,7 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
     return (
       <div className="rounded-xl border border-charcoal-100 bg-surface p-6 sm:p-10" role="status">
         <p className="text-sm font-bold uppercase tracking-wider text-sun-500">Your result</p>
-        <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-indigo-950">
+        <h2 className="mt-2 text-2xl sm:text-3xl font-semibold text-indigo-950">
           {result.score} / {questions.length} correct
         </h2>
         {set ? (
@@ -238,7 +238,7 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
       {reveal ? (
         <div role="status" className={`mt-4 rounded-md px-4 py-3 text-sm animate-fade-up ${chosen === q.answer ? "bg-success/10 text-charcoal-800" : "bg-red-600/5 text-charcoal-800"}`}>
           <p className={`font-bold ${chosen === q.answer ? "text-success" : "text-red-600"}`}>
-            {chosen === q.answer ? "正解！ Correct" : `Not quite — the answer is “${q.options[q.answer]}”`}
+            {chosen === q.answer ? "正解！ Correct" : `Not quite: the answer is “${q.options[q.answer]}”`}
           </p>
           {q.explanation ? <p className="mt-1 font-jp">{q.explanation}</p> : null}
         </div>

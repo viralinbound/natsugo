@@ -38,7 +38,7 @@ export default async function FreeTestPage({ params }: P) {
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Breadcrumb items={[{ label: t.backLabel, href: t.backHref }, { label: `${t.title}: ${p.label}`, href: `/free-test/${t.id}/${p.id}` }]} />
         <div className="mt-4 flex flex-col gap-3">
-          <h1 className="text-2xl font-extrabold text-indigo-950 sm:text-3xl">
+          <h1 className="text-2xl font-semibold text-indigo-950 sm:text-3xl">
             {t.title} · <span className="font-jp">{t.jp}</span> <span className="text-xl text-charcoal-500">({p.label})</span>
           </h1>
           <p className="text-charcoal-700">{t.desc}</p>

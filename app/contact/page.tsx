@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { LeadForm } from "@/components/forms/LeadForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Online Japanese Classes",
+  title: "Contact Us: Online Japanese Classes",
   description: "Talk to our admissions team about Japanese courses, JLPT batches, fees and schedules. Call, WhatsApp or send us a message.",
   alternates: { canonical: "/contact" },
 };
@@ -15,7 +15,7 @@ export default function ContactPage() {
     { icon: MessageCircle, label: "WhatsApp", value: "Chat with admissions", href: whatsappLink() },
     { icon: Phone, label: "Phone", value: site.phoneDisplay, href: `tel:+${site.whatsappNumber}` },
     { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
-    { icon: Globe, label: "Classes", value: "100% live online — join from anywhere in India" },
+    { icon: Globe, label: "Classes", value: "100% live online: join from anywhere in India" },
     { icon: Clock, label: "Hours", value: site.hours },
   ];
   return (

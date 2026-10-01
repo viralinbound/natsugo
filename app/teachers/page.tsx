@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Our Japanese Teachers",
-  description: "Meet the Japanese teachers behind our live online classes — levels taught and areas of specialisation.",
+  description: "Meet the Japanese teachers behind our live online classes, levels taught and areas of specialisation.",
   alternates: { canonical: "/teachers" },
 };
 

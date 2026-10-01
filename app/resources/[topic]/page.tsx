@@ -1,5 +1,6 @@
 import { WoodTile } from "@/components/resources/WoodTile";
 import { KanjiCard } from "@/components/resources/KanjiCard";
+import { PracticeToggle } from "@/components/japan/PracticeToggle";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -47,22 +48,25 @@ function Content({ slug }: { slug: string }) {
     case "kanji":
       return (
         <>
-          <h2 className="text-2xl font-extrabold text-indigo-950 tracking-tight">Choose your JLPT level</h2>
+          <h2 className="text-2xl font-semibold text-indigo-950 tracking-tight">Choose your JLPT level</h2>
           <p className="mt-2 text-charcoal-700 max-w-2xl">
-            The full kanji list for every level, ordered by frequency of use — {kanjiLevelOrder.map((l) => kanjiByLevel[l].length).reduce((a, b) => a + b, 0)} kanji in total.
+            The full kanji list for every level, ordered by frequency of use, {kanjiLevelOrder.map((l) => kanjiByLevel[l].length).reduce((a, b) => a + b, 0)} kanji in total.
           </p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
             {kanjiLevelOrder.map((l) => (
               <Link key={l} href={`/resources/kanji/${l.toLowerCase()}`} className="card-modern p-5 text-center hover:border-sun-400 transition-colors">
                 <p className="font-jp text-3xl text-indigo-950">{kanjiByLevel[l].slice(0, 3).join("")}</p>
-                <p className="mt-2 text-xl font-extrabold text-indigo-950">{l}</p>
+                <p className="mt-2 text-xl font-semibold text-indigo-950">{l}</p>
                 <p className="text-sm text-charcoal-500">{kanjiByLevel[l].length} kanji →</p>
               </Link>
             ))}
           </div>
 
-          <h2 className="mt-14 text-2xl font-extrabold text-indigo-950 tracking-tight">Start here: 30 N5 kanji</h2>
-          <p className="mt-2 text-charcoal-700">Tap a card to hear it.</p>
+          <h2 className="mt-14 text-2xl font-semibold text-indigo-950 tracking-tight">Start here: 30 N5 kanji</h2>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-charcoal-700">Tap a card to hear it. Switch on writing practice to draw it instead.</p>
+            <PracticeToggle />
+          </div>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
             {kanjiN5.map((k) => (
               <KanjiCard key={k.k} {...k} />

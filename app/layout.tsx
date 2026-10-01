@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fira_Sans, Montserrat, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Fira_Sans, Fraunces, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Navbar } from "@/components/layout/Navbar";
@@ -20,10 +20,12 @@ const fira = Fira_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+// Headings use Fraunces, an editorial serif that sits well next to the Japanese mincho type.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const notoJP = Noto_Sans_JP({
@@ -44,7 +46,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const ogImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Natsugo — Learn Japanese Online in India" };
+const ogImage = { url: "/og-image.png", width: 1200, height: 630, alt: "Natsugo: Learn Japanese Online in India" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -95,7 +97,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fira.variable} ${montserrat.variable} ${notoJP.variable} ${mincho.variable} h-full antialiased`}
+      className={`${fira.variable} ${fraunces.variable} ${notoJP.variable} ${mincho.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

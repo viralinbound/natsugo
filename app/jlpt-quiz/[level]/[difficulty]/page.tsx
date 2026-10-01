@@ -54,7 +54,7 @@ export default async function QuizSetPage({ params }: { params: Promise<{ level:
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Breadcrumb items={[{ label: "JLPT Quiz", href: `/jlpt-quiz?level=${r.level.toLowerCase()}` }, { label: `${r.level} ${r.set.label}`, href: `/jlpt-quiz/${r.level.toLowerCase()}/${r.set.id}` }]} />
         <div className="mt-4 flex flex-col gap-3">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-indigo-950">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-indigo-950">
             JLPT {r.level} · <span className="font-jp">{r.set.jp}</span> <span className="text-charcoal-500 text-xl">({r.set.label})</span>
           </h1>
           <nav aria-label="Quiz set" className="flex flex-wrap gap-1.5">

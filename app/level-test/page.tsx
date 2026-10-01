@@ -6,7 +6,7 @@ import { Quiz } from "@/components/quiz/Quiz";
 import { LastResult } from "@/components/quiz/LastResult";
 
 export const metadata: Metadata = {
-  title: "Free Japanese Level Test — Find Your JLPT Level",
+  title: "Free Japanese Level Test, Find Your JLPT Level",
   description: "Take a free 12-question Japanese level test covering vocabulary, grammar, kanji, reading and listening. Get a recommended starting level instantly.",
   alternates: { canonical: "/level-test" },
 };

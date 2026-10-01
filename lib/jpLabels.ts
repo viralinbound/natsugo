@@ -1,4 +1,4 @@
-// Japanese companion word for common section eyebrows — shown as a small label and a large decorative kanji.
+// Japanese companion word for common section eyebrows: shown as a small label and a large decorative kanji.
 const labels: Record<string, string> = {
   admissions: "入学",
   "free demo": "体験",

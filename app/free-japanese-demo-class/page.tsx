@@ -22,7 +22,7 @@ export default async function DemoPage({ searchParams }: { searchParams: Promise
 
   return (
     <>
-      <PageHero title="Book a free demo class" eyebrow="Free Demo" intro="Sit in on a live class, meet a teacher and ask anything about levels, schedules and fees — no commitment." image={images.onlinePair} crumbs={[{ label: "Free Demo", href: "/free-japanese-demo-class" }]} />
+      <PageHero title="Book a free demo class" eyebrow="Free Demo" intro="Sit in on a live class, meet a teacher and ask anything about levels, schedules and fees, no commitment." image={images.onlinePair} crumbs={[{ label: "Free Demo", href: "/free-japanese-demo-class" }]} />
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start">
           <div>

@@ -40,7 +40,7 @@ export const levelInfo: Record<QuizLevel, LevelInfo> = {
     jp: "入門",
     tagline: "Your first step into Japanese",
     overview:
-      "N5 is the starting line. You'll learn both kana scripts, your first kanji and the sentence patterns that everything else is built on — and you'll be having simple conversations within weeks.",
+      "N5 is the starting line. You'll learn both kana scripts, your first kanji and the sentence patterns that everything else is built on. And you'll be having simple conversations within weeks.",
     canDo: ["Read and write hiragana and katakana", "Introduce yourself and talk about your day", "Understand slow, simple everyday conversations", "Read short sentences with basic kanji"],
     vocab: "~800 words",
     kanji: "~100 kanji",
@@ -85,7 +85,7 @@ export const levelInfo: Record<QuizLevel, LevelInfo> = {
     jp: "中級",
     tagline: "The bridge to real-world Japanese",
     overview:
-      "N3 is where Japanese starts to feel natural. You'll follow near-natural speech, read notices and short articles, and express opinions with more complex grammar — a key level for work and study goals.",
+      "N3 is where Japanese starts to feel natural. You'll follow near-natural speech, read notices and short articles, and express opinions with more complex grammar. A key level for work and study goals.",
     canDo: ["Follow conversations at near-natural speed", "Read newspaper headlines and simple articles", "Explain opinions and reasons in detail", "Use casual and polite speech appropriately"],
     vocab: "~3,750 words",
     kanji: "~650 kanji",
@@ -139,13 +139,13 @@ type U = [string, [string, string, number][]];
 const syllabus: Record<QuizLevel, U[]> = {
   N5: [
     ["Scripts & sounds", [["Hiragana part 1: あ–な rows", "The first 25 hiragana, vowel sounds and how Japanese syllables work.", 25], ["Hiragana part 2 & special sounds", "The remaining hiragana, dakuten (が), small っ and long vowels.", 30], ["Katakana & loanwords", "All katakana and how English words become Japanese.", 30]]],
-    ["First conversations", [["はじめまして — self-introduction", "Introduce yourself: name, country, job, with です.", 25], ["これ・それ・あれ — this and that", "Pointing words, の for possession, asking “what is this?”.", 25], ["Numbers, time and prices", "Counting, telling the time and asking いくらですか.", 30]]],
+    ["First conversations", [["はじめまして: self-introduction", "Introduce yourself: name, country, job, with です.", 25], ["これ・それ・あれ: this and that", "Pointing words, の for possession, asking “what is this?”.", 25], ["Numbers, time and prices", "Counting, telling the time and asking いくらですか.", 30]]],
     ["Daily life verbs", [["ます-form verbs", "Present, past and negative polite verbs for daily routines.", 30], ["Particles を・に・で・へ", "Objects, destinations, places of action and means.", 30], ["Adjectives い and な", "Describing people and things, positive and negative.", 25]]],
-    ["Getting around", [["あります・います — existence", "Saying where things and people are.", 25], ["〜たいです and invitations", "Wanting to do things and inviting friends.", 25], ["N5 review & mock test", "Timed practice across vocabulary, grammar, reading and listening.", 45]]],
+    ["Getting around", [["あります・います: existence", "Saying where things and people are.", 25], ["〜たいです and invitations", "Wanting to do things and inviting friends.", 25], ["N5 review & mock test", "Timed practice across vocabulary, grammar, reading and listening.", 45]]],
   ],
   N4: [
     ["Verb forms", [["て-form mastery", "Building て-form and using it to connect actions.", 30], ["Plain (dictionary) form", "Casual speech and the plain forms of verbs and adjectives.", 30], ["Potential form", "Saying what you can and can't do.", 25]]],
-    ["Giving reasons & opinions", [["から・ので — because", "Giving reasons politely and casually.", 25], ["〜と思います", "Sharing opinions and guesses.", 25], ["〜たことがあります", "Talking about experiences.", 25]]],
+    ["Giving reasons & opinions", [["から・ので: because", "Giving reasons politely and casually.", 25], ["〜と思います", "Sharing opinions and guesses.", 25], ["〜たことがあります", "Talking about experiences.", 25]]],
     ["Requests & permission", [["〜てもいいですか・〜てはいけません", "Asking and giving permission.", 25], ["〜なければなりません", "Obligation and things you must do.", 25], ["Giving & receiving: あげる・もらう・くれる", "Who gives what to whom.", 30]]],
     ["Conditionals & review", [["〜たら・〜ば・〜と", "The three main conditionals and when to use each.", 35], ["Passive and causative basics", "Being done to, and making someone do something.", 35], ["N4 review & mock test", "Timed practice across all sections.", 50]]],
   ],
@@ -174,7 +174,7 @@ const freeNotes: Record<QuizLevel, string> = {
 The first five rows of hiragana (25 characters) and the five vowel sounds that every Japanese syllable is built on.
 
 ## The five vowels
-あ (a) · い (i) · う (u) · え (e) · お (o) — short and clear, like "ah, ee, oo, eh, oh".
+あ (a) · い (i) · う (u) · え (e) · お (o): short and clear, like "ah, ee, oo, eh, oh".
 
 ## Rows in this lesson
 - あ row: あ い う え お
@@ -208,7 +208,7 @@ How to make the て-form of any verb and use it to connect actions: "I woke up, 
 ## Practice
 Make the て-form: よむ, まつ, みる, いく, べんきょうする.`,
   N3: `## What you'll learn
-The difference between 〜ように and 〜ために — both mean "so that / in order to".
+The difference between 〜ように and 〜ために: both mean "so that / in order to".
 
 ## The key rule
 - ために: the verb is something you **control** (volitional).
@@ -230,19 +230,19 @@ Two formal grammar patterns common in news and reports: 〜にわたって (over
 
 ## 〜にわたって
 Used with time or space to show the whole extent.
-3日間にわたって会議が行われた。 — The meeting was held over three days.
+3日間にわたって会議が行われた。: The meeting was held over three days.
 
 ## 〜をめぐって
 Used when there is debate or conflict about something.
-新しい法律をめぐって、議論が続いている。 — Debate continues over the new law.
+新しい法律をめぐって、議論が続いている。: Debate continues over the new law.
 
 ## Common mistakes
-Don't use をめぐって for simple "about" — use について there.
+Don't use をめぐって for simple "about": use について there.
 
 ## Practice
 Complete: 全国___、雨が降った。 / 予算___、意見が分かれた。`,
   N1: `## What you'll learn
-〜をよそに (ignoring, in disregard of) and 〜を皮切りに (starting with) — two expressions you'll meet in N1 reading.
+〜をよそに (ignoring, in disregard of) and 〜を皮切りに (starting with): two expressions you'll meet in N1 reading.
 
 ## 〜をよそに
 Doing something while ignoring others' feelings or a situation.
@@ -267,7 +267,7 @@ function autoNotes(level: QuizLevel, unitTitle: string, title: string, summary: 
 ${summary}
 
 ## Focus point
-${hasJp ? `**${title}**` : title} — part of *${unitTitle}* in the JLPT ${level} syllabus.
+${hasJp ? `**${title}**` : title}: part of *${unitTitle}* in the JLPT ${level} syllabus.
 
 ## How to study this lesson
 1. Listen to the lecture above (or read this page) once all the way through without pausing.

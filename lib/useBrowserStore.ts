@@ -39,7 +39,7 @@ export function useHydrated() {
   return useSyncExternalStore(noop, () => true, () => false);
 }
 
-// A clock that ticks every 30s — enough for "is this flashcard due yet?" checks.
+// A clock that ticks every 30s: enough for "is this flashcard due yet?" checks.
 const subscribeClock = (cb: () => void) => {
   const id = setInterval(cb, 30_000);
   return () => clearInterval(id);

@@ -52,14 +52,14 @@ export const courseDetails: CourseDetail[] = [
     slug: "learn-japanese-language-course",
     navLabel: "Japanese Language Course",
     eyebrow: "All Japanese Courses",
-    title: "Japanese Language Course — Live Online",
+    title: "Japanese Language Course: Live Online",
     metaTitle: "Learn Japanese Language Course | Live Online Classes",
     metaDescription:
       "Learn Japanese from N5 to N1 with Natsugo through live online classes, speaking practice, study materials and structured lessons for every level.",
     keywords: ["Learn Japanese Language Course", "Japanese Language Course Online", "Learn Japanese Online", "Japanese Course for Beginners", "Japanese Classes Online", "Japanese Course N5 to N1", "Live Japanese Classes Online"],
     image: images.classroom,
     intro:
-      "A complete Japanese programme that takes you from your first hiragana to confident, practical Japanese — with live teachers, speaking practice and regular progress checks at every level.",
+      "A complete Japanese programme that takes you from your first hiragana to confident, practical Japanese. With live teachers, speaking practice and regular progress checks at every level.",
     whoFor: [
       "Complete beginners with no Japanese knowledge",
       "Students planning higher studies or exchange programmes in Japan",
@@ -149,7 +149,7 @@ export const courseDetails: CourseDetail[] = [
     keywords: ["Speak Japanese Language", "Japanese Speaking Course Online", "Learn to Speak Japanese Online", "Japanese Speaking Classes", "Japanese Conversation Course", "Japanese Speaking Practice", "Live Japanese Speaking Classes"],
     image: images.onlinePair,
     intro:
-      "Most learners can read more than they can say. The Speaking Lab closes that gap with focused, teacher-led conversation practice — daily situations, the workplace and interviews.",
+      "Most learners can read more than they can say. The Speaking Lab closes that gap with focused, teacher-led conversation practice. Daily situations, the workplace and interviews.",
     whoFor: [
       "Learners at N5 and above who want to speak more fluently",
       "Professionals preparing for Japanese interviews or client calls",
@@ -194,7 +194,7 @@ export const courseDetails: CourseDetail[] = [
     keywords: ["Business Japanese", "Business Japanese Course", "Business Japanese Course Online", "Japanese for Professionals", "Japanese for Workplace", "Business Japanese Classes Online", "Japanese Keigo Course"],
     image: images.office,
     intro:
-      "For professionals who work with Japanese teams or clients. Learn the language and etiquette of the Japanese workplace — from keigo to emails to meetings.",
+      "For professionals who work with Japanese teams or clients. Learn the language and etiquette of the Japanese workplace. From keigo to emails to meetings.",
     whoFor: [
       "IT, engineering and consulting professionals with Japanese clients",
       "Learners at around N4 level or above",
@@ -223,7 +223,7 @@ export const courseDetails: CourseDetail[] = [
     materials: ["Business phrase book", "Email templates", "Case scenarios"],
     practice: ["Email writing tasks", "Meeting roleplays", "Presentation practice"],
     faqs: [
-      { question: "Do you offer corporate training?", answer: "Yes — contact us with your team size and goals and we will propose a plan." },
+      { question: "Do you offer corporate training?", answer: "Yes: contact us with your team size and goals and we will propose a plan." },
       ...commonFaqs,
     ],
     related: ["speak-japanese", "jlpt-n3", "work-in-japan"],
@@ -279,12 +279,12 @@ export const courseDetails: CourseDetail[] = [
     navLabel: "Japanese Grammar",
     eyebrow: "Grammar Focus",
     title: "Japanese Grammar Course",
-    metaTitle: "Japanese Grammar Course — Sentence Patterns N5 to N2",
+    metaTitle: "Japanese Grammar Course: Sentence Patterns N5 to N2",
     metaDescription:
-      "A focused course on Japanese grammar — particles, verb forms and sentence patterns from N5 to N2, with practice sentences in every class.",
+      "A focused course on Japanese grammar. Particles, verb forms and sentence patterns from N5 to N2, with practice sentences in every class.",
     image: images.books,
     intro:
-      "Grammar is where most self-learners get stuck. This course goes pattern by pattern — particles, verb conjugation, tenses and sentence structure — with practice sentences in every class, not just rules on a page.",
+      "Grammar is where most self-learners get stuck. This course goes pattern by pattern, particles, verb conjugation, tenses and sentence structure, with practice sentences in every class, not just rules on a page.",
     whoFor: [
       "Learners who can read kana but find sentence structure confusing",
       "Students preparing for JLPT grammar sections (N5–N2)",
@@ -313,7 +313,7 @@ export const courseDetails: CourseDetail[] = [
     materials: ["Grammar pattern sheets", "Practice sentence sets", "Reference charts"],
     practice: ["Sentence-building drills each class", "Weekly grammar quizzes", "Error-correction exercises"],
     faqs: [
-      { question: "Is this only grammar, with no speaking or vocabulary?", answer: "The focus is grammar, but every class includes speaking practice using the pattern just taught — grammar you can't use in a sentence isn't very useful." },
+      { question: "Is this only grammar, with no speaking or vocabulary?", answer: "The focus is grammar, but every class includes speaking practice using the pattern just taught. Grammar you can't use in a sentence isn't very useful." },
       ...commonFaqs,
     ],
     related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-japanese-preparation-course"],
@@ -323,9 +323,9 @@ export const courseDetails: CourseDetail[] = [
     navLabel: "Japanese Vocabulary",
     eyebrow: "Vocabulary Builder",
     title: "Japanese Vocabulary Course",
-    metaTitle: "Japanese Vocabulary Course — Words by Topic, N5 to N2",
+    metaTitle: "Japanese Vocabulary Course: Words by Topic, N5 to N2",
     metaDescription:
-      "Build Japanese vocabulary systematically by topic — daily life, work, travel and JLPT word lists — with spaced-repetition review built in.",
+      "Build Japanese vocabulary systematically by topic, daily life, work, travel and JLPT word lists, with spaced-repetition review built in.",
     image: images.classroom,
     intro:
       "Vocabulary is the biggest predictor of how quickly you progress. This course builds your word bank systematically, by topic and by JLPT level, with spaced-repetition review so words actually stick.",
@@ -357,7 +357,7 @@ export const courseDetails: CourseDetail[] = [
     materials: ["Topic-wise word lists", "Flashcard sets", "Kanji component charts"],
     practice: ["In-class recall games", "Flashcard review between classes", "Weekly vocabulary quizzes"],
     faqs: [
-      { question: "Do you use flashcards or an app?", answer: "Yes — you'll get topic-wise flashcard sets to review between classes, alongside our free flashcards tool." },
+      { question: "Do you use flashcards or an app?", answer: "Yes: you'll get topic-wise flashcard sets to review between classes, alongside our free flashcards tool." },
       ...commonFaqs,
     ],
     related: ["japanese-grammar-course", "japanese-for-beginners", "jlpt-japanese-preparation-course"],
@@ -367,12 +367,12 @@ export const courseDetails: CourseDetail[] = [
     navLabel: "Reading & Writing",
     eyebrow: "Reading & Writing",
     title: "Japanese Reading & Writing Course",
-    metaTitle: "Japanese Reading & Writing Course — Hiragana, Katakana & Kanji",
+    metaTitle: "Japanese Reading & Writing Course: Hiragana, Katakana & Kanji",
     metaDescription:
-      "Learn to read and write Japanese properly — hiragana, katakana and JLPT-level kanji with stroke order, dictation practice and reading passages.",
+      "Learn to read and write Japanese properly. Hiragana, katakana and JLPT-level kanji with stroke order, dictation practice and reading passages.",
     image: images.writing,
     intro:
-      "A dedicated course for the written language — correct stroke order for hiragana, katakana and kanji, plus graded reading passages so you can actually read real Japanese, not just recognise individual characters.",
+      "A dedicated course for the written language. Correct stroke order for hiragana, katakana and kanji, plus graded reading passages so you can actually read real Japanese, not just recognise individual characters.",
     whoFor: [
       "Complete beginners who want to start with correct stroke order",
       "Learners who can speak some Japanese but can't read or write it well",
@@ -401,7 +401,7 @@ export const courseDetails: CourseDetail[] = [
     materials: ["Stroke-order worksheets", "Kanji flashcard sets", "Graded reading passages"],
     practice: ["Writing drills every class", "Weekly dictation exercises", "Reading comprehension checks"],
     faqs: [
-      { question: "I already know hiragana and katakana — can I join for kanji only?", answer: "Yes, speak to admissions about joining from the kanji module if you've already covered the kana." },
+      { question: "I already know hiragana and katakana. Can I join for kanji only?", answer: "Yes, speak to admissions about joining from the kanji module if you've already covered the kana." },
       ...commonFaqs,
     ],
     related: ["japanese-for-beginners", "japanese-vocabulary-course", "jlpt-n5"],
@@ -414,7 +414,7 @@ const jlptMeta: Record<
 > = {
   N5: {
     hours: "Indicative 60 hours", vocab: "~800 words", kanji: "~100 kanji",
-    desc: "The first JLPT level — basic Japanese in hiragana, katakana and simple kanji.",
+    desc: "The first JLPT level. Basic Japanese in hiragana, katakana and simple kanji.",
     can: ["Read simple sentences in kana and basic kanji", "Understand slow, short everyday conversations", "Introduce yourself and talk about daily routines"],
     img: images.writing,
     metaTitle: "JLPT N5 Course Online | Easy Japanese Exam Prep",
@@ -423,7 +423,7 @@ const jlptMeta: Record<
   },
   N4: {
     hours: "Indicative 70 hours", vocab: "~1,500 words", kanji: "~300 kanji",
-    desc: "Everyday Japanese — understand basic conversations and read passages on familiar topics.",
+    desc: "Everyday Japanese: understand basic conversations and read passages on familiar topics.",
     can: ["Read passages on familiar daily topics", "Follow everyday conversations at a slightly slow pace", "Use verb forms like て-form, potential and volitional"],
     img: images.onlinePair,
     metaTitle: "JLPT N4 Course Online | Easy Japanese Exam Prep",
@@ -432,7 +432,7 @@ const jlptMeta: Record<
   },
   N3: {
     hours: "Indicative 90 hours", vocab: "~3,750 words", kanji: "~650 kanji",
-    desc: "The bridge between basic and advanced — Japanese used in everyday situations to some degree.",
+    desc: "The bridge between basic and advanced: Japanese used in everyday situations to some degree.",
     can: ["Understand newspaper headlines and notices", "Follow near-natural-speed conversations", "Express opinions with more complex grammar"],
     img: images.online,
     metaTitle: "JLPT N3 Course Online | Practical Japanese Exam Prep",
@@ -450,7 +450,7 @@ const jlptMeta: Record<
   },
   N1: {
     hours: "Indicative 150+ hours", vocab: "~10,000 words", kanji: "~2,000 kanji",
-    desc: "The highest JLPT level — understand Japanese in a wide variety of circumstances.",
+    desc: "The highest JLPT level. Understand Japanese in a wide variety of circumstances.",
     can: ["Read complex, abstract writing", "Understand lectures and news in depth", "Grasp nuance, implication and logical structure"],
     img: images.lecture,
     metaTitle: "JLPT N1 Course Online | Advanced Japanese Exam Prep",

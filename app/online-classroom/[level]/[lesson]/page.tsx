@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const r = await load(params);
   if (!r) return {};
   return {
-    title: `${r.lesson.title} — JLPT ${r.level} Lesson`,
+    title: `${r.lesson.title}: JLPT ${r.level} Lesson`,
     description: r.lesson.summary,
     alternates: { canonical: `/online-classroom/${r.level.toLowerCase()}/${r.lesson.id}` },
   };
@@ -49,7 +49,7 @@ export default async function LessonPage({ params }: P) {
         <div className="mt-5 grid lg:grid-cols-[1fr_320px] gap-8 items-start">
           <div className="min-w-0">
             <p className="text-xs font-bold uppercase tracking-wider text-sun-500">JLPT {level} · Unit {lesson.unit}: {lesson.unit_title}</p>
-            <h1 className="mt-1 text-2xl sm:text-3xl font-extrabold text-indigo-950 font-jp">{lesson.title}</h1>
+            <h1 className="mt-1 text-2xl sm:text-3xl font-semibold text-indigo-950 font-jp">{lesson.title}</h1>
             <p className="mt-2 text-charcoal-700">{lesson.summary} · {lesson.duration_min} min</p>
 
             <div className="mt-6">
@@ -97,7 +97,7 @@ export default async function LessonPage({ params }: P) {
 
           <aside className="lg:sticky lg:top-24 card-modern print:hidden">
             <p className="border-b border-charcoal-100 px-4 py-3 font-display font-bold text-indigo-950">{level} lessons</p>
-            <p className="border-b border-charcoal-100 px-4 py-2 text-xs text-charcoal-500">All lessons are free — video, notes and handouts.</p>
+            <p className="border-b border-charcoal-100 px-4 py-2 text-xs text-charcoal-500">All lessons are free, video, notes and handouts.</p>
             <ol className="max-h-[60vh] overflow-y-auto divide-y divide-charcoal-100">
               {lessons.map((l, i) => {
                 const current = l.id === lesson.id;

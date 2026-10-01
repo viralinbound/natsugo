@@ -8,7 +8,7 @@ export function LiveSeats({ batchId, initial }: { batchId: string; initial: numb
   const cls = seats === 0 ? "font-bold text-red-600" : seats <= 5 ? "font-semibold text-red-600" : "";
   return (
     <span aria-live="polite" className={`transition-colors ${changed ? "bg-sun-300 rounded px-1" : ""} ${cls}`}>
-      {seats === 0 ? "Batch full — waitlist open" : `${seats} seats left`}
+      {seats === 0 ? "Batch full: waitlist open" : `${seats} seats left`}
     </span>
   );
 }

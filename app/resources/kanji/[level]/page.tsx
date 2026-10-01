@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
   if (!level) return {};
   const count = kanjiByLevel[level].length;
   return {
-    title: `JLPT ${level} Kanji List (${count} Kanji) — Free Reference`,
+    title: `JLPT ${level} Kanji List (${count} Kanji): Free Reference`,
     description: `Browse all ${count} kanji for JLPT ${level}, ordered by frequency. Tap any kanji to hear it read aloud. Free reference from Natsugo.`,
     alternates: { canonical: `/resources/kanji/${levelParam(level)}` },
   };
@@ -82,7 +82,7 @@ export default async function KanjiLevelPage({ params }: { params: Promise<{ lev
           <p className="mt-8 text-sm text-charcoal-500 max-w-2xl">
             This list follows the commonly used JLPT {level} kanji grouping. Readings and meanings come
             from a live dictionary lookup, so occasionally an uncommon reading may differ from what&apos;s
-            taught in class — the {level} course and classroom material cover every kanji properly, in
+            taught in class: the {level} course and classroom material cover every kanji properly, in
             context —{" "}
             <Link href={`/jlpt-${levelParam(level)}`} className="font-semibold text-indigo-800 hover:underline">
               see the {level} course

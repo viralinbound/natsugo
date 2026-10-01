@@ -9,7 +9,7 @@ const portraits = [
   "photo-1517841905240-472988babdf9",
 ];
 
-// Stand-in portrait until a real photo is uploaded — stable per id so it doesn't change between renders.
+// Stand-in portrait until a real photo is uploaded: stable per id so it doesn't change between renders.
 export function placeholderPhoto(key: string, w = 400) {
   let h = 0;
   for (const c of key) h = (h * 31 + c.charCodeAt(0)) >>> 0;
@@ -19,7 +19,7 @@ export function placeholderPhoto(key: string, w = 400) {
 export const site = {
   name: "Natsugo",
   url: "https://natsugo.vercel.app", // switch to the custom domain once connected
-  // Placeholder contact details except phone/WhatsApp — replace the rest before launch.
+  // Placeholder contact details except phone/WhatsApp: replace the rest before launch.
   whatsappNumber: "917056109429",
   phoneDisplay: "+91 70561 09429",
   email: "khuwaish.g@viralinbound.com",

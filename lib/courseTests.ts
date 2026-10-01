@@ -116,7 +116,7 @@ export const courseBanks: Record<string, Record<string, Row[]>> = {
       ["Reading", "「〜様」 written after a name on an envelope is:", ["A polite title (Mr / Ms)", "The sender", "The postcode", "Urgent"], 0, "様 = polite title."],
       ["Reading", "「賞味期限」 on food means:", ["Best-before date", "Price", "Ingredients", "Weight"], 0, "賞味期限 = best before."],
       ["Reading", "「当日券 あり」 at a theatre means:", ["Same-day tickets available", "Sold out", "Members only", "No photos"], 0, "当日券 = same-day ticket."],
-      ["Reading", "「工事中のため、迂回して ください」 What should you do?", ["Take a detour — construction", "Wait here", "Go faster", "Turn back home"], 0, "迂回 = detour."],
+      ["Reading", "「工事中のため、迂回して ください」 What should you do?", ["Take a detour: construction", "Wait here", "Go faster", "Turn back home"], 0, "迂回 = detour."],
       ["Reading", "「乗り換え」 at a station means:", ["Transfer / change trains", "Exit", "Lost property", "Ticket office"], 0, "乗り換え = transfer."],
       ["Reading", "In a formal letter, 「拝啓」 is used:", ["At the start", "At the end", "For the date", "For the address"], 0, "拝啓 opens a formal letter; 敬具 closes it."],
       ["Reading", "「お手数ですが、ご記入 ください」 asks you to:", ["Please fill this in, sorry for the trouble", "Please wait", "Please pay", "Please sign later"], 0, "記入 = fill in."],

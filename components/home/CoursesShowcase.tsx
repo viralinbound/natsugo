@@ -17,7 +17,7 @@ export function CoursesShowcase() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
           <div className="max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-wider text-sun-500">Courses</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-indigo-950 tracking-tight">Explore our Japanese courses</h2>
+            <h2 className="mt-2 text-3xl sm:text-4xl font-semibold text-indigo-950 tracking-tight">Explore our Japanese courses</h2>
           </div>
           <Button href="/learn-japanese-language-course" variant="outline">Browse all courses</Button>
         </div>

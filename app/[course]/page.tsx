@@ -145,7 +145,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
               <ul className="mt-2 space-y-1 text-sm text-charcoal-700">{c.materials.map((m) => <li key={m}>• {m}</li>)}</ul>
               <h3 className="mt-5 font-bold text-indigo-950">Practice & tests</h3>
               <ul className="mt-2 space-y-1 text-sm text-charcoal-700">{c.practice.map((m) => <li key={m}>• {m}</li>)}</ul>
-              <p className="mt-5 text-xs text-charcoal-500">Fee: shared on request — contact admissions for the current fee.</p>
+              <p className="mt-5 text-xs text-charcoal-500">Fee: shared on request, contact admissions for the current fee.</p>
               <div className="mt-5 grid gap-2">
                 <Button href={`/free-japanese-demo-class?course=${c.slug}`}>Book Free Demo</Button>
                 <Button href="/contact" variant="outline">Ask a Question</Button>

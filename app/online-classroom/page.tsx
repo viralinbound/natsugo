@@ -27,7 +27,7 @@ export default function LearnPage() {
       <PageHero
         title="Your Japanese classroom, online"
         eyebrow="Online classroom · オンライン教室"
-        intro="Live classes with real teachers, recordings of every session, and a structured library of video lessons and study materials — from your first hiragana to JLPT N1."
+        intro="Live classes with real teachers, recordings of every session, and a structured library of video lessons and study materials, from your first hiragana to JLPT N1."
         image={images.online}
         crumbs={[{ label: "Online Classroom", href: "/online-classroom" }]}
       >
@@ -60,7 +60,7 @@ export default function LearnPage() {
               return (
                 <Link key={lvl} href={`/online-classroom/${lvl.toLowerCase()}`} className="group grid sm:grid-cols-[120px_1fr_auto] items-center gap-4 sm:gap-6 card-modern p-5 sm:p-6 hover:border-sun-400 transition-colors">
                   <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-0">
-                    <span className="font-display text-4xl font-extrabold text-sun-400">{lvl}</span>
+                    <span className="font-display text-4xl font-semibold text-sun-400">{lvl}</span>
                     <span className="font-jp text-sm text-charcoal-500">{info.jp} · Step {i + 1}</span>
                   </div>
                   <div>

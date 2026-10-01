@@ -95,7 +95,7 @@ export const courses: Course[] = [
     slug: "jlpt-n5",
     title: "JLPT N5 Foundation Course",
     level: "N5",
-    summary: "Start from zero — hiragana, katakana, and your first everyday conversations.",
+    summary: "Start from zero: hiragana, katakana, and your first everyday conversations.",
     outcomes: [
       "Read and write hiragana and katakana",
       "Use basic greetings and self-introductions",
@@ -232,7 +232,7 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
-  { id: "p1", slug: "how-to-learn-japanese-from-scratch", category: "Getting Started", title: "How to Learn Japanese from Scratch", excerpt: "A practical starting point for absolute beginners — scripts, sounds, and first steps." },
+  { id: "p1", slug: "how-to-learn-japanese-from-scratch", category: "Getting Started", title: "How to Learn Japanese from Scratch", excerpt: "A practical starting point for absolute beginners. Scripts, sounds, and first steps." },
   { id: "p2", slug: "how-long-does-it-take-to-learn-japanese", category: "Getting Started", title: "How Long Does It Take to Learn Japanese?", excerpt: "A realistic look at timelines across JLPT levels and study intensity." },
   { id: "p3", slug: "is-japanese-difficult-to-learn", category: "Getting Started", title: "Is Japanese Difficult to Learn?", excerpt: "What actually makes Japanese challenging, and what makes it easier than expected." },
   { id: "p4", slug: "what-is-jlpt", category: "JLPT", title: "What Is JLPT?", excerpt: "An overview of the Japanese-Language Proficiency Test and its five levels." },
@@ -257,7 +257,7 @@ export const resources: ResourceItem[] = [
 
 export const faqs: FAQItem[] = [
   { question: "Is the course suitable for beginners?", answer: "Yes. Our N5 Foundation course is designed for complete beginners with no prior Japanese knowledge." },
-  { question: "Can I learn Japanese online?", answer: "Yes — every Natsugo course is taught as live online classes, so you can join from anywhere." },
+  { question: "Can I learn Japanese online?", answer: "Yes: every Natsugo course is taught as live online classes, so you can join from anywhere." },
   { question: "Which JLPT level should I start with?", answer: "Take our free level test, or start at N5 if you're completely new to Japanese." },
   { question: "Do you provide speaking practice?", answer: "Yes, speaking practice is part of our courses, and we also run a dedicated Speaking Lab." },
   { question: "What are the class timings?", answer: "We offer morning, afternoon, and evening batches on weekdays and weekends. See the Batches page for current schedules." },

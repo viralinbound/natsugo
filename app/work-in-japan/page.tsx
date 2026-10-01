@@ -34,7 +34,7 @@ export default function Page() {
         ],
         links: [
           { label: "JLPT official website", href: "https://www.jlpt.jp/e/" },
-          { label: "Ministry of Foreign Affairs of Japan — Visas", href: "https://www.mofa.go.jp/j_info/visit/visa/index.html" },
+          { label: "Ministry of Foreign Affairs of Japan, Visas", href: "https://www.mofa.go.jp/j_info/visit/visa/index.html" },
           { label: "Embassy of Japan in India", href: "https://www.in.emb-japan.go.jp/" },
         ],
         faqs: [

@@ -23,7 +23,7 @@ export function MobileStickyBar() {
         {tabs.map(({ href, label, icon: Icon, primary }) =>
           primary ? (
             <Link key={href} href={href} className="flex flex-col items-center justify-end gap-1 pb-1.5 text-[11px] font-bold text-sun-500">
-              <span className="btn-shine -mt-6 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-sun-400 to-cyan-400 text-white shadow-lg shadow-sun-400/40 ring-4 ring-surface">
+              <span className="-mt-6 grid h-12 w-12 place-items-center rounded-full bg-indigo-700 text-white shadow-sm ring-4 ring-surface">
                 <Icon size={22} />
               </span>
               {label}

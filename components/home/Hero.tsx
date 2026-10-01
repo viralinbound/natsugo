@@ -23,7 +23,7 @@ export function Hero() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
 
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-indigo-950 sm:text-6xl animate-fade-up">
+            <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-indigo-950 sm:text-6xl animate-fade-up">
               Learn Japanese
               <br />
               <span className="text-gradient-anim">the structured way.</span>

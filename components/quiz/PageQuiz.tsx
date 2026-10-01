@@ -23,7 +23,7 @@ export function PageQuiz({ title, intro, sets }: { title: string; intro: string;
               href={s.href}
               className="group flex flex-col rounded-xl border-2 border-charcoal-100 bg-surface p-4 transition-colors hover:border-indigo-700"
             >
-              <span className="text-lg font-extrabold text-indigo-950">{s.label}</span>
+              <span className="text-lg font-semibold text-indigo-950">{s.label}</span>
               {s.desc ? <span className="mt-1 text-xs text-charcoal-500">{s.desc}</span> : null}
               <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-indigo-800">
                 Start test <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />

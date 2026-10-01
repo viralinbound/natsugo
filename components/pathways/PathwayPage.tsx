@@ -55,7 +55,7 @@ export function PathwayPage({ c }: { c: PathwayContent }) {
       <section className="bg-bg-alt py-14 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">What level is usually expected?</h2>
-          <p className="mt-2 text-charcoal-700">A general guide only — every employer, school and programme sets its own requirements.</p>
+          <p className="mt-2 text-charcoal-700">A general guide only, every employer, school and programme sets its own requirements.</p>
           <div className="mt-6 overflow-x-auto card-modern">
             <table className="w-full min-w-[480px] text-left">
               <thead className="bg-indigo-950 text-white text-sm"><tr><th className="px-5 py-3 w-32">Level</th><th className="px-5 py-3">Where it commonly helps</th></tr></thead>

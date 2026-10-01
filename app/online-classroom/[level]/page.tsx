@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
   if (!level) return {};
   const info = levelInfo[level];
   return {
-    title: `JLPT ${level} Online Classroom — Lessons, Live Classes & Recordings`,
+    title: `JLPT ${level} Online Classroom: Lessons, Live Classes & Recordings`,
     description: `${info.tagline}. Full JLPT ${level} syllabus with video lessons, study notes, live online classes, recordings, exam format and practice quizzes.`,
     alternates: { canonical: `/online-classroom/${level.toLowerCase()}` },
   };
@@ -59,7 +59,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
   return (
     <>
       <PageHero
-        title={`JLPT ${level} — ${info.tagline}`}
+        title={`JLPT ${level}: ${info.tagline}`}
         eyebrow={`Online classroom · ${info.jp}`}
         intro={info.overview}
         image={heroImg[level]}
@@ -92,7 +92,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
           {/* Syllabus */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Syllabus</h2>
-            <p className="mt-1 text-charcoal-700">Every lesson is free — video, study notes, audio lecture and handout. No sign-in needed.</p>
+            <p className="mt-1 text-charcoal-700">Every lesson is free, video, study notes, audio lecture and handout. No sign-in needed.</p>
             <div className="mt-6 space-y-4">
               {units.map((u) => (
                 <details key={u.n} open={u.n === 1} className="group card-modern overflow-hidden">

@@ -143,7 +143,7 @@ export function Flashcards({ cards }: { cards: Card[] }) {
         <div className="flex items-center gap-3">
           <Flame className={p.streak ? "text-red-500" : "text-charcoal-300"} size={32} />
           <div>
-            <p className="text-2xl font-extrabold text-white">{p.streak} day{p.streak === 1 ? "" : "s"}</p>
+            <p className="text-2xl font-semibold text-white">{p.streak} day{p.streak === 1 ? "" : "s"}</p>
             <p className="text-xs text-charcoal-500">Practice streak</p>
           </div>
         </div>
@@ -152,8 +152,8 @@ export function Flashcards({ cards }: { cards: Card[] }) {
           <div className="mt-1.5 h-2.5 rounded-full bg-bg-alt overflow-hidden"><div className="h-full rounded-full bg-sun-400 transition-all" style={{ width: `${goalPct}%` }} /></div>
         </div>
         <div className="grid grid-cols-2 gap-3 text-center">
-          <div className="rounded-md bg-bg-alt p-3"><p className="text-xl font-extrabold text-indigo-950">{p.xp}</p><p className="text-xs text-charcoal-500"><Star size={11} className="inline -mt-0.5" /> XP</p></div>
-          <div className="rounded-md bg-bg-alt p-3"><p className="text-xl font-extrabold text-indigo-950">{learned}</p><p className="text-xs text-charcoal-500">Learned</p></div>
+          <div className="rounded-md bg-bg-alt p-3"><p className="text-xl font-semibold text-indigo-950">{p.xp}</p><p className="text-xs text-charcoal-500"><Star size={11} className="inline -mt-0.5" /> XP</p></div>
+          <div className="rounded-md bg-bg-alt p-3"><p className="text-xl font-semibold text-indigo-950">{learned}</p><p className="text-xs text-charcoal-500">Learned</p></div>
         </div>
         <p className="text-xs text-charcoal-500">Progress is saved on this device.</p>
       </aside>

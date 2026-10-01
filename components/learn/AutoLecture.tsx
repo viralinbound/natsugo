@@ -120,7 +120,7 @@ export function AutoLecture({ title, notes }: { title: string; notes: string }) 
         <button type="button" onClick={() => { stop(); setI(0); setLine(0); }} className="rounded-md p-2 text-charcoal-500 hover:bg-bg-alt" aria-label="Restart"><RotateCcw size={16} /></button>
       </div>
       <p className="border-t border-charcoal-100 px-4 py-2 text-center text-xs text-charcoal-500">
-        Auto-narrated from the lesson notes using your device&apos;s voices — not a recorded teacher video.
+        Auto-narrated from the lesson notes using your device&apos;s voices, not a recorded teacher video.
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
 import type { JLPTLevel } from "@/lib/types";
 
 // Standard JLPT-level kanji sets (the commonly used community lists, e.g. as referenced by
-// Kanshudo and similar JLPT study sites) — characters only. Readings/meanings are not included
+// Kanshudo and similar JLPT study sites): characters only. Readings/meanings are not included
 // here beyond N5 (see kanjiN5 in lib/learning.ts) to avoid printing unverified data at this scale;
 // each character's SpeakButton reads it aloud correctly on its own.
 const raw: Record<JLPTLevel, string> = {

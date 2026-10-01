@@ -5,8 +5,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "About Us — Online Japanese Learning Platform",
-  description: "Natsugo is a Japanese language institute and learning platform for Indian students and professionals — live classes, JLPT preparation and speaking practice.",
+  title: "About Us: Online Japanese Learning Platform",
+  description: "Natsugo is a Japanese language institute and learning platform for Indian students and professionals, live classes, JLPT preparation and speaking practice.",
   alternates: { canonical: "/about-us" },
 };
 
@@ -14,13 +14,13 @@ const principles = [
   { jp: "測", title: "Measure first", body: "Every learner starts with a level check so you never repeat what you know or skip what you don't." },
   { jp: "話", title: "Speak from day one", body: "Exams matter, but conversation is the point. Every class includes speaking time." },
   { jp: "道", title: "A clear path", body: "N5 to N1, with checkpoints, mock tests and progress you can see." },
-  { jp: "誠", title: "Honest guidance", body: "No guaranteed jobs, visas or scores — just good teaching and straight answers." },
+  { jp: "誠", title: "Honest guidance", body: "No guaranteed jobs, visas or scores, just good teaching and straight answers." },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="Learn Japanese. Know your level. Follow your path." eyebrow="About Us" intro="We're building a complete Japanese learning journey for Indian learners — from first hiragana to confident professional Japanese." image={images.groupStudy} crumbs={[{ label: "About", href: "/about-us" }]} />
+      <PageHero title="Learn Japanese. Know your level. Follow your path." eyebrow="About Us" intro="We're building a complete Japanese learning journey for Indian learners, from first hiragana to confident professional Japanese." image={images.groupStudy} crumbs={[{ label: "About", href: "/about-us" }]} />
 
       <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
@@ -28,8 +28,8 @@ export default function AboutPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-indigo-950">Why we started</h2>
             <div className="mt-5 space-y-4 text-charcoal-700 leading-relaxed">
               <p>Most Japanese learners in India face the same problem: they don&apos;t know their real level, which course to choose, or how their progress is measured. Many end up with exam knowledge but little confidence speaking.</p>
-              <p>Natsugo combines live classes with a structured learning system — a level test, clear course paths, regular practice, mock tests and progress tracking — so every learner knows exactly where they stand and what comes next.</p>
-              <p className="text-sm text-charcoal-500">[Placeholder — add founding story, founders and institute details here.]</p>
+              <p>Natsugo combines live classes with a structured learning system, a level test, clear course paths, regular practice, mock tests and progress tracking, so every learner knows exactly where they stand and what comes next.</p>
+              <p className="text-sm text-charcoal-500">[Placeholder: add founding story, founders and institute details here.]</p>
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
@@ -55,7 +55,7 @@ export default function AboutPage() {
 
       <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-indigo-950">Certificates — what you receive</h2>
+          <h2 className="text-2xl font-bold text-indigo-950">Certificates: what you receive</h2>
           <div className="mt-6 grid sm:grid-cols-2 gap-5">
             <div className="card-modern p-6">
               <h3 className="font-bold text-indigo-950">Institute course certificate</h3>

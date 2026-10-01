@@ -22,7 +22,7 @@ export default function Page() {
         steps: [
           { title: "Choose your programme type", body: "Japanese language schools, English-taught degrees and Japanese-taught degrees all have very different language expectations." },
           { title: "Check each institution's requirement", body: "Universities may ask for a JLPT level or the EJU (Examination for Japanese University Admission)." },
-          { title: "Plan your timeline backwards", body: "The JLPT is held in India typically in July and December — plan which session you need results from." },
+          { title: "Plan your timeline backwards", body: "The JLPT is held in India typically in July and December, plan which session you need results from." },
           { title: "Build real communication skills", body: "Lectures, group work and part-time life need listening and speaking beyond exam practice." },
         ],
         levelGuide: [
@@ -31,7 +31,7 @@ export default function Page() {
           { level: "N2–N1", note: "Commonly required for Japanese-taught university programmes" },
         ],
         links: [
-          { label: "Study in Japan (JASSO) — official guide", href: "https://www.studyinjapan.go.jp/en/" },
+          { label: "Study in Japan (JASSO), official guide", href: "https://www.studyinjapan.go.jp/en/" },
           { label: "JLPT official website", href: "https://www.jlpt.jp/e/" },
           { label: "Embassy of Japan in India", href: "https://www.in.emb-japan.go.jp/" },
         ],

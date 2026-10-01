@@ -19,7 +19,7 @@ const steps = [
   { title: "Check the exam window", body: "Confirm which session (July or December) you're aiming for, and note the registration dates below." },
   { title: "Create an account", body: "Register on the official JLPT application portal for your country/region using a valid email and photo ID details." },
   { title: "Choose your level and test centre", body: "Select N5–N1 based on your level test result or course progress, and pick your nearest test centre." },
-  { title: "Pay the exam fee", body: "Pay online during registration. Keep the payment confirmation — you'll need it if there's any issue with your application." },
+  { title: "Pay the exam fee", body: "Pay online during registration. Keep the payment confirmation, you'll need it if there's any issue with your application." },
   { title: "Download your admit card", body: "Once registration closes, download and print your admit card / exam voucher before the exam day." },
   { title: "Sit the exam", body: "Arrive early with your admit card and a valid photo ID. Sections are Language Knowledge, Reading and Listening (order varies by level)." },
   { title: "Check your result", body: "Results are published online a couple of months after the exam, with the official certificate posted afterwards." },
@@ -33,7 +33,7 @@ export default async function ExamInfoPage() {
       <PageHero
         title="JLPT exam info: dates, registration, fees & centres"
         eyebrow="JLPT · 日本語能力試験"
-        intro="Everything about sitting the JLPT in India, gathered in one place — kept up to date by our team. Always double-check against the official website before making travel plans."
+        intro="Everything about sitting the JLPT in India, gathered in one place, kept up to date by our team. Always double-check against the official website before making travel plans."
         image={images.lecture}
         crumbs={[{ label: "JLPT Exam Info", href: "/jlpt-exam-info" }]}
       >
@@ -89,7 +89,7 @@ export default async function ExamInfoPage() {
 
       <section className="bg-bg-alt py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><ClipboardList size={26} className="text-sun-400" /> How to register — step by step</h2>
+          <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><ClipboardList size={26} className="text-sun-400" /> How to register: step by step</h2>
           <ol className="mt-8 space-y-6">
             {steps.map((s, i) => (
               <li key={s.title} className="flex gap-4">
@@ -116,7 +116,7 @@ export default async function ExamInfoPage() {
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {quizLevels.map((lvl) => (
               <div key={lvl} className="card-modern p-5">
-                <p className="font-display text-2xl font-extrabold text-sun-400">{lvl}</p>
+                <p className="font-display text-2xl font-semibold text-sun-400">{lvl}</p>
                 <p className="mt-1 text-sm text-charcoal-500 font-jp">{levelInfo[lvl].jp}</p>
                 <div className="mt-4 flex flex-col gap-2">
                   <Link href={`/jlpt-quiz/${lvl.toLowerCase()}/full`} className="text-sm font-semibold text-indigo-800 underline underline-offset-4">Practice quiz →</Link>

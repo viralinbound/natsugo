@@ -37,7 +37,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <header className="mx-auto max-w-3xl px-4 sm:px-6 pt-10 sm:pt-14">
         <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title, href: `/blog/${post.slug}` }]} />
         <p className="mt-6 text-xs font-bold uppercase tracking-wider text-sun-500">{post.category} · {body.readMinutes} min read</p>
-        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold text-indigo-950 tracking-tight text-balance">{post.title}</h1>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-semibold text-indigo-950 tracking-tight text-balance">{post.title}</h1>
         <p className="mt-4 text-lg text-charcoal-700">{post.excerpt}</p>
       </header>
       <div className="mx-auto max-w-4xl px-4 sm:px-6 mt-8">
@@ -89,10 +89,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(55%_90%_at_100%_0%,rgb(12_136_255/0.45),transparent_70%),radial-gradient(40%_70%_at_0%_100%,rgb(34_211_238/0.22),transparent_70%)]" />
           <span aria-hidden className="pointer-events-none absolute -bottom-6 right-4 -z-10 font-jp text-[7rem] font-bold leading-none text-white/[0.06] sm:text-[9rem]">練習</span>
           <p className="font-jp text-sm font-bold text-[#7cc4ff]">次の一歩 · Your next step</p>
-          <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Put this article into practice</h2>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">Put this article into practice</h2>
           <p className="mt-2 max-w-xl text-white/75">{body.next.line}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <Link href={body.next.test.href} className="btn-shine group flex min-h-[64px] items-center justify-between gap-3 rounded-xl bg-gradient-to-r from-[#1e90ff] to-[#22d3ee] px-5 font-bold text-white">
+            <Link href={body.next.test.href} className="group flex min-h-[64px] items-center justify-between gap-3 rounded-xl bg-[#0c88ff] hover:bg-[#0a6fd1] px-5 font-bold text-white">
               <span className="flex items-center gap-2"><Sparkles size={18} /> {body.next.test.label}</span>
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </Link>

@@ -7,7 +7,7 @@ import { levelQuizSets, quizLevels, quizTopics, type QuizLevel } from "@/lib/qui
 import { useHydrated } from "@/lib/useBrowserStore";
 
 const levelInfo: Record<QuizLevel, { jp: string; desc: string }> = {
-  N5: { jp: "入門", desc: "Absolute basics — kana, first words, simple sentences" },
+  N5: { jp: "入門", desc: "Absolute basics: kana, first words, simple sentences" },
   N4: { jp: "初級", desc: "Everyday conversation and core verb forms" },
   N3: { jp: "中級", desc: "The bridge to real-world Japanese" },
   N2: { jp: "中上級", desc: "Workplace and news-level Japanese" },
@@ -42,7 +42,7 @@ export function QuizHub({ initial = "N5" }: { initial?: QuizLevel }) {
                 level === l ? "border-indigo-900 bg-indigo-900 text-white" : "border-charcoal-100 bg-surface text-charcoal-800 hover:border-indigo-700/40"
               }`}
             >
-              <span className="block text-base sm:text-lg font-extrabold">{l}</span>
+              <span className="block text-base sm:text-lg font-semibold">{l}</span>
               <span className={`block font-jp text-[10px] sm:text-xs leading-tight ${level === l ? "text-sun-300" : "text-charcoal-500"}`}>
                 <span className="hidden sm:inline">{levelInfo[l].jp} · </span>{done}/6 ✓
               </span>

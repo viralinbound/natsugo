@@ -74,10 +74,10 @@ async function scoreDrawing(ch: string, lines: Pt[][]): Promise<number | null> {
 }
 
 function verdict(s: number) {
-  if (s >= 85) return { jp: "素晴らしい！", en: "Excellent — that's very close.", tone: "text-success" };
+  if (s >= 85) return { jp: "素晴らしい！", en: "Excellent: that's very close.", tone: "text-success" };
   if (s >= 65) return { jp: "いいね！", en: "Good. Check the stroke order and try once more.", tone: "text-indigo-700" };
   if (s >= 40) return { jp: "もう少し", en: "Getting there. Watch the animation again, slowly.", tone: "text-sun-500" };
-  return { jp: "がんばって", en: "Keep going — trace it with the guide on first.", tone: "text-hanko" };
+  return { jp: "がんばって", en: "Keep going: trace it with the guide on first.", tone: "text-hanko" };
 }
 
 export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: () => void }) {
@@ -229,7 +229,7 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
               <div className="pop-in mt-3 rounded-xl bg-bg-alt p-4" role="status">
                 <div className="flex items-center justify-between">
                   <p className={`font-jp text-lg font-bold ${v.tone}`}>{v.jp}</p>
-                  <p className="text-2xl font-extrabold text-indigo-950">{score}%</p>
+                  <p className="text-2xl font-semibold text-indigo-950">{score}%</p>
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface"><div className="gradient-strip h-full rounded-full" style={{ width: `${score}%` }} /></div>
                 <p className="mt-2 text-sm text-charcoal-700">{v.en} You drew {lines.length} stroke{lines.length === 1 ? "" : "s"}{step[1] ? `; ${item.ch} has ${step[1]}` : ""}.</p>

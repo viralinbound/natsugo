@@ -10,7 +10,7 @@ export const resourceTopics = [
   },
   {
     slug: "katakana", title: "Katakana Chart", short: "Katakana", jp: "カタカナ",
-    desc: "All 46 katakana — used for foreign words, names and emphasis.", image: images.tokyo,
+    desc: "All 46 katakana: used for foreign words, names and emphasis.", image: images.tokyo,
     metaTitle: "Japanese Katakana | Free Chart, Sounds & Practice",
     metaDescription: "Learn Japanese Katakana with Natsugo's free interactive chart. Practice all 46 characters, hear pronunciation and use romaji support for easy learning.",
     keywords: ["Japanese Katakana", "Katakana Chart", "Japanese Katakana Chart", "Learn Katakana Online", "Katakana Characters", "Katakana Pronunciation", "Katakana Practice", "Katakana Chart with Romaji"],
@@ -45,7 +45,7 @@ export const resourceTopics = [
   },
   {
     slug: "flashcards", title: "Daily Japanese Flashcards", short: "Flashcards", jp: "単語カード",
-    desc: "Spaced-repetition flashcards for kana, kanji and vocabulary — build a daily streak.", image: images.writing,
+    desc: "Spaced-repetition flashcards for kana, kanji and vocabulary. Build a daily streak.", image: images.writing,
     metaTitle: "Japanese Flashcards | Free Daily Practice",
     metaDescription: "Learn Japanese with free daily flashcards for Hiragana, Katakana, N5 Kanji and vocabulary. Practice with spaced repetition and build your skills with Natsugo.",
     keywords: ["Japanese Flashcards", "Japanese Flashcards Online", "Free Japanese Flashcards", "Japanese Vocabulary Flashcards", "Japanese Kanji Flashcards", "Hiragana Flashcards", "Katakana Flashcards", "N5 Japanese Flashcards"],

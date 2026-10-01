@@ -19,7 +19,7 @@ export default async function BatchesPage({ searchParams }: { searchParams: Prom
       <PageHero
         title="Find a batch that fits your schedule"
         eyebrow="Upcoming Batches"
-        intro="New batches start every month. Filter by level, timing and format — every batch lists its schedule, duration and seats up front."
+        intro="New batches start every month. Filter by level, timing and format, every batch lists its schedule, duration and seats up front."
         image={images.classroom}
         crumbs={[{ label: "Batches", href: "/batches" }]}
       />

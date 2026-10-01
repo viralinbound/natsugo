@@ -13,7 +13,7 @@ export function FinalCTA() {
           <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="font-jp text-base font-bold text-[#7cc4ff]">さあ、始めましょう。</p>
-              <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-balance text-white sm:text-4xl">
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
                 Ready to start your Japanese journey?
               </h2>
               <p className="mt-3 max-w-xl text-white/75 sm:text-lg">
@@ -21,7 +21,7 @@ export function FinalCTA() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link href="/level-test" className="btn-shine inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-[#1e90ff] to-[#22d3ee] px-6 font-bold text-white">
+              <Link href="/level-test" className="inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-md bg-[#0c88ff] hover:bg-[#0a6fd1] px-6 font-bold text-white">
                 Take Free Level Test <ArrowRight size={18} />
               </Link>
               <Link href="/batches" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-md border-2 border-white/30 px-6 font-bold text-white transition-colors hover:border-white">

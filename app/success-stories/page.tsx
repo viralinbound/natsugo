@@ -6,7 +6,7 @@ import { ReviewForm } from "@/components/forms/ReviewForm";
 
 export const metadata: Metadata = {
   title: "Student Success Stories",
-  description: "Verified stories from Japanese learners — their level, course and journey.",
+  description: "Verified stories from Japanese learners, their level, course and journey.",
   alternates: { canonical: "/success-stories" },
 };
 

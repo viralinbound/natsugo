@@ -11,12 +11,11 @@ type Variant =
   | "whatsapp";
 type Size = "sm" | "md" | "lg";
 
-// Gradient fill with a soft glow shadow — a modern, energetic primary action —
-// the hover state deepens the glow and lifts the button slightly.
+// Solid brand fill; hover darkens it and lifts it a touch.
 const variantClasses: Record<Variant, string> = {
   primary:
-    "btn-shine bg-gradient-to-r from-sun-400 to-cyan-400 text-white shadow-lg shadow-sun-400/30 hover:shadow-xl hover:shadow-sun-400/40 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md",
-  dark: "btn-shine bg-indigo-950 text-white hover:bg-indigo-800",
+    "bg-indigo-700 text-white shadow-sm hover:bg-[#0a6fd1] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0",
+  dark: "bg-indigo-950 text-white hover:bg-indigo-800",
   secondary: "bg-surface text-indigo-950 border border-charcoal-100 hover:bg-sun-100",
   outline: "bg-transparent text-indigo-950 border-2 border-charcoal-300 hover:border-sun-400 hover:text-sun-500",
   "outline-light": "bg-transparent text-white border-2 border-white/70 hover:bg-white hover:text-indigo-950",
@@ -31,7 +30,7 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-bold transition-all duration-150 whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-all duration-200 ease-out whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none";
 
 interface CommonProps {
   variant?: Variant;

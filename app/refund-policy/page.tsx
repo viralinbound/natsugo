@@ -9,8 +9,8 @@ export default function Page() {
       title="Refund Policy"
       slug="refund-policy"
       sections={[
-        { h: "Before the batch starts", p: "[To be defined by the business — e.g. refund window and any processing fee.]" },
-        { h: "After the batch starts", p: "[To be defined by the business — e.g. batch transfer options.]" },
+        { h: "Before the batch starts", p: "[To be defined by the business, e.g. refund window and any processing fee.]" },
+        { h: "After the batch starts", p: "[To be defined by the business, e.g. batch transfer options.]" },
         { h: "How to request", p: "Contact admissions with your name, batch and payment reference." },
       ]}
     />

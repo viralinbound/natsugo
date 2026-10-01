@@ -109,7 +109,7 @@ ${l.interest || l.batchTitle ? `<p style="font-size:14px;background:${brand.bg};
 <p style="margin:0 0 18px">${btn(`${site.url}/level-test`, "Free level test")}${btn(`${site.url}/jlpt-quiz`, "JLPT quiz", brand.grey)}</p>
 <p style="font-size:15px;line-height:1.6;margin:0">Questions? ${btn(whatsappLink(`Hi, I'm ${l.name} and I just sent a request on the website.`), "Chat on WhatsApp", "#25D366")}</p>
 <p style="font-size:15px;margin:20px 0 0">よろしくお願いします！<br>Team Natsugo</p>`;
-  return send(l.email, `We got your request, ${first} — Natsugo`, layout("Thank you! ありがとうございます", body), notifyTo()[0]);
+  return send(l.email, `We got your request, ${first}: Natsugo`, layout("Thank you! ありがとうございます", body), notifyTo()[0]);
 }
 
 export function sendReviewAlert(r: { name: string; course: string; level: string; quote: string }) {
@@ -130,6 +130,6 @@ export function sendClassroomWelcome(to: string, name: string, levels: string[])
 <li>Video lessons, study notes and handouts</li>
 </ul>
 <p style="margin:0 0 16px">${btn(`${site.url}/online-classroom`, "Open the classroom")}</p>
-<p style="font-size:13px;color:#6b6b6b;margin:0">Everything is free and open — no sign-in needed.</p>`;
+<p style="font-size:13px;color:#6b6b6b;margin:0">Everything is free and open: no sign-in needed.</p>`;
   return send(to, "Your Natsugo online classroom is ready", layout("Welcome to your classroom", body), notifyTo()[0]);
 }
