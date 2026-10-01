@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Check, Radio, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { HeroPath } from "@/components/home/HeroPath";
+import { HeroStudio } from "@/components/home/HeroStudio";
+import { HeroBackdrop } from "@/components/home/HeroBackdrop";
 
 const goals = [
   { label: "Pass the JLPT", href: "/jlpt-japanese-preparation-course" },
@@ -18,9 +19,7 @@ export function Hero() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-bg">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_85%_20%,rgb(12_136_255/0.14),transparent_70%),radial-gradient(40%_50%_at_0%_100%,rgb(34_211_238/0.10),transparent_70%)]" />
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [background-image:linear-gradient(to_right,var(--color-charcoal-100)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-charcoal-100)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)]" />
-
+        <HeroBackdrop />
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pt-20 lg:pb-24">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-indigo-700/20 bg-sun-100 px-3.5 py-1.5 text-xs font-bold text-indigo-800 sm:text-sm animate-fade-up">
@@ -65,7 +64,7 @@ export function Hero() {
           </div>
 
           <div className="animate-fade-up [animation-delay:200ms]">
-            <HeroPath />
+            <HeroStudio />
           </div>
         </div>
       </section>
