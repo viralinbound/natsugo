@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { KanaCell } from "@/lib/learning";
 import { Volume2 } from "lucide-react";
-import { speakJapanese } from "@/components/ui/SpeakButton";
+import { KanjiPractice } from "@/components/japan/KanjiPractice";
 
 export function KanaChart({ rows }: { rows: KanaCell[][] }) {
   const [showRomaji, setShowRomaji] = useState(true);
@@ -12,7 +12,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-charcoal-700">Tap any character to hear it.</p>
+        <p className="text-sm text-charcoal-700">Tap any character to hear it, watch its stroke order and practise writing it.</p>
         <label className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal-800 cursor-pointer">
           <input type="checkbox" checked={showRomaji} onChange={(e) => setShowRomaji(e.target.checked)} className="h-5 w-5 accent-indigo-900" />
           Show romaji
@@ -25,10 +25,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
             <button
               key={i}
               type="button"
-              onClick={() => {
-                setActive(c.kana);
-                speakJapanese(c.kana);
-              }}
+              onClick={() => setActive(c.kana)}
               aria-label={`${c.kana} (${c.romaji})`}
               className={`wood-block flex flex-col items-center justify-center gap-0.5 px-1 py-3 sm:gap-1 sm:px-3 sm:py-6 ${active === c.kana ? "is-active" : ""}`}
             >
@@ -42,6 +39,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
         )}
       </div>
       </div>
+      {active ? <KanjiPractice item={{ ch: active, meaning: rows.flat().find((c) => c.kana === active)?.romaji }} onClose={() => setActive(null)} /> : null}
     </div>
   );
 }

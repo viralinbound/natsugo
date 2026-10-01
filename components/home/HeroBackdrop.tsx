@@ -16,7 +16,7 @@ export function HeroBackdrop() {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setInterval(() => !document.hidden && setI((n) => (n + 1) % scenes.length), 6000);
+    const t = window.setInterval(() => !document.hidden && setI((n) => (n + 1) % scenes.length), 5000);
     return () => window.clearInterval(t);
   }, []);
 
@@ -25,16 +25,16 @@ export function HeroBackdrop() {
       {scenes.map((s, n) => (
         <Image
           key={s.src}
-          src={`${s.src}?w=1800&q=70&auto=format&fit=crop`}
+          src={`${s.src}?w=2000&q=80&auto=format&fit=crop`}
           alt=""
           fill
           priority={n === 0}
           sizes="100vw"
-          className={`object-cover transition-opacity duration-[1600ms] ${n === i ? "opacity-100 hero-kenburns" : "opacity-0"}`}
+          className={`object-cover transition-opacity duration-[1200ms] ${n === i ? "opacity-100 hero-kenburns" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0 bg-bg/85 lg:bg-transparent lg:bg-gradient-to-r lg:from-bg lg:via-bg/85 lg:to-bg/10" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg/80 via-bg/70 to-bg/85 lg:bg-gradient-to-r lg:from-bg/95 lg:via-bg/55 lg:to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-bg to-transparent" />
       <div className="shoji shoji-left" />
       <div className="shoji shoji-right" />
     </div>
