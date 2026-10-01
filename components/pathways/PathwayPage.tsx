@@ -1,3 +1,5 @@
+import { PageQuiz } from "@/components/quiz/PageQuiz";
+import { courseQuiz } from "@/lib/pageQuiz";
 import Image from "next/image";
 import { ExternalLink, Info } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
@@ -19,10 +21,12 @@ export interface PathwayContent {
 }
 
 export function PathwayPage({ c }: { c: PathwayContent }) {
+  const pick = courseQuiz[c.slug];
+  const quiz = pick ? { ...pick, sets: pick.sets() } : null;
   return (
     <>
       <PageHero title={c.title} eyebrow={c.eyebrow} intro={c.intro} image={c.image} crumbs={[{ label: c.eyebrow, href: `/${c.slug}` }]}>
-        <Button href="/free-japanese-demo-class" size="lg">Book a Free Demo</Button>
+        {quiz ? <Button href={quiz.sets[0].href} size="lg">{`Take Free ${quiz.name} Test`}</Button> : <Button href="/free-japanese-demo-class" size="lg">Book a Free Demo</Button>}
         <Button href="/contact" variant="outline-light" size="lg">Talk to an Advisor</Button>
       </PageHero>
 
@@ -85,6 +89,7 @@ export function PathwayPage({ c }: { c: PathwayContent }) {
           <div className="mt-6"><FAQAccordion items={c.faqs} /></div>
         </div>
       </section>
+      {quiz ? <PageQuiz title={quiz.title} intro={quiz.intro} sets={quiz.sets} /> : null}
     </>
   );
 }

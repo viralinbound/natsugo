@@ -105,18 +105,18 @@ export interface Question {
 }
 
 export const levelTestQuestions: Question[] = [
-  { id: "q1", skill: "Vocabulary", level: "N5", prompt: "What does 「みず」 mean?", options: ["Fire", "Water", "Tree", "Mountain"], answer: 1 },
-  { id: "q2", skill: "Kanji", level: "N5", prompt: "How is 「山」 read in 「ふじさん」?", options: ["やま", "さん", "かわ", "せん"], answer: 1 },
-  { id: "q3", skill: "Grammar", level: "N5", prompt: "わたし ___ がくせいです。", options: ["を", "に", "は", "で"], answer: 2 },
+  { id: "q1", skill: "Vocabulary", level: "N5", prompt: "What does 「そら」 mean?", options: ["Sea", "Sky", "Road", "Flower"], answer: 1 },
+  { id: "q2", skill: "Kanji", level: "N5", prompt: "How is 「木」 read on its own?", options: ["もく", "き", "ほん", "はやし"], answer: 1 },
+  { id: "q3", skill: "Grammar", level: "N5", prompt: "あなた ___ なまえは なんですか。", options: ["を", "に", "の", "で"], answer: 2 },
   { id: "q4", skill: "Listening", level: "N5", prompt: "Listen and choose the meaning.", audio: "ありがとうございます", options: ["Good morning", "Thank you", "Excuse me", "Goodbye"], answer: 1 },
   { id: "q5", skill: "Reading", level: "N5", prompt: "「きのう、ともだちと えいがを みました。」 What did the writer do yesterday?", options: ["Ate with family", "Watched a movie with a friend", "Went to school", "Bought a book"], answer: 1 },
-  { id: "q6", skill: "Grammar", level: "N4", prompt: "ここで しゃしんを ___ もいいですか。", options: ["とる", "とって", "とった", "とり"], answer: 1 },
+  { id: "q6", skill: "Grammar", level: "N4", prompt: "まどを ___ もいいですか。", options: ["あける", "あけて", "あけた", "あけ"], answer: 1 },
   { id: "q7", skill: "Vocabulary", level: "N4", prompt: "Choose the best word: かいぎの ___ を コピーしてください。", options: ["しりょう", "でんしゃ", "てんき", "やさい"], answer: 0 },
-  { id: "q8", skill: "Kanji", level: "N4", prompt: "What is the reading of 「会社」?", options: ["かいしゃ", "がっこう", "かいぎ", "しゃかい"], answer: 0 },
+  { id: "q8", skill: "Kanji", level: "N4", prompt: "What is the reading of 「学校」?", options: ["がっこう", "がくせい", "がっき", "こうこう"], answer: 0 },
   { id: "q9", skill: "Listening", level: "N4", prompt: "Listen and choose the meaning.", audio: "あしたは あめが ふるかもしれません", options: ["It rained yesterday", "It might rain tomorrow", "It is sunny today", "It will snow tonight"], answer: 1 },
-  { id: "q10", skill: "Reading", level: "N4", prompt: "「このへやでは たばこを すわないでください。」 What does this notice say?", options: ["Please smoke here", "Please don't smoke in this room", "Smoking area is outside", "Please open the window"], answer: 1 },
+  { id: "q10", skill: "Reading", level: "N4", prompt: "「この エレベーターは 5かいまでです。」 What does this notice say?", options: ["It goes to the 5th floor", "It only goes up to the 5th floor", "It holds 5 people", "It opens at 5"], answer: 1 },
   { id: "q11", skill: "Grammar", level: "N3", prompt: "日本に 来た ___、毎日 日本語を 使っています。", options: ["ばかり", "以来", "ところ", "うちに"], answer: 1 },
-  { id: "q12", skill: "Vocabulary", level: "N3", prompt: "「締め切り」 is closest in meaning to:", options: ["Deadline", "Holiday", "Contract", "Salary"], answer: 0 },
+  { id: "q12", skill: "Vocabulary", level: "N3", prompt: "「予約」 is closest in meaning to:", options: ["Reservation", "Discount", "Receipt", "Delivery"], answer: 0 },
 ];
 
 export const recommendLevel = (score: number, total: number) => {

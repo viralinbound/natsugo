@@ -31,14 +31,17 @@ export interface CourseQuiz {
   sets: () => PageQuizSet[];
 }
 
-// Which test a course page shows. `null` means the page has no test.
-export const courseQuiz: Record<string, CourseQuiz | null> = {
-  "japanese-grammar-course": { name: "Grammar", title: "Free grammar test", intro: "Particles, verb forms and patterns. Pick your level.", sets: () => topicSets("grammar") },
-  "japanese-vocabulary-course": { name: "Vocabulary", title: "Free vocabulary test", intro: "Word meanings for each JLPT level. Pick your level.", sets: () => topicSets("vocabulary") },
-  "japanese-reading-writing-course": { name: "Reading", title: "Free reading test", intro: "Short texts, signs and notices. Pick your level.", sets: () => topicSets("reading") },
-  "speak-japanese": { name: "Speaking", title: "Free speaking test", intro: "Choose what you would say in real situations, or listen and pick the best reply.", sets: () => freeTestSets("speaking") },
-  "japanese-for-beginners": { name: "Beginner", title: "Free beginner test", intro: "Made for your first weeks: hiragana, greetings, numbers and time.", sets: () => freeTestSets("beginner") },
+// Every page in the Learn menu has its own test with questions used nowhere else.
+const own = (test: string, name: string, title: string, intro: string): CourseQuiz => ({ name, title, intro, sets: () => freeTestSets(test) });
+export const courseQuiz: Record<string, CourseQuiz> = {
+  "learn-japanese-language-course": own("japanese", "Japanese", "Free Japanese test", "Everyday Japanese for new learners. Start with Starter, then try Next step."),
+  "japanese-for-beginners": own("beginner", "Beginner", "Free beginner test", "Made for your first weeks: first words, greetings, numbers and time."),
+  "speak-japanese": own("speaking", "Speaking", "Free speaking test", "Choose what you would say in real situations, or listen and pick the best reply."),
+  "japanese-grammar-course": own("grammar", "Grammar", "Free grammar test", "Particles, verb forms and sentence patterns."),
+  "japanese-vocabulary-course": own("vocabulary", "Vocabulary", "Free vocabulary test", "Everyday words first, then useful intermediate ones."),
+  "japanese-reading-writing-course": own("reading", "Reading", "Free reading & writing test", "Kana, kanji, signs and short real-world texts."),
+  "business-japanese": own("business", "Business Japanese", "Free business Japanese test", "Keigo, phone calls, emails and office vocabulary."),
+  "work-in-japan": own("work", "Work in Japan", "Free work-in-Japan test", "Interviews, documents and everyday workplace Japanese."),
   "jlpt-japanese-preparation-course": { name: "JLPT", title: "Free JLPT mock test", intro: "Exam-level questions across every section. Pick your level.", sets: () => difficultySets("hard", "Exam-level mixed questions") },
-  "learn-japanese-language-course": { name: "Japanese", title: "Free Japanese test", intro: "Everyday Japanese across vocabulary, grammar, kanji, reading and listening.", sets: () => difficultySets("easy", "Everyday mixed questions") },
-  "business-japanese": null,
+  "study-in-japan": own("study", "Study in Japan", "Free study-in-Japan test", "Campus life, fees and talking to teachers and classmates."),
 };

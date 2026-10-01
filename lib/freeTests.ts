@@ -1,6 +1,7 @@
 import type { Skill } from "@/lib/learning";
 import { hiragana, katakana } from "@/lib/learning";
 import { kanaQuiz, shuffleOptions, type QuizQuestion } from "@/lib/quizBank";
+import { courseBanks } from "@/lib/courseTests";
 
 // Tests that are not part of the JLPT topic bank: speaking situations by level, and the beginner course parts.
 type Row = [Skill, string, string[], number, string, string?];
@@ -77,8 +78,8 @@ const beginner: Record<string, Row[]> = {
     ["Speaking", "「はい」 means:", ["Yes", "No", "Maybe", "Hello"], 0, "はい = yes. いいえ = no."],
     ["Speaking", "「おやすみなさい」 is said:", ["Before sleeping", "In the morning", "When eating", "On the phone"], 0, "おやすみなさい = good night."],
     ["Speaking", "「おねがいします」 means:", ["Please", "Sorry", "Welcome", "Cheers"], 0, "おねがいします = please (a request)."],
-    ["Listening", "Listen and choose the meaning.", ["Nice to meet you", "Good night", "Thank you", "Excuse me"], 0, "はじめまして = nice to meet you.", "はじめまして"],
-    ["Listening", "Listen and choose the meaning.", ["Excuse me / sorry", "Good morning", "Welcome", "Goodbye"], 0, "すみません = excuse me.", "すみません"],
+    ["Listening", "Listen and choose the meaning.", ["Please come in", "Good night", "Thank you", "Excuse me"], 0, "どうぞ = please (go ahead / come in).", "どうぞ"],
+    ["Listening", "Listen and choose the meaning.", ["Welcome home", "Good morning", "Welcome (shop)", "Goodbye"], 0, "おかえりなさい = welcome home.", "おかえりなさい"],
     ["Speaking", "「いいえ」 means:", ["No", "Yes", "Good", "Bad"], 0, "いいえ = no."],
   ],
   numbers: [
@@ -129,13 +130,105 @@ export const freeTests: FreeTest[] = [
     id: "beginner",
     title: "Japanese beginner test",
     jp: "入門",
-    desc: "For your first weeks: kana, greetings and numbers.",
+    desc: "For your first weeks: first words, greetings and numbers.",
     backHref: "/japanese-for-beginners",
     backLabel: "Japanese for Beginners",
     parts: [
-      { id: "hiragana", label: "Hiragana", questions: kanaQuiz("hiragana", hiragana) },
+      { id: "words", label: "First words", questions: build("beginner", "words", "N5", courseBanks.beginner.words) },
       { id: "greetings", label: "Greetings", questions: build("beginner", "greetings", "N5", beginner.greetings) },
       { id: "numbers", label: "Numbers & time", questions: build("beginner", "numbers", "N5", beginner.numbers) },
+    ],
+  },
+  {
+    id: "japanese",
+    title: "Japanese test",
+    jp: "日本語",
+    desc: "Everyday Japanese for new learners: words, particles, signs and listening.",
+    backHref: "/learn-japanese-language-course",
+    backLabel: "Japanese Courses",
+    parts: [
+      { id: "starter", label: "Starter", questions: build("japanese", "starter", "N5", courseBanks.japanese.starter) },
+      { id: "next", label: "Next step", questions: build("japanese", "next", "N4", courseBanks.japanese.next) },
+    ],
+  },
+  {
+    id: "grammar",
+    title: "Grammar test",
+    jp: "文法",
+    desc: "Particles, verb forms and sentence patterns.",
+    backHref: "/japanese-grammar-course",
+    backLabel: "Japanese Grammar",
+    parts: [
+      { id: "basic", label: "Basic", questions: build("grammar", "basic", "N5", courseBanks.grammar.basic) },
+      { id: "intermediate", label: "Intermediate", questions: build("grammar", "intermediate", "N3", courseBanks.grammar.intermediate) },
+    ],
+  },
+  {
+    id: "vocabulary",
+    title: "Vocabulary test",
+    jp: "語彙",
+    desc: "Word meanings, from everyday words to useful intermediate ones.",
+    backHref: "/japanese-vocabulary-course",
+    backLabel: "Japanese Vocabulary",
+    parts: [
+      { id: "basic", label: "Basic", questions: build("vocabulary", "basic", "N5", courseBanks.vocabulary.basic) },
+      { id: "intermediate", label: "Intermediate", questions: build("vocabulary", "intermediate", "N3", courseBanks.vocabulary.intermediate) },
+    ],
+  },
+  {
+    id: "reading",
+    title: "Reading & writing test",
+    jp: "読み書き",
+    desc: "Kana, kanji, signs and short real-world texts.",
+    backHref: "/japanese-reading-writing-course",
+    backLabel: "Reading & Writing",
+    parts: [
+      { id: "basic", label: "Basic", questions: build("reading", "basic", "N5", courseBanks.reading.basic) },
+      { id: "intermediate", label: "Intermediate", questions: build("reading", "intermediate", "N3", courseBanks.reading.intermediate) },
+    ],
+  },
+  {
+    id: "business",
+    title: "Business Japanese test",
+    jp: "ビジネス",
+    desc: "Keigo, phone calls, emails and office words.",
+    backHref: "/business-japanese",
+    backLabel: "Business Japanese",
+    parts: [
+      { id: "keigo", label: "Keigo & office", questions: build("business", "keigo", "N3", courseBanks.business.keigo) },
+    ],
+  },
+  {
+    id: "work",
+    title: "Work in Japan test",
+    jp: "仕事",
+    desc: "Interviews, documents and everyday workplace Japanese.",
+    backHref: "/work-in-japan",
+    backLabel: "Work in Japan",
+    parts: [
+      { id: "workplace", label: "Workplace", questions: build("work", "workplace", "N4", courseBanks.work.workplace) },
+    ],
+  },
+  {
+    id: "study",
+    title: "Study in Japan test",
+    jp: "留学",
+    desc: "Campus life, fees and talking to teachers and classmates.",
+    backHref: "/study-in-japan",
+    backLabel: "Study in Japan",
+    parts: [
+      { id: "campus", label: "Campus life", questions: build("study", "campus", "N4", courseBanks.study.campus) },
+    ],
+  },
+  {
+    id: "phrases",
+    title: "Everyday phrases test",
+    jp: "フレーズ",
+    desc: "The phrases you hear every day in Japan.",
+    backHref: "/resources/phrases",
+    backLabel: "Japanese Phrases",
+    parts: [
+      { id: "everyday", label: "Everyday", questions: build("phrases", "everyday", "N5", courseBanks.phrases.everyday) },
     ],
   },
   {

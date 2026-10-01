@@ -50,13 +50,12 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
   const courseBatches = batches.filter((b) => b.courseSlug === c.slug || (c.level && b.level === c.level));
   const related = c.related.map(getCourse).filter(Boolean);
   // JLPT level pages get that level's topics; other courses use their own test from courseQuiz.
-  const pick = c.level && !(c.slug in courseQuiz) ? undefined : courseQuiz[c.slug];
+  const pick = courseQuiz[c.slug];
   const quiz =
-    pick === null
-      ? null
-      : pick
-        ? { name: pick.name, title: pick.title, intro: pick.intro, sets: pick.sets() }
-        : {
+    pick
+      ? { name: pick.name, title: pick.title, intro: pick.intro, sets: pick.sets() }
+      : c.level
+        ? {
             name: c.level!,
             title: `Free JLPT ${c.level} test`,
             intro: `Take the full ${c.level} test, or practise one topic at a time.`,
@@ -64,7 +63,8 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
               { id: "full", label: `Full ${c.level} test`, desc: "Mixed questions from every topic", href: `/jlpt-quiz/${c.level!.toLowerCase()}/medium` },
               ...levelSets(c.level as QuizLevel),
             ],
-          };
+          }
+        : null;
 
   return (
     <>

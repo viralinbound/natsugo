@@ -135,7 +135,7 @@ function quizFor(slug: string, name: string): { title: string; intro: string; se
     return { title: `Free ${name.toLowerCase()} test`, intro: `Pick your level: 10 ${name.toLowerCase()} questions, each with an explanation.`, sets: topicSets(slug) };
   }
   if (slug === "phrases") {
-    return { title: "Free phrases test", intro: "Choose what you would say in everyday situations.", sets: freeTestSets("speaking", ["n5", "n4"]) };
+    return { title: "Free phrases test", intro: "Choose what you would say in everyday situations.", sets: freeTestSets("phrases") };
   }
   return null;
 }
