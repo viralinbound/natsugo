@@ -30,6 +30,22 @@ export const revalidate = 21600;
 
 export default async function ExamInfoPage() {
   const info = await getExamInfo();
+  const next = info.sessions.find((x) => x.iso);
+  const exam = next?.iso ? new Date(next.iso) : null;
+  const now = new Date(info.generatedAt).getTime();
+  const daysLeft = exam ? Math.max(0, Math.ceil((exam.getTime() - now) / 86400000)) : 0;
+  // Four checkpoints counted back from the exam day. Ones that are already behind us say "start now".
+  const plan = exam
+    ? [
+        { weeks: 12, title: "Know your level", body: "Take the level test, pick your course and set a daily study slot." },
+        { weeks: 8, title: "Finish the core material", body: "Grammar, vocabulary and kanji for your level, with one topic quiz a week." },
+        { weeks: 4, title: "Timed mock tests", body: "Do the full test for your level and fix the sections you miss most." },
+        { weeks: 1, title: "Light revision", body: "Re-read your notes, check your admit card and plan the route to your centre." },
+      ].map((p) => {
+        const d = new Date(exam.getTime() - p.weeks * 7 * 86400000);
+        return { ...p, when: `${p.weeks} week${p.weeks > 1 ? "s" : ""} before`, date: d.toLocaleDateString("en-IN", { day: "numeric", month: "short" }), past: d.getTime() < now };
+      })
+    : [];
 
   return (
     <>
@@ -45,7 +61,8 @@ export default async function ExamInfoPage() {
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 card-modern overflow-hidden">
+          <div className="lg:col-span-2 space-y-6">
+          <div className="card-modern overflow-hidden">
             <div className="flex items-center gap-2 border-b border-charcoal-100 bg-indigo-950 px-5 py-3 text-white">
               <CalendarDays size={18} className="text-sun-300" />
               <h2 className="font-display font-bold">Upcoming sessions</h2>
@@ -72,6 +89,40 @@ export default async function ExamInfoPage() {
             </div>
             <p className="border-t border-charcoal-100 bg-sun-100 px-5 py-3 text-sm text-charcoal-800">{info.note}</p>
           </div>
+
+          {next ? (
+            <div className="card-modern p-5 sm:p-6">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-sun-500">Study plan for {next.name}</p>
+                  <h2 className="mt-1 font-display text-xl font-bold text-indigo-950">Work back from exam day</h2>
+                </div>
+                <p className="rounded-lg bg-sun-100 px-4 py-2 text-center">
+                  <span className="block text-3xl font-bold leading-none text-indigo-950">{daysLeft}</span>
+                  <span className="text-xs font-semibold text-charcoal-700">days to go</span>
+                </p>
+              </div>
+              <ol className="mt-5 space-y-3">
+                {plan.map((p) => (
+                  <li key={p.title} className={`flex gap-4 rounded-xl border p-4 ${p.past ? "border-charcoal-100 bg-bg-alt" : "border-indigo-700/20 bg-surface"}`}>
+                    <div className="w-24 shrink-0 text-sm">
+                      <p className="font-bold text-indigo-950">{p.when}</p>
+                      <p className="text-xs text-charcoal-500">{p.past ? "start now" : p.date}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-indigo-950">{p.title}</p>
+                      <p className="mt-0.5 text-sm text-charcoal-700">{p.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link href="/level-test" className="inline-flex min-h-[44px] items-center rounded-md bg-indigo-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-[#0a6fd1]">Find your level</Link>
+                <Link href="/jlpt-quiz" className="inline-flex min-h-[44px] items-center rounded-md border border-charcoal-100 px-5 text-sm font-semibold text-indigo-950 transition-colors hover:border-indigo-700">Practice quizzes</Link>
+              </div>
+            </div>
+          ) : null}
+        </div>
 
           <div className="space-y-4">
             <div className="card-modern p-5">

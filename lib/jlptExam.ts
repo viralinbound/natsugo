@@ -19,6 +19,7 @@ export interface LiveSession {
   registrationWindow: string;
   resultsDate: string;
   centres: string;
+  iso: string;
 }
 
 const OFFICIAL = "https://www.jlpt.jp/e/";
@@ -44,6 +45,7 @@ export function upcomingSessions(centres: ExamCentre[], now = new Date(), count 
       const holding = centres.filter((c) => (month === 6 ? c.july : c.december));
       out.push({
         name: `${monthName(month)} ${y}`,
+        iso: date.toISOString(),
         examDate: date.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }),
         registrationWindow: `Usually opens around ${monthName(month - 4)}${month - 4 < 0 ? ` ${y - 1}` : ""}. Exact dates come from your host centre.`,
         resultsDate: `usually about 2 months after the exam, around ${monthName(month + 2)}`,

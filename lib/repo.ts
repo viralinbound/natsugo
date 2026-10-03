@@ -167,12 +167,13 @@ export async function getQuiz(level: QuizLevel, difficulty: Difficulty): Promise
 export interface ExamSession { name: string; examDate: string; registrationWindow: string; resultsDate: string }
 export interface ExamInfo {
   officialLink: string;
-  sessions: (ExamSession & { centres?: string })[];
+  sessions: (ExamSession & { centres?: string; iso?: string })[];
   fee: string;
   centres: string[];
   centreDetails: ExamCentre[];
   note: string;
   checkedAt?: string;
+  generatedAt: string;
 }
 
 const DEFAULT_FEE = "The fee is set by each host centre and changes every session. Open your centre's page below for the current amount.";
@@ -201,6 +202,7 @@ export async function getExamInfo(): Promise<ExamInfo> {
     centres: centres.map((c) => c.city),
     centreDetails: centres,
     note: DEFAULT_NOTE,
+    generatedAt: new Date().toISOString(),
     checkedAt: live.length ? new Date().toISOString() : undefined,
   };
 }
