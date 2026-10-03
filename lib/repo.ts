@@ -136,7 +136,8 @@ export async function getWordOfDay(): Promise<Word> {
   return safe(async () => {
     const { data, error } = await sb.from("words").select("jp,reading,romaji,meaning,example_jp,example_en,level").order("id");
     if (error) throw error;
-    return data.length ? wordForDate(data as Word[]) : fallback;
+    const merged = [...(data as Word[]), ...sampleWords.filter((w) => !data.some((d) => d.jp === w.jp))];
+    return data.length ? wordForDate(merged) : fallback;
   }, fallback);
 }
 
