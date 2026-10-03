@@ -20,6 +20,9 @@ export default async function TeachersPage() {
       <PageHero title="Meet your Japanese teachers" eyebrow="Teachers" intro="Every batch is taught live. Teacher profiles will be published here with verified qualifications." image={images.lecture} crumbs={[{ label: "Teachers", href: "/teachers" }]} />
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {!teachers.length ? (
+            <p className="mx-auto max-w-2xl text-center text-lg text-charcoal-700">Teacher profiles will be published here once they are confirmed. To meet your teacher before you enrol, book a free demo class.</p>
+          ) : null}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {teachers.map((t) => {
               const count = batches.filter((b) => b.teacherId === t.id).length;

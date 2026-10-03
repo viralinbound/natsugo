@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 const features = [
   { icon: Radio, title: "Live online classes", body: "Teacher-led classes on Zoom or Google Meet, on weekday evenings and weekends." },
-  { icon: Video, title: "Class recordings", body: "Every live class is recorded, so you can rewatch anything you missed." },
-  { icon: MonitorPlay, title: "Video lessons", body: "Short, focused lectures for every lesson in the syllabus." },
-  { icon: FileText, title: "Notes & handouts", body: "Clear study notes and printable worksheets for each lesson." },
+  { icon: Video, title: "Class recordings", body: "When a live class is recorded, the recording is added to its level page for you to rewatch." },
+  { icon: MonitorPlay, title: "Auto-narrated lessons", body: "Every lesson can be listened to, read aloud from its notes by your device. Teacher video lectures are added as they are recorded." },
+  { icon: FileText, title: "Study notes", body: "Clear study notes for each lesson, free for everyone." },
 ];
 
 export default function LearnPage() {
@@ -27,7 +27,7 @@ export default function LearnPage() {
       <PageHero
         title="Your Japanese classroom, online"
         eyebrow="Online classroom · オンライン教室"
-        intro="Live classes with real teachers, recordings of every session, and a structured library of video lessons and study materials, from your first hiragana to JLPT N1."
+        intro="Live classes with real teachers, study notes for every lesson, and free quizzes and practice, from your first hiragana to JLPT N1. Recordings and teacher videos are added as they become available."
         image={images.online}
         crumbs={[{ label: "Online Classroom", href: "/online-classroom" }]}
       >

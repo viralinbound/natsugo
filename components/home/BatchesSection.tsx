@@ -69,8 +69,14 @@ export function BatchesSection({ batches }: { batches: Batch[] }) {
         <div className="swipe-row mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {filtered.length ? (
             filtered.slice(0, 4).map((batch) => <BatchCard key={batch.id} batch={batch} />)
-          ) : (
+          ) : batches.length ? (
             <EmptyState />
+          ) : (
+            <EmptyState
+              title="No batches are open right now"
+              description="New batches are announced here as soon as they are confirmed. Book a free demo or send us your level and preferred timing, and we will tell you when one opens."
+              action={<Button href="/free-japanese-demo-class" size="sm">Book a free demo</Button>}
+            />
           )}
         </div>
       </div>

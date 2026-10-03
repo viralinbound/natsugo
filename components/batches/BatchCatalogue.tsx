@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 import type { Batch } from "@/lib/types";
 import { BatchCard } from "@/components/ui/BatchCard";
+import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 
 const groups = {
@@ -124,7 +125,7 @@ export function BatchCatalogue({ batches, initialLevel }: { batches: Batch[]; in
         </p>
 
         <div className="mt-4 grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
-          {list.length ? list.map((b) => <BatchCard key={b.id} batch={b} />) : <EmptyState />}
+          {list.length ? list.map((b) => <BatchCard key={b.id} batch={b} />) : batches.length ? <EmptyState /> : <EmptyState title="No batches are open right now" description="New batches are announced here as soon as they are confirmed. Book a free demo or send us your level and preferred timing, and we will tell you when one opens." action={<Button href="/free-japanese-demo-class" size="sm">Book a free demo</Button>} />}
         </div>
       </div>
     </div>

@@ -81,7 +81,7 @@ export default async function CoursePage({ params }: { params: Promise<{ course:
         <div className="bg-indigo-950 text-white">
           <p className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 text-sm flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="font-bold text-sun-300">Online classroom:</span>
-            <span className="text-white/80">{c.level} video lessons, study notes, live classes and recordings.</span>
+            <span className="text-white/80">{c.level} study notes, live classes, recordings when available, and free practice.</span>
             <Link href={`/online-classroom/${c.level.toLowerCase()}`} className="font-bold underline underline-offset-4">Open {c.level} classroom →</Link>
           </p>
         </div>

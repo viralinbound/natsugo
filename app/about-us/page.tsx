@@ -29,7 +29,6 @@ export default function AboutPage() {
             <div className="mt-5 space-y-4 text-charcoal-700 leading-relaxed">
               <p>Most Japanese learners in India face the same problem: they don&apos;t know their real level, which course to choose, or how their progress is measured. Many end up with exam knowledge but little confidence speaking.</p>
               <p>Natsugo combines live classes with a structured learning system, a level test, clear course paths, regular practice, mock tests and progress tracking, so every learner knows exactly where they stand and what comes next.</p>
-              <p className="text-sm text-charcoal-500">[Placeholder: add founding story, founders and institute details here.]</p>
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
