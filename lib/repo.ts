@@ -1,3 +1,4 @@
+import { centresSnapshot, fetchIndiaCentres, officialExamLink, upcomingSessions, type ExamCentre } from "@/lib/jlptExam";
 import "server-only";
 import { batches as sampleBatches, fmtDate, teachers as sampleTeachers, testimonials as sampleTestimonials } from "@/lib/data";
 import { getPublicClient } from "@/lib/supabase/admin";
@@ -164,24 +165,42 @@ export async function getQuiz(level: QuizLevel, difficulty: Difficulty): Promise
 }
 
 export interface ExamSession { name: string; examDate: string; registrationWindow: string; resultsDate: string }
-export interface ExamInfo { officialLink: string; sessions: ExamSession[]; fee: string; centres: string[]; note: string }
+export interface ExamInfo {
+  officialLink: string;
+  sessions: (ExamSession & { centres?: string })[];
+  fee: string;
+  centres: string[];
+  centreDetails: ExamCentre[];
+  note: string;
+  checkedAt?: string;
+}
 
-const fallbackExamInfo: ExamInfo = {
-  officialLink: "https://www.jlpt.jp/e/",
-  sessions: [
-    { name: "Upcoming session", examDate: "See official JLPT website", registrationWindow: "See official JLPT website", resultsDate: "See official JLPT website" },
-  ],
-  fee: "Check the official JLPT India notification for the current fee.",
-  centres: ["Bengaluru", "Chennai", "Delhi", "Hyderabad", "Kolkata", "Mumbai", "Pune"],
-  note: "Always confirm dates, fees and centres on the official JLPT website before making plans.",
-};
+const DEFAULT_FEE = "The fee is set by each host centre and changes every session. Open your centre's page below for the current amount.";
+const DEFAULT_NOTE = "Dates and centres on this page update automatically from the official JLPT website. Always confirm with your host centre before you book travel.";
 
+// Exam dates are computed and the India centres are read from the official site, so this page stays current
+// without anyone editing it. Settings saved in the admin panel can still override the fee text and the note.
 export async function getExamInfo(): Promise<ExamInfo> {
+  const live = await fetchIndiaCentres();
+  const centres = live.length ? live : centresSnapshot;
+  let override: Partial<ExamInfo> = {};
   const sb = getPublicClient();
-  if (!sb) return fallbackExamInfo;
-  return safe(async () => {
-    const { data, error } = await sb.from("settings").select("value").eq("key", "exam_info").maybeSingle();
-    if (error) throw error;
-    return (data?.value as ExamInfo) ?? fallbackExamInfo;
-  }, fallbackExamInfo);
+  if (sb) {
+    override = await safe(async () => {
+      const { data, error } = await sb.from("settings").select("value").eq("key", "exam_info").maybeSingle();
+      if (error) throw error;
+      return (data?.value as Partial<ExamInfo>) ?? {};
+    }, {});
+  }
+  // A fee saved in the admin panel is shown only when it names a real amount; older placeholder text is ignored.
+  const customFee = override.fee && /[₹\d]/.test(override.fee) ? override.fee : undefined;
+  return {
+    officialLink: override.officialLink || officialExamLink,
+    sessions: upcomingSessions(centres),
+    fee: customFee ?? DEFAULT_FEE,
+    centres: centres.map((c) => c.city),
+    centreDetails: centres,
+    note: DEFAULT_NOTE,
+    checkedAt: live.length ? new Date().toISOString() : undefined,
+  };
 }

@@ -25,6 +25,9 @@ const steps = [
   { title: "Check your result", body: "Results are published online a couple of months after the exam, with the official certificate posted afterwards." },
 ];
 
+// Rebuilt every six hours so the dates and centres follow the official site.
+export const revalidate = 21600;
+
 export default async function ExamInfoPage() {
   const info = await getExamInfo();
 
@@ -33,7 +36,7 @@ export default async function ExamInfoPage() {
       <PageHero
         title="JLPT exam info: dates, registration, fees & centres"
         eyebrow="JLPT · 日本語能力試験"
-        intro="Everything about sitting the JLPT in India, gathered in one place, kept up to date by our team. Always double-check against the official website before making travel plans."
+        intro="Everything about sitting the JLPT in India, gathered in one place and refreshed automatically from the official JLPT website. Always double-check against the official website before making travel plans."
         image={images.lecture}
         crumbs={[{ label: "JLPT Exam Info", href: "/jlpt-exam-info" }]}
       >
@@ -62,6 +65,7 @@ export default async function ExamInfoPage() {
                     <p className="text-xs font-bold uppercase tracking-wider text-charcoal-500">Registration</p>
                     <p className="text-charcoal-800">{s.registrationWindow}</p>
                     <p className="mt-1 text-xs text-charcoal-500">Results: {s.resultsDate}</p>
+                    {s.centres ? <p className="mt-1 text-xs font-semibold text-indigo-700">{s.centres}</p> : null}
                   </div>
                 </div>
               ))}
@@ -76,9 +80,31 @@ export default async function ExamInfoPage() {
             </div>
             <div className="card-modern p-5">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-500"><MapPin size={14} /> Test centres in India</p>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {info.centres.map((c) => <span key={c} className="rounded bg-bg-alt px-2 py-1 text-sm font-semibold text-charcoal-800">{c}</span>)}
-              </div>
+              {info.centreDetails.length ? (
+                <ul className="mt-2 divide-y divide-charcoal-100">
+                  {info.centreDetails.map((c) => (
+                    <li key={c.city} className="flex items-start justify-between gap-3 py-2">
+                      <div className="min-w-0">
+                        <p className="font-semibold text-charcoal-900">{c.city}</p>
+                        {c.site ? (
+                          <a href={c.site} target="_blank" rel="noopener noreferrer" className="block truncate text-xs text-indigo-700 underline underline-offset-2" title={c.organiser}>{c.organiser}</a>
+                        ) : (
+                          <p className="truncate text-xs text-charcoal-500" title={c.organiser}>{c.organiser}</p>
+                        )}
+                      </div>
+                      <div className="flex shrink-0 gap-1 text-[11px] font-bold">
+                        <span className={`rounded px-1.5 py-0.5 ${c.july ? "bg-success/15 text-success" : "bg-bg-alt text-charcoal-300 line-through"}`}>Jul</span>
+                        <span className={`rounded px-1.5 py-0.5 ${c.december ? "bg-success/15 text-success" : "bg-bg-alt text-charcoal-300 line-through"}`}>Dec</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {info.centres.map((c) => <span key={c} className="rounded bg-bg-alt px-2 py-1 text-sm font-semibold text-charcoal-800">{c}</span>)}
+                </div>
+              )}
+              {info.checkedAt ? <p className="mt-3 text-[11px] text-charcoal-500">Read from the official JLPT website on {new Date(info.checkedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}.</p> : null}
             </div>
             <a href={whatsappLink("Hi, I have a question about JLPT registration.")} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-lg bg-[#15803d] px-5 py-4 font-bold text-white">
               <MessageCircle size={18} /> Ask admissions on WhatsApp
