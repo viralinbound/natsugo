@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarDays, ClipboardList, ExternalLink, FileText, IndianRupee, MapPin, MessageCircle } from "lucide-react";
+import { CalendarDays, FileText, IndianRupee, MapPin, MessageCircle } from "lucide-react";
 import { getExamInfo } from "@/lib/repo";
 import { quizLevels } from "@/lib/quizBank";
 import { levelInfo } from "@/lib/curriculum";
 import { images, whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
+import { ExamGuide } from "@/components/jlpt/ExamGuide";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -14,16 +15,6 @@ export const metadata: Metadata = {
   keywords: ["JLPT Exam Info", "JLPT Exam Dates 2026", "JLPT Exam Fees India", "JLPT Exam Centres in India", "JLPT Registration India", "JLPT N5-N1 Exam", "JLPT Exam Information India"],
   alternates: { canonical: "/jlpt-exam-info" },
 };
-
-const steps = [
-  { title: "Check the exam window", body: "Confirm which session (July or December) you're aiming for, and note the registration dates below." },
-  { title: "Create an account", body: "Register on the official JLPT application portal for your country/region using a valid email and photo ID details." },
-  { title: "Choose your level and test centre", body: "Select N5–N1 based on your level test result or course progress, and pick your nearest test centre." },
-  { title: "Pay the exam fee", body: "Pay online during registration. Keep the payment confirmation, you'll need it if there's any issue with your application." },
-  { title: "Download your admit card", body: "Once registration closes, download and print your admit card / exam voucher before the exam day." },
-  { title: "Sit the exam", body: "Arrive early with your admit card and a valid photo ID. Sections are Language Knowledge, Reading and Listening (order varies by level)." },
-  { title: "Check your result", body: "Results are published online a couple of months after the exam, with the official certificate posted afterwards." },
-];
 
 // Rebuilt every six hours so the dates and centres follow the official site.
 export const revalidate = 21600;
@@ -60,7 +51,7 @@ export default async function ExamInfoPage() {
       </PageHero>
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
           <div className="card-modern overflow-hidden">
             <div className="flex items-center gap-2 border-b border-charcoal-100 bg-indigo-950 px-5 py-3 text-white">
@@ -164,25 +155,7 @@ export default async function ExamInfoPage() {
         </div>
       </section>
 
-      <section className="bg-bg-alt py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-2 text-2xl sm:text-3xl font-bold text-indigo-950"><ClipboardList size={26} className="text-sun-400" /> How to register: step by step</h2>
-          <ol className="mt-8 space-y-6">
-            {steps.map((s, i) => (
-              <li key={s.title} className="flex gap-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-900 text-sm font-bold text-white">{i + 1}</span>
-                <div>
-                  <h3 className="font-display font-bold text-indigo-950">{s.title}</h3>
-                  <p className="mt-1 text-charcoal-700">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <a href={info.officialLink} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-1.5 font-bold text-indigo-800 underline underline-offset-4">
-            Start registration on the official JLPT website <ExternalLink size={15} />
-          </a>
-        </div>
-      </section>
+      <ExamGuide officialLink={info.officialLink} next={next ? { name: next.name, examDate: next.examDate } : undefined} />
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
