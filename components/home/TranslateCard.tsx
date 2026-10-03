@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Check, Copy, Loader2, Share2, Volume2 } from "lucide-react";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 import { toKatakana } from "@/lib/katakana";
+import { toRomaji } from "@/lib/kanaConvert";
 import { toHiragana } from "@/lib/kanaConvert";
 import { site } from "@/lib/site";
 
@@ -77,15 +78,16 @@ export function TranslateCard() {
     } catch {}
   };
 
-  const rows: { id: string; jp: string; en: string; value: string | null; note?: string; hear: string }[] = m
+  const rows: { id: string; jp: string; en: string; value: string | null; note?: string; hear: string; say?: string }[] = m
     ? [
-        { id: "hira", jp: "ひらがな", en: "Hiragana", value: m.hiragana, hear: m.hiragana },
+        { id: "hira", jp: "ひらがな", en: "Hiragana", value: m.hiragana, hear: m.hiragana, say: toRomaji(m.hiragana) },
         {
           id: "kanji",
           jp: "漢字",
           en: "Kanji",
           value: m.kanji,
           hear: m.hiragana,
+          say: m.kanji ? toRomaji(m.hiragana) : undefined,
           note: m.kanji ? undefined : result?.mode === "word" ? "This word is written without kanji" : "Foreign names have no kanji. Japanese names do, so try Tanaka or Yamada.",
         },
         {
@@ -93,8 +95,10 @@ export function TranslateCard() {
           jp: "カタカナ",
           en: "Katakana",
           value: m.katakana,
-          hear: m.hiragana,
-          note: result?.mode === "word" ? (m.loan ? "The loanword Japanese uses" : "Same reading, written in katakana") : "Sound-based, how Japan writes foreign names",
+          // The loanword says its own katakana (ウォーター), which is not the same sound as the kanji word (みず).
+          hear: m.katakana,
+          say: toRomaji(m.katakana),
+          note: result?.mode === "word" ? (m.loan ? (toRomaji(m.katakana) !== toRomaji(m.hiragana) ? "A different word: the loanword Japanese also uses, so it sounds different" : "The loanword Japanese uses") : "Same reading, written in katakana") : "Sound-based, how Japan writes foreign names",
         },
       ]
     : [];
@@ -140,6 +144,7 @@ export function TranslateCard() {
               ) : (
                 <p className="font-jp text-2xl font-bold leading-tight text-charcoal-300">{rows.length ? "—" : r.id === "hira" ? "ひらがな" : r.id === "kanji" ? "漢字" : "カタカナ"}</p>
               )}
+              {r.say && rows.length ? <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-indigo-700">{r.say}</p> : null}
               {r.note && rows.length ? <p className="mt-0.5 text-[11px] leading-snug text-charcoal-500">{r.note}</p> : null}
             </div>
             {r.value ? (
