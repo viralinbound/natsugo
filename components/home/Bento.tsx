@@ -34,7 +34,7 @@ export function Bento() {
             Not sure which Japanese level is right for you?
           </h2>
           <p className="mt-4 text-charcoal-700">
-            Take our free 12-question test covering vocabulary, grammar, kanji, reading and listening. You&apos;ll get a skill-by-skill breakdown and a recommended starting course in about five minutes.
+            Take our free 25-question test, with 5 questions for every level from N5 to N1. Your answers decide which level you should start learning from, in about ten minutes.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <Button href="/level-test" size="lg">Take Free Level Test</Button>

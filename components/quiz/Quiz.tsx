@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, Volume2, X } from "lucide-react";
 import type { Question, Skill } from "@/lib/learning";
-import { recommendLevel } from "@/lib/learning";
+import { levelOrder, PASS_MARK, recommendStart } from "@/lib/learning";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 import { fireConfetti } from "@/lib/confetti";
 
@@ -15,7 +15,7 @@ export interface QuizSet {
 }
 
 // Random order of questions and of each question's options, made fresh for every attempt.
-function shuffled(list: Question[]): Question[] {
+function shuffled(list: Question[], keepOrder = false): Question[] {
   const mix = <T,>(a: T[]) => {
     const b = [...a];
     for (let i = b.length - 1; i > 0; i--) {
@@ -24,7 +24,7 @@ function shuffled(list: Question[]): Question[] {
     }
     return b;
   };
-  return mix(list).map((q) => {
+  return (keepOrder ? list : mix(list)).map((q) => {
     const idx = mix(q.options.map((_, i) => i));
     return { ...q, options: idx.map((i) => q.options[i]), answer: idx.indexOf(q.answer) };
   });
@@ -35,8 +35,8 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
   const [questions, setQuestions] = useState(source);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setQuestions(shuffled(source));
-  }, [source]);
+    setQuestions(shuffled(source, mode === "level-test"));
+  }, [source, mode]);
   const [started, setStarted] = useState(mode === "practice");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null));
@@ -58,13 +58,19 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
       }
       bySkill.set(qq.skill, s);
     });
-    return { score, bySkill: [...bySkill.entries()], rec: recommendLevel(score, questions.length) };
+    const byLevel: Record<string, { right: number; total: number }> = {};
+    questions.forEach((qq, i) => {
+      const l = (byLevel[qq.level] ??= { right: 0, total: 0 });
+      l.total++;
+      if (answers[i] === qq.answer) l.right++;
+    });
+    return { score, bySkill: [...bySkill.entries()], byLevel, rec: recommendStart(byLevel) };
   }, [answers, questions]);
 
   useEffect(() => {
     if (!finished || mode !== "level-test") return;
     const bySkill = Object.fromEntries(result.bySkill.map(([k, v]) => [k, Math.round((v.right / v.total) * 100)]));
-    const saved = { score: result.score, total: questions.length, recommended: result.rec.label, slug: result.rec.slug, bySkill, at: Date.now() };
+    const saved = { score: result.score, total: questions.length, recommended: result.rec.label, slug: result.rec.slug, bySkill, byLevel: result.byLevel, at: Date.now() };
     try {
       localStorage.setItem("np-level-result", JSON.stringify(saved));
     } catch {}
@@ -86,7 +92,7 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
   }, [finished, set, result.score, questions.length]);
 
   const restart = () => {
-    setQuestions(shuffled(source));
+    setQuestions(shuffled(source, mode === "level-test"));
     setAnswers(source.map(() => null));
     setIndex(0);
     setFinished(false);
@@ -97,8 +103,9 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
       <div className="rounded-xl border border-charcoal-100 bg-surface p-6 sm:p-10">
         <h2 className="text-2xl font-bold text-indigo-950">Before you start</h2>
         <ul className="mt-4 space-y-2 text-charcoal-700">
-          <li>• {questions.length} questions across vocabulary, grammar, kanji, reading and listening</li>
-          <li>• Takes about 5–7 minutes · No sign-up needed</li>
+          <li>• {questions.length} questions: 5 for each level, from N5 up to N1</li>
+          <li>• Takes about 10 minutes · No sign-up needed</li>
+          <li>• Questions get harder as you go, and your answers decide which level you start learning from</li>
           <li>• Listening questions play audio, turn your sound on</li>
           <li>• Skip anything you don&apos;t know; guessing makes the result less accurate</li>
         </ul>
@@ -128,6 +135,26 @@ export function Quiz({ questions: source, mode, set }: { questions: Question[]; 
           <p className="mt-2 text-lg text-charcoal-700">
             Recommended starting point: <strong className="text-indigo-800">{result.rec.label}</strong>
           </p>
+        ) : null}
+
+        {mode === "level-test" ? (
+          <div className="mt-7 max-w-xl">
+            <p className="mb-2 text-sm font-bold text-charcoal-800">Your score at each level</p>
+            <div className="grid grid-cols-5 gap-2">
+              {levelOrder.map((l) => {
+                const s = result.byLevel[l] ?? { right: 0, total: 0 };
+                const pass = s.right >= PASS_MARK;
+                return (
+                  <div key={l} className={`rounded-xl border-2 px-2 py-3 text-center ${l === result.rec.level ? "border-indigo-900 bg-sun-100" : "border-charcoal-100"}`}>
+                    <p className="text-sm font-bold text-indigo-950">{l}</p>
+                    <p className={`text-lg font-bold ${pass ? "text-success" : "text-charcoal-700"}`}>{s.right}/{s.total}</p>
+                    <p className="text-[11px] text-charcoal-500">{l === result.rec.level ? "start here" : pass ? "passed" : ""}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-xs text-charcoal-500">{PASS_MARK} of 5 right counts as passing a level. You start at the first level you did not pass.</p>
+          </div>
         ) : null}
 
         <div className="mt-7 space-y-4 max-w-xl">
