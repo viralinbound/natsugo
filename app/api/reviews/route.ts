@@ -1,11 +1,14 @@
 import { after } from "next/server";
 import { getPublicClient } from "@/lib/supabase/admin";
 import { sendReviewAlert } from "@/lib/email";
+import { clientIp, forbidden, overLimit, sameOrigin, tooMany } from "@/lib/guard";
 
 const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 const levels = new Set(["Beginner", "N5", "N4", "N3", "N2", "N1"]);
 
 export async function POST(request: Request) {
+  if (!sameOrigin(request)) return forbidden();
+  if (overLimit(`review-h:${clientIp(request)}`, 3, 3600_000) || overLimit(`review-d:${clientIp(request)}`, 6, 24 * 3600_000)) return tooMany(3600);
   const body = await request.json().catch(() => null);
   if (!body) return Response.json({ ok: false, error: "Invalid request." }, { status: 400 });
   if (body.company) return Response.json({ ok: true });

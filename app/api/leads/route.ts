@@ -5,11 +5,16 @@ import { after } from "next/server";
 import { getPublicClient } from "@/lib/supabase/admin";
 import { getBatch } from "@/lib/repo";
 import { sendLeadAlert, sendLeadConfirmation } from "@/lib/email";
+import { alreadyConfirmed, clientIp, forbidden, overLimit, sameOrigin, tooMany } from "@/lib/guard";
 
 const allowedTypes = new Set(["demo", "contact", "enrol", "level-test", "waitlist"]);
 const clip = (v: unknown, n: number) => (typeof v === "string" ? v.slice(0, n) : "");
 
 export async function POST(request: Request) {
+  if (!sameOrigin(request)) return forbidden();
+  const ip = clientIp(request);
+  // 5 forms an hour and 20 a day from one address is plenty for a real person.
+  if (overLimit(`lead-h:${ip}`, 5, 3600_000) || overLimit(`lead-d:${ip}`, 20, 24 * 3600_000)) return tooMany(3600);
   let body: Partial<LeadInput>;
   try {
     body = await request.json();
@@ -60,7 +65,9 @@ export async function POST(request: Request) {
     after(async () => {
       const batch = lead.batch_id ? await getBatch(lead.batch_id) : undefined;
       const mail = { ...lead, batchTitle: batch ? `${batch.courseTitle} — starts ${batch.startDate}, ${batch.schedule}` : null };
-      const results = await Promise.allSettled([sendLeadAlert(mail), sendLeadConfirmation(mail)]);
+      // The confirmation goes to an address typed into a public form, so each address gets one an hour at most.
+      const confirm = lead.email && alreadyConfirmed(lead.email) ? Promise.resolve() : sendLeadConfirmation(mail);
+      const results = await Promise.allSettled([sendLeadAlert(mail), confirm]);
       results.forEach((r) => r.status === "rejected" && console.error("Lead email failed", r.reason));
     });
     return Response.json({ ok: true, id: data });

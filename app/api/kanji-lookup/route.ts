@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { clientIp, overLimit, tooMany } from "@/lib/guard";
 
 // Looks up a single kanji's reading + English meaning from Jisho's public search API
 // (proxied server-side to avoid browser CORS restrictions). Cached for a day since
@@ -6,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const revalidate = 86400;
 
 export async function GET(req: NextRequest) {
+  if (overLimit(`kanji:${clientIp(req)}`, 90, 60_000)) return tooMany(60);
   const char = req.nextUrl.searchParams.get("c")?.trim();
   if (!char || [...char].length !== 1) {
     return NextResponse.json({ error: "Provide a single character in ?c=" }, { status: 400 });
@@ -30,7 +32,7 @@ export async function GET(req: NextRequest) {
     const senses = entry.senses as Array<{ english_definitions?: string[] }> | undefined;
     const meaning = senses?.[0]?.english_definitions?.slice(0, 3).join(", ") ?? null;
 
-    return NextResponse.json({ reading, meaning });
+    return NextResponse.json({ reading, meaning }, { headers: { "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800" } });
   } catch {
     return NextResponse.json({ reading: null, meaning: null, error: "lookup_failed" }, { status: 200 });
   }

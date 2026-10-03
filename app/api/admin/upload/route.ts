@@ -6,7 +6,12 @@ export async function POST(request: Request) {
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     return Response.json({ error: "Vercel Blob is not connected." }, { status: 503 });
   }
-  const body = (await request.json()) as HandleUploadBody;
+  let body: HandleUploadBody;
+  try {
+    body = (await request.json()) as HandleUploadBody;
+  } catch {
+    return Response.json({ error: "Invalid request." }, { status: 400 });
+  }
   try {
     const result = await handleUpload({
       body,

@@ -1,9 +1,12 @@
 import { getPublicClient } from "@/lib/supabase/admin";
+import { clientIp, forbidden, overLimit, sameOrigin, tooMany } from "@/lib/guard";
 
 const levels = new Set(["N5", "N4", "N3", "N2", "N1"]);
 const difficulties = new Set(["full", "vocabulary", "grammar", "kanji", "reading", "listening"]);
 
 export async function POST(request: Request) {
+  if (!sameOrigin(request)) return forbidden();
+  if (overLimit(`quiz:${clientIp(request)}`, 120, 3600_000)) return tooMany(3600);
   const b = await request.json().catch(() => null);
   const score = Number(b?.score);
   const total = Number(b?.total);

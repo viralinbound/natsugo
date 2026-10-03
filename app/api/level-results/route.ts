@@ -1,8 +1,11 @@
 import { getPublicClient } from "@/lib/supabase/admin";
+import { clientIp, forbidden, overLimit, sameOrigin, tooMany } from "@/lib/guard";
 
 const isInt = (n: unknown) => Number.isInteger(n);
 
 export async function POST(request: Request) {
+  if (!sameOrigin(request)) return forbidden();
+  if (overLimit(`level:${clientIp(request)}`, 30, 3600_000)) return tooMany(3600);
   const body = await request.json().catch(() => null);
   const score = Number(body?.score);
   const total = Number(body?.total);
