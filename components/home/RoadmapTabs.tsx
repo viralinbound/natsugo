@@ -21,20 +21,32 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
   const [sel, setSel] = useState(0);
   const [pct, setPct] = useState(0);
   const wrap = useRef<HTMLDivElement>(null);
+  const target = useRef(0);
+  const shown = useRef(0);
+  const raf = useRef(0);
   const cur = levels[sel];
   const n = levels.length;
 
   // Scrolling through the tall wrapper walks the path from N5 to N1 while the panel stays pinned.
+  // The crest and the line ease towards the scroll position, so they glide instead of jumping,
+  // and the level card changes exactly when the crest is closest to the next circle.
   useEffect(() => {
+    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const step = () => {
+      const diff = target.current - shown.current;
+      shown.current = Math.abs(diff) < 0.05 || calm ? target.current : shown.current + diff * 0.2;
+      setPct(shown.current);
+      setSel(Math.min(n - 1, Math.round((shown.current / 100) * (n - 1))));
+      raf.current = Math.abs(target.current - shown.current) > 0.05 ? requestAnimationFrame(step) : 0;
+    };
     const onScroll = () => {
       const el = wrap.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
       const range = r.height - innerHeight;
       if (range <= 0) return;
-      const p = Math.min(1, Math.max(0, -r.top / range));
-      setPct(p * 100);
-      setSel(Math.min(n - 1, Math.floor(p * n)));
+      target.current = Math.min(1, Math.max(0, -r.top / range)) * 100;
+      if (!raf.current) raf.current = requestAnimationFrame(step);
     };
     onScroll();
     addEventListener("scroll", onScroll, { passive: true });
@@ -42,15 +54,31 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
     return () => {
       removeEventListener("scroll", onScroll);
       removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf.current);
+      raf.current = 0;
     };
   }, [n]);
 
+  // Glide to a level with an eased scroll. The crest follows the page, so it travels along the line
+  // in time with the scroll, and tapping a circle or "Scroll for N3" goes straight there.
   const jump = (i: number) => {
     const el = wrap.current;
     if (!el) return setSel(i);
     const range = el.offsetHeight - innerHeight;
-    const top = el.getBoundingClientRect().top + scrollY + range * ((i + 0.5) / n);
-    window.scrollTo({ top, behavior: "smooth" });
+    const to = el.getBoundingClientRect().top + scrollY + range * (i / (n - 1)) + 1;
+    const from = scrollY;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return window.scrollTo({ top: to, behavior: "instant" });
+    const dur = Math.min(1600, 700 + Math.abs(to - from) * 0.35);
+    let t0 = -1;
+    const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const tick = (now: number) => {
+      if (t0 < 0) t0 = now;
+      const t = Math.min(1, (now - t0) / dur);
+      // `instant` so the page-wide smooth scrolling doesn't fight this eased animation.
+      window.scrollTo({ top: from + (to - from) * ease(t), behavior: "instant" });
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   };
 
   return (
@@ -61,9 +89,9 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
       </span>
       <div className="relative mx-auto w-full max-w-3xl px-2">
         <div aria-hidden className="absolute inset-x-[10%] top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-charcoal-100">
-          <div className="gradient-strip h-full rounded-full shadow-[0_0_12px_rgba(34,211,238,0.6)] transition-[width] duration-150" style={{ width: `${pct}%` }} />
+          <div className="gradient-strip h-full rounded-full" style={{ width: `${pct}%` }} />
           {/* A sakura crest (kamon) rides the line and turns as you scroll. */}
-          <span aria-hidden className="road-sakura absolute top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-surface ring-2 ring-indigo-700 transition-[left] duration-150" style={{ left: `${pct}%` }}>
+          <span aria-hidden className="road-sakura absolute top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-surface ring-2 ring-indigo-700" style={{ left: `${pct}%` }}>
             <svg viewBox="-12 -12 24 24" className="h-6 w-6" style={{ transform: `rotate(${pct * 3.6}deg)` }}>
               {[0, 72, 144, 216, 288].map((a) => (
                 <path key={a} transform={`rotate(${a})`} d="M0 -1.5 C -4.6 -4 -5 -9 -2.2 -10.6 L 0 -9 L 2.2 -10.6 C 5 -9 4.6 -4 0 -1.5 Z" className="fill-indigo-700" />
@@ -146,9 +174,15 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
       <div className="mt-5 flex items-center justify-center gap-3 text-sm font-semibold text-charcoal-500">
         <span>Level {sel + 1} of {n}</span>
         <span aria-hidden className="h-1 w-1 rounded-full bg-charcoal-300" />
-        <span className="flex items-center gap-1.5 text-sun-500">
-          {sel < n - 1 ? <>Scroll for {levels[sel + 1].level} <ChevronDown size={16} className="animate-bounce" /></> : "You reached N1 · 完了"}
-        </span>
+        {sel < n - 1 ? (
+          <button type="button" onClick={() => jump(sel + 1)} className="group inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-3 text-sun-500 transition-colors hover:bg-sun-100">
+            Scroll for {levels[sel + 1].level} <ChevronDown size={16} className="animate-bounce group-hover:animate-none" />
+          </button>
+        ) : (
+          <button type="button" onClick={() => jump(0)} className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-3 text-sun-500 transition-colors hover:bg-sun-100">
+            You reached N1 · 完了 · back to N5
+          </button>
+        )}
       </div>
     </div>
     </div>
