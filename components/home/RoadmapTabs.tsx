@@ -29,14 +29,15 @@ export function RoadmapTabs({ levels }: { levels: RoadmapLevel[] }) {
 
   // Scrolling through the tall wrapper walks the path from N5 to N1 while the panel stays pinned.
   // The crest and the line ease towards the scroll position, so they glide instead of jumping,
-  // and the level card changes exactly when the crest is closest to the next circle.
+  // and a level (circle and card) switches on only once the crest has fully reached it.
   useEffect(() => {
     const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const step = () => {
       const diff = target.current - shown.current;
       shown.current = Math.abs(diff) < 0.05 || calm ? target.current : shown.current + diff * 0.2;
       setPct(shown.current);
-      setSel(Math.min(n - 1, Math.round((shown.current / 100) * (n - 1))));
+      // A level lights up only once the line has fully reached its circle.
+      setSel(Math.min(n - 1, Math.floor((shown.current / 100) * (n - 1) + 0.02)));
       raf.current = Math.abs(target.current - shown.current) > 0.05 ? requestAnimationFrame(step) : 0;
     };
     const onScroll = () => {
