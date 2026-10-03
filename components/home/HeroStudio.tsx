@@ -39,7 +39,7 @@ export function HeroStudio() {
   return (
     <div className="relative mx-auto w-full max-w-sm md:ml-auto md:max-w-none lg:max-w-[22rem]">
       <div className="rounded-3xl border border-white/60 bg-surface p-4 shadow-[0_24px_60px_-28px_rgb(11_27_58/0.35)] sm:p-5">
-        <div role="tablist" aria-label="Try Japanese" className="grid grid-cols-2 gap-1 rounded-xl bg-bg-alt p-1">
+        <div role="tablist" aria-label="Try Japanese" className="grid grid-cols-2 gap-1 rounded-xl border border-charcoal-100 bg-bg-alt p-1">
           {([
             ["name", "名前", "Your name"],
             ["kanji", "書道", "Brush kanji"],
@@ -49,7 +49,7 @@ export function HeroStudio() {
               role="tab"
               aria-selected={tab === id}
               onClick={() => setTab(id)}
-              className={`flex min-h-[38px] items-center justify-center gap-1.5 rounded-lg text-[13px] font-bold transition-colors ${tab === id ? "bg-surface text-indigo-950 shadow" : "text-charcoal-500 hover:text-indigo-950"}`}
+              className={`flex min-h-[38px] items-center justify-center gap-1.5 rounded-lg text-[13px] font-bold transition-colors duration-200 ${tab === id ? "bg-[#0a6fd1] text-white shadow-sm" : "text-charcoal-700 hover:bg-surface hover:text-indigo-600"}`}
             >
               <span className="font-jp">{jp}</span> {label}
             </button>
