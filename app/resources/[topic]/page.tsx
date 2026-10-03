@@ -12,7 +12,7 @@ import { SpeakButton } from "@/components/ui/SpeakButton";
 import { PageQuiz, type PageQuizSet } from "@/components/quiz/PageQuiz";
 import { freeTestSets, topicSets } from "@/lib/pageQuiz";
 import { Flashcards, type Card } from "@/components/resources/Flashcards";
-import { words } from "@/lib/words";
+import { buildFlashcards } from "@/lib/flashcardDecks";
 import { Button } from "@/components/ui/Button";
 import { kanjiByLevel, kanjiLevelOrder } from "@/lib/kanjiLevels";
 
@@ -31,13 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ topic: st
   };
 }
 
-const flashcards: Card[] = [
-  ...hiragana.flat().filter((c) => c.kana).map((c) => ({ id: `h-${c.kana}`, front: c.kana, back: c.romaji, deck: "Hiragana" })),
-  ...katakana.flat().filter((c) => c.kana).map((c) => ({ id: `k-${c.kana}`, front: c.kana, back: c.romaji, deck: "Katakana" })),
-  ...kanjiN5.map((k) => ({ id: `kj-${k.k}`, front: k.k, reading: k.r.split("・")[0], back: k.m, deck: "N5 Kanji" })),
-  ...vocabulary.flatMap((v) => v.words.map((w) => ({ id: `v-${w.jp}`, front: w.jp, back: w.en, deck: "Vocabulary" }))),
-  ...words.map((w) => ({ id: `w-${w.jp}`, front: w.jp, reading: w.reading, back: w.meaning, deck: "Useful words" })),
-];
+const flashcards: Card[] = buildFlashcards();
 
 function Content({ slug }: { slug: string }) {
   switch (slug) {
