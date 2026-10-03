@@ -66,7 +66,7 @@ async function safe<T>(fn: () => Promise<T | null>, fallback: T): Promise<T> {
   try {
     return (await fn()) ?? fallback;
   } catch (err) {
-    console.error("Supabase read failed", err);
+    console.error("Supabase read failed; using sample data", err);
     return fallback;
   }
 }
@@ -79,7 +79,7 @@ export async function getBatches(): Promise<Batch[]> {
     const { data, error } = await sb.from("batches").select("*").gte("start_date", today).order("start_date");
     if (error) throw error;
     return (data as BatchRow[]).map(rowToBatch).filter((b) => b.mode !== "Offline");
-  }, []);
+  }, sampleBatches);
 }
 
 export async function getBatch(id: string | undefined) {
@@ -103,7 +103,7 @@ export async function getTeachers(): Promise<Teacher[]> {
       photo: t.photo_url ?? undefined,
       bio: t.bio ?? undefined,
     }));
-  }, []);
+  }, sampleTeachers);
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {
@@ -112,6 +112,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   return safe(async () => {
     const { data, error } = await sb.from("testimonials").select("*").order("created_at", { ascending: false }).limit(12);
     if (error) throw error;
+    if (!data.length) return sampleTestimonials;
     return data.map((t): Testimonial => ({
       id: t.id,
       name: t.name,
@@ -122,7 +123,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
       isPlaceholder: false,
       photo: t.photo_url ?? undefined,
     }));
-  }, []);
+  }, sampleTestimonials);
 }
 
 export async function getWordOfDay(): Promise<Word> {

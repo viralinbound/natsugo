@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
   if (!level) return {};
   const info = levelInfo[level];
   return {
-    title: `JLPT ${level} Online Classroom: Lessons, Live Classes & Practice`,
-    description: `${info.tagline}. Full JLPT ${level} syllabus with study notes, live online classes, recordings when available, exam format and practice quizzes.`,
+    title: `JLPT ${level} Online Classroom: Lessons, Live Classes & Recordings`,
+    description: `${info.tagline}. Full JLPT ${level} syllabus with video lessons, study notes, live online classes, recordings, exam format and practice quizzes.`,
     alternates: { canonical: `/online-classroom/${level.toLowerCase()}` },
   };
 }
@@ -198,7 +198,7 @@ export default async function LevelPage({ params }: { params: Promise<{ level: s
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
             <h2 className="text-2xl font-bold text-indigo-950"><Video size={22} className="inline -mt-1 text-sun-400" /> Class recordings</h2>
-            <p className="mt-1 text-charcoal-700">Recordings of live classes appear here once they have been uploaded.</p>
+            <p className="mt-1 text-charcoal-700">Missed a class? Every live class is recorded and free to watch.</p>
             {recordings.length ? (
               <ul className="mt-5 divide-y divide-charcoal-100 card-modern">
                 {recordings.map((s) => {

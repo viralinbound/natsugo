@@ -9,8 +9,8 @@ export default function Page() {
       title="Refund Policy"
       slug="refund-policy"
       sections={[
-        { h: "Before the batch starts", p: "Refund terms for each batch are confirmed in writing by admissions before you pay. Please ask for them first, and keep that message." },
-        { h: "After the batch starts", p: "Whether a fee can be refunded or moved to another batch after classes begin is confirmed by admissions in writing before you pay." },
+        { h: "Before the batch starts", p: "[To be defined by the business, e.g. refund window and any processing fee.]" },
+        { h: "After the batch starts", p: "[To be defined by the business, e.g. batch transfer options.]" },
         { h: "How to request", p: "Contact admissions with your name, batch and payment reference." },
       ]}
     />

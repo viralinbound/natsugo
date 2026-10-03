@@ -126,8 +126,8 @@ export function sendClassroomWelcome(to: string, name: string, levels: string[])
 <p style="font-size:15px;line-height:1.6;margin:0 0 12px">In your classroom you'll find:</p>
 <ul style="font-size:15px;line-height:1.8;margin:0 0 18px;padding-left:20px">
 <li>Links to join your <strong>live classes</strong></li>
-<li><strong>Recordings</strong> of classes, added when they are available</li>
-<li>Study notes for every lesson, and free quizzes</li>
+<li><strong>Recordings</strong> of every class</li>
+<li>Video lessons, study notes and handouts</li>
 </ul>
 <p style="margin:0 0 16px">${btn(`${site.url}/online-classroom`, "Open the classroom")}</p>
 <p style="font-size:13px;color:#6b6b6b;margin:0">Everything is free and open: no sign-in needed.</p>`;

@@ -6,7 +6,6 @@ import { placeholderPhoto } from "@/lib/site";
 
 export async function Testimonials() {
   const testimonials = await getTestimonials();
-  if (!testimonials.length) return null;
   return (
     <section className="bg-bg-alt py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

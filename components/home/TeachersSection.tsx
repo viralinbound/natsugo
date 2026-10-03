@@ -7,17 +7,6 @@ import { placeholderPhoto } from "@/lib/site";
 
 export async function TeachersSection() {
   const teachers = await getTeachers();
-  if (!teachers.length) {
-    return (
-      <section className="bg-bg-alt py-14 sm:py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <SectionHeading eyebrow="Our Teachers" title="Meet your teacher in a free demo class" />
-          <p className="mt-4 text-charcoal-700">We will add each teacher&apos;s profile here once it is confirmed. Until then, book a free demo class and meet the teacher who will take your batch.</p>
-          <div className="mt-6 flex justify-center"><Button href="/free-japanese-demo-class">Book a free demo</Button></div>
-        </div>
-      </section>
-    );
-  }
   return (
     <section className="bg-bg-alt py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
