@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Check, Copy, Loader2, Share2, Volume2 } from "lucide-react";
+import { Check, Copy, Loader2, Shuffle, Share2, Volume2 } from "lucide-react";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 import { toKatakana } from "@/lib/katakana";
 import { toRomaji } from "@/lib/kanaConvert";
+import { atejiFor } from "@/lib/ateji";
 import { toHiragana } from "@/lib/kanaConvert";
 import { site } from "@/lib/site";
 
@@ -31,6 +32,7 @@ export function TranslateCard() {
   const [result, setResult] = useState<Result | null>(null);
   const [pick, setPick] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [seed, setSeed] = useState(0);
   const [copied, setCopied] = useState<string | null>(null);
   const abort = useRef<AbortController | null>(null);
 
@@ -53,6 +55,7 @@ export function TranslateCard() {
         if (!res.ok) throw new Error(data.error ?? "failed");
         setResult({ q, mode: data.mode, matches: data.matches });
         setPick(0);
+        setSeed(0);
       } catch (e) {
         if ((e as Error).name === "AbortError") return;
         // Dictionary not reachable: still give a sound-based katakana spelling.
@@ -70,6 +73,9 @@ export function TranslateCard() {
   const nameKana = result && result.mode !== "word" ? toKatakana(result.q) : "";
   const m: Match | null = result?.mode === "word" ? result.matches[pick] ?? null : nameKana ? { kanji: null, hiragana: toHiragana(nameKana), katakana: nameKana, loan: false, meaning: "" } : null;
 
+  // A name or word with no kanji of its own gets an artistic spelling, chosen sound by sound.
+  const ateji = m && !m.kanji ? atejiFor(m.katakana, seed) : null;
+
   const copy = async (value: string) => {
     try {
       await navigator.clipboard.writeText(value);
@@ -85,10 +91,10 @@ export function TranslateCard() {
           id: "kanji",
           jp: "漢字",
           en: "Kanji",
-          value: m.kanji,
-          hear: m.hiragana,
-          say: m.kanji ? toRomaji(m.hiragana) : undefined,
-          note: m.kanji ? undefined : result?.mode === "word" ? "This word is written without kanji" : "Foreign names have no kanji. Japanese names do, so try Tanaka or Yamada.",
+          value: m.kanji ?? ateji?.kanji ?? null,
+          hear: m.kanji ? m.hiragana : m.katakana,
+          say: m.kanji ? toRomaji(m.hiragana) : ateji ? ateji.said.toLowerCase() : undefined,
+          note: m.kanji ? undefined : ateji ? "Artistic kanji, chosen to match the sound" : "No kanji spelling for this one",
         },
         {
           id: "kata",
@@ -165,11 +171,26 @@ export function TranslateCard() {
           ))}
         </div>
       ) : null}
+      {ateji ? (
+        <div className="pop-in mt-3 rounded-2xl border border-indigo-700/25 bg-surface p-3.5" key={ateji.kanji}>
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-sun-500">Artistic kanji · 当て字</p>
+              <button type="button" onClick={() => speakJapanese(m!.katakana)} aria-label={`Hear ${ateji.kanji}`} className="mt-1 break-all text-left font-jp text-4xl font-bold leading-tight text-indigo-950 transition-colors hover:text-indigo-700">{ateji.kanji}</button>
+            </div>
+            <button type="button" onClick={() => setSeed((n) => n + 1)} className="inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-md border border-charcoal-100 px-3 text-xs font-bold text-indigo-950 transition-colors hover:border-indigo-700"><Shuffle size={13} /> Another spelling</button>
+          </div>
+          <p className="mt-2 text-sm text-charcoal-800"><span className="font-bold">Pronounced:</span> {ateji.said}</p>
+          <p className="mt-1 text-sm text-charcoal-800"><span className="font-bold">Meaning:</span> {ateji.parts.map((p) => `${p.kanji} (${p.meaning})`).join(" + ")}</p>
+          <p className="mt-1 text-sm text-charcoal-700"><span className="font-bold text-charcoal-800">When to use:</span> tattoos, art, jewellery or a creative signature. The characters are picked to match the sound of &ldquo;{result?.q}&rdquo; and to carry a lovely meaning.</p>
+          <p className="mt-1.5 text-[11px] leading-snug text-charcoal-500">This is an artistic spelling, not an official one, and the same name can be written many ways. Ask a Japanese speaker before using one permanently.</p>
+        </div>
+      ) : null}
       {m?.meaning ? <p className="mt-2 text-xs text-charcoal-500">Meaning: {m.meaning}</p> : null}
       {result?.mode === "offline" ? <p className="mt-2 text-xs text-charcoal-500">The dictionary could not be reached, so this is a sound-based spelling only.</p> : null}
 
       <a
-        href={m ? `https://wa.me/?text=${encodeURIComponent(`${result?.q} in Japanese: ${m.kanji ? `${m.kanji} / ` : ""}${m.hiragana} / ${m.katakana}. Try yours at ${site.url}`)}` : undefined}
+        href={m ? `https://wa.me/?text=${encodeURIComponent(`${result?.q} in Japanese: ${m.kanji ?? ateji?.kanji ? `${m.kanji ?? ateji?.kanji} / ` : ""}${m.hiragana} / ${m.katakana}. Try yours at ${site.url}`)}` : undefined}
         target="_blank"
         rel="noopener noreferrer"
         aria-disabled={!m}
