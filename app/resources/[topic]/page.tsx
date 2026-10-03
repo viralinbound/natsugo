@@ -1,5 +1,5 @@
 import { WoodTile } from "@/components/resources/WoodTile";
-import { KanjiCard } from "@/components/resources/KanjiCard";
+import { KanjiN5Grid } from "@/components/resources/KanjiCard";
 import { PracticeToggle } from "@/components/japan/PracticeToggle";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -67,11 +67,7 @@ function Content({ slug }: { slug: string }) {
             <p className="text-charcoal-700">Press the speaker on a card to hear it. Switch on writing practice, then tap a card to draw it.</p>
             <PracticeToggle />
           </div>
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 pb-2">
-            {kanjiN5.map((k) => (
-              <KanjiCard key={k.k} {...k} />
-            ))}
-          </div>
+          <KanjiN5Grid items={[...kanjiN5]} />
         </>
       );
     case "grammar":

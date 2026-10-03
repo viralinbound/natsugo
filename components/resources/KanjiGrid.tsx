@@ -84,6 +84,12 @@ export function KanjiGrid({ kanji, known }: { kanji: string[]; known: Map<string
         <KanjiPractice
           item={{ ch: active, reading: info?.reading?.split(/[、,・ ]/)[0] || undefined, meaning: info?.meaning || undefined }}
           onClose={() => setOpen(false)}
+          nav={{
+            index: kanji.indexOf(active),
+            total: kanji.length,
+            onPrev: () => handleTap(kanji[(kanji.indexOf(active) + kanji.length - 1) % kanji.length]),
+            onNext: () => handleTap(kanji[(kanji.indexOf(active) + 1) % kanji.length]),
+          }}
         />
       ) : null}
     </div>

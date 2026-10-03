@@ -12,6 +12,7 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
   const [active, setActive] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [practice] = usePracticeMode();
+  const list = rows.flat().filter((c) => c.kana);
 
   return (
     <div>
@@ -51,7 +52,18 @@ export function KanaChart({ rows }: { rows: KanaCell[][] }) {
         )}
       </div>
       </div>
-      {open && active ? <KanjiPractice item={{ ch: active, meaning: rows.flat().find((c) => c.kana === active)?.romaji }} onClose={() => setOpen(false)} /> : null}
+      {open && active ? (
+        <KanjiPractice
+          item={{ ch: active, meaning: list.find((c) => c.kana === active)?.romaji }}
+          onClose={() => setOpen(false)}
+          nav={{
+            index: list.findIndex((c) => c.kana === active),
+            total: list.length,
+            onPrev: () => setActive(list[(list.findIndex((c) => c.kana === active) + list.length - 1) % list.length].kana),
+            onNext: () => setActive(list[(list.findIndex((c) => c.kana === active) + 1) % list.length].kana),
+          }}
+        />
+      ) : null}
     </div>
   );
 }

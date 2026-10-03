@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Download, Eraser, Eye, EyeOff, Gauge, RotateCcw, Send, Volume2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Eraser, Eye, EyeOff, Gauge, Pencil, Redo2, RotateCcw, Send, Trash2, Undo2, Volume2, X } from "lucide-react";
 import { StrokeOrder } from "@/components/japan/StrokeOrder";
 import { speakJapanese } from "@/components/ui/SpeakButton";
 import { loadStrokes, STROKE_BOX } from "@/lib/strokes";
@@ -22,10 +22,18 @@ const SPEEDS = [
 ];
 
 type Pt = [number, number];
+interface Ink {
+  pts: Pt[];
+  erase: boolean;
+}
+
+const PEN = 12;
+const RUBBER = 34;
 
 // Compares the drawing with the real strokes: how much ink landed on the character (precision)
 // and how much of the character was covered (recall), with a little tolerance for wobble.
-async function scoreDrawing(ch: string, lines: Pt[][]): Promise<number | null> {
+async function scoreDrawing(ch: string, inks: Ink[]): Promise<number | null> {
+  const lines = inks.filter((i) => !i.erase);
   const strokes = await loadStrokes(ch);
   if (!strokes.length || !lines.length) return null;
   const k = SIZE / STROKE_BOX;
@@ -46,13 +54,17 @@ async function scoreDrawing(ch: string, lines: Pt[][]): Promise<number | null> {
       strokes.forEach((d) => c.stroke(new Path2D(d)));
     });
   const user = (w: number) =>
-    draw(w, (c) =>
-      lines.forEach((l) => {
+    draw(w, (c) => {
+      // Replay in order so erased parts really disappear, then judge what is left.
+      inks.forEach((ink) => {
+        c.globalCompositeOperation = ink.erase ? "destination-out" : "source-over";
+        c.lineWidth = ink.erase ? RUBBER : w;
         c.beginPath();
-        l.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+        ink.pts.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+        if (ink.pts.length === 1) c.lineTo(ink.pts[0][0] + 0.1, ink.pts[0][1]);
         c.stroke();
-      }),
-    );
+      });
+    });
   const tThin = target(12), tWide = target(34), uThin = user(12), uWide = user(34);
   let ink = 0, inkOn = 0, shape = 0, shapeHit = 0;
   for (let i = 3; i < tThin.length; i += 4) {
@@ -80,15 +92,29 @@ function verdict(s: number) {
   return { jp: "がんばって", en: "Keep going: trace it with the guide on first.", tone: "text-hanko" };
 }
 
-export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: () => void }) {
+export interface PracticeNav {
+  index: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
+}
+
+// The board restarts cleanly for each character: the key resets drawing, undo history and score.
+export function KanjiPractice({ item, onClose, nav }: { item: PracticeItem; onClose: () => void; nav?: PracticeNav }) {
+  return <PracticeBoard key={item.ch} item={item} onClose={onClose} nav={nav} />;
+}
+
+function PracticeBoard({ item, onClose, nav }: { item: PracticeItem; onClose: () => void; nav?: PracticeNav }) {
   const [speed, setSpeed] = useState(0.6);
   const [replay, setReplay] = useState(0);
   const [step, setStep] = useState<[number, number]>([0, 0]);
   const [guide, setGuide] = useState(true);
-  const [lines, setLines] = useState<Pt[][]>([]);
+  const [inks, setInks] = useState<Ink[]>([]);
+  const [undone, setUndone] = useState<Ink[]>([]);
+  const [tool, setTool] = useState<"pen" | "eraser">("pen");
   const [score, setScore] = useState<number | null | undefined>(undefined);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const drawing = useRef<Pt[] | null>(null);
+  const drawing = useRef<Ink | null>(null);
 
   useEffect(() => {
     speakJapanese(item.reading || item.ch);
@@ -102,21 +128,23 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
     };
   }, [item.ch, item.reading, onClose]);
 
-  // Redraw the board whenever the strokes change.
+  // Redraw the board whenever the strokes change. The eraser cuts through earlier ink.
   useEffect(() => {
     const c = canvas.current?.getContext("2d");
     if (!c) return;
     c.clearRect(0, 0, SIZE, SIZE);
     c.lineCap = c.lineJoin = "round";
-    c.lineWidth = 12;
     c.strokeStyle = getComputedStyle(canvas.current!).color;
-    lines.forEach((l) => {
+    inks.forEach((ink) => {
+      c.globalCompositeOperation = ink.erase ? "destination-out" : "source-over";
+      c.lineWidth = ink.erase ? RUBBER : PEN;
       c.beginPath();
-      l.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
-      if (l.length === 1) c.lineTo(l[0][0] + 0.1, l[0][1]);
+      ink.pts.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+      if (ink.pts.length === 1) c.lineTo(ink.pts[0][0] + 0.1, ink.pts[0][1]);
       c.stroke();
     });
-  }, [lines]);
+    c.globalCompositeOperation = "source-over";
+  }, [inks]);
 
   const point = (e: React.PointerEvent): Pt => {
     const r = canvas.current!.getBoundingClientRect();
@@ -126,18 +154,38 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
     try {
       canvas.current!.setPointerCapture(e.pointerId);
     } catch {}
-    const first: Pt[] = [point(e)];
-    drawing.current = first;
-    setLines((l) => [...l, first]);
+    const ink: Ink = { pts: [point(e)], erase: tool === "eraser" };
+    drawing.current = ink;
+    setInks((l) => [...l, ink]);
+    setUndone([]);
     setScore(undefined);
   };
   const move = (e: React.PointerEvent) => {
     if (!drawing.current) return;
-    drawing.current.push(point(e));
-    const pts = [...drawing.current];
-    setLines((l) => [...l.slice(0, -1), pts]);
+    drawing.current.pts.push(point(e));
+    const ink: Ink = { pts: [...drawing.current.pts], erase: drawing.current.erase };
+    setInks((l) => [...l.slice(0, -1), ink]);
   };
   const up = () => (drawing.current = null);
+
+  const undo = () => {
+    if (!inks.length) return;
+    setUndone((u) => [...u, inks[inks.length - 1]]);
+    setInks(inks.slice(0, -1));
+    setScore(undefined);
+  };
+  const redo = () => {
+    if (!undone.length) return;
+    setInks((l) => [...l, undone[undone.length - 1]]);
+    setUndone(undone.slice(0, -1));
+    setScore(undefined);
+  };
+  const clearAll = () => {
+    setInks([]);
+    setUndone([]);
+    setScore(undefined);
+  };
+  const lines = inks.filter((i) => !i.erase);
 
   const save = () => {
     const out = document.createElement("canvas");
@@ -152,7 +200,7 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
     a.click();
   };
 
-  const submit = async () => setScore(await scoreDrawing(item.ch, lines));
+  const submit = async () => setScore(await scoreDrawing(item.ch, inks));
   const v = typeof score === "number" ? verdict(score) : null;
 
   return createPortal(
@@ -215,12 +263,20 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
                 onPointerUp={up}
                 onPointerCancel={up}
                 aria-label="Drawing board"
-                className="pencil-cursor relative h-full w-full touch-none text-[#0b1b3a]"
+                className={`${tool === "pen" ? "pencil-cursor" : "eraser-cursor"} relative h-full w-full touch-none text-[#0b1b3a]`}
               />
-              {!lines.length ? <span className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs text-charcoal-500">Draw here with your finger, mouse or pen</span> : null}
+              {!inks.length ? <span className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-xs text-charcoal-500">Draw here with your finger, mouse or pen</span> : null}
             </div>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              <button type="button" onClick={() => { setLines([]); setScore(undefined); }} className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-charcoal-100 text-sm font-bold text-indigo-950 hover:border-indigo-700"><Eraser size={15} /> Clear</button>
+            <div className="mt-3 flex flex-wrap items-center gap-2" role="toolbar" aria-label="Drawing tools">
+              <div className="inline-flex overflow-hidden rounded-md border border-charcoal-100">
+                <button type="button" onClick={() => setTool("pen")} aria-pressed={tool === "pen"} className={`inline-flex min-h-[40px] items-center gap-1.5 px-3 text-sm font-bold transition-colors ${tool === "pen" ? "bg-indigo-900 text-white" : "bg-surface text-indigo-950 hover:bg-bg-alt"}`}><Pencil size={15} /> Pen</button>
+                <button type="button" onClick={() => setTool("eraser")} aria-pressed={tool === "eraser"} className={`inline-flex min-h-[40px] items-center gap-1.5 px-3 text-sm font-bold transition-colors ${tool === "eraser" ? "bg-indigo-900 text-white" : "bg-surface text-indigo-950 hover:bg-bg-alt"}`}><Eraser size={15} /> Eraser</button>
+              </div>
+              <button type="button" onClick={undo} disabled={!inks.length} aria-label="Undo" className="inline-flex min-h-[40px] items-center gap-1.5 rounded-md border border-charcoal-100 px-3 text-sm font-bold text-indigo-950 hover:border-indigo-700 disabled:opacity-40"><Undo2 size={15} /> Undo</button>
+              <button type="button" onClick={redo} disabled={!undone.length} aria-label="Redo" className="inline-flex min-h-[40px] items-center gap-1.5 rounded-md border border-charcoal-100 px-3 text-sm font-bold text-indigo-950 hover:border-indigo-700 disabled:opacity-40"><Redo2 size={15} /> Redo</button>
+              <button type="button" onClick={clearAll} disabled={!inks.length} className="inline-flex min-h-[40px] items-center gap-1.5 rounded-md border border-charcoal-100 px-3 text-sm font-bold text-indigo-950 hover:border-indigo-700 disabled:opacity-40"><Trash2 size={15} /> Clear all</button>
+            </div>
+            <div className="mt-2 grid grid-cols-2 gap-2">
               <button type="button" onClick={save} disabled={!lines.length} className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-charcoal-100 text-sm font-bold text-indigo-950 hover:border-indigo-700 disabled:opacity-40"><Download size={15} /> Save</button>
               <button type="button" onClick={submit} disabled={!lines.length} className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-indigo-900 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-40"><Send size={15} /> Submit</button>
             </div>
@@ -237,6 +293,13 @@ export function KanjiPractice({ item, onClose }: { item: PracticeItem; onClose: 
             ) : null}
           </div>
         </div>
+        {nav ? (
+          <div className="mt-5 flex items-center justify-between gap-3 border-t border-charcoal-100 pt-4">
+            <button type="button" onClick={nav.onPrev} className="inline-flex min-h-[44px] items-center gap-1.5 rounded-md border border-charcoal-100 px-4 text-sm font-bold text-indigo-950 transition-colors hover:border-indigo-700"><ChevronLeft size={16} /> Previous</button>
+            <span className="text-sm font-semibold text-charcoal-500">{nav.index + 1} of {nav.total}</span>
+            <button type="button" onClick={nav.onNext} className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-md px-5 text-sm font-bold text-white transition-colors ${typeof score === "number" ? "bg-[#0a6fd1] hover:bg-indigo-900" : "bg-indigo-900 hover:bg-indigo-700"}`}>Next <ChevronRight size={16} /></button>
+          </div>
+        ) : null}
         <p className="mt-5 text-[11px] text-charcoal-500">Stroke order data: KanjiVG (CC BY-SA 3.0). Accuracy is an automatic estimate of shape and stroke count.</p>
       </div>
     </div>,

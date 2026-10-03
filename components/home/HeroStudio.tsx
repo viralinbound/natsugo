@@ -142,7 +142,7 @@ export function HeroStudio() {
             <button type="button" onClick={() => setPractise(true)} className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 border-indigo-900 text-sm font-bold text-indigo-950 transition-colors hover:bg-indigo-900 hover:text-white">
               <PenLine size={16} /> Practise writing {k.k} on the board
             </button>
-            {practise ? <KanjiPractice item={{ ch: k.k, reading: k.r, meaning: k.m }} onClose={() => setPractise(false)} /> : null}
+            {practise ? <KanjiPractice item={{ ch: k.k, reading: k.r, meaning: k.m }} onClose={() => setPractise(false)} nav={{ index: pick, total: kanji.length, onPrev: () => setPick((pick + kanji.length - 1) % kanji.length), onNext: () => setPick((pick + 1) % kanji.length) }} /> : null}
           </div>
         )}
 
