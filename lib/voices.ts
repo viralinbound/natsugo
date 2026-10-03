@@ -41,7 +41,8 @@ export function tune(u: SpeechSynthesisUtterance, lang: "en" | "ja", rate = 1) {
     u.voice = v;
     u.lang = v.lang;
   }
-  u.rate = rate * (lang === "ja" ? 0.8 : 0.88);
-  u.pitch = 1.08;
-  u.volume = 0.8;
+  u.rate = rate * (lang === "ja" ? 0.78 : 0.88);
+  // A higher pitch gives the Japanese voice a bright, cute and polite young-teacher feel; English stays gentler.
+  u.pitch = lang === "ja" ? 1.3 : 1.12;
+  u.volume = 0.85;
 }
