@@ -2,7 +2,8 @@ import Link from "next/link";
 import { AlertTriangle, Check, ExternalLink, X } from "lucide-react";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { ExamChecklist } from "@/components/jlpt/ExamChecklist";
-import { afterExam, bring, dontBring, examDayPlan, guideFaqs, levelRows, registrationSteps } from "@/lib/examGuide";
+import { bring, dontBring, examDayPlan, guideFaqs, levelRows, registrationSteps } from "@/lib/examGuide";
+import type { OfficialAfter, ResultsStatus } from "@/lib/jlptResults";
 
 const jump = [
   ["levels", "Levels and pass marks"],
@@ -13,7 +14,8 @@ const jump = [
   ["faq", "Questions"],
 ];
 
-export function ExamGuide({ officialLink, next }: { officialLink: string; next?: { name: string; examDate: string } }) {
+export function ExamGuide({ officialLink, next, official, tracker }: { officialLink: string; next?: { name: string; examDate: string }; official: OfficialAfter; tracker: ResultsStatus[] }) {
+  const passFor = (level: string, fallback: number) => official.passMarks.find((p) => p.level === level)?.overall ?? fallback;
   return (
     <>
       <section className="bg-bg-alt py-16 sm:py-24">
@@ -49,7 +51,7 @@ export function ExamGuide({ officialLink, next }: { officialLink: string; next?:
                       <td className="px-4 py-3"><p className="font-display text-lg font-bold text-indigo-950">{r.level}</p></td>
                       <td className="px-4 py-3 text-charcoal-800">{r.sections}<p className="mt-1 text-xs text-charcoal-500">{r.who}</p></td>
                       <td className="px-4 py-3 font-semibold text-charcoal-900">{r.total}</td>
-                      <td className="px-4 py-3 font-semibold text-charcoal-900">{r.pass}</td>
+                      <td className="px-4 py-3 font-semibold text-charcoal-900">{passFor(r.level, r.pass)}</td>
                       <td className="px-4 py-3 text-charcoal-800">{r.sectional}</td>
                     </tr>
                   ))}
@@ -142,14 +144,30 @@ export function ExamGuide({ officialLink, next }: { officialLink: string; next?:
 
           <div id="after" className="mt-16 scroll-mt-24">
             <h3 className="text-2xl font-bold text-indigo-950">5. After the exam: results, pass or fail, retakes</h3>
-            <dl className="mt-6 grid gap-4 md:grid-cols-2">
-              {afterExam.map((a) => (
+            {tracker.length ? (
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {tracker.map((t) => (
+                  <div key={t.session} className={`rounded-2xl border p-5 ${t.state === "due" || t.state === "overdue" ? "border-hanko/40 bg-hanko/5" : "border-indigo-700/25 bg-surface"}`}>
+                    <p className="text-xs font-bold uppercase tracking-wider text-sun-500">{t.state === "upcoming" ? "Next exam" : "Latest exam"} · {t.examDate}</p>
+                    <p className="mt-1 font-display text-lg font-bold text-indigo-950">{t.headline}</p>
+                    <p className="mt-1 text-sm text-charcoal-700">{t.detail}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+            <dl className="mt-4 grid gap-4 md:grid-cols-2">
+              {official.items.map((a) => (
                 <div key={a.title} className="rounded-2xl border border-charcoal-100 bg-surface p-5">
                   <dt className="font-display text-lg font-bold text-indigo-950">{a.title}</dt>
                   <dd className="mt-1 text-sm text-charcoal-700">{a.body}</dd>
                 </div>
               ))}
             </dl>
+            <p className="mt-3 text-xs text-charcoal-500">
+              {official.live && official.checkedAt
+                ? `Read from the official JLPT FAQ on ${new Date(official.checkedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })} and refreshed automatically. Outside Japan, reports come through your host centre.`
+                : "Summary of the official JLPT FAQ. It refreshes automatically whenever the official site can be read."}
+            </p>
           </div>
 
           <div id="faq" className="mt-16 scroll-mt-24">

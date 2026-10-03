@@ -7,6 +7,7 @@ import { levelInfo } from "@/lib/curriculum";
 import { images, whatsappLink } from "@/lib/site";
 import { PageHero } from "@/components/ui/PageHero";
 import { ExamGuide } from "@/components/jlpt/ExamGuide";
+import { getOfficialAfter, resultsTracker } from "@/lib/jlptResults";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export const revalidate = 21600;
 
 export default async function ExamInfoPage() {
-  const info = await getExamInfo();
+  const [info, official] = await Promise.all([getExamInfo(), getOfficialAfter()]);
   const next = info.sessions.find((x) => x.iso);
   const exam = next?.iso ? new Date(next.iso) : null;
   const now = new Date(info.generatedAt).getTime();
@@ -155,7 +156,7 @@ export default async function ExamInfoPage() {
         </div>
       </section>
 
-      <ExamGuide officialLink={info.officialLink} next={next ? { name: next.name, examDate: next.examDate } : undefined} />
+      <ExamGuide officialLink={info.officialLink} next={next ? { name: next.name, examDate: next.examDate } : undefined} official={official} tracker={resultsTracker(new Date(info.generatedAt), official.resultMonths)} />
 
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
