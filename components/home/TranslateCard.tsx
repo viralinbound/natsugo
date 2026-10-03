@@ -94,7 +94,7 @@ export function TranslateCard() {
           value: m.kanji ?? ateji?.kanji ?? null,
           hear: m.kanji ? m.hiragana : m.katakana,
           say: m.kanji ? toRomaji(m.hiragana) : ateji ? ateji.said.toLowerCase() : undefined,
-          note: m.kanji ? undefined : ateji ? "Artistic kanji, chosen to match the sound" : "No kanji spelling for this one",
+          note: m.kanji ? undefined : ateji ? "(No real kanji exists for this word. This one is made from its sound, not official.)" : "No kanji spelling for this one",
         },
         {
           id: "kata",
@@ -176,6 +176,7 @@ export function TranslateCard() {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[11px] font-bold uppercase tracking-wider text-sun-500">Artistic kanji · 当て字</p>
+              <p className="mt-0.5 text-[12px] font-semibold leading-snug text-hanko">(No real kanji exists for &ldquo;{result?.q}&rdquo;. I made this one from its sound, so it is artistic, not official.)</p>
               <button type="button" onClick={() => speakJapanese(m!.katakana)} aria-label={`Hear ${ateji.kanji}`} className="mt-1 break-all text-left font-jp text-4xl font-bold leading-tight text-indigo-950 transition-colors hover:text-indigo-700">{ateji.kanji}</button>
             </div>
             <button type="button" onClick={() => setSeed((n) => n + 1)} className="inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-md border border-charcoal-100 px-3 text-xs font-bold text-indigo-950 transition-colors hover:border-indigo-700"><Shuffle size={13} /> Another spelling</button>
@@ -183,7 +184,7 @@ export function TranslateCard() {
           <p className="mt-2 text-sm text-charcoal-800"><span className="font-bold">Pronounced:</span> {ateji.said}</p>
           <p className="mt-1 text-sm text-charcoal-800"><span className="font-bold">Meaning:</span> {ateji.parts.map((p) => `${p.kanji} (${p.meaning})`).join(" + ")}</p>
           <p className="mt-1 text-sm text-charcoal-700"><span className="font-bold text-charcoal-800">When to use:</span> tattoos, art, jewellery or a creative signature. The characters are picked to match the sound of &ldquo;{result?.q}&rdquo; and to carry a lovely meaning.</p>
-          <p className="mt-1.5 text-[11px] leading-snug text-charcoal-500">This is an artistic spelling, not an official one, and the same name can be written many ways. Ask a Japanese speaker before using one permanently.</p>
+          <p className="mt-1.5 text-[11px] leading-snug text-charcoal-500">The same name can be written many ways. Ask a Japanese speaker before using one permanently.</p>
         </div>
       ) : null}
       {m?.meaning ? <p className="mt-2 text-xs text-charcoal-500">Meaning: {m.meaning}</p> : null}
