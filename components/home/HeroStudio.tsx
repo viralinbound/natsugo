@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, PenLine, RotateCcw, Share2, Volume2 } from "lucide-react";
+import { PenLine, RotateCcw, Volume2 } from "lucide-react";
 import { StrokeOrder } from "@/components/japan/StrokeOrder";
 import { KanjiPractice } from "@/components/japan/KanjiPractice";
 import { speakJapanese } from "@/components/ui/SpeakButton";
-import { toKatakana } from "@/lib/katakana";
-import { site } from "@/lib/site";
+import { TranslateCard } from "@/components/home/TranslateCard";
 
 const kanji = [
   { k: "学", r: "まなぶ", romaji: "manabu", m: "to learn" },
@@ -16,32 +15,21 @@ const kanji = [
   { k: "友", r: "とも", romaji: "tomo", m: "friend" },
 ];
 
-// Hero card with two tabs: write your name in katakana, or watch a kanji being brushed.
+// Hero card with two tabs: translate a name or word into hiragana, kanji and katakana, or watch a kanji being brushed.
 export function HeroStudio() {
   const [tab, setTab] = useState<"name" | "kanji">("name");
-  const [name, setName] = useState("");
   const [pick, setPick] = useState(0);
-  const [copied, setCopied] = useState(false);
   const [speed, setSpeed] = useState(0.6);
   const [replay, setReplay] = useState(0);
   const [practise, setPractise] = useState(false);
-  const kana = toKatakana(name);
   const k = kanji[pick];
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(kana);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {}
-  };
 
   return (
     <div className="relative mx-auto w-full max-w-sm md:ml-auto md:max-w-none lg:max-w-[22rem]">
       <div className="rounded-3xl border border-white/60 bg-surface p-4 shadow-[0_24px_60px_-28px_rgb(11_27_58/0.35)] sm:p-5">
         <div role="tablist" aria-label="Try Japanese" className="grid grid-cols-2 gap-1 rounded-xl border border-charcoal-100 bg-bg-alt p-1">
           {([
-            ["name", "名前", "Your name"],
+            ["name", "翻訳", "Translate"],
             ["kanji", "書道", "Brush kanji"],
           ] as const).map(([id, jp, label]) => (
             <button
@@ -57,47 +45,7 @@ export function HeroStudio() {
         </div>
 
         {tab === "name" ? (
-          <div role="tabpanel" className="pop-in mt-4">
-            <label htmlFor="hero-name" className="text-sm font-bold text-indigo-950">See your name in Japanese</label>
-            <input
-              id="hero-name"
-              value={name}
-              onChange={(e) => setName(e.target.value.slice(0, 24))}
-              placeholder="Type your name, e.g. Priya"
-              autoComplete="off"
-              className="mt-2 w-full rounded-xl border-2 border-charcoal-100 bg-surface px-3.5 py-2.5 text-base text-indigo-950 outline-none transition-colors focus:border-indigo-700"
-            />
-            <div className="mt-3 flex min-h-[92px] flex-col items-center justify-center rounded-2xl bg-bg-alt px-3 py-3 text-center">
-              {kana ? (
-                <>
-                  <button type="button" key={kana} onClick={() => speakJapanese(kana)} aria-label={`Hear ${kana}`} className="pop-in break-all font-jp text-4xl font-bold leading-tight text-indigo-950 transition-transform hover:scale-105">{kana}</button>
-                  <p className="mt-2 text-xs text-charcoal-500">Written in katakana, the script Japan uses for foreign names</p>
-                </>
-              ) : (
-                <>
-                  <button type="button" onClick={() => speakJapanese("なまえ")} aria-label="Hear namae" className="font-jp text-4xl font-bold text-charcoal-300">ナマエ</button>
-                  <p className="mt-2 text-xs text-charcoal-500">“namae” means name</p>
-                </>
-              )}
-            </div>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              <button type="button" disabled={!kana} onClick={() => speakJapanese(kana)} className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg border border-charcoal-100 text-sm font-bold text-indigo-950 transition-colors hover:border-indigo-700 disabled:opacity-40">
-                <Volume2 size={16} /> Hear
-              </button>
-              <button type="button" disabled={!kana} onClick={copy} className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg border border-charcoal-100 text-sm font-bold text-indigo-950 transition-colors hover:border-indigo-700 disabled:opacity-40">
-                {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />} {copied ? "Copied" : "Copy"}
-              </button>
-              <a
-                href={kana ? `https://wa.me/?text=${encodeURIComponent(`My name in Japanese is ${kana}! Find yours at ${site.url}`)}` : undefined}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-disabled={!kana}
-                className={`flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-[#15803d] text-sm font-bold text-white ${kana ? "" : "pointer-events-none opacity-40"}`}
-              >
-                <Share2 size={16} /> Share
-              </a>
-            </div>
-          </div>
+          <TranslateCard />
         ) : (
           <div role="tabpanel" className="mt-4">
             <div className="flex items-center gap-4 rounded-2xl bg-bg-alt p-4">
