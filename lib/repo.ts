@@ -78,7 +78,9 @@ export async function getBatches(): Promise<Batch[]> {
     const today = new Date().toISOString().slice(0, 10);
     const { data, error } = await sb.from("batches").select("*").gte("start_date", today).order("start_date");
     if (error) throw error;
-    return (data as BatchRow[]).map(rowToBatch).filter((b) => b.mode !== "Offline");
+    const rows = (data as BatchRow[]).map(rowToBatch).filter((b) => b.mode !== "Offline");
+    // Until real batches are published, the example batches keep the section filled.
+    return rows.length ? rows : sampleBatches;
   }, sampleBatches);
 }
 
@@ -93,7 +95,7 @@ export async function getTeachers(): Promise<Teacher[]> {
   return safe(async () => {
     const { data, error } = await sb.from("teachers").select("*").order("sort");
     if (error) throw error;
-    return data.map((t): Teacher => ({
+    const rows = data.map((t): Teacher => ({
       id: t.id,
       name: t.name,
       role: t.role,
@@ -103,6 +105,7 @@ export async function getTeachers(): Promise<Teacher[]> {
       photo: t.photo_url ?? undefined,
       bio: t.bio ?? undefined,
     }));
+    return rows.length ? rows : sampleTeachers;
   }, sampleTeachers);
 }
 
